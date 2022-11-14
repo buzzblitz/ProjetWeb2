@@ -1,0 +1,43 @@
+.bg-nav-perso, .nav {
+    background-color: rgb(21, 28, 72) !important;
+    
+}
+
+.nav-link {
+    color: rgb(222, 205, 198) !important;
+}
+
+#msgPass {
+    color:red;
+    font-size: 12px;
+}
+
+.aligner-centre-titre {
+    text-align: center;
+    color:blueviolet;
+    font-size: 30px;
+}
+
+#pourMsg {
+    color:red;
+    font-size:18px;
+    font-weight: bold;
+}
+
+.image-border {
+    border-radius: 50%;
+}
+
+.droite {
+    margin-right: 0;
+}
+
+#logo_text{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    color: rgb(222, 205, 198);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
