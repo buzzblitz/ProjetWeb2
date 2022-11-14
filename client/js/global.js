@@ -25,3 +25,7 @@ let lister = () => {
 let deconnecter = () => {
     document.getElementById('dc').submit();
 }
+
+let manger = () => {
+    document.getElementById('dc').submit();
+}
