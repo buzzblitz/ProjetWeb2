@@ -6,6 +6,7 @@ CREATE TABLE membres (
   prenom VARCHAR(255) NOT NULL,
   nom VARCHAR(255) NOT NULL,
   courriel VARCHAR(255) NOT NULL,
+  sexe varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
   daten date DEFAULT NULL,
   photom VARCHAR(255)DEFAULT NULL
 );

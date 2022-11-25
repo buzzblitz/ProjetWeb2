@@ -5,13 +5,13 @@
 
     function  obtenirPhotoMembre($idm){
         global $connexion;
-        $requete = "SELECT photo FROM membres WHERE idm = ?";
+        $requete = "SELECT photom FROM membres WHERE idm = ?";
         $stmt = $connexion->prepare($requete);
         $stmt->bind_param("i", $idm);
         $stmt->execute();
         $result = $stmt->get_result();
         $ligne = $result->fetch_object();
-        return $ligne->photo;
+        return $ligne->photom;
     }
     //Recupérer les données du formulaire
     $courriel = $_POST['courrielc'];
@@ -33,7 +33,7 @@
         $_SESSION['role'] = $ligne->role;
         if($ligne->role == "M"){
             $photo = obtenirPhotoMembre($idm);
-            $_SESSION['photo'] = $photo;
+            $_SESSION['photom'] = $photo;
             header('Location: ../../client/pages/membre.php');
             exit;
         }else  if($ligne->role == "A"){
