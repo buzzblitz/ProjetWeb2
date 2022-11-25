@@ -34,10 +34,10 @@
         if($ligne->role == "M"){
             $photo = obtenirPhotoMembre($idm);
             $_SESSION['photom'] = $photo;
-            header('Location: ../../client/pages/membre.php');
+            header('Location: ../pages/membre.php');
             exit;
         }else  if($ligne->role == "A"){
-            header('Location: ../../client/pages/admin.php');
+            header('Location: ../pages/admin.php');
             exit;
         }
     }
