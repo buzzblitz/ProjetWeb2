@@ -149,38 +149,77 @@ require_once("../includes/menu_admin.inc.php");
                     <form class="row  needs-validation" enctype="multipart/form-data"
                         action="../articles/enregistrer.php" method="POST">
                         <div class="col-md-12">
-                            <label for="nom" class="form-label">Nom</label>
-                            <input type="text" class="form-control" id="nom" name="nom" value="" required>
+                            <label for="nomc" class="form-label">Nom du Circuit</label>
+                            <input type="text" class="form-control" id="nomc" name="nomc" value="" required>
                         </div>
                         <div class="col-md-12">
-                            <label for="desc" class="form-label">Description</label>
-                            <input type="text" class="form-control" id="desc" name="desc" value="" required>
+                            <label for="imgc" class="form-label">Image du Circuit</label>
+                            <input type="file" class="form-control" id="imgc" name="imgc" value="">
                         </div>
                         <div class="col-md-12">
-                            <label for="categ" class="form-label">Catégorie</label>
+                            <label for="descc" class="form-label">Description du Circuit</label>
+                            <input type="text" class="form-control" id="descc" name="descc" value="" required>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="categ" class="form-label">Etats du Circuit</label>
                             <select id="categ" name="categ" class="form-select form-select-sm"
                                 aria-label=".form-select-sm example">
+                                <option selected disabled value="Des">Desactiver</option>
+                                <option value="Tra">Travail</option>
+                                <option value="Dep">Deploiement</option>
                             </select>
                         </div>
+                        <div class="personal-details">
                         <div class="col-md-12">
-                            <label for="prix" class="form-label">Prix</label>
-                            <input type="text" class="form-control" id="prix" name="prix" value="" required>
-                        </div>
-                        <div class="col-md-12">
-                            <label for="qted" class="form-label">Quantité</label>
-                            <input type="text" class="form-control" id="qted" name="qted" value="" required>
+                            <label for="Etape" class="form-label">Etape</label>
+                            <input type="text" class="form-control" id="etape" name="etape" value="" required>
                         </div>
                         <div class="col-md-12">
-                            <label for="seuil" class="form-label">Seuil</label>
-                            <input type="text" class="form-control" id="seuil" name="seuil" value="" required>
+                            <label for="imge" class="form-label">Image de l'Etape</label>
+                            <input type="file" class="form-control" id="imge" name="imge" value="">
                         </div>
                         <div class="col-md-12">
-                            <label for="img" class="form-label">Image</label>
-                            <input type="file" class="form-control" id="img" name="img" value="">
+                            <label for="desce" class="form-label">Description de l'Etape</label>
+                            <input type="text" class="form-control" id="desce" name="desce" value="" required>
                         </div>
-                        <div class="col-12">
-                            <span>&nbsp;</span>
+                        <div class="col-md-6">
+                            <label for="dated" class="form-label">Date du Debut</label>
+                            <input type="date" class="form-control is-valid" id="dated" name="dated">
                         </div>
+                        <div class="col-md-12">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="datef" class="form-label">Date de la Fin</label>
+                            <input type="date" class="form-control is-valid" id="datef" name="datef">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="lieud" class="form-label">Lieu de rencontre pour le Diner</label>
+                            <input type="text" class="form-control" id="lieud" name="lieud" value="" required>
+                        </div>
+                        <div class="personal-details-journee">
+                        <div class="col-md-12">
+                            <label for="journee" class="form-label">Journee</label>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="datej" class="form-label">Date</label>
+                            <input type="date" class="form-control is-valid" id="datej" name="datej">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="noma" class="form-label">Nom de l'activiter</label>
+                            <input type="text" class="form-control" id="noma" name="noma" value="" required>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="desca" class="form-label">Description des activiter</label>
+                            <input type="text" class="form-control" id="descea" name="descea" value="" required>
+                        </div>
+                        </div> 
+                        <button type="button" class="add-row-journee">+</button>  
+                        <div class="col-md-12">
+                            <label for="autre" class="form-label">Autre information</label>
+                            <input type="text" class="form-control" id="autre" name="autre" value="" required>
+                        </div>
+                        </div>
+                        <button type="button" class="add-row">+</button>
                         <div class="col-12">
                             <button class="btn btn-primary" type="submit">Enregistrer</button>
                         </div>
@@ -300,3 +339,27 @@ require_once("../includes/menu_admin.inc.php");
 </body>
 
 </html>
+
+<script>
+    $(document).ready(function(){
+   $( ".add-row" ).click(function(){
+      var $clone = $( "div.personal-details" ).first().clone();
+      $clone.append( "<button type='button' class='remove-row'>-</button>" );
+      $clone.insertBefore( ".add-row" );
+   });
+  
+   $(document).on('click', '.remove-row', function() {
+    $(this).parent().remove();
+    });
+
+    $( ".add-row-journee" ).click(function(){
+        var $clone = $( "div.personal-details-journee" ).first().clone();
+        $clone.append( "<button type='button' class='remove-row-journee'>-</button>" );
+        $clone.insertBefore( ".add-row" );
+    });
+    
+    $(document).on('click', '.remove-row-journee', function() {
+        $(this).parent().remove();
+    });
+});
+</script>
