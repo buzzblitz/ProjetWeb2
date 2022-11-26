@@ -368,9 +368,32 @@ require_once("../includes/menu_admin.inc.php");
         
 
     $( ".add-row" ).click(function(){
-    for ($i = 1; $i <= 4; $i++) {
+    for ($i = 1; $i <= 4; $i++) {;
         var $clone = $( "div.personal-details" ).first()
-        $clone.append(" <div class='col-md-12'>     <label for='noma" + activiter + "' class='form-label'>Nom de l'activiter</label>    <input type='text' class='form-control' id='noma" + activiter + "' name='noma" + activiter + "' value='' required>  </div>      <div class='col-md-6'>  <label for='heuredebut" + activiter + "' class='form-label'>Heure du debut de l'activiter</label>   <input type='time' class='form-control is-valid' id='heuredebut" + activiter + "' name='heuredebut" + activiter + "'>   </div>  <div class='col-md-12'> </div>  <div class='col-md-6'>  <label for='heurefin" + activiter + "' class='form-labe'>Heure de fin de l'activiter</label>    <input type='time' class='form-control is-valid' id='heurefin" + activiter + "' name='heurefin" + activiter + "'>   </div>  <div class='col-md-12'> <label for='desca" + activiter + "' class='form-label'>Description des activiter</label>    <input type='text' class='form-control' id='descea" + activiter + "' name='descea" + activiter + "' value='' required>  </div>");
+        $clone.append(
+        "<div class='col-md-12' hidden id='activiter" + activiter + "'>" +
+            "<div class='col-md-12'>" +
+            "<label for='noma" + activiter + "' class='form-label'>Nom de l'activiter</label>" +
+                                "<input type='text' class='form-control' id='noma" + activiter + "' name='noma" + activiter + "' value='' required>" +
+                            "</div>" +
+
+                            "<div class='col-md-6'>" +
+                                "<label for='heuredebut" + activiter + "' class='form-label'>Heure du debut de l'activiter</label>" +
+                                "<input type='time' class='form-control is-valid' id='heuredebut" + activiter + "' name='heuredebut" + activiter + "'>" +
+                            "</div>" +
+                            "<div class='col-md-12'>" +
+                            "</div>" +
+                            "<div class='col-md-6'>" +
+                                "<label for='heurefin" + activiter + "' class='form-labe'>Heure de fin de l'activiter</label>" +
+                                "<input type='time' class='form-control is-valid' id='heurefin" + activiter + "' name='heurefin" + activiter + "'>" +
+                            "</div>" +
+                            "<div class='col-md-12'>" +
+                                "<label for='desca" + activiter + "' class='form-label'>Description des activiter</label>" +
+                                "<input type='text' class='form-control' id='descea" + activiter + "' name='descea" + activiter + "' value='' required>" +
+                            "</div>" +
+            "</div>" +
+         "</div>");
+
         $clone.insertBefore( ".add-row" );
         activiter++;
     }
@@ -392,13 +415,6 @@ require_once("../includes/menu_admin.inc.php");
 
 
 
-
-   $( ".add-row" ).click(function(){
-      var $clone = $( "div.personal-details" ).first().clone();
-      $clone.append( "<button type='button' class='remove-row'>-</button>" );
-      $clone.insertBefore( ".add-row" );
-   });
-  
    $(document).on('click', '.remove-row', function() {
     $(this).parent().remove();
     });
