@@ -295,9 +295,9 @@ require_once("../includes/menu_admin.inc.php");
 <script>
     var count = 0;
 
-    var etapes = 0;
-    var journee = 0;
-    var activiter = 0; 
+    var etapes = 1;
+    var journee = 2;
+    var activiter = 3; 
 
     $('#More').click(function(){
     $(".div2").append("<div class='fieldBlock'><label >Parameter Name: </label><select id='name" + count + "'  name='name" + count + "' ><option></option></select></div> </br>");
@@ -306,10 +306,11 @@ require_once("../includes/menu_admin.inc.php");
 
 
     $(document).ready(function(){
+    var string = ""
     var $clone = $( "div.personal-details" ).first();
     for ($y = 1; $y <= 5; $y++) {
-        $clone.append(
-        "<div class='col-md-12' id='etapes" + etapes + "'>" +
+        string +=
+        "<div class='col-md-12' hidden id='etapes" + etapes + "'>" +
         "<div class='col-md-12'>" +
                             "<label for='etape" + etapes + "' class='form-label'>Etape</label>" +
                             "<input type='text' class='form-control' id='etape" + etapes + "' name='etape" + etapes + "' value='' required>" +
@@ -335,12 +336,10 @@ require_once("../includes/menu_admin.inc.php");
                         "<div class='col-md-12'>" +
                             "<label for='lieud" + etapes + "' class='form-label'>Lieu de rencontre pour le Diner</label>" +
                             "<input type='text' class='form-control' id='lieud" + etapes + "' name='lieud" + etapes + "' value='' required>" +
-                        "</div>" +
-        "</div>"
-        )
+                        "</div>";
         for ($x = 1; $x <= 7; $x++) {
-            $clone.append(
-            "<div class='col-md-12' id='journee" + journee + "'>" +
+            string += 
+            "<div class='col-md-12' hidden id='journee" + journee + "'>" +
             "<div class='col-md-12'>" +
                                 "<label for='journee" + journee + "' class='form-label'>Journee</label>" +
                             "</div>" +
@@ -351,14 +350,13 @@ require_once("../includes/menu_admin.inc.php");
                             "<div class='col-md-12'>" +
                                 "<label for='autre" + journee + "' class='form-label'>Autre information</label>" +
                                 "<input type='text' class='form-control' id='autre" + journee + "' name='autre" + journee + "' value='' required>" +
-                            "</div>"+
-            "</div>"
-            );
+                            "</div>";
+            ;
 
 
             for ($i = 1; $i <= 4; $i++) {
-                $clone.append(
-                "<div class='col-md-12' id='activiter" + activiter + "'>" +
+                string +=
+                "<div class='col-md-12' hidden id='activiter" + activiter + "'>" +
                     "<div class='col-md-12'>" +
                     "<label for='noma" + activiter + "' class='form-label'>Nom de l'activiter</label>" +
                                         "<input type='text' class='form-control' id='noma" + activiter + "' name='noma" + activiter + "' value='' required>" +
@@ -379,16 +377,22 @@ require_once("../includes/menu_admin.inc.php");
                                         "<input type='text' class='form-control' id='descea" + activiter + "' name='descea" + activiter + "' value='' required>" +
                                     "</div>" +
 
-                "</div>");
+                "</div>";
                 activiter++;
             }
+            string += "</div>";
             journee++;
         }
+        string += "</div>";
         etapes++;
     }
+    $clone.append(string);
+    string = "";
     $clone.insertBefore( ".add-row" );
 
-
+    $(document).on('click', '.add-row', function() {
+        document.getElementById("etapes1").removeAttribute("hidden");
+    });
 
 
 
