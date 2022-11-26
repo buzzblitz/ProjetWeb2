@@ -171,52 +171,52 @@ require_once("../includes/menu_admin.inc.php");
                         </div>
                         <div class="personal-details">
                         <div class="col-md-12">
-                            <label for="Etape" class="form-label">Etape</label>
-                            <input type="text" class="form-control" id="etape" name="etape" value="" required>
+                            <label for="etape1" class="form-label">Etape</label>
+                            <input type="text" class="form-control" id="etape1" name="etape1" value="" required>
                         </div>
                         <div class="col-md-12">
-                            <label for="imge" class="form-label">Image de l'Etape</label>
-                            <input type="file" class="form-control" id="imge" name="imge" value="">
+                            <label for="imge1" class="form-label">Image de l'Etape</label>
+                            <input type="file" class="form-control" id="imge1" name="imge1" value="">
                         </div>
                         <div class="col-md-12">
-                            <label for="desce" class="form-label">Description de l'Etape</label>
-                            <input type="text" class="form-control" id="desce" name="desce" value="" required>
+                            <label for="desce1" class="form-label">Description de l'Etape</label>
+                            <input type="text" class="form-control" id="desce1" name="desce1" value="" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="dated" class="form-label">Date du Debut</label>
-                            <input type="date" class="form-control is-valid" id="dated" name="dated">
+                            <label for="dated1" class="form-label">Date du Debut</label>
+                            <input type="date" class="form-control is-valid" id="dated1" name="dated1">
                         </div>
                         <div class="col-md-12">
                         </div>
                         <div class="col-md-6">
-                            <label for="datef" class="form-label">Date de la Fin</label>
-                            <input type="date" class="form-control is-valid" id="datef" name="datef">
+                            <label for="datef1" class="form-label">Date de la Fin</label>
+                            <input type="date" class="form-control is-valid" id="datef1" name="datef1">
                         </div>
                         <div class="col-md-12">
-                            <label for="lieud" class="form-label">Lieu de rencontre pour le Diner</label>
-                            <input type="text" class="form-control" id="lieud" name="lieud" value="" required>
+                            <label for="lieud1" class="form-label">Lieu de rencontre pour le Diner</label>
+                            <input type="text" class="form-control" id="lieud1" name="lieud1" value="" required>
                         </div>
                         <div class="personal-details-journee">
                         <div class="col-md-12">
-                            <label for="journee" class="form-label">Journee</label>
+                            <label for="journee1" class="form-label">Journee</label>
                         </div>
                         <div class="col-md-6">
-                            <label for="datej" class="form-label">Date</label>
-                            <input type="date" class="form-control is-valid" id="datej" name="datej">
+                            <label for="datej1" class="form-label">Date</label>
+                            <input type="date" class="form-control is-valid" id="datej1" name="datej1">
                         </div>
                         <div class="col-md-12">
-                            <label for="noma" class="form-label">Nom de l'activiter</label>
-                            <input type="text" class="form-control" id="noma" name="noma" value="" required>
+                            <label for="noma1" class="form-label">Nom de l'activiter</label>
+                            <input type="text" class="form-control" id="noma1" name="noma1" value="" required>
                         </div>
                         <div class="col-md-12">
-                            <label for="desca" class="form-label">Description des activiter</label>
-                            <input type="text" class="form-control" id="descea" name="descea" value="" required>
+                            <label for="desca1" class="form-label">Description des activiter</label>
+                            <input type="text" class="form-control" id="descea1" name="descea1" value="" required>
                         </div>
                         </div> 
                         <button type="button" class="add-row-journee">+</button>  
                         <div class="col-md-12">
-                            <label for="autre" class="form-label">Autre information</label>
-                            <input type="text" class="form-control" id="autre" name="autre" value="" required>
+                            <label for="autre1" class="form-label">Autre information</label>
+                            <input type="text" class="form-control" id="autre1" name="autre1" value="" required>
                         </div>
                         </div>
                         <button type="button" class="add-row">+</button>
@@ -341,6 +341,13 @@ require_once("../includes/menu_admin.inc.php");
 </html>
 
 <script>
+    var count = 0;
+    $('#More').click(function(){
+    $(".div2").append("<div class='fieldBlock'><label >Parameter Name: </label><select id='name" + count + "'  name='name" + count + "' ><option></option></select></div> </br>");
+    count++;
+    });
+
+
     $(document).ready(function(){
    $( ".add-row" ).click(function(){
       var $clone = $( "div.personal-details" ).first().clone();
@@ -352,7 +359,8 @@ require_once("../includes/menu_admin.inc.php");
     $(this).parent().remove();
     });
 
-    $( ".add-row-journee" ).click(function(){
+
+    $(document).on('click', '.add-row-journee', function() {
         var $clone = $( "div.personal-details-journee" ).first().clone();
         $clone.append( "<button type='button' class='remove-row-journee'>-</button>" );
         $clone.insertBefore( ".add-row" );
