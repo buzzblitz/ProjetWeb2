@@ -368,35 +368,87 @@ require_once("../includes/menu_admin.inc.php");
         
 
     $( ".add-row" ).click(function(){
-    for ($i = 1; $i <= 4; $i++) {;
-        var $clone = $( "div.personal-details" ).first()
+    var $clone = $( "div.personal-details" ).first();
+    for ($y = 1; $y <= 5; $y++) {
         $clone.append(
-        "<div class='col-md-12' hidden id='activiter" + activiter + "'>" +
+        "<div class='col-md-12' id='etapes" + etapes + "'>" +
+        "<div class='col-md-12'>" +
+                            "<label for='etape" + etapes + "' class='form-label'>Etape</label>" +
+                            "<input type='text' class='form-control' id='etape" + etapes + "' name='etape" + etapes + "' value='' required>" +
+                        "</div>" +
+                        "<div class='col-md-12'>" +
+                            "<label for='imge" + etapes + "' class='form-label'>Image de l'Etape</label>" +
+                            "<input type='file' class='form-control' id='imge" + etapes + "' name='imge" + etapes + "' value=''>" +
+                        "</div>" +
+                        "<div class='col-md-12'>" +
+                            "<label for='desce" + etapes + "' class='form-label'>Description de l'Etape</label>" +
+                            "<input type='text' class='form-control' id='desce" + etapes + "' name='desce" + etapes + "' value='' required>" +
+                        "</div>" +
+                        "<div class='col-md-6'>" +
+                            "<label for='dated" + etapes + "' class='form-label'>Date du Debut</label>" +
+                            "<input type='date' class='form-control is-valid' id='dated" + etapes + "' name='dated" + etapes + "'>" +
+                        "</div>" +
+                        "<div class='col-md-12'>" +
+                        "</div>" +
+                        "<div class='col-md-6'>" +
+                            "<label for='datef" + etapes + "' class='form-label'>Date de la Fin</label>" +
+                            "<input type='date' class='form-control is-valid' id='datef" + etapes + "' name='datef" + etapes + "'>" +
+                        "</div>" +
+                        "<div class='col-md-12'>" +
+                            "<label for='lieud" + etapes + "' class='form-label'>Lieu de rencontre pour le Diner</label>" +
+                            "<input type='text' class='form-control' id='lieud" + etapes + "' name='lieud" + etapes + "' value='' required>" +
+                        "</div>" +
+        "</div>"
+        )
+        for ($x = 1; $x <= 7; $x++) {
+            $clone.append(
+            "<div class='col-md-12' hidden id='journee" + journee + "'>" +
             "<div class='col-md-12'>" +
-            "<label for='noma" + activiter + "' class='form-label'>Nom de l'activiter</label>" +
-                                "<input type='text' class='form-control' id='noma" + activiter + "' name='noma" + activiter + "' value='' required>" +
-                            "</div>" +
-
-                            "<div class='col-md-6'>" +
-                                "<label for='heuredebut" + activiter + "' class='form-label'>Heure du debut de l'activiter</label>" +
-                                "<input type='time' class='form-control is-valid' id='heuredebut" + activiter + "' name='heuredebut" + activiter + "'>" +
-                            "</div>" +
-                            "<div class='col-md-12'>" +
+                                "<label for='journee" + journee + "' class='form-label'>Journee</label>" +
                             "</div>" +
                             "<div class='col-md-6'>" +
-                                "<label for='heurefin" + activiter + "' class='form-labe'>Heure de fin de l'activiter</label>" +
-                                "<input type='time' class='form-control is-valid' id='heurefin" + activiter + "' name='heurefin" + activiter + "'>" +
+                                "<label for='datej" + journee + "' class='form-label'>Date</label>" + 
+                                "<input type='date' class='form-control is-valid' id='datej" + journee + "' name='datej" + journee + "'>" +
                             "</div>" +
                             "<div class='col-md-12'>" +
-                                "<label for='desca" + activiter + "' class='form-label'>Description des activiter</label>" +
-                                "<input type='text' class='form-control' id='descea" + activiter + "' name='descea" + activiter + "' value='' required>" +
-                            "</div>" +
-            "</div>" +
-         "</div>");
+                                "<label for='autre" + journee + "' class='form-label'>Autre information</label>" +
+                                "<input type='text' class='form-control' id='autre" + journee + "' name='autre" + journee + "' value='' required>" +
+                            "</div>"+
+            "</div>"
+            );
 
-        $clone.insertBefore( ".add-row" );
-        activiter++;
+
+            for ($i = 1; $i <= 4; $i++) {
+                $clone.append(
+                "<div class='col-md-12' hidden id='activiter" + activiter + "'>" +
+                    "<div class='col-md-12'>" +
+                    "<label for='noma" + activiter + "' class='form-label'>Nom de l'activiter</label>" +
+                                        "<input type='text' class='form-control' id='noma" + activiter + "' name='noma" + activiter + "' value='' required>" +
+                                    "</div>" +
+
+                                    "<div class='col-md-6'>" +
+                                        "<label for='heuredebut" + activiter + "' class='form-label'>Heure du debut de l'activiter</label>" +
+                                        "<input type='time' class='form-control is-valid' id='heuredebut" + activiter + "' name='heuredebut" + activiter + "'>" +
+                                    "</div>" +
+                                    "<div class='col-md-12'>" +
+                                    "</div>" +
+                                    "<div class='col-md-6'>" +
+                                        "<label for='heurefin" + activiter + "' class='form-labe'>Heure de fin de l'activiter</label>" +
+                                        "<input type='time' class='form-control is-valid' id='heurefin" + activiter + "' name='heurefin" + activiter + "'>" +
+                                    "</div>" +
+                                    "<div class='col-md-12'>" +
+                                        "<label for='desca" + activiter + "' class='form-label'>Description des activiter</label>" +
+                                        "<input type='text' class='form-control' id='descea" + activiter + "' name='descea" + activiter + "' value='' required>" +
+                                    "</div>" +
+
+                "</div>");
+                activiter++;
+            }
+            journee++;
+        }
+        etapes++;
     }
+    $clone.insertBefore( ".add-row" );
         });
 
 
