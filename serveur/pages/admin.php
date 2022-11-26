@@ -392,6 +392,7 @@ require_once("../includes/menu_admin.inc.php");
 
     $(document).on('click', '.add-row', function() {
         document.getElementById("etapes1").removeAttribute("hidden");
+        document.getElementById("categ").setAttribute("hidden", "");
     });
 
 
