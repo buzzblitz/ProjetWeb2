@@ -170,65 +170,6 @@ require_once("../includes/menu_admin.inc.php");
                             </select>
                         </div>
                         <div class="personal-details">
-                        <div class="col-md-12">
-                            <label for="etape1" class="form-label">Etape</label>
-                            <input type="text" class="form-control" id="etape1" name="etape1" value="" required>
-                        </div>
-                        <div class="col-md-12">
-                            <label for="imge1" class="form-label">Image de l'Etape</label>
-                            <input type="file" class="form-control" id="imge1" name="imge1" value="">
-                        </div>
-                        <div class="col-md-12">
-                            <label for="desce1" class="form-label">Description de l'Etape</label>
-                            <input type="text" class="form-control" id="desce1" name="desce1" value="" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="dated1" class="form-label">Date du Debut</label>
-                            <input type="date" class="form-control is-valid" id="dated1" name="dated1">
-                        </div>
-                        <div class="col-md-12">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="datef1" class="form-label">Date de la Fin</label>
-                            <input type="date" class="form-control is-valid" id="datef1" name="datef1">
-                        </div>
-                        <div class="col-md-12">
-                            <label for="lieud1" class="form-label">Lieu de rencontre pour le Diner</label>
-                            <input type="text" class="form-control" id="lieud1" name="lieud1" value="" required>
-                        </div>
-                        <div class="personal-details-journee">
-                        <div class="col-md-12">
-                            <label for="journee1" class="form-label">Journee</label>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="datej1" class="form-label">Date</label>
-                            <input type="date" class="form-control is-valid" id="datej1" name="datej1">
-                        </div>
-                        <div class="col-md-12">
-                            <label for="noma1" class="form-label">Nom de l'activiter</label>
-                            <input type="text" class="form-control" id="noma1" name="noma1" value="" required>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="heuredebut1" class="form-label">Heure du debut de l'activiter</label>
-                            <input type="time" class="form-control is-valid" id="heuredebut1" name="heuredebut1">
-                        </div>
-                        <div class="col-md-12">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="heurefin1" class="form-label">Heure de fin de l'activiter</label>
-                            <input type="time" class="form-control is-valid" id="heurefin1" name="heurefin1">
-                        </div>
-                        <div class="col-md-12">
-                            <label for="desca1" class="form-label">Description des activiter</label>
-                            <input type="text" class="form-control" id="descea1" name="descea1" value="" required>
-                        </div>
-                        </div> 
-                        <button type="button" class="add-row-journee">+</button>  
-                        <div class="col-md-12">
-                            <label for="autre1" class="form-label">Autre information</label>
-                            <input type="text" class="form-control" id="autre1" name="autre1" value="" required>
-                        </div>
                         </div>
                         <button type="button" class="add-row">+</button>
                         <div class="col-12">
@@ -365,9 +306,6 @@ require_once("../includes/menu_admin.inc.php");
 
 
     $(document).ready(function(){
-        
-
-    $( ".add-row" ).click(function(){
     var $clone = $( "div.personal-details" ).first();
     for ($y = 1; $y <= 5; $y++) {
         $clone.append(
@@ -402,7 +340,7 @@ require_once("../includes/menu_admin.inc.php");
         )
         for ($x = 1; $x <= 7; $x++) {
             $clone.append(
-            "<div class='col-md-12' hidden id='journee" + journee + "'>" +
+            "<div class='col-md-12' id='journee" + journee + "'>" +
             "<div class='col-md-12'>" +
                                 "<label for='journee" + journee + "' class='form-label'>Journee</label>" +
                             "</div>" +
@@ -420,7 +358,7 @@ require_once("../includes/menu_admin.inc.php");
 
             for ($i = 1; $i <= 4; $i++) {
                 $clone.append(
-                "<div class='col-md-12' hidden id='activiter" + activiter + "'>" +
+                "<div class='col-md-12' id='activiter" + activiter + "'>" +
                     "<div class='col-md-12'>" +
                     "<label for='noma" + activiter + "' class='form-label'>Nom de l'activiter</label>" +
                                         "<input type='text' class='form-control' id='noma" + activiter + "' name='noma" + activiter + "' value='' required>" +
@@ -449,7 +387,6 @@ require_once("../includes/menu_admin.inc.php");
         etapes++;
     }
     $clone.insertBefore( ".add-row" );
-        });
 
 
 
