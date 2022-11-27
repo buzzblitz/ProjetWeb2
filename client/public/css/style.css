@@ -41,7 +41,7 @@
 }
 
 .bg-perso {
-    background-color: #ffc107;
+    background-color: #7f07ff;
 }
 
 .dropdown {
@@ -102,7 +102,7 @@ ul {
     color:white;
 }
 .liadmin:hover {
-    color: yellow;
+    color: rgb(0, 162, 255);
 }
 
 .form-style-9{
