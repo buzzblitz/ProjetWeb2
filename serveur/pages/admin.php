@@ -147,7 +147,7 @@ require_once("../includes/menu_admin.inc.php");
                 </div>
                 <div class="modal-body">
                     <form class="row  needs-validation" enctype="multipart/form-data"
-                        action="../articles/enregistrer.php" method="POST">
+                        action="circuit/enregistrerCircuit.php" method="POST">
                         <div class="col-md-12">
                             <label for="nomc" class="form-label">Nom du Circuit</label>
                             <input type="text" class="form-control" id="nomc" name="nomc" value="" required>

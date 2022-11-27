@@ -53,11 +53,6 @@ CREATE TABLE journees (
   
 );
 
-CREATE TABLE etapesActivites (
-  ide INTEGER NOT NULL,
-  ida INTEGER NOT NULL
-);
-
 CREATE TABLE activites (
   ida INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
   idj INTEGER NOT NULL,
@@ -67,19 +62,6 @@ CREATE TABLE activites (
   descriptiona VARCHAR(255) NOT NULL
   
 );
-
-CREATE TABLE circuitsEtapes (
-  ide INTEGER NOT NULL,
-  idc INTEGER NOT NULL
-);
-
-ALTER TABLE etapesActivites ADD FOREIGN KEY (ida) REFERENCES activites (ida);
-
-ALTER TABLE etapesActivites ADD FOREIGN KEY (ide) REFERENCES etapes (ide);
-
-ALTER TABLE circuitsEtapes ADD FOREIGN KEY (ide) REFERENCES etapes (ide);
-
-ALTER TABLE circuitsEtapes ADD FOREIGN KEY (idc) REFERENCES circuits (idc);
 
 ALTER TABLE membresCircuits ADD FOREIGN KEY (idm) REFERENCES membres (idm);
 
