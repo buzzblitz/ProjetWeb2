@@ -352,9 +352,9 @@ require_once("../includes/menu_admin.inc.php");
     document.getElementById("bouttonJourneesAjouter" + x).setAttribute("hidden", "");
 
     //code pour faire apparaitre la premiere activiter de la journee
-    document.getElementById("activiters" + ( (x+1)*nbActiviters+1 )).removeAttribute("hidden");
-    document.getElementById("noma" + ( (x+1)*nbActiviters+1 )).setAttribute("required", "");
-    document.getElementById("descea" + ( (x+1)*nbActiviters+1 )).setAttribute("required", "");
+    document.getElementById("activiters" + ( (x)*nbActiviters+1 )).removeAttribute("hidden");
+    document.getElementById("noma" + ( (x)*nbActiviters+1 )).setAttribute("required", "");
+    document.getElementById("descea" + ( (x)*nbActiviters+1 )).setAttribute("required", "");
     
     }
 
@@ -375,9 +375,12 @@ require_once("../includes/menu_admin.inc.php");
     function enleverJournee(x) {
 
     //code pour faire apparaitre une nouvelle journee
-    document.getElementById("journees" + (x + 1)).removeAttribute("hidden");
-    document.getElementById("autre" + (x + 1)).setAttribute("required", "");
-    document.getElementById("bouttonJourneesAjouter" + x).setAttribute("hidden", "");
+    document.getElementById("journees" + x).setAttribute("hidden", "");
+    document.getElementById("autre" + x).removeAttribute("required");
+    document.getElementById("bouttonJourneesAjouter" + (x - 1)).removeAttribute("hidden");
+
+    document.getElementById("datej" + x).value = document.getElementById("datej" + x).defaultValue;    
+    document.getElementById("autre" + x).value = document.getElementById("autre" + x).defaultValue;    
 
 
     for ($j = 1; $j <= nbActiviters; $j++) {
@@ -394,6 +397,7 @@ require_once("../includes/menu_admin.inc.php");
     document.getElementById("bouttonActivitersAjouter" + ( (x-1)*nbActiviters+ $j )).removeAttribute("hidden");
 
     if($j != 1) {
+        //todo a regler lerreu qui arrive a cette etape
         document.getElementById("bouttonActivitersEnlever" + ( (x-1)*nbActiviters+ $j )).removeAttribute("hidden");
         }
     }
