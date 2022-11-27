@@ -14,7 +14,7 @@ let remplirCard = unCircuit => {
     rep += ' <h5 class="card-title">' + unCircuit.nomc + '</h5>'
     rep +=
         ' <p class="card-text">' +
-        unCircuit.description.substring(0, 30) +
+        unCircuit.descriptionc.substring(0, 30) +
         '...</p>'
     rep += ' <p class="card-text">' + unCircuit.descriptionc + '$</p>'
     if (provenanceAppel == 'M') {
@@ -27,11 +27,20 @@ let remplirCard = unCircuit => {
     return rep
 }
 
-let listerCircuits = () => {
+let listerCircuits = (listeCircuits) => {
     let contenu = `<div class="row">`
-    for (let unCircuit of listeCircuits) {
-        contenu += remplirCard(unCircuit)
+    if(listeCircuits.length){
+        listeCircuits.forEach(element => {
+            contenu += remplirCard(element);
+        });
     }
+    else{
+        console.log("erreur");
+    }
+    
+    //for (let unCircuit of listeCircuits) {
+        //contenu += remplirCard({"idc":"1","nomc":"un circuit","photoc":"logo.png","descriptionc":"une description de circuit","etat":"A"})
+    //}
     contenu += `</div>`
     $('#contenu').html(contenu) //document.getElementById('contenu').innerHTML=contenu;
 }
@@ -41,17 +50,21 @@ let listerCircuits = () => {
 //imagesURL selon la provenance contiendra le bon chemin où se trouve les images des Circuits
 let chargerCircuits = (provenance, allerURL) => {
     provenanceAppel = provenance;
+    console.log(provenance);
+    console.log(allerURL);
     imagesURL = (provenance == 'I') ? "serveur/images_circuits/" : "../../images_circuits/";
     $.ajax({
         type: 'POST',
         url: allerURL,
         dataType: 'json',
         success: reponse => {
+            console.log(reponse)
             if (reponse.OK) {
                 listeCircuits = reponse.listeCircuits;
                 if(provenance == "I" || provenance == "M"){
-                    listerCircuits();
-                }else {// A-Admmin
+                    console.log(listeCircuits);
+                    listerCircuits(listeCircuits);
+                }else {// A-Admin
                     genererPagination(); //À partir de listeCircuits
                 }
             }
