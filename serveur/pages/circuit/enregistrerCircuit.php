@@ -59,13 +59,13 @@
 	try{
 		$requete = "INSERT INTO circuits VAlUES (0,?,?,?,?)";
         $stmt = $connexion->prepare($requete);
-        $stmt->bind_param("ssss", $nomc,$img,$descc,$categ);
+        $stmt->bind_param("ssss", $nomc,$imagec,$descc,$categ);
         $stmt->execute();
         $idc = $connexion->insert_id;
 
         $requete = "INSERT INTO etapes VAlUES (0,?,?,?,?,?,?,?)";
         $stmt = $connexion->prepare($requete);
-        $stmt->bind_param("issssss", $idc,$nome,$imge,$desce,$dated,$datef,$lieud);
+        $stmt->bind_param("issssss", $idc,$nome,$imagee,$desce,$dated,$datef,$lieud);
         $stmt->execute();
         $ide = $connexion->insert_id;
 
@@ -77,7 +77,7 @@
 
         $requete = "INSERT INTO activites VAlUES (0,?,?,?,?,?)";
         $stmt = $connexion->prepare($requete);
-        $stmt->bind_param("issss", $idj,$noma,$heuredebut,$heurefin,$descea);
+        $stmt->bind_param("isiis", $idj,$noma,$heuredebut,$heurefin,$descea);
         $stmt->execute();
 
 	} catch(Exception $e){
