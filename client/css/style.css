@@ -40,4 +40,79 @@
     padding-right: 10px;
 }
 
+.bg-perso {
+    background-color: #ffc107;
+}
+
+.dropdown {
+    float: right !important;
+    padding-right: 20px;
+}
+
+.msgFormEnreg {
+    color: red !important;
+    font-size: 11px !important;
+}
+
+.panierPlus {
+    float: right;
+    font-size: 24px !important;
+    margin-right: -8px;
+}
+
+#bdc {
+    margin-right: 30px;
+}
+
+#nbart {
+    margin-left: -8px;
+}
+
+.deconnexion {
+    float: right;
+    color: grey;
+    font-size: 30px !important;
+    cursor: pointer;
+}
+
+.closeBtn {
+    color: red;
+    cursor: pointer;
+}
+
+.bgcolorFacture {
+    background-color: #bbabab !important;
+}
+
+#payer {
+    margin-left: 10px;
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+}
+.maCard {
+    margin-top: 25px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.liadmin{
+    color:white;
+}
+.liadmin:hover {
+    color: yellow;
+}
+
+.form-style-9{
+    max-width: 450px;
+    background: #FAFAFA;
+    padding: 30px;
+    margin: 50px auto;
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    border: 6px solid #305A72;
+}
+
 

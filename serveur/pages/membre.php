@@ -1,10 +1,11 @@
 <?php
     session_start();
+
     if(!isset($_SESSION['courriel'])){
         header('Location: ../../index.php?msg=Vous+devez+vous+connecter');
         exit;
     }
-    $photo = $_SESSION['photo'];
+    $photo = $_SESSION['photom'];
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -36,7 +37,7 @@
                     </li>
                     
                 </ul>
-                <img src="photos/<?php echo $photo; ?>" class="image-border" alt="photo" style="width:48px">
+                <img src="..\..\serveur\membre\photos\<?php echo $photo; ?>" class="image-border" alt="photo" style="width:48px">
             </div>
         </div>
     </nav>
