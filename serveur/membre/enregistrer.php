@@ -39,6 +39,6 @@
         $msg="Problème+pour+enregistré+le+membre.";
 	}finally {
 		mysqli_close($connexion);
-        header('Location: ../../client/pages/membre.php');
+        header('Location: ../pages/membre.php');
     }
 ?>
