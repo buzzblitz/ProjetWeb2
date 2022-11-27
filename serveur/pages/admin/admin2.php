@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['usager'])) {
+if (!isset($_SESSION['courriel'])) {
     header('Location: ../../../index.php?msg=Problème+avec+votre+connexion');
     exit;
 }
@@ -26,16 +26,16 @@ else {
 
     <script src="../../../client/utilitaires/jquery-3.6.0.min.js"></script>
     <script src="../../../client/utilitaires/bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
-    <script src="../../../client/public/js/requetes.js"></script>
+    <script src="../../../client/public/js/requetes2.js"></script>
     <script src="../../../client/public/js/jquery.twbsPagination.min.js"></script>
-    <script src="../../../client/public/js/monJS.js"></script>
+    <script src="../../../client/public/js/monJS2.js"></script>
     <link rel="stylesheet" href="../../../client/utilitaires/bootstrap-5.1.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../client/utilitaires/icons-1.8.1/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../client/public/css/admin.css">
     <link rel="stylesheet" href="../../../client/public/css/style.css">
 </head>
 
-<body onLoad='initialiser(<?php echo "\"" . $msg . "\""; ?>);chargerArticles("A","../circuits/liste.php");'>
+<body onLoad='initialiser(<?php echo "\"" . $msg . "\""; ?>);chargerCircuits("A","../circuits/liste.php");'>
     <?php
 require_once("../../includes/menu_admin.inc.php");
 ?>
@@ -142,40 +142,92 @@ require_once("../../includes/menu_admin.inc.php");
                 </div>
                 <div class="modal-body">
                     <form class="row  needs-validation" enctype="multipart/form-data"
-                        action="../articles/enregistrer.php" method="POST">
+                        action="../circuits/enregistrerCircuit.php" method="POST">
                         <div class="col-md-12">
-                            <label for="nom" class="form-label">Nom</label>
-                            <input type="text" class="form-control" id="nom" name="nom" value="" required>
+                            <label for="nomc" class="form-label">Nom du Circuit</label>
+                            <input type="text" class="form-control" id="nomc" name="nomc" value="" required>
                         </div>
                         <div class="col-md-12">
-                            <label for="desc" class="form-label">Description</label>
-                            <input type="text" class="form-control" id="desc" name="desc" value="" required>
+                            <label for="imgc" class="form-label">Image du Circuit</label>
+                            <input type="file" class="form-control" id="imgc" name="imgc" value="" required>
                         </div>
                         <div class="col-md-12">
-                            <label for="categ" class="form-label">Catégorie</label>
-                            <select id="categ" name="categ" class="form-select form-select-sm"
+                            <label for="descc" class="form-label">Description du Circuit</label>
+                            <input type="text" class="form-control" id="descc" name="descc" value="" required required>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="categ" class="form-label">Etats du Circuit</label>
+                            <select id="categ" name="categ" class="form-select form-select-sm" required
                                 aria-label=".form-select-sm example">
+                                <option selected disabled value="Des">Desactiver</option>
+                                <option value="Tra">Travail</option>
+                                <option value="Dep">Deploiement</option>
                             </select>
                         </div>
-                        <div class="col-md-12">
-                            <label for="prix" class="form-label">Prix</label>
-                            <input type="text" class="form-control" id="prix" name="prix" value="" required>
+                        <div class='col-md-12' id='etapes'>
+        <div class='col-md-12'>
+                            <label for='nome' class='form-label'>Etape</label>
+                            <input type='text' class='form-control' id='nome' name='nome' value='' required>
                         </div>
-                        <div class="col-md-12">
-                            <label for="qted" class="form-label">Quantité</label>
-                            <input type="text" class="form-control" id="qted" name="qted" value="" required>
+                        <div class='col-md-12'>
+                            <label for='imge' class='form-label'>Image de l'Etape</label>
+                            <input type='file' class='form-control' id='imge' name='imge' value='' required>
                         </div>
-                        <div class="col-md-12">
-                            <label for="seuil" class="form-label">Seuil</label>
-                            <input type="text" class="form-control" id="seuil" name="seuil" value="" required>
+                        <div class='col-md-12'>
+                            <label for='desce' class='form-label'>Description de l'Etape</label>
+                            <input type='text' class='form-control' id='desce' name='desce' value='' required>
                         </div>
-                        <div class="col-md-12">
-                            <label for="img" class="form-label">Image</label>
-                            <input type="file" class="form-control" id="img" name="img" value="">
+                        <div class='col-md-6'>
+                        <label for='dated' class='form-label'>Date du Debut</label>
+                            <input type='date' class='form-control is-valid' id='dated' name='dated' required>
                         </div>
-                        <div class="col-12">
-                            <span>&nbsp;</span>
+                        <div class='col-md-12'>
                         </div>
+                        <div class='col-md-6'>
+                            <label for='datef' class='form-label'>Date de la Fin</label>
+                            <input type='date' class='form-control is-valid' id='datef' name='datef' required>
+                        </div>
+                        <div class='col-md-12'>
+                            <label for='lieud' class='form-label'>Lieu de rencontre pour le Diner</label>
+                            <input type='text' class='form-control' id='lieud' name='lieud' value='' required>
+                        </div>
+
+            <div class='col-md-12' id='journees'>
+            <div class='col-md-12'>
+                            <label for='journee' class='form-label'>Journee</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <label for='datej' class='form-label'>Date</label>
+                                <input type='date' class='form-control is-valid' id='datej' name='datej' required>
+                            </div>
+                            <div class='col-md-12'>
+                                <label for='autre' class='form-label'>Autre information</label>
+                                <input type='text' class='form-control' id='autre' name='autre' value='' required>
+                            </div>
+
+                <div class='col-md-12' id='activiters'>
+                    <div class='col-md-12'>
+                    <label for='noma' class='form-label'>Nom de l'activiter</label>
+                                        <input type='text' class='form-control' id='noma' name='noma' value='' required>
+                                    </div>
+
+                                    <div class='col-md-6'>
+                                        "<label for='heuredebut' class='form-label'>Heure du debut de l'activiter</label>
+                                        "<input type='time' class='form-control is-valid' id='heuredebut' name='heuredebut' required>
+                                    </div>
+                                    <div class='col-md-12'>
+                                    </div>
+                                    <div class='col-md-6'>
+                                        <label for='heurefin' class='form-labe'>Heure de fin de l'activiter</label>
+                                        <input type='time' class='form-control is-valid' id='heurefin' name='heurefin' required>
+                                    </div>
+                                    <div class='col-md-12'>
+                                        <label for='desca' class='form-label'>Description des activiter</label>
+                                        <input type='text' class='form-control' id='descea' name='descea' value='' required>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
                         <div class="col-12">
                             <button class="btn btn-primary" type="submit">Enregistrer</button>
                         </div>
