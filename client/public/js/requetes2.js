@@ -1,7 +1,6 @@
 let imagesURL = null;
 let provenanceAppel = null;
 let listeCircuits = null;
-let listeCategories = null;
 
 let remplirCard = unCircuit => {
     let rep = ' <div class="col-sm-3 maCard">'

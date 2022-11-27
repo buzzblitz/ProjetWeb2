@@ -67,6 +67,7 @@ let chargerArticles = (provenance, allerURL) => {
         success: reponse => {
             if (reponse.OK) {
                 listeArticles = reponse.listeArticles;
+                console.log(listeArticles)
                 listeCategories = reponse.categories;
                 if(provenance == "I" || provenance == "M"){
                     listerCategories();
