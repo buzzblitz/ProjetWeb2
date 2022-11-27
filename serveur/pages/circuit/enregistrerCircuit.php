@@ -1,6 +1,6 @@
 <?php 
     //Établir connexion à la BD
-    require_once("../includes/bdconfig.inc.php");
+    require_once("../../includes/bdconfig.inc.php");
     $msg="Membre+bien+enregistré.";
     //Recupérer les données du formulaire
     //donner circuit
@@ -10,7 +10,7 @@
     $categ = $_POST['categ'];
 
     //donner etape
-    $etape = $_POST['etape'];
+    $nome = $_POST['nome'];
     $imge = $_POST['imge'];
     $desce = $_POST['desce'];
     $dated = $_POST['dated'];
@@ -28,30 +28,58 @@
     $heurefin = $_POST['heurefin'];
     $descea = $_POST['descea'];
 
-    $dossier="photos/";
-	$image="avatar.jpg";
-	if($_FILES['photo']['tmp_name']!==""){
-		$nomImage=sha1($nom.time());
+    $dossier="../../membre/photos/";
+	$imagec="avatar.jpg";
+	if($_FILES['imgc']['tmp_name']!==""){
+		$nomImage=sha1($nomc.time());
 		//Upload de la photo
-		$tmp = $_FILES['photo']['tmp_name'];
-		$fichier= $_FILES['photo']['name'];
+		$tmp = $_FILES['imgc']['tmp_name'];
+		$fichier= $_FILES['imgc']['name'];
 		$extension=strrchr($fichier,'.');
 		@move_uploaded_file($tmp,$dossier.$nomImage.$extension);
 		// Enlever le fichier temporaire chargé
 		@unlink($tmp); //effacer le fichier temporaire
-		$image=$nomImage.$extension;
+		$imagec=$nomImage.$extension;
 	}
-	try{
-		$requete = "INSERT INTO membres VAlUES (0,?,?,?,?,?,?)";
-        $stmt = $connexion->prepare($requete);
-        $stmt->bind_param("ssssss", $prenom,$nom,$courriel,$sexe,$daten,$image);
-        $stmt->execute();
-        $idm = $connexion->insert_id;
 
-        $requete = "INSERT INTO connexion VAlUES (?,?,?,'A','M')";
+	$imagee="avatar.jpg";
+    if($_FILES['imge']['tmp_name']!==""){
+		$nomImage=sha1($nome.time());
+		//Upload de la photo
+		$tmp = $_FILES['imge']['tmp_name'];
+		$fichier= $_FILES['imge']['name'];
+		$extension=strrchr($fichier,'.');
+		@move_uploaded_file($tmp,$dossier.$nomImage.$extension);
+		// Enlever le fichier temporaire chargé
+		@unlink($tmp); //effacer le fichier temporaire
+		$imagee=$nomImage.$extension;
+	}
+
+    
+	try{
+		$requete = "INSERT INTO circuits VAlUES (0,?,?,?,?)";
         $stmt = $connexion->prepare($requete);
-        $stmt->bind_param("iss", $idm,$courriel,$pass);
+        $stmt->bind_param("ssss", $nomc,$img,$descc,$categ);
         $stmt->execute();
+        $idc = $connexion->insert_id;
+
+        $requete = "INSERT INTO etapes VAlUES (0,?,?,?,?,?,?,?)";
+        $stmt = $connexion->prepare($requete);
+        $stmt->bind_param("issssss", $idc,$nome,$imge,$desce,$dated,$datef,$lieud);
+        $stmt->execute();
+        $ide = $connexion->insert_id;
+
+        $requete = "INSERT INTO journees VAlUES (0,?,?,?)";
+        $stmt = $connexion->prepare($requete);
+        $stmt->bind_param("iss", $ide,$datej,$autre);
+        $stmt->execute();
+        $idj = $connexion->insert_id;
+
+        $requete = "INSERT INTO activites VAlUES (0,?,?,?,?,?)";
+        $stmt = $connexion->prepare($requete);
+        $stmt->bind_param("issss", $idj,$noma,$heuredebut,$heurefin,$descea);
+        $stmt->execute();
+
 	} catch(Exception $e){
 		//Retourner le message voulu
         $msg="Problème+pour+enregistré+le+membre.";

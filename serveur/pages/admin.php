@@ -171,8 +171,8 @@ require_once("../includes/menu_admin.inc.php");
                         </div>
                         <div class='col-md-12' id='etapes'>
         <div class='col-md-12'>
-                            <label for='etape' class='form-label'>Etape</label>
-                            <input type='text' class='form-control' id='etape' name='etape' value='' required>
+                            <label for='nome' class='form-label'>Etape</label>
+                            <input type='text' class='form-control' id='nome' name='nome' value='' required>
                         </div>
                         <div class='col-md-12'>
                             <label for='imge' class='form-label'>Image de l'Etape</label>
