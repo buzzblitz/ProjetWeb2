@@ -88,6 +88,6 @@
         $msg="Problème+pour+enregistré+le+membre.";
 	}finally {
 		mysqli_close($connexion);
-        header('Location: ../pages/membre.php');
+        header('Location: ../admin.php');
     }
 ?>
