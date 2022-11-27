@@ -24,8 +24,11 @@
 
     //donner activiter
     $noma = $_POST['noma'];
-    $heuredebut = $_POST['heuredebut'];
-    $heurefin = $_POST['heurefin'];
+    //TODO: a faire fonctionner l'ajoue de  $heuredebuttmp et $heurefintmp dans la base de donner
+    $heuredebuttmp = $_POST['heuredebut'];
+    $heuredebut = date('H:i', strtotime($heuredebuttmp));
+    $heurefintmp = $_POST['heurefin'];
+    $heurefin = date('H:i', strtotime($heurefintmp));
     $descea = $_POST['descea'];
 
     $dossier="../../membre/photos/";
