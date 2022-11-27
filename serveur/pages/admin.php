@@ -171,7 +171,7 @@ require_once("../includes/menu_admin.inc.php");
                         </div>
                         <div class="personal-details">
                         </div>
-                        <button type="button" class="add-row">+</button>
+                        <button type="button" class="add-row"  onclick="functionName(0)">+</button>
                         <div class="col-12">
                             <button class="btn btn-primary" type="submit">Enregistrer</button>
                         </div>
@@ -296,13 +296,31 @@ require_once("../includes/menu_admin.inc.php");
     var count = 0;
 
     var etapes = 1;
-    var journee = 2;
-    var activiter = 3; 
+    var journee = 1;
+    var activiter = 1; 
 
     $('#More').click(function(){
     $(".div2").append("<div class='fieldBlock'><label >Parameter Name: </label><select id='name" + count + "'  name='name" + count + "' ><option></option></select></div> </br>");
     count++;
     });
+
+    function functionName(x) {
+    //code pour faire apparaitre une etape
+    document.getElementById("etapes" + (x + 1)).removeAttribute("hidden");
+    document.getElementById("etape" + (x + 1)).setAttribute("required", "");
+    document.getElementById("desce" + (x + 1)).setAttribute("required", "");
+    document.getElementById("lieud" + (x + 1)).setAttribute("required", "");
+
+    //code pour faire apparaitre une journee
+    document.getElementById("journees" + (x + 1)).removeAttribute("hidden");
+    document.getElementById("autre" + (x + 1)).setAttribute("required", "");
+
+    //code pour faire apparaitre une acticiter
+    document.getElementById("activiters" + (x + 1)).removeAttribute("hidden");
+    document.getElementById("noma" + (x + 1)).setAttribute("required", "");
+    document.getElementById("descea" + (x + 1)).setAttribute("required", "");
+    
+    }
 
 
     $(document).ready(function(){
@@ -313,7 +331,7 @@ require_once("../includes/menu_admin.inc.php");
         "<div class='col-md-12' hidden id='etapes" + etapes + "'>" +
         "<div class='col-md-12'>" +
                             "<label for='etape" + etapes + "' class='form-label'>Etape</label>" +
-                            "<input type='text' class='form-control' id='etape" + etapes + "' name='etape" + etapes + "' value='' required>" +
+                            "<input type='text' class='form-control' id='etape" + etapes + "' name='etape" + etapes + "' value=''>" +
                         "</div>" +
                         "<div class='col-md-12'>" +
                             "<label for='imge" + etapes + "' class='form-label'>Image de l'Etape</label>" +
@@ -321,7 +339,7 @@ require_once("../includes/menu_admin.inc.php");
                         "</div>" +
                         "<div class='col-md-12'>" +
                             "<label for='desce" + etapes + "' class='form-label'>Description de l'Etape</label>" +
-                            "<input type='text' class='form-control' id='desce" + etapes + "' name='desce" + etapes + "' value='' required>" +
+                            "<input type='text' class='form-control' id='desce" + etapes + "' name='desce" + etapes + "' value=''>" +
                         "</div>" +
                         "<div class='col-md-6'>" +
                             "<label for='dated" + etapes + "' class='form-label'>Date du Debut</label>" +
@@ -335,11 +353,14 @@ require_once("../includes/menu_admin.inc.php");
                         "</div>" +
                         "<div class='col-md-12'>" +
                             "<label for='lieud" + etapes + "' class='form-label'>Lieu de rencontre pour le Diner</label>" +
-                            "<input type='text' class='form-control' id='lieud" + etapes + "' name='lieud" + etapes + "' value='' required>" +
+                            "<input type='text' class='form-control' id='lieud" + etapes + "' name='lieud" + etapes + "' value=''>" +
                         "</div>";
+        if($y != 5) {
+            string += "<button type='button' id='bouttonEtapes" + etapes + "' onclick='functionName(" + etapes + ")' >+</button>"
+        }
         for ($x = 1; $x <= 7; $x++) {
             string += 
-            "<div class='col-md-12' hidden id='journee" + journee + "'>" +
+            "<div class='col-md-12' hidden id='journees" + journee + "'>" +
             "<div class='col-md-12'>" +
                                 "<label for='journee" + journee + "' class='form-label'>Journee</label>" +
                             "</div>" +
@@ -349,17 +370,18 @@ require_once("../includes/menu_admin.inc.php");
                             "</div>" +
                             "<div class='col-md-12'>" +
                                 "<label for='autre" + journee + "' class='form-label'>Autre information</label>" +
-                                "<input type='text' class='form-control' id='autre" + journee + "' name='autre" + journee + "' value='' required>" +
+                                "<input type='text' class='form-control' id='autre" + journee + "' name='autre" + journee + "' value='' >" +
                             "</div>";
             ;
-
-
+            if($x != 7) {
+            string += "<button type='button' id='bouttonJournees" + journee + "' >+</button>"
+            }
             for ($i = 1; $i <= 4; $i++) {
                 string +=
-                "<div class='col-md-12' hidden id='activiter" + activiter + "'>" +
+                "<div class='col-md-12' hidden id='activiters" + activiter + "'>" +
                     "<div class='col-md-12'>" +
                     "<label for='noma" + activiter + "' class='form-label'>Nom de l'activiter</label>" +
-                                        "<input type='text' class='form-control' id='noma" + activiter + "' name='noma" + activiter + "' value='' required>" +
+                                        "<input type='text' class='form-control' id='noma" + activiter + "' name='noma" + activiter + "' value=''>" +
                                     "</div>" +
 
                                     "<div class='col-md-6'>" +
@@ -374,10 +396,12 @@ require_once("../includes/menu_admin.inc.php");
                                     "</div>" +
                                     "<div class='col-md-12'>" +
                                         "<label for='desca" + activiter + "' class='form-label'>Description des activiter</label>" +
-                                        "<input type='text' class='form-control' id='descea" + activiter + "' name='descea" + activiter + "' value='' required>" +
-                                    "</div>" +
-
-                "</div>";
+                                        "<input type='text' class='form-control' id='descea" + activiter + "' name='descea" + activiter + "' value=''>" +
+                                    "</div>";
+                if($i != 4) {
+                    string += "<button type='button' id='bouttonactiviters" + activiter + "' >+</button>"
+                }
+                string += "</div>";
                 activiter++;
             }
             string += "</div>";
@@ -390,10 +414,22 @@ require_once("../includes/menu_admin.inc.php");
     string = "";
     $clone.insertBefore( ".add-row" );
 
-    $(document).on('click', '.add-row', function() {
+   /* $(document).on('click', '.add-row', function() {
+        //code pour faire apparaitre une etape
         document.getElementById("etapes1").removeAttribute("hidden");
-        document.getElementById("categ").setAttribute("hidden", "");
-    });
+        document.getElementById("etape1").setAttribute("required", "");
+        document.getElementById("desce1").setAttribute("required", "");
+        document.getElementById("lieud1").setAttribute("required", "");
+
+        //code pour faire apparaitre une journee
+        document.getElementById("journees1").removeAttribute("hidden");
+        document.getElementById("autre1").setAttribute("required", "");
+
+        //code pour faire apparaitre une acticiter
+        document.getElementById("activiters1").removeAttribute("hidden");
+        document.getElementById("noma1").setAttribute("required", "");
+        document.getElementById("descea1").setAttribute("required", "");
+    });*/
 
 
 
