@@ -293,16 +293,17 @@ require_once("../includes/menu_admin.inc.php");
 </html>
 
 <script>
-    var count = 0;
 
     var etapes = 1;
     var journee = 1;
     var activiter = 1; 
 
-    $('#More').click(function(){
-    $(".div2").append("<div class='fieldBlock'><label >Parameter Name: </label><select id='name" + count + "'  name='name" + count + "' ><option></option></select></div> </br>");
-    count++;
-    });
+    //valeur qui determine combien d'etapes, journee et activiter vont etre cree a la creation de la page
+    var nbEtapes = 5;
+    var nbJournees = 7;
+    var nbActiviters = 4;
+
+
 
     function ajouterDefault(x) {
     //code pour faire apparaitre une nouvelle etape
@@ -313,13 +314,13 @@ require_once("../includes/menu_admin.inc.php");
     document.getElementById("defaultBoutonStart").setAttribute("hidden", "");
 
     //code pour faire apparaitre la premier journee de l'etape
-    document.getElementById("journees" + ((1% (x + 1) * x * 7)+ 1)).removeAttribute("hidden");
-    document.getElementById("autre" + ((1% (x + 1) * x * 7)+ 1)).setAttribute("required", "");
+    document.getElementById("journees" + ((1% (x + 1) * x * nbJournees)+ 1)).removeAttribute("hidden");
+    document.getElementById("autre" + ((1% (x + 1) * x * nbJournees)+ 1)).setAttribute("required", "");
 
     //code pour faire apparaitre la premiere activiter de la journee
-    document.getElementById("activiters" + ((1% (x + 1) * x * 28)+ 1)).removeAttribute("hidden");
-    document.getElementById("noma" + ((1% (x + 1) * x * 28)+ 1)).setAttribute("required", "");
-    document.getElementById("descea" + ((1% (x + 1) * x * 28)+ 1)).setAttribute("required", "");
+    document.getElementById("activiters" + ((1% (x + 1) * x * (nbJournees * nbActiviters))+ 1)).removeAttribute("hidden");
+    document.getElementById("noma" + ((1% (x + 1) * x * (nbJournees * nbActiviters))+ 1)).setAttribute("required", "");
+    document.getElementById("descea" + ((1% (x + 1) * x * (nbJournees * nbActiviters))+ 1)).setAttribute("required", "");
     
     }
 
@@ -330,32 +331,30 @@ require_once("../includes/menu_admin.inc.php");
     document.getElementById("etape" + (x + 1)).setAttribute("required", "");
     document.getElementById("desce" + (x + 1)).setAttribute("required", "");
     document.getElementById("lieud" + (x + 1)).setAttribute("required", "");
-    document.getElementById("bouttonEtapes" + x).setAttribute("hidden", "");
+    document.getElementById("bouttonEtapesAjouter" + x).setAttribute("hidden", "");
 
     //code pour faire apparaitre la premier journee de l'etape
-    document.getElementById("journees" + ((1% (x + 1) * x * 7)+ 1)).removeAttribute("hidden");
-    document.getElementById("autre" + ((1% (x + 1) * x * 7)+ 1)).setAttribute("required", "");
+    document.getElementById("journees" + ((1% (x + 1) * x * nbJournees)+ 1)).removeAttribute("hidden");
+    document.getElementById("autre" + ((1% (x + 1) * x * nbJournees)+ 1)).setAttribute("required", "");
 
     //code pour faire apparaitre la premiere activiter de la journee
-    document.getElementById("activiters" + ((1% (x + 1) * x * 28)+ 1)).removeAttribute("hidden");
-    document.getElementById("noma" + ((1% (x + 1) * x * 28)+ 1)).setAttribute("required", "");
-    document.getElementById("descea" + ((1% (x + 1) * x * 28)+ 1)).setAttribute("required", "");
+    document.getElementById("activiters" + ((1% (x + 1) * x * (nbJournees * nbActiviters))+ 1)).removeAttribute("hidden");
+    document.getElementById("noma" + ((1% (x + 1) * x * (nbJournees * nbActiviters))+ 1)).setAttribute("required", "");
+    document.getElementById("descea" + ((1% (x + 1) * x * (nbJournees * nbActiviters))+ 1)).setAttribute("required", "");
     
     }
 
-    function ajouterJournee(x, y) {
+    function ajouterJournee(x) {
 
     //code pour faire apparaitre une nouvelle journee
     document.getElementById("journees" + (x + 1)).removeAttribute("hidden");
     document.getElementById("autre" + (x + 1)).setAttribute("required", "");
+    document.getElementById("bouttonJourneesAjouter" + x).setAttribute("hidden", "");
 
     //code pour faire apparaitre la premiere activiter de la journee
-
-    //TODO: A FAIRE LA BONNE FORMULE MATHEMATIQUE POUR L'AFFICHAGE
-
-    document.getElementById("activiters" + ((1% (x + 1) * x * 28)+ 1)).removeAttribute("hidden");
-    document.getElementById("noma" + ((1% (x + 1) * x * 28)+ 1)).setAttribute("required", "");
-    document.getElementById("descea" + ((1% (x + 1) * x * 28)+ 1)).setAttribute("required", "");
+    document.getElementById("activiters" + ( (x+1)*nbActiviters+1 )).removeAttribute("hidden");
+    document.getElementById("noma" + ( (x+1)*nbActiviters+1 )).setAttribute("required", "");
+    document.getElementById("descea" + ( (x+1)*nbActiviters+1 )).setAttribute("required", "");
     
     }
 
@@ -364,6 +363,59 @@ require_once("../includes/menu_admin.inc.php");
     document.getElementById("activiters" + (x + 1)).removeAttribute("hidden");
     document.getElementById("noma" + (x + 1)).setAttribute("required", "");
     document.getElementById("descea" + (x + 1)).setAttribute("required", "");
+    document.getElementById("bouttonActivitersAjouter" + x).setAttribute("hidden", "");
+
+    //TODO: une erreur est lever parce que dans la premier valeur le bouton enlever n'existe pas
+    document.getElementById("bouttonActivitersEnlever" + x).setAttribute("hidden", "");
+
+    }
+
+
+
+    function enleverJournee(x) {
+
+    //code pour faire apparaitre une nouvelle journee
+    document.getElementById("journees" + (x + 1)).removeAttribute("hidden");
+    document.getElementById("autre" + (x + 1)).setAttribute("required", "");
+    document.getElementById("bouttonJourneesAjouter" + x).setAttribute("hidden", "");
+
+
+    for ($j = 1; $j <= nbActiviters; $j++) {
+
+    document.getElementById("activiters" + ( (x-1)*nbActiviters+ $j ) ).setAttribute("hidden", "");
+    document.getElementById("noma" + ( (x-1)*nbActiviters+ $j )).removeAttribute("required");
+    document.getElementById("descea" + ( (x-1)*nbActiviters+ $j )).removeAttribute("required");
+
+    document.getElementById("noma" + ( (x-1)*nbActiviters+ $j )).value = document.getElementById("noma" + ( (x-1)*nbActiviters+ $j )).defaultValue;
+    document.getElementById("heuredebut" + ( (x-1)*nbActiviters+ $j )).value = document.getElementById("heuredebut" + ( (x-1)*nbActiviters+ $j )).defaultValue;
+    document.getElementById("heurefin" + ( (x-1)*nbActiviters+ $j )).value = document.getElementById("heurefin" + ( (x-1)*nbActiviters+ $j )).defaultValue;
+    document.getElementById("descea" + ( (x-1)*nbActiviters+ $j )).value = document.getElementById("descea" + ( (x-1)*nbActiviters+ $j )).defaultValue;
+
+    document.getElementById("bouttonActivitersAjouter" + ( (x-1)*nbActiviters+ $j )).removeAttribute("hidden");
+
+    if($j != 1) {
+        document.getElementById("bouttonActivitersEnlever" + ( (x-1)*nbActiviters+ $j )).removeAttribute("hidden");
+        }
+    }
+
+    }
+
+
+    
+    function enleverActiviter(x) {
+    //code pour faire apparaitre la premiere activiter de la journee
+    document.getElementById("activiters" + x ).setAttribute("hidden", "");
+    document.getElementById("noma" + x).removeAttribute("required");
+    document.getElementById("descea" + x).removeAttribute("required");
+
+    document.getElementById("noma" + x).value = document.getElementById("noma" + x).defaultValue;
+    document.getElementById("heuredebut" + x).value = document.getElementById("heuredebut" + x).defaultValue;
+    document.getElementById("heurefin" + x).value = document.getElementById("heurefin" + x).defaultValue;
+    document.getElementById("descea" + x).value = document.getElementById("descea" + x).defaultValue;
+
+
+    document.getElementById("bouttonActivitersAjouter" + (x - 1)).removeAttribute("hidden");
+    document.getElementById("bouttonActivitersEnlever" + (x - 1)).removeAttribute("hidden");
 
     }
 
@@ -371,7 +423,7 @@ require_once("../includes/menu_admin.inc.php");
     $(document).ready(function(){
     var string = ""
     var $clone = $( "div.personal-details" ).first();
-    for ($y = 1; $y <= 5; $y++) {
+    for ($y = 1; $y <= nbEtapes; $y++) {
         string +=
         "<div class='col-md-12' hidden id='etapes" + etapes + "'>" +
         "<div class='col-md-12'>" +
@@ -400,10 +452,10 @@ require_once("../includes/menu_admin.inc.php");
                             "<label for='lieud" + etapes + "' class='form-label'>Lieu de rencontre pour le Diner</label>" +
                             "<input type='text' class='form-control' id='lieud" + etapes + "' name='lieud" + etapes + "' value=''>" +
                         "</div>";
-        if($y != 5) {
-            string += "<button type='button' id='bouttonEtapes" + etapes + "' onclick='ajouterEtape(" + etapes + ")' >+</button>"
+        if($y != nbEtapes) {
+            string += "<button type='button' id='bouttonEtapesAjouter" + etapes + "' onclick='ajouterEtape(" + etapes + ")' >+</button>"
         }
-        for ($x = 1; $x <= 7; $x++) {
+        for ($x = 1; $x <= nbJournees; $x++) {
             string += 
             "<div class='col-md-12' hidden id='journees" + journee + "'>" +
             "<div class='col-md-12'>" +
@@ -418,10 +470,13 @@ require_once("../includes/menu_admin.inc.php");
                                 "<input type='text' class='form-control' id='autre" + journee + "' name='autre" + journee + "' value='' >" +
                             "</div>";
             ;
-            if($x != 7) {
-            string += "<button type='button' id='bouttonJournees" + journee + "' onclick='ajouterEtape("+ journee + ", " + etapes + ")' >+</button>"
+            if($x != nbJournees) {
+            string += "<button type='button' id='bouttonJourneesAjouter" + journee + "' onclick='ajouterJournee(" + journee + ")' >+</button>"
             }
-            for ($i = 1; $i <= 4; $i++) {
+            if($x != 1) {
+                    string += "<button type='button' id='bouttonJourneesEnlever" + journee + "' onclick='enleverJournee(" + journee + ")' >-</button>"
+                }
+            for ($i = 1; $i <= nbActiviters; $i++) {
                 string +=
                 "<div class='col-md-12' hidden id='activiters" + activiter + "'>" +
                     "<div class='col-md-12'>" +
@@ -443,8 +498,11 @@ require_once("../includes/menu_admin.inc.php");
                                         "<label for='desca" + activiter + "' class='form-label'>Description des activiter</label>" +
                                         "<input type='text' class='form-control' id='descea" + activiter + "' name='descea" + activiter + "' value=''>" +
                                     "</div>";
-                if($i != 4) {
-                    string += "<button type='button' id='bouttonactiviters" + activiter + "' onclick='ajouterActiviter(" + activiter + ")' >+</button>"
+                if($i != nbActiviters) {
+                    string += "<button type='button' id='bouttonActivitersAjouter" + activiter + "' onclick='ajouterActiviter(" + activiter + ")' >+</button>"
+                }
+                if($i != 1) {
+                    string += "<button type='button' id='bouttonActivitersEnlever" + activiter + "' onclick='enleverActiviter(" + activiter + ")' >-</button>"
                 }
                 string += "</div>";
                 activiter++;
