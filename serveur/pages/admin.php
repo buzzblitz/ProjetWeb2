@@ -154,15 +154,15 @@ require_once("../includes/menu_admin.inc.php");
                         </div>
                         <div class="col-md-12">
                             <label for="imgc" class="form-label">Image du Circuit</label>
-                            <input type="file" class="form-control" id="imgc" name="imgc" value="">
+                            <input type="file" class="form-control" id="imgc" name="imgc" value="" required>
                         </div>
                         <div class="col-md-12">
                             <label for="descc" class="form-label">Description du Circuit</label>
-                            <input type="text" class="form-control" id="descc" name="descc" value="" required>
+                            <input type="text" class="form-control" id="descc" name="descc" value="" required required>
                         </div>
                         <div class="col-md-12">
                             <label for="categ" class="form-label">Etats du Circuit</label>
-                            <select id="categ" name="categ" class="form-select form-select-sm"
+                            <select id="categ" name="categ" class="form-select form-select-sm" required
                                 aria-label=".form-select-sm example">
                                 <option selected disabled value="Des">Desactiver</option>
                                 <option value="Tra">Travail</option>
@@ -172,29 +172,29 @@ require_once("../includes/menu_admin.inc.php");
                         <div class='col-md-12' id='etapes'>
         <div class='col-md-12'>
                             <label for='etape' class='form-label'>Etape</label>
-                            <input type='text' class='form-control' id='etape' name='etape' value=''>
+                            <input type='text' class='form-control' id='etape' name='etape' value='' required>
                         </div>
                         <div class='col-md-12'>
                             <label for='imge' class='form-label'>Image de l'Etape</label>
-                            <input type='file' class='form-control' id='imge' name='imge' value=''>
+                            <input type='file' class='form-control' id='imge' name='imge' value='' required>
                         </div>
                         <div class='col-md-12'>
                             <label for='desce' class='form-label'>Description de l'Etape</label>
-                            <input type='text' class='form-control' id='desce' name='desce' value=''>
+                            <input type='text' class='form-control' id='desce' name='desce' value='' required>
                         </div>
                         <div class='col-md-6'>
                         <label for='dated' class='form-label'>Date du Debut</label>
-                            <input type='date' class='form-control is-valid' id='dated' name='dated'>
+                            <input type='date' class='form-control is-valid' id='dated' name='dated' required>
                         </div>
                         <div class='col-md-12'>
                         </div>
                         <div class='col-md-6'>
                             <label for='datef' class='form-label'>Date de la Fin</label>
-                            <input type='date' class='form-control is-valid' id='datef' name='datef'>
+                            <input type='date' class='form-control is-valid' id='datef' name='datef' required>
                         </div>
                         <div class='col-md-12'>
                             <label for='lieud' class='form-label'>Lieu de rencontre pour le Diner</label>
-                            <input type='text' class='form-control' id='lieud' name='lieud' value=''>
+                            <input type='text' class='form-control' id='lieud' name='lieud' value='' required>
                         </div>
 
             <div class='col-md-12' id='journees'>
@@ -203,32 +203,32 @@ require_once("../includes/menu_admin.inc.php");
                             </div>
                             <div class='col-md-6'>
                                 <label for='datej' class='form-label'>Date</label>
-                                <input type='date' class='form-control is-valid' id='datej' name='datej'>
+                                <input type='date' class='form-control is-valid' id='datej' name='datej' required>
                             </div>
                             <div class='col-md-12'>
                                 <label for='autre' class='form-label'>Autre information</label>
-                                <input type='text' class='form-control' id='autre' name='autre' value='' >
+                                <input type='text' class='form-control' id='autre' name='autre' value='' required>
                             </div>
 
                 <div class='col-md-12' id='activiters'>
                     <div class='col-md-12'>
                     <label for='noma' class='form-label'>Nom de l'activiter</label>
-                                        <input type='text' class='form-control' id='noma' name='noma' value=''>
+                                        <input type='text' class='form-control' id='noma' name='noma' value='' required>
                                     </div>
 
                                     <div class='col-md-6'>
                                         "<label for='heuredebut' class='form-label'>Heure du debut de l'activiter</label>
-                                        "<input type='time' class='form-control is-valid' id='heuredebut' name='heuredebut'>
+                                        "<input type='time' class='form-control is-valid' id='heuredebut' name='heuredebut' required>
                                     </div>
                                     <div class='col-md-12'>
                                     </div>
                                     <div class='col-md-6'>
                                         <label for='heurefin' class='form-labe'>Heure de fin de l'activiter</label>
-                                        <input type='time' class='form-control is-valid' id='heurefin' name='heurefin'>
+                                        <input type='time' class='form-control is-valid' id='heurefin' name='heurefin' required>
                                     </div>
                                     <div class='col-md-12'>
                                         <label for='desca' class='form-label'>Description des activiter</label>
-                                        <input type='text' class='form-control' id='descea' name='descea' value=''>
+                                        <input type='text' class='form-control' id='descea' name='descea' value='' required>
                                     </div>
                                     </div>
                                     </div>
