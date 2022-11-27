@@ -27,17 +27,30 @@ CREATE TABLE membresCircuits (
 
 CREATE TABLE circuits (
   idc INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  nom VARCHAR(255),
-  photoc VARCHAR(255)DEFAULT NULL
+  nomc VARCHAR(255),
+  photoc VARCHAR(255)DEFAULT NULL,
+  descriptionc VARCHAR(255) NOT NULL,
+  etat VARCHAR(4) NOT NULL
 );
 
 CREATE TABLE etapes (
   ide INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  nom VARCHAR(255) NOT NULL,
+  idc INTEGER NOT NULL,
+  nome VARCHAR(255) NOT NULL,
+  photoe VARCHAR(255)DEFAULT NULL,
+  descriptione VARCHAR(255) NOT NULL,
   debut datetime NOT NULL,
-  duree INT NOT NULL,
-  hotel VARCHAR(255) NOT NULL,
-  photoe VARCHAR(255)DEFAULT NULL
+  fin datetime NOT NULL,
+  lieurencontre VARCHAR(255) NOT NULL
+);
+
+
+CREATE TABLE journees (
+  idj INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  ide INTEGER NOT NULL,
+  datej datetime NOT NULL,
+  descriptionj VARCHAR(255) NOT NULL
+  
 );
 
 CREATE TABLE etapesActivites (
@@ -47,11 +60,11 @@ CREATE TABLE etapesActivites (
 
 CREATE TABLE activites (
   ida INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  idj INTEGER NOT NULL,
   nom VARCHAR(255) NOT NULL,
-  lieu VARCHAR(255),
-  datea datetime NOT NULL,
-  duree INT NOT NULL,
-  description VARCHAR(255) NOT NULL
+  tempsDebut datetime NOT NULL,
+  tempsFin datetime NOT NULL,
+  descriptiona VARCHAR(255) NOT NULL
   
 );
 
@@ -73,3 +86,7 @@ ALTER TABLE membresCircuits ADD FOREIGN KEY (idm) REFERENCES membres (idm);
 ALTER TABLE membresCircuits ADD FOREIGN KEY (idc) REFERENCES circuits (idc);
 
 ALTER TABLE connexion ADD FOREIGN KEY (idm) REFERENCES membres (idm);
+
+ALTER TABLE etapes ADD FOREIGN KEY (idc) REFERENCES circuits (idc);
+ALTER TABLE journees ADD FOREIGN KEY (ide) REFERENCES etapes (ide);
+ALTER TABLE activites ADD FOREIGN KEY (idj) REFERENCES journees (idj);
