@@ -171,7 +171,7 @@ require_once("../includes/menu_admin.inc.php");
                         </div>
                         <div class="personal-details">
                         </div>
-                        <button type="button" class="add-row"  onclick="functionName(0)">+</button>
+                        <button type="button" class="add-row" id="defaultBoutonStart"  onclick="ajouterDefault(0)">+</button>
                         <div class="col-12">
                             <button class="btn btn-primary" type="submit">Enregistrer</button>
                         </div>
@@ -304,22 +304,67 @@ require_once("../includes/menu_admin.inc.php");
     count++;
     });
 
-    function functionName(x) {
-    //code pour faire apparaitre une etape
+    function ajouterDefault(x) {
+    //code pour faire apparaitre une nouvelle etape
     document.getElementById("etapes" + (x + 1)).removeAttribute("hidden");
     document.getElementById("etape" + (x + 1)).setAttribute("required", "");
     document.getElementById("desce" + (x + 1)).setAttribute("required", "");
     document.getElementById("lieud" + (x + 1)).setAttribute("required", "");
+    document.getElementById("defaultBoutonStart").setAttribute("hidden", "");
 
-    //code pour faire apparaitre une journee
+    //code pour faire apparaitre la premier journee de l'etape
+    document.getElementById("journees" + ((1% (x + 1) * x * 7)+ 1)).removeAttribute("hidden");
+    document.getElementById("autre" + ((1% (x + 1) * x * 7)+ 1)).setAttribute("required", "");
+
+    //code pour faire apparaitre la premiere activiter de la journee
+    document.getElementById("activiters" + ((1% (x + 1) * x * 28)+ 1)).removeAttribute("hidden");
+    document.getElementById("noma" + ((1% (x + 1) * x * 28)+ 1)).setAttribute("required", "");
+    document.getElementById("descea" + ((1% (x + 1) * x * 28)+ 1)).setAttribute("required", "");
+    
+    }
+
+
+    function ajouterEtape(x) {
+    //code pour faire apparaitre une nouvelle etape
+    document.getElementById("etapes" + (x + 1)).removeAttribute("hidden");
+    document.getElementById("etape" + (x + 1)).setAttribute("required", "");
+    document.getElementById("desce" + (x + 1)).setAttribute("required", "");
+    document.getElementById("lieud" + (x + 1)).setAttribute("required", "");
+    document.getElementById("bouttonEtapes" + x).setAttribute("hidden", "");
+
+    //code pour faire apparaitre la premier journee de l'etape
+    document.getElementById("journees" + ((1% (x + 1) * x * 7)+ 1)).removeAttribute("hidden");
+    document.getElementById("autre" + ((1% (x + 1) * x * 7)+ 1)).setAttribute("required", "");
+
+    //code pour faire apparaitre la premiere activiter de la journee
+    document.getElementById("activiters" + ((1% (x + 1) * x * 28)+ 1)).removeAttribute("hidden");
+    document.getElementById("noma" + ((1% (x + 1) * x * 28)+ 1)).setAttribute("required", "");
+    document.getElementById("descea" + ((1% (x + 1) * x * 28)+ 1)).setAttribute("required", "");
+    
+    }
+
+    function ajouterJournee(x, y) {
+
+    //code pour faire apparaitre une nouvelle journee
     document.getElementById("journees" + (x + 1)).removeAttribute("hidden");
     document.getElementById("autre" + (x + 1)).setAttribute("required", "");
 
-    //code pour faire apparaitre une acticiter
+    //code pour faire apparaitre la premiere activiter de la journee
+
+    //TODO: A FAIRE LA BONNE FORMULE MATHEMATIQUE POUR L'AFFICHAGE
+
+    document.getElementById("activiters" + ((1% (x + 1) * x * 28)+ 1)).removeAttribute("hidden");
+    document.getElementById("noma" + ((1% (x + 1) * x * 28)+ 1)).setAttribute("required", "");
+    document.getElementById("descea" + ((1% (x + 1) * x * 28)+ 1)).setAttribute("required", "");
+    
+    }
+
+    function ajouterActiviter(x) {
+    //code pour faire apparaitre la premiere activiter de la journee
     document.getElementById("activiters" + (x + 1)).removeAttribute("hidden");
     document.getElementById("noma" + (x + 1)).setAttribute("required", "");
     document.getElementById("descea" + (x + 1)).setAttribute("required", "");
-    
+
     }
 
 
@@ -356,7 +401,7 @@ require_once("../includes/menu_admin.inc.php");
                             "<input type='text' class='form-control' id='lieud" + etapes + "' name='lieud" + etapes + "' value=''>" +
                         "</div>";
         if($y != 5) {
-            string += "<button type='button' id='bouttonEtapes" + etapes + "' onclick='functionName(" + etapes + ")' >+</button>"
+            string += "<button type='button' id='bouttonEtapes" + etapes + "' onclick='ajouterEtape(" + etapes + ")' >+</button>"
         }
         for ($x = 1; $x <= 7; $x++) {
             string += 
@@ -374,7 +419,7 @@ require_once("../includes/menu_admin.inc.php");
                             "</div>";
             ;
             if($x != 7) {
-            string += "<button type='button' id='bouttonJournees" + journee + "' >+</button>"
+            string += "<button type='button' id='bouttonJournees" + journee + "' onclick='ajouterEtape("+ journee + ", " + etapes + ")' >+</button>"
             }
             for ($i = 1; $i <= 4; $i++) {
                 string +=
@@ -399,7 +444,7 @@ require_once("../includes/menu_admin.inc.php");
                                         "<input type='text' class='form-control' id='descea" + activiter + "' name='descea" + activiter + "' value=''>" +
                                     "</div>";
                 if($i != 4) {
-                    string += "<button type='button' id='bouttonactiviters" + activiter + "' >+</button>"
+                    string += "<button type='button' id='bouttonactiviters" + activiter + "' onclick='ajouterActiviter(" + activiter + ")' >+</button>"
                 }
                 string += "</div>";
                 activiter++;
