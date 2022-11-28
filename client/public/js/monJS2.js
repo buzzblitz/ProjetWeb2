@@ -66,14 +66,14 @@ function editerCircuit(unCircuit){
 
 let idCircuitSupprimer;
 //TODO edit this shit
-function supprimerCircuit(ida){
-	idCircuitSupprimer = ida;
+function supprimerCircuit(idc){
+	idCircuitSupprimer = idc;
 	$('#supprimerCircuitModal').modal('show');
 }
 //TODO edit this shit
 function supprimer(){
      let formEnlever = document.getElementById('formEnlever');
-	 document.getElementById('idar').value = idCircuitSupprimer;
+	 document.getElementById('idc').value = idCircuitSupprimer;
 	 formEnlever.submit();
 }
 
@@ -88,7 +88,7 @@ function enleverMultiplesCircuits(){
 	}
 	if(listeCircuits.length > 0){
 		listeCircuits=listeCircuits.substring(0,listeCircuits.length-1);//Enlever dernier ;
-		document.getElementById("idaM").value = listeCircuits;
+		document.getElementById("idcM").value = listeCircuits;
 		document.getElementById("formEnleverMultiples").submit();
 	}
 }

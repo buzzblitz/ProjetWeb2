@@ -297,7 +297,7 @@ require_once("../../includes/menu_admin.inc.php");
         </div>
     </div>
     <!-- Delete Modal HTML -->
-    <div class="modal fade" id="supprimerArticleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="supprimerCircuitModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -320,12 +320,12 @@ require_once("../../includes/menu_admin.inc.php");
     </div>
     <!-- Formulaires -->
 
-    <form id="formEnlever" action="../articles/enlever.php" method="POST">
+    <form id="formEnlever" action="../circuits/enlever.php" method="POST">
         <input type="hidden" id="idc" name="idc" value="">
     </form>
 
-    <form id="formEnleverMultiples" action="../articles/enleverMultiples.php" method="POST">
-        <input type="hidden" id="idaM" name="idaM" value="">
+    <form id="formEnleverMultiples" action="../circuits/enleverMultiples.php" method="POST">
+        <input type="hidden" id="idcM" name="idcM" value="">
     </form>
 
     <div class="toast-container posToast">
