@@ -179,7 +179,7 @@ function generate_table() {
 				</td>	
 				<td>${unCircuit.idc}</td>
 				<td><img class='img-fluid'  width='60' height='60' src='../../images_Circuits/${unCircuit.photoc}'></td>
-				<td>${unCircuit.nomcC}</td>
+				<td>${unCircuit.etat}</td>
 				<td>${unCircuit.descriptionc }</td>			
 				<td>
 					<a href="#" onClick='editerCircuit(`;
