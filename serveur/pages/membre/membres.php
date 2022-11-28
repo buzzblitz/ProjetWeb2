@@ -1,9 +1,11 @@
 <?php
-    session_start();    
-    if(!isset($_SESSION['usager'])){
-        header('Location: ../../../index.php?msg=Problème+avec+votre+connexion');
+    session_start();
+
+    if(!isset($_SESSION['courriel'])){
+        header('Location: ../../../index2.php?msg=Vous+devez+vous+connecter');
         exit;
     }
+    $photo = $_SESSION['photom'];
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -11,35 +13,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
-    <script src="../../../client/utilitaires/jquery-3.6.0.min.js"></script>
-    <script src="../../../client/utilitaires/bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
-    <script src="../../../client/public/js/monJS.js"></script>
-    <script src="../../../client/public/js/requetes.js"></script>
-    <link rel="stylesheet" href="../../../client/utilitaires/bootstrap-5.1.3-dist/css/bootstrap.min.css">
-    <link rel="stylesheet"  href="../../../client/utilitaires/icons-1.8.1/bootstrap-icons.css">
-    <link rel="stylesheet" href="../../../client/public/css/style.css">
+    <title>Membre</title>
+    <link rel="stylesheet" href="../../client/utilitaires/bootstrap-5.2.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../client/style.css">
+    <script src="../../client/js/global.js"></script>
 </head>
-<body onLoad="chargerArticles('M','../articles/liste.php');">
-    <?php
-         require_once("../../includes/menu_membre.inc.php");
-    ?>
-     <br><br><br>
-  <div class="container" id="contenu"></div>
-  <!-- Modal du panier -->
-  <div class="modal fade" id="idModPanier" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div id="contenuPanier"></div>
-      </div>
-    </div>
-  </div>
-</div>
- <!-- Fin du modal du panier -->
-  <form id="dc" action="../connexion/deconnecter.php" method="POST"></form>
-  <script src="../../../client/public/js/panier.js"></script>
+<body>
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg bg-nav-perso">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Test</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onClick="lister();">Profil</a>
+                    </li>
+                    
+                </ul>
+                <img src="..\..\serveur\membre\photos\<?php echo $photo; ?>" class="image-border" alt="photo" style="width:48px">
+            </div>
+        </div>
+    </nav>
+    <br><br>
+    <h3>JE SUIS DANS LA PAGE MEMBRE</h3>
+    <br><br>
+    <button type="button" class="btn btn-primary" onClick="deconnecter();">Déconnexion</button>
+    <form id="dc" action="../../serveur/connexion/deconnexion.php"></form>
+</body>
 </html>

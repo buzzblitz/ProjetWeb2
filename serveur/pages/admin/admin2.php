@@ -321,7 +321,7 @@ require_once("../../includes/menu_admin.inc.php");
     <!-- Formulaires -->
 
     <form id="formEnlever" action="../articles/enlever.php" method="POST">
-        <input type="hidden" id="idar" name="idar" value="">
+        <input type="hidden" id="idc" name="idc" value="">
     </form>
 
     <form id="formEnleverMultiples" action="../articles/enleverMultiples.php" method="POST">

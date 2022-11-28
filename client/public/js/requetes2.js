@@ -57,11 +57,9 @@ let chargerCircuits = (provenance, allerURL) => {
         url: allerURL,
         dataType: 'json',
         success: reponse => {
-            console.log(reponse)
             if (reponse.OK) {
                 listeCircuits = reponse.listeCircuits;
                 if(provenance == "I" || provenance == "M"){
-                    console.log(listeCircuits);
                     listerCircuits(listeCircuits);
                 }else {// A-Admin
                     genererPagination(); //À partir de listeCircuits

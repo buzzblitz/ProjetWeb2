@@ -13,11 +13,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test</title>
     
-    <link rel="stylesheet" href="client/css/style.css">
-    <link rel="stylesheet" href="client/utilitaires/bootstrap-5.2.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="client/public/css/style.css">
+    <link rel="stylesheet" href="client/utilitaires/bootstrap-5.1.3-dist/css/bootstrap.min.css">
     <script src="client/utilitaires/jquery-3.6.0.min.js"></script>
-    <script src="client/utilitaires/bootstrap-5.2.0-dist/js/bootstrap.min.js"></script>
-    <script src="client/js/global.js"></script>
+    <script src="client/utilitaires/bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
+    <script src="client/public/js/global.js"></script>
 
 </head>
 <body>
@@ -62,7 +62,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    <form id="formEnreg" action="serveur/membre/enregistrer.php" method="POST" enctype="multipart/form-data" class="row g-3" onSubmit="return validerFormEnreg();">
+                    <form id="formEnreg" action="serveur/pages/membre/enregistrerMembres.php" method="POST" enctype="multipart/form-data" class="row g-3" onSubmit="return validerFormEnreg();">
                         <div class="col-md-6">
                             <label for="prenom" class="form-label">Prénom</label>
                             <input type="text" class="form-control is-valid" id="prenom" name="prenom" required>

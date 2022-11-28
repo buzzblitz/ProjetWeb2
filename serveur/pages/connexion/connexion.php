@@ -24,7 +24,7 @@
     $result = $stmt->get_result();
 	if(!$ligne = $result->fetch_object()){//Si pas trouvé
         mysqli_close($connexion);
-        header('Location: ../../index.php?msg=Problème+avec+votre+compte.+Contactez+l\'administrateur');
+        header('Location: ../../../index.php?msg=Problème+avec+votre+compte.+Contactez+l\'administrateur');
         exit;
     }
     $idm = $ligne->idm;
@@ -42,7 +42,7 @@
         }
     }
     else {
-        header('Location: ../../index.php?msg=Problème+avec+votre+compte,+contactez+l\'administrateur');
+        header('Location: ../../../index.php?msg=Problème+avec+votre+compte,+contactez+l\'administrateur');
         exit;
     }
 ?>
