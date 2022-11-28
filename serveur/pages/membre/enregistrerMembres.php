@@ -10,7 +10,7 @@
     $daten = $_POST['daten'];
     $pass = $_POST['pass'];
 
-    $dossier="photos/";
+    $dossier="../../images_membre/";
 	$image="avatar.jpg";
 	if($_FILES['photo']['tmp_name']!==""){
 		$nomImage=sha1($nom.time());
@@ -39,6 +39,6 @@
         $msg="Problème+pour+enregistré+le+membre.";
 	}finally {
 		mysqli_close($connexion);
-        header('Location: membres.php');
+        header('Location: ../../../index2.php');
     }
 ?>

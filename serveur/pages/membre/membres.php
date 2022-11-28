@@ -37,7 +37,7 @@
                     </li>
                     
                 </ul>
-                <img src="..\..\serveur\membre\photos\<?php echo $photo; ?>" class="image-border" alt="photo" style="width:48px">
+                <img src="..\..\images_membre\<?php echo $photo; ?>" class="image-border" alt="photo" style="width:48px">
             </div>
         </div>
     </nav>

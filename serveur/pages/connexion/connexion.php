@@ -34,7 +34,7 @@
         if($ligne->role == "M"){
             $photo = obtenirPhotoMembre($idm);
             $_SESSION['photom'] = $photo;
-            header('Location: ../pages/membre.php');
+            header('Location: ../membre/membres.php');
             exit;
         }else  if($ligne->role == "A"){
             header('Location: ../admin/admin2.php');

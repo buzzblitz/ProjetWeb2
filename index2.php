@@ -122,7 +122,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="row g-3" id="formConnexion" action="serveur/connexion/connexion.php" method="POST">
+                        <form class="row g-3" id="formConnexion" action="serveur/pages/connexion/connexion.php" method="POST">
                             <div class="col-md-4">
                                 <label for="courriel" class="form-label">Courriel</label>
                                 <input type="email" class="form-control" id="courrielc" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" name="courrielc" value="" required>
