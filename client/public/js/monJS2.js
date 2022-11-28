@@ -65,12 +65,12 @@ function editerCircuit(unCircuit){
 }
 
 let idCircuitSupprimer;
-//TODO edit this shit
+
 function supprimerCircuit(idc){
 	idCircuitSupprimer = idc;
 	$('#supprimerCircuitModal').modal('show');
 }
-//TODO edit this shit
+
 function supprimer(){
      let formEnlever = document.getElementById('formEnlever');
 	 document.getElementById('idc').value = idCircuitSupprimer;
