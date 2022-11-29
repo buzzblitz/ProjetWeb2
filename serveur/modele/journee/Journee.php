@@ -57,10 +57,7 @@ class Journee {
     function ajouterActivites($Activite) {
       array_push($this->listeActivites,$Activite);
     }
-    function supprimerActivites($Activite) {
-      if (($key = array_search($Activite, $listeActivites)) !== false) {
-        unset($listeActivites[$key]);}
-    }
+    
   }
 
 ?>

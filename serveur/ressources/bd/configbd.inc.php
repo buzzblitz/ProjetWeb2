@@ -8,4 +8,10 @@
       echo "Problème de connexion au serveur de bd";
       exit();
 	}
+  /*<?php
+	$SERVEUR = "localhost";
+	$USAGER = "root";
+	$PASS = "";
+	$BD = "a22bdfilms";
+?>*/
 ?>

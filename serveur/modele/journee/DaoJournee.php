@@ -3,7 +3,7 @@
 declare (strict_types=1);
 
 require_once(__DIR__."/../ressources/bd/connexion.php");
-require_once("Film.php");
+require_once("Journee.php");
 
 class DaoFilm {
     static private $modelFilm = null;
