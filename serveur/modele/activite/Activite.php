@@ -27,7 +27,7 @@ class Activite {
     function getNom():string {
         return $this->nom;
     }
-    function getTempsDebut():int {
+    function getTempsDebut():string {
         return $this->tempsDebut;
     }
     function getTempsFin():string {

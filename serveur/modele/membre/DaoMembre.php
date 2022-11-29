@@ -2,11 +2,11 @@
 // Au début de PHP: Déclarer les types dans les paramétres des fonctions
 declare (strict_types=1);
 
-require_once(__DIR__."/../../ressources/bd/connexion.php");
-require_once("Etape.php");
+require_once(__DIR__."/../../ressources/bd/Connexion.php");
+require_once("Membre.php");
 
-class DaoEtape {
-    static private $modelEtape = null;
+class DaoMembre {
+    static private $modelMembre = null;
     private $reponse=array();
     private $connexion = null;
 	
@@ -15,48 +15,48 @@ class DaoEtape {
     }
     
 // Retourne le singleton du modèle 
-	static function  getDaoEtape():DaoEtape {
-		if(self::$modelEtape == null){
-			self::$modelEtape = new DaoEtape();  
+	static function  getDaoMembre():DaoMembre {
+		if(self::$modelMembre == null){
+			self::$modelMembre = new DaoMembre();  
 		}
-		return self::$modelEtape;
+		return self::$modelMembre;
 	}
 	
-	function MdlE_Enregistrer(Etape $etape):string {
+	function MdlM_Enregistrer(Membre $membre):string {
         //global $reponse;
        
         $connexion =  Connexion::getConnexion();
-        $requette="INSERT INTO etapes VALUES(0,?,?,?,?,?,?,?)";
+        $requette="INSERT INTO membres VALUES(0,?,?,?,?,?,?)";
         try{
-
-            $donnees = [ $etape->getIdc(), $etape->getNom(), $etape-getPhotoe(), $etape->getDescriptione(), $etape->getDebut(), $etape->get_fin(), $etape->getLieurencontre()];
+            
+            $donnees = [ $membre->getPrenom(), $membre->getNom(), $membre->getCourriel(), $membre->getSexe(), $membre->getDaten(), $membre->getPhotom()];
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
             $this->reponse['OK'] = true;
-            $this->reponse['msg'] = "Etape bien enregistre";
+            $this->reponse['msg'] = "Membre bien enregistre";
         }catch (Exception $e){
             $this->reponse['OK'] = false;
-            $this->reponse['msg'] = "Probléme pour enregistrer le etape";
+            $this->reponse['msg'] = "Probléme pour enregistrer le membre";
         }finally {
           unset($connexion);
           return json_encode($this->reponse);
         }
     }
 	
-    function MdlE_getAll($index):string {
+    function MdlM_getAll():string {
         global $reponse;
         $connexion = Connexion::getConnexion();
-        $requette="SELECT * FROM etapes WHERE idc =" + $index;
+        $requette="SELECT * FROM membres";
         try{
             $stmt = $connexion->prepare($requette);
             $stmt->execute();
             $reponse['OK'] = true;
             $reponse['msg'] = "";
-            $reponse['listeEtapes'] = array();
-            $reponse['listeEtapes'] = $stmt->fetchAll();
+            $reponse['listeMembres'] = array();
+            $reponse['listeMembres'] = $stmt->fetchAll();
         }catch (Exception $e){ 
             $reponse['OK'] = false;
-            $reponse['msg'] = "Problème pour obtenir les données des etapes";
+            $reponse['msg'] = "Problème pour obtenir les données des Membres";
             //$reponse['msg'] = $e->getMessage();
         }finally {
           unset($connexion);

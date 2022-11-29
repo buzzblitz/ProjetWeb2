@@ -29,7 +29,7 @@ class DaoCircuit {
         $requette="INSERT INTO circuits VALUES(0,?,?,?,?)";
         try{
             
-            $donnees = [$circuit->get_nom(),$circuit->get_photo(),$circuit->get_description(),$circuit->get_etat()];
+            $donnees = [ $circuit->getNom(), $circuit->getPhoto(), $circuit->getDescription(), $circuit->getEtat()];
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
             $this->reponse['OK'] = true;

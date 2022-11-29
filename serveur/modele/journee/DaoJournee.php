@@ -29,7 +29,7 @@ class DaoJournee {
         $requette="INSERT INTO journees VALUES(0,?,?,?)";
         try{
             
-            $donnees = [$journee->getIde(),$journee->getDescriptionj(),$journee->getDatej()];
+            $donnees = [ $journee->getIde(), $journee->getDescriptionj(), $journee->getDatej()];
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
             $this->reponse['OK'] = true;

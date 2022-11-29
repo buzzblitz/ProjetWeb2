@@ -1,4 +1,5 @@
 <?php
+declare (strict_types=1);
 namespace Model;
 
 class Etape {
@@ -25,71 +26,71 @@ class Etape {
     }
 
     // Methods
-    function getIde() {
+    function getIde():int {
       return $this->ide;
     }
 
-    function setIdc($idc) {
+    function setIdc($idc):void {
       $this->idc = $idc;
     }
 
-    function getIdc() {
+    function getIdc():int {
       return $this->idc;
     }
 
-    function setNom($nome) {
+    function setNom($nome):void {
       $this->nome = $nome;
     }
 
-    function getNom() {
+    function getNom():string {
       return $this->nome;
     }
 
-    function setPhotoe($photoe) {
+    function setPhotoe($photoe):void {
       $this->photoe = $photoe;
     }
 
-    function getPhotoe() {
+    function getPhotoe():string {
       return $this->photoe;
     }
 
-    function setDescriptione($descriptione) {
+    function setDescriptione($descriptione):void {
       $this->descriptione = $descriptione;
     }
 
-    function getDescriptione() {
+    function getDescriptione():string {
       return $this->descriptione;
     }
 
-    function setDebut($debut) {
+    function setDebut($debut):void {
       $this->debut = $debut;
     }
 
-    function getDebut() {
+    function getDebut():string {
       return $this->debut;
     }
 
-    function setFin($fin) {
+    function setFin($fin):void {
       $this->fin = $fin;
     }
 
-    function getFin() {
+    function getFin():string {
       return $this->fin;
     }
 
-    function setLieurencontre($lieurencontre) {
+    function setLieurencontre($lieurencontre):void {
       $this->lieurencontre = $lieurencontre;
     }
 
-    function getLieurencontre() {
+    function getLieurencontre():string {
       return $this->lieurencontre;
     }
   
-    function setListeJournes($listeJournes) {
+    function setListeJournes($listeJournes):void {
       $this->listeJournes = $listeJournes;
     }
 
-    function getListeJournes() {
+    function getListeJournes():array {
       return $this->listeJournes;
     }
   

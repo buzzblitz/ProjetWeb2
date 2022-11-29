@@ -1,4 +1,5 @@
 <?php
+declare (strict_types=1);
 namespace Model;
 
 class Journee {
@@ -18,39 +19,39 @@ class Journee {
     }
   
     // Methods
-    function getIdj() {
+    function getIdj():int {
       return $this->idj;
     }
 
-    function setIde($ide) {
+    function setIde($ide):void {
       $this->ide = $ide;
     }
 
-    function getIde() {
+    function getIde():int {
       return $this->ide;
     }
 
-    function setDatej($datej) {
+    function setDatej($datej):void {
       $this->datej = $datej;
     }
 
-    function getDatej() {
+    function getDatej():string {
       return $this->datej;
     }
 
-    function setDescriptionj($descriptionj) {
+    function setDescriptionj($descriptionj):void {
       $this->descriptionj = $descriptionj;
     }
-    
-    function getDescriptionj() {
+
+    function getDescriptionj():string {
       return $this->descriptionj;
     }
   
-    function setListeActivites($listeActivites) {
+    function setListeActivites($listeActivites):void {
       $this->listeActivites = $listeActivites;
     }
     
-    function getListeActivites() {
+    function getListeActivites():array {
       return $this->listeActivites;
     }
   
