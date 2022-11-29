@@ -22,42 +22,42 @@ class Circuit {
 }
 
   // Methods
-  function get_idc():int {
+  function getIdc():int {
     return $this->idc;
   }
 
-  function set_nom($nomc):void {
+  function setNom($nomc):void {
     $this->nomc = $nomc;
   }
-  function get_nom():string {
+  function getNom():string {
     return $this->nomc;
   }
 
-  function set_photo($photoc):void {
+  function setPhoto($photoc):void {
     $this->photoc = $photoc;
   }
-  function get_photo():string {
+  function getPhoto():string {
     return $this->photoc;
   }
 
-  function set_description($descriptionc):void {
+  function setDescription($descriptionc):void {
     $this->descriptionc = $descriptionc;
   }
-  function get_description():string {
+  function getDescription():string {
     return $this->descriptionc;
   }
 
-  function set_etat($etat):void {
+  function setEtat($etat):void {
     $this->etat = $etat;
   }
-  function get_etat():string {
+  function getEtat():string {
     return $this->etat;
   }
 
-  function set_listeEtapes($listeEtapes):void {
+  function setListeEtapes($listeEtapes):void {
     $this->listeEtapes = $listeEtapes;
   }
-  function get_listeEtapes():array {
+  function getListeEtapes():array {
     return $this->listeEtapes;
   }
 

@@ -28,7 +28,7 @@ class DaoEtape {
         $connexion =  Connexion::getConnexion();
         $requette="INSERT INTO etapes VALUES(0,?,?,?,?,?,?,?)";
         try{
-            //todo changer les donnee
+            
             $donnees = [$etape->get_idc(), $etape->get_nom(),$etape-get_photoe(),$etape->get_descriptione(),$etape->get_debut(),$etape->get_fin(),$etape->get_lieurencontre()];
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
@@ -36,7 +36,7 @@ class DaoEtape {
             $this->reponse['msg'] = "Etape bien enregistre";
         }catch (Exception $e){
             $this->reponse['OK'] = false;
-            $this->reponse['msg'] = "Probléme pour enregistrer le Etape";
+            $this->reponse['msg'] = "Probléme pour enregistrer le etape";
         }finally {
           unset($connexion);
           return json_encode($this->reponse);
@@ -52,6 +52,8 @@ class DaoEtape {
             $stmt->execute();
             $reponse['OK'] = true;
             $reponse['msg'] = "";
+            $reponse['listeEtapes'] = array();
+            $reponse['listeEtapes'] = $stmt->fetchAll();
         }catch (Exception $e){ 
             $reponse['OK'] = false;
             $reponse['msg'] = "Problème pour obtenir les données des etapes";

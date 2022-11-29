@@ -36,7 +36,7 @@ class DaoCircuit {
             $this->reponse['msg'] = "Circuit bien enregistre";
         }catch (Exception $e){
             $this->reponse['OK'] = false;
-            $this->reponse['msg'] = "Probléme pour enregistrer le Circuit";
+            $this->reponse['msg'] = "Probléme pour enregistrer le circuit";
         }finally {
           unset($connexion);
           return json_encode($this->reponse);

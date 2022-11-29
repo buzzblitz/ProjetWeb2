@@ -5,23 +5,19 @@ class Journee {
     // Properties
     private $idj;
     private $ide;
-    private $descriptionj;
     private $datej;
+    private $descriptionj;
     private $listeActivites = array();
 
     //Constructor
-    function __construct(int $idj, int $ide, string $descriptionj, string $datej, $listeActivites) {
-      $this->setIdj($idj);
+    function __construct(int $idj, int $ide, string $datej, string $descriptionj) {
+      $this->idj = $idj;
       $this->ide = $ide;
-      $this->description = $descriptionj;
       $this->datej = $datej;
-      $this->listeActivites = $listeActivites;
+      $this->descriptionj = $descriptionj;
     }
   
     // Methods
-    function setIdj($idj) {
-      $this->idj = $idj;
-    }
     function getIdj() {
       return $this->idj;
     }
@@ -29,27 +25,31 @@ class Journee {
     function setIde($ide) {
       $this->ide = $ide;
     }
+
     function getIde() {
       return $this->ide;
-    }
-
-    function setDescriptionj($descriptionj) {
-      $this->descriptionj = $descriptionj;
-    }
-    function getDescriptionj() {
-      return $this->descriptionj;
     }
 
     function setDatej($datej) {
       $this->datej = $datej;
     }
+
     function getDatej() {
       return $this->datej;
+    }
+
+    function setDescriptionj($descriptionj) {
+      $this->descriptionj = $descriptionj;
+    }
+    
+    function getDescriptionj() {
+      return $this->descriptionj;
     }
   
     function setListeActivites($listeActivites) {
       $this->listeActivites = $listeActivites;
     }
+    
     function getListeActivites() {
       return $this->listeActivites;
     }

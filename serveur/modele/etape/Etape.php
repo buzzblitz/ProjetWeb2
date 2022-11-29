@@ -25,70 +25,78 @@ class Etape {
     }
 
     // Methods
-    function set_ide($ide) {
-      $this->ide = $ide;
-    }
-    function get_ide() {
+    function getIde() {
       return $this->ide;
     }
-    function set_idc($idc) {
+
+    function setIdc($idc) {
       $this->idc = $idc;
     }
-    function get_idc() {
+
+    function getIdc() {
       return $this->idc;
     }
-    function set_nom($nome) {
+
+    function setNom($nome) {
       $this->nome = $nome;
     }
-    function get_nom() {
+
+    function getNom() {
       return $this->nome;
     }
 
-    function set_photoe($photoe) {
+    function setPhotoe($photoe) {
       $this->photoe = $photoe;
     }
-    function get_photoe() {
+
+    function getPhotoe() {
       return $this->photoe;
     }
 
-    function set_descriptione($descriptione) {
+    function setDescriptione($descriptione) {
       $this->descriptione = $descriptione;
     }
-    function get_descriptione() {
+
+    function getDescriptione() {
       return $this->descriptione;
     }
 
-    function set_debut($debut) {
+    function setDebut($debut) {
       $this->debut = $debut;
     }
-    function get_debut() {
+
+    function getDebut() {
       return $this->debut;
     }
 
-    function set_fin($fin) {
+    function setFin($fin) {
       $this->fin = $fin;
     }
-    function get_fin() {
+
+    function getFin() {
       return $this->fin;
     }
 
-    function set_lieurencontre($lieurencontre) {
+    function setLieurencontre($lieurencontre) {
       $this->lieurencontre = $lieurencontre;
     }
-    function get_lieurencontre() {
+
+    function getLieurencontre() {
       return $this->lieurencontre;
     }
   
-    function set_listeJournes($listeJournes) {
+    function setListeJournes($listeJournes) {
       $this->listeJournes = $listeJournes;
     }
-    function get_listeJournes() {
+
+    function getListeJournes() {
       return $this->listeJournes;
     }
   
     function ajouterJournes($Journes) {
       array_push($this->listeJournes,$Journes);
     }
+    
     function supprimerJournes($Journes) {
       unset($this->listeJournes[$Journes]);
     }
