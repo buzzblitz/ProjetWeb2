@@ -13,13 +13,12 @@ class Circuit {
   private $listeEtapes = array();
 
 
-  function __construct(int $idc, string $nomc, int $photoc, string $descriptionc, string $etat, array $listeEtapes) {
+  function __construct(int $idc, string $nomc, int $photoc, string $descriptionc, string $etat) {
     $this->idc = $idc;
     $this->nomc = $nomc;
     $this->photoc = $photoc;
     $this->descriptionc = $descriptionc;
     $this->etat = $etat;
-    $this->listeEtapes = $listeEtapes;
 }
 
   // Methods
