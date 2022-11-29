@@ -1,36 +1,53 @@
 
 let montrerFormEnreg = () => {
     let form = `
-    <!-- Modal pour enregistrer film -->
+    <!-- Modal pour enregistrer membre -->
         <div class="modal fade" id="enregModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Enregistrer film</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Enregistrer membre</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    <form id="formEnreg">
+                    <form id="formEnreg" action="serveur/modele/membre/enregistrerMembres.php" method="POST" enctype="multipart/form-data" class="row g-3" onSubmit="return validerFormEnreg();">
                         <div class="col-md-6">
-                            <label for="titre" class="form-label">Titre</label>
-                            <input type="text" class="form-control is-valid" id="titre" name="titre" required>
+                            <label for="prenom" class="form-label">Prénom</label>
+                            <input type="text" class="form-control is-valid" id="prenom" name="prenom" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="duree" class="form-label">Durée</label>
-                            <input type="numeric" class="form-control is-valid" id="duree" name="duree" required>
+                            <label for="nom" class="form-label">Nom</label>
+                            <input type="text" class="form-control is-valid" id="nom" name="nom" required>
                         </div>
                         <div class="col-md-12">
-                            <label for="res" class="form-label">Réalisateur</label>
-                            <input type="text" class="form-control is-valid" id="res" name="res" required>
+                            <label for="courriel" class="form-label">Courriel</label>
+                            <input type="email" class="form-control is-valid" id="courriel" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" name="courriel" required>
                         </div>
                         <div class="col-md-6">
                             <label for="pass" class="form-label">Mot de passe</label>
                             <input type="password" class="form-control is-valid" pattern="[A-Za-z0-9_\$#\.]{5,10}$" id="pass" name="pass" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="pochette" class="form-label">Pochette</label>
-                            <input type="file"  class="form-control is-valid" id="pochette" name="pochette">
+                            <label for="cpass" class="form-label">Confirmer mot de passe</label>
+                            <input type="password" class="form-control is-valid" pattern="[A-Za-z0-9_\$#\.]{5,10}$" id="cpass" name="cpass" required>
                             <span id="msgPass"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="sexe" class="form-label">Sexe</label>
+                            <select class="form-select" id="sexe" name="sexe" aria-describedby="validationServer04Feedback">
+                                <option selected disabled value="">Choisir</option>
+                                <option value="F">Féminin</option>
+                                <option value="M">Masculin</option>
+                                <option value="A">Autres</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="daten" class="form-label">Date de naissance</label>
+                            <input type="date" class="form-control is-valid" id="daten" name="daten">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="photom" class="form-label">Photo</label>
+                            <input type="file" class="form-control is-valid" id="photom" name="photom">
                         </div>
                         <div class="col-12">
                             <button class="btn btn-primary" type="button" onClick="requeteEnregistrer();">Enregistrer</button>
@@ -42,7 +59,7 @@ let montrerFormEnreg = () => {
                 </div>
             </div>
         </div>
-        <!-- Fin du modal pour enregistrer film -->
+        <!-- Fin du modal pour enregistrer membre -->
     `;
     document.getElementById('contenu').innerHTML = form;
     $('#enregModal').modal('show');

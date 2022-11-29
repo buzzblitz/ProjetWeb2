@@ -1,9 +1,11 @@
 <?php
-       
-    require_once("Film.php");
-    require_once("DaoFilm.php");
+    require_once(__DIR__."/../modele/membre/Membre.php");   
+    require_once(__DIR__."/../modele/connexion/ConnexionM.php");  
 
- class ControleurFilm { 
+    require_once(__DIR__."/../modele/membre/DaoMembre.php");
+    require_once(__DIR__."/../modele/connexion/DaoConnexionM.php");
+
+ class ControleurHome { 
     static private $instanceCtr = null;
     private $reponse;
 
@@ -12,27 +14,31 @@
     }
 
      // Retourne le singleton du modèle 
-	static function  getControleurFilm():ControleurFilm{
+	static function  getControleurHome():ControleurHome{
 		if(self::$instanceCtr == null){
-			self::$instanceCtr = new ControleurFilm();  
+			self::$instanceCtr = new ControleurHome();  
 		}
 		return self::$instanceCtr;
 	}
 
-	function CtrF_Enregistrer(){
-         $film = new Film(0,$_POST['titre'], (int)$_POST['duree'], $_POST['res'],"Pochette");
-         return DaoFilm::getDaoFilm()->MdlF_Enregistrer($film); 
+	function CtrH_Enregistrer(){
+         $membre = new Membre(0, $_POST['prenom'], $_POST['nom'], $_POST['courriel'], $_POST['sexe'], $_POST['daten'], $_POST['photom']);
+         return DaoMembre::getDaoMembre()->MdlM_Enregistrer($membre);
+         /*if($log->OK){
+            $connexionM = new ConnexionM((int)$log->idm, $_POST['courriel'], $_POST['pass'], 'A', 'M');
+         }
+         return DaoConnexionM::getDaoConnexionM()->MdlCM_Enregistrer($connexionM);*/
     }
 
-    function CtrF_getAll(){
+    function CtrH_getAll(){
          return DaoFilm::getDaoFilm()->MdlF_getAll(); 
     }
 
-    function CtrF_Actions(){
+    function CtrH_Actions(){
         $action=$_POST['action'];
         switch($action){
             case "enregistrer" :
-                return  $this->CtrF_Enregistrer();
+                return  $this->CtrH_Enregistrer();
             case "fiche" :
                 //fiche(); 
             break;
@@ -43,7 +49,7 @@
                 //enlever(); 
             break;
             case "lister" :
-                return $this->CtrF_getAll(); 
+                return $this->CtrH_getAll(); 
         }
         // Retour de la réponse au client
        

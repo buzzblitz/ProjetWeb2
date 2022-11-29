@@ -15,12 +15,13 @@ let chargerFilmsAJAX = () => {
 }
 
 let requeteEnregistrer = () => {
-	let formFilm = new FormData(document.getElementById('formEnreg'));
-	formFilm.append('action','enregistrer');
+	console.log("hello");
+	let formHome = new FormData(document.getElementById('formEnreg'));
+	formHome.append('action','enregistrer');
 	$.ajax({
 		type : 'POST',
 		url : 'routes.php',
-		data : formFilm, //$('#formEnreg').serialize()
+		data : formHome, //$('#formEnreg').serialize()
 		//async : false,
 		//cache : false,
 		contentType : false,

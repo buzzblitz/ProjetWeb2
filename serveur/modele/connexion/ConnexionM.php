@@ -10,7 +10,7 @@ class ConnexionM {
   private $role;
 
     //Constructor
-    function __construct(string $idm, string $courriel, string $pass, string $etat, string $role) {
+    function __construct(int $idm, string $courriel, string $pass, string $etat, string $role) {
       $this->idm = $idm;
       $this->courriel = $courriel;
       $this->pass = $pass;

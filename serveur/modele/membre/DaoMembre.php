@@ -32,8 +32,10 @@ class DaoMembre {
             $donnees = [ $membre->getPrenom(), $membre->getNom(), $membre->getCourriel(), $membre->getSexe(), $membre->getDaten(), $membre->getPhotom()];
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
+            $idm = $connexion->insert_id;
             $this->reponse['OK'] = true;
             $this->reponse['msg'] = "Membre bien enregistre";
+            $this->reponse['idm'] = $idm;
         }catch (Exception $e){
             $this->reponse['OK'] = false;
             $this->reponse['msg'] = "Probléme pour enregistrer le membre";
