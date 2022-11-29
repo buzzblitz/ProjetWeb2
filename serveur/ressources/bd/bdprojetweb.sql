@@ -17,7 +17,8 @@ CREATE TABLE connexion (
   courriel VARCHAR(255) NOT NULL,
   pass VARCHAR(12) NOT NULL,
   etat VARCHAR(2),
-  role VARCHAR(2)
+  role VARCHAR(2),
+  FOREIGN KEY (idm) REFERENCES membres (idm) ON DELETE CASCADE
 );
 
 CREATE TABLE membresCircuits (
@@ -68,5 +69,3 @@ CREATE TABLE activites (
 ALTER TABLE membresCircuits ADD FOREIGN KEY (idm) REFERENCES membres (idm);
 
 ALTER TABLE membresCircuits ADD FOREIGN KEY (idc) REFERENCES circuits (idc);
-
-ALTER TABLE connexion ADD FOREIGN KEY (idm) REFERENCES membres (idm);
