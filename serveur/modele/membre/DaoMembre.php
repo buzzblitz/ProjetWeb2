@@ -28,7 +28,7 @@ class DaoMembre {
         $connexion =  Connexion::getConnexion();
         $requette="INSERT INTO membres VALUES(0,?,?,?,?,?,?)";
         try{
-            
+
             $donnees = [ $membre->getPrenom(), $membre->getNom(), $membre->getCourriel(), $membre->getSexe(), $membre->getDaten(), $membre->getPhotom()];
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
