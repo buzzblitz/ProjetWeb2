@@ -1,7 +1,7 @@
 <?php
 declare (strict_types=1);
 
-require_once("env.inc.php");
+require_once("configbd.inc.php");
 
 // Patron de conception Singleton
 class Connexion{
