@@ -49,7 +49,7 @@ let listerCircuits = (listeCircuits) => {
 //imagesURL selon la provenance contiendra le bon chemin où se trouve les images des Circuits
 let chargerCircuits = (provenance, allerURL) => {
     provenanceAppel = provenance;
-    imagesURL = (provenance == 'I') ? "serveur/images_circuits/" : "../../images_circuits/";
+    imagesURL = (provenance == 'I') ? "serveur/ressources/images/images_circuits/" : "../ressources/images/images_circuits/";
     $.ajax({
         type: 'POST',
         url: allerURL,
