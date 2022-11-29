@@ -2,11 +2,11 @@
 // Au début de PHP: Déclarer les types dans les paramétres des fonctions
 declare (strict_types=1);
 
-require_once(__DIR__."/../ressources/bd/connexion.php");
+require_once(__DIR__."/../../ressources/bd/Connexion.php");
 require_once("Journee.php");
 
-class DaoFilm {
-    static private $modelFilm = null;
+class DaoJournee {
+    static private $modelJournee = null;
     private $reponse=array();
     private $connexion = null;
 	
@@ -15,53 +15,55 @@ class DaoFilm {
     }
     
 // Retourne le singleton du modèle 
-	static function  getDaoFilm():DaoFilm {
-		if(self::$modelFilm == null){
-			self::$modelFilm = new DaoFilm();  
+	static function  getDaoJournee():DaoJournee {
+		if(self::$modelJournee == null){
+			self::$modelJournee = new DaoJournee();  
 		}
-		return self::$modelFilm;
+		return self::$modelJournee;
 	}
 	
-	function MdlF_Enregistrer(Film $film):string {
+	function MdlJ_Enregistrer(Journee $journee):string {
         //global $reponse;
        
         $connexion =  Connexion::getConnexion();
-        $requette="INSERT INTO films VALUES(0,?,?,?,?,?)";
+        $requette="INSERT INTO journees VALUES(0,?,?,?)";
         try{
             
-            $donnees = [$film->getTitre(),$film->getDuree(),$film->getRealisateur(),$film->getPochette(),NULL];
+            $donnees = [$journee->getIde(),$journee->getdescriptionj(),$journee->getDatej()];
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
             $this->reponse['OK'] = true;
-            $this->reponse['msg'] = "Film bien enregistre";
+            $this->reponse['msg'] = "Journee bien enregistre";
         }catch (Exception $e){
             $this->reponse['OK'] = false;
-            $this->reponse['msg'] = "Probléme pour enregistrer le film";
+            $this->reponse['msg'] = "Problème pour enregistrer la journee";
         }finally {
           unset($connexion);
           return json_encode($this->reponse);
         }
     }
 	
-    function MdlF_getAll():string {
+    function MdlJ_getAll($ide):string {
         global $reponse;
         $connexion = Connexion::getConnexion();
-        $requette="SELECT * FROM films";
+        $requette="SELECT * FROM journees WHERE ide =" . $ide;
         try{
             $stmt = $connexion->prepare($requette);
             $stmt->execute();
             $reponse['OK'] = true;
             $reponse['msg'] = "";
-            $reponse['listeFilms'] = array();
-            $reponse['listeFilms'] = $stmt->fetchAll();
+            $reponse['listeJournees'] = array();
+            $reponse['listeJournees'] = $stmt->fetchAll();
         }catch (Exception $e){ 
             $reponse['OK'] = false;
-            $reponse['msg'] = "Problème pour obtenir les données des films";
+            $reponse['msg'] = "Problème pour obtenir les données des journees";
             //$reponse['msg'] = $e->getMessage();
         }finally {
           unset($connexion);
           return json_encode($reponse);
         }
     }
+
+
 }
 ?>
