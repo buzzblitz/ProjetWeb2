@@ -110,7 +110,7 @@ let montrerVue = (action, donnees) => {
         case "modifier"     :
         case "enlever"      :
             if(donnees.OK){
-                console.log(donnees.msg);
+                console.log(donnees.idm);
             }else{
                 console.log("Problème côté serveur. Essaiez plus tard!!!"); 
             }

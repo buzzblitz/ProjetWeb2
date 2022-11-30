@@ -1,30 +1,29 @@
 <?php
+declare (strict_types=1);
 
 class Membre {
-  public $idm;
-  public $prenom;
-  public $nom;
-  public $courriel;
-  public $sexe;
-  public $daten;
-  public $photom;
+  private $idm;
+  private $prenom;
+  private $nom;
+  private $courriel;
+  private $sexe;
+  private $daten;
+  private $photom;
 
     //Constructor
-    public function __construct($idm) {
-      $this->idm = 1;
-      /*$this->prenom = $prenom;
+    function __construct(int $idm, string $prenom, string $nom, string $courriel, string $sexe, string $daten, string $photom) {
+      $this->idm = $idm;
+      $this->prenom = $prenom;
       $this->nom = $nom;
       $this->courriel = $courriel;
       $this->sexe = $sexe;
       $this->daten = $daten;
-      $this->photom = $photom;*/
+      $this->photom = $photom;
     }
-
-    
   
     // Methods
 
-  function get_idm() {
+  function getIdm():int {
       return $this->idm;
   }
   function getPrenom():string {
@@ -47,7 +46,7 @@ class Membre {
     return $this->photom;
   }
 
-  function set_idm($idm) {
+  function setIdm($idm):void {
       $this->idm = $idm;
   }
   function setPrenom($prenom):void {
