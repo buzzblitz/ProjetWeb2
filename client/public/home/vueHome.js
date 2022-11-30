@@ -21,7 +21,7 @@ let montrerFormEnreg = () => {
                         </div>
                         <div class="col-md-12">
                             <label for="courriel" class="form-label">Courriel</label>
-                            <input type="email" class="form-control is-valid" id="courriel" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" name="courriel" required>
+                            <input type="email" class="form-control is-valid" id="courriel" name="courriel" required>
                         </div>
                         <div class="col-md-6">
                             <label for="pass" class="form-label">Mot de passe</label>
@@ -110,16 +110,16 @@ let montrerVue = (action, donnees) => {
         case "modifier"     :
         case "enlever"      :
             if(donnees.OK){
-                afficherMessage(donnees.msg);
+                console.log(donnees.msg);
             }else{
-                afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 
+                console.log("Problème côté serveur. Essaiez plus tard!!!"); 
             }
         break;
         case "lister"       :
             if(donnees.OK){
-                listerFilms(donnees.listeFilms);
+                console.log(donnees.listeFilms);
             }else{
-                afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 
+                console.log("Problème côté serveur. Essaiez plus tard!!!"); 
             }
     }
 

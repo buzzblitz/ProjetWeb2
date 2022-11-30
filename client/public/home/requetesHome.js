@@ -15,9 +15,9 @@ let chargerFilmsAJAX = () => {
 }
 
 let requeteEnregistrer = () => {
-	console.log("hello");
 	let formHome = new FormData(document.getElementById('formEnreg'));
 	formHome.append('action','enregistrer');
+	console.log("hello");
 	$.ajax({
 		type : 'POST',
 		url : 'routes.php',

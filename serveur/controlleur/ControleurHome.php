@@ -1,5 +1,5 @@
 <?php
-    require_once(__DIR__."/../modele/membre/Membre.php");   
+    require_once(__DIR__."\..\modele\membre\Membre.php");   
     require_once(__DIR__."/../modele/connexion/ConnexionM.php");  
 
     require_once(__DIR__."/../modele/membre/DaoMembre.php");
@@ -22,12 +22,15 @@
 	}
 
 	function CtrH_Enregistrer(){
-         $membre = new Membre(0, $_POST['prenom'], $_POST['nom'], $_POST['courriel'], $_POST['sexe'], $_POST['daten'], $_POST['photom']);
-         return DaoMembre::getDaoMembre()->MdlM_Enregistrer($membre);
-         /*if($log->OK){
+         $membre = new Membre(1);
+        $this->reponse['OK'] = false;
+        $this->reponse['msg'] = "Probléme pour enregistrer le membre";
+        return json_encode($this->reponse);
+         $log = DaoMembre::getDaoMembre()->MdlM_Enregistrer($membre);
+         if($log->OK){
             $connexionM = new ConnexionM((int)$log->idm, $_POST['courriel'], $_POST['pass'], 'A', 'M');
          }
-         return DaoConnexionM::getDaoConnexionM()->MdlCM_Enregistrer($connexionM);*/
+         return DaoConnexionM::getDaoConnexionM()->MdlCM_Enregistrer($connexionM);
     }
 
     function CtrH_getAll(){
