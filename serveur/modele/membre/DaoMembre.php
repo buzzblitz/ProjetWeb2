@@ -32,7 +32,7 @@ class DaoMembre {
             $donnees = [ $membre->getPrenom(), $membre->getNom(), $membre->getCourriel(), $membre->getSexe(), $membre->getDaten(), $membre->getPhotom()];
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
-            $idm = $connexion->insert_id;
+            $idm = $connexion->lastInsertId();
             $this->reponse['OK'] = true;
             $this->reponse['msg'] = "Membre bien enregistre";
             $this->reponse['idm'] = $idm;

@@ -1,6 +1,4 @@
 <?php
-declare (strict_types=1);
-namespace Model;
 
 class Membre {
   private $idm;
@@ -12,7 +10,8 @@ class Membre {
   private $photom;
 
     //Constructor
-    function __construct(string $prenom, string $nom, string $courriel, string $sexe, string $daten, string $photom) {
+    function __construct(int $idm, string $prenom, string $nom, string $courriel, string $sexe, string $daten, string $photom) {
+      $this->idm = $idm;
       $this->prenom = $prenom;
       $this->nom = $nom;
       $this->courriel = $courriel;
@@ -44,8 +43,11 @@ class Membre {
 
   function getPhotom():string {
     return $this->photom;
-}
+  }
 
+  function setIdm($idm):void {
+      $this->idm = $idm;
+  }
   function setPrenom($prenom):void {
       $this->prenom = $prenom;
   }
@@ -64,8 +66,8 @@ class Membre {
 
   function setPhotom($photom):void {
     $this->photom = $photom;
-}
-    
   }
+    
+}
 
 ?>
