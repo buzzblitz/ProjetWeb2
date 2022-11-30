@@ -44,6 +44,11 @@
          return DaoConnexionM::getDaoConnexionM()->MdlCM_Enregistrer($connexionM);
     }
 
+    function CtrH_Connexion(){
+        $connexionM = new ConnexionM(0, $_POST['courrielc'], $_POST['passc'], 'A', 'M');
+         return DaoConnexionM::getDaoConnexionM()->MdlCM_Connexion($connexionM);
+    }
+
     function CtrH_getAll(){
          return DaoFilm::getDaoFilm()->MdlF_getAll(); 
     }
@@ -53,6 +58,9 @@
         switch($action){
             case "enregistrer" :
                 return  $this->CtrH_Enregistrer();
+            case "connexion" :
+                return  $this->CtrH_Connexion();
+            break;
             case "fiche" :
                 //fiche(); 
             break;

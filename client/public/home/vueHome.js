@@ -65,6 +65,40 @@ let montrerFormEnreg = () => {
     $('#enregModal').modal('show');
 }
 
+let montrerFormConnex = () => {
+    let form = `
+    <!-- Modal connexion -->
+        <div class="modal fade" id="modalConnexion" tabindex="-1" aria-labelledby="ModalConnexionLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalConnexionLabel">Connexion</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row g-3" id="formConnexion" action="serveur/ressources/bd/connexion.php" method="POST">
+                            <div class="col-md-4">
+                                <label for="courriel" class="form-label">Courriel</label>
+                                <input type="email" class="form-control" id="courrielc" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" name="courrielc" value="" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="pass" class="form-label">Mot Passe</label>
+                                <input type="password" class="form-control" pattern="[A-Za-z0-9_\$#\.]{5,10}$" id="passc" name="passc" required>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary" type="button" onClick="requeteConnexion();">Connexion</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin du modal pour connexion-->
+    `;
+    document.getElementById('contenu').innerHTML = form;
+    $('#modalConnexion').modal('show');
+}
+
 
 let remplirCard = (unFilm)=> {
     let rep =    ' <div class="col">';
@@ -107,6 +141,23 @@ let montrerVue = (action, donnees) => {
 
     switch(action){
         case "enregistrer"  :
+            if(donnees.OK){
+                afficherMessage(donnees.msg);
+            }else{
+                afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 
+            }
+            break;
+        case "connexion"  :
+            if(donnees.OK){
+                if(donnees.role == "M") {
+                    window.location.href= donnees.location;
+                } else {
+                    window.location.href= donnees.location;
+                }
+            }else{
+                console.log(donnees.msg); 
+            }
+            break;
         case "modifier"     :
         case "enlever"      :
             if(donnees.OK){

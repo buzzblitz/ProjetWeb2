@@ -1,7 +1,7 @@
 let chargerFilmsAJAX = () => {
     $.ajax({
         type : "POST",
-        url  : "routes.php",
+        url  : "routeHome.php",
         data : {"action":"lister"},
         dataType : "json", //text pour voir si bien formé même chose pour xml
         success : (listeFilms) => {//alert(listeFilms);
@@ -19,7 +19,7 @@ let requeteEnregistrer = () => {
 	formHome.append('action','enregistrer');
 	$.ajax({
 		type : 'POST',
-		url : 'routes.php',
+		url : 'routeHome.php',
 		data : formHome, //$('#formEnreg').serialize()
 		//async : false,
 		//cache : false,
@@ -28,6 +28,27 @@ let requeteEnregistrer = () => {
         dataType : 'json', //text pour le voir en format de string
 		success : function (reponse){//alert(reponse);
 					montrerVue("enregistrer", reponse);
+		},
+		fail : function (err){
+		   
+		}
+	});
+}
+
+let requeteConnexion = () => {
+	let formHome = new FormData(document.getElementById('formConnexion'));
+	formHome.append('action','connexion');
+	$.ajax({
+		type : 'POST',
+		url : 'routeHome.php',
+		data : formHome, //$('#formEnreg').serialize()
+		//async : false,
+		//cache : false,
+		contentType : false,
+		processData : false,
+        dataType : 'json', //text pour le voir en format de string
+		success : function (reponse){//alert(reponse);
+					montrerVue("connexion", reponse);
 		},
 		fail : function (err){
 		   

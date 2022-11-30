@@ -50,7 +50,7 @@
                         <a class="nav-link" href="javascript: montrerFormEnreg();">Enregistrer</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalConnexion">Connexion</a>
+                        <a class="nav-link" href="javascript: montrerFormConnex();">Connexion</a>
                     </li>
                 </ul>  
             </div>
@@ -59,32 +59,6 @@
     <!-- Fin de barre de navigation -->
     <div class="container" id="contenu"></div>
 
-        <!-- Modal Connexion -->
-        <div class="modal fade" id="modalConnexion" tabindex="-1" aria-labelledby="ModalConnexionLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="ModalConnexionLabel">Connexion</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="row g-3" id="formConnexion" action="serveur/ressources/bd/connexion.php" method="POST">
-                            <div class="col-md-4">
-                                <label for="courriel" class="form-label">Courriel</label>
-                                <input type="email" class="form-control" id="courrielc" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" name="courrielc" value="" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="pass" class="form-label">Mot Passe</label>
-                                <input type="password" class="form-control" pattern="[A-Za-z0-9_\$#\.]{5,10}$" id="passc" name="passc" required>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary" type="submit">Connexion</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
         <form id="formLister" action="serveur/lister.php" method="POST"></form>
     </div>
 
