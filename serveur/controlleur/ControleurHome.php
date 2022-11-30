@@ -1,6 +1,6 @@
 <?php
     require_once(__DIR__."/../modele/membre/Membre.php");   
-    require_once(__DIR__."/../modele/connexion/ConnexionM.php");  
+    require_once(__DIR__."/../modele/connexion/ConnexionM.php");   
 
     require_once(__DIR__."/../modele/membre/DaoMembre.php");
     require_once(__DIR__."/../modele/connexion/DaoConnexionM.php");
