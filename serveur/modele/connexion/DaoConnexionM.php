@@ -44,27 +44,7 @@ class DaoConnexionM {
         }
     }
 
-    function  obtenirPhotoMembre($idm){
-        $connexion =  Connexion::getConnexion();
-        $requette="SELECT photom FROM membres WHERE idm = ?";
-        try{
-            $donnees = [$idm];
-            $stmt = $connexion->prepare($requette);
-            $stmt->execute($donnees);
-            $usager = $stmt->fetch();
-            $this->reponse['OK'] = true;
-            $this->reponse['msg'] = "image reussi";
-            $this->reponse['photom'] = $usager["photom"];
-            
-        }catch (Exception $e){
-            $this->reponse['OK'] = false;
-            $this->reponse['msg'] = "Probléme durant la function obtenirPhotoMembre()";
-        }finally {
-          unset($connexion);
-          return json_encode($this->reponse);
-        }
-    }
-
+    //TODO: fixer le code pour optenir photo tout le code est en commentaire
     function MdlCM_Connexion(ConnexionM $connexionM):string {
         //global $reponse;
        
