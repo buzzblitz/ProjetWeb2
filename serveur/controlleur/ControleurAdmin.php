@@ -58,7 +58,7 @@
         $result=array();
         $result['OK'] = true;
         $result['msg'] = "Deconnexion reussi";
-        $result['location'] = "index.php";
+        $result['location'] = "../../index.php";
         session_unset();
         session_destroy();
         return json_encode($result);
