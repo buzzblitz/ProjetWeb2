@@ -44,6 +44,27 @@ class DaoMembre {
           return json_encode($this->reponse);
         }
     }
+
+    function  obtenirPhotoMembre($idm){
+        $connexion =  Connexion::getConnexion();
+        $requette="SELECT photom FROM membres WHERE idm = ?";
+        try{
+            $donnees = [$idm];
+            $stmt = $connexion->prepare($requette);
+            $stmt->execute($donnees);
+            $usager = $stmt->fetch();
+            $this->reponse['OK'] = true;
+            $this->reponse['msg'] = "image reussi";
+            $_SESSION['photom'] = $usager["photom"];
+            
+        }catch (Exception $e){
+            $this->reponse['OK'] = false;
+            $this->reponse['msg'] = "Probléme durant la function obtenirPhotoMembre()";
+        }finally {
+          unset($connexion);
+          return json_encode($this->reponse);
+        }
+    }
 	
     function MdlM_getAll():string {
         global $reponse;

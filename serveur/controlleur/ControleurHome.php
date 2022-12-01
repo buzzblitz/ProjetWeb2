@@ -4,6 +4,7 @@
 
     require_once(__DIR__."/../modele/membre/DaoMembre.php");
     require_once(__DIR__."/../modele/connexion/DaoConnexionM.php");
+    session_start();
 
  class ControleurHome { 
     static private $instanceCtr = null;
@@ -46,7 +47,17 @@
 
     function CtrH_Connexion(){
         $connexionM = new ConnexionM(0, $_POST['courrielc'], $_POST['passc'], 'A', 'M');
-         return DaoConnexionM::getDaoConnexionM()->MdlCM_Connexion($connexionM);
+         $this->reponse = json_decode(DaoConnexionM::getDaoConnexionM()->MdlCM_Connexion($connexionM));
+         if($this->reponse->OK) {
+            if($this->reponse->role == 'M') {
+                $tmp = json_decode(DaoMembre::getDaoMembre()->obtenirPhotoMembre($this->reponse->idm));
+                $this->reponse->OK = $tmp->OK;
+                return json_encode($this->reponse);
+            } else {
+                return json_encode($this->reponse);
+            }
+         }
+         return json_encode($this->reponse);
     }
 
     function CtrH_getAll(){
