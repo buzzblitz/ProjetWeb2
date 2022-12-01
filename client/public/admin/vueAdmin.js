@@ -49,7 +49,7 @@ let montrerFormEnreg = () => {
 }
 
 
-let remplirCard = (unFilm)=> {
+let remplirCard = (unCircuit)=> {
     let rep ='<div class="col">';
     rep +='<div class="card">';
                  rep +=' <img src="../ressources/images/images_circuits/'+ unCircuit.photoc+'" class="card-img-top tailleImg" alt="...">';
@@ -104,6 +104,14 @@ let montrerVue = (action, donnees) => {
             }else{
                 afficherMessage(donnees.msg); 
             }
+        case "deconnexion"  :
+            if(donnees.OK){
+                window.location.href= donnees.location;   
+            }else{
+                console.log(donnees.msg); 
+            }
+            break;
+
     }
 
 

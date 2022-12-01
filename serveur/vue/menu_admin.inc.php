@@ -25,7 +25,7 @@
             </ul>
         </div>
     </div>
-    <button class="btn btn-danger" onClick="deconnecter();">
+    <button class="btn btn-danger" onClick="requeteDeconnexion();">
         Déconnexion
     </button>
 </nav>
