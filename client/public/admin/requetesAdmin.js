@@ -58,3 +58,27 @@ const chargerCircuitsFETCH = async () => {
 	alert(listeCircuits.msg);
 	montrerVue("lister", listeFilms);
 }
+
+let requeteDeconnexion = () => {
+	let formAdmin = new FormData();
+	formAdmin.append('action','deconnecter');
+	$.ajax({
+		type : 'POST',
+		url : 'routeAdmin.php',
+		data : formHome, //$('#formEnreg').serialize()
+		//async : false,
+		//cache : false,
+		contentType : false,
+		processData : false,
+        dataType : 'json', //text pour le voir en format de string
+		success : function (reponse){//alert(reponse);
+					montrerVue("deconnexion", reponse);
+		},
+		fail : function (err){
+		   
+		}
+	});
+}
+
+
+

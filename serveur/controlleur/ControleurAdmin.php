@@ -44,10 +44,23 @@
                 //enlever(); 
             break;
             case "lister" :
-                return $this->CtrA_getAll(); 
+                return $this->CtrA_getAll();
+            case "deconnecter" :
+                $this->CtrA_Deconnexion();
+            break;
         }
         // Retour de la réponse au client
        
+    }
+
+    function CtrA_Deconnexion(){
+        $result=array();
+        $result['OK'] = true;
+        $result['msg'] = "Deconnexion reussi";
+        $result['location'] = "index.php";
+        session_unset();
+        session_destroy();
+        return json_encode($result);
     }
 }
 ?>
