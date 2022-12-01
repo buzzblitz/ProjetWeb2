@@ -83,7 +83,7 @@ let montrerFormConnex = () => {
                             </div>
                             <div class="col-md-6">
                                 <label for="pass" class="form-label">Mot Passe</label>
-                                <input type="password" class="form-control" pattern="[A-Za-z0-9_\$#\.]{5,10}$" id="passc" name="passc" required>
+                                <input type="password" class="form-control" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,10}$" id="passc" name="passc" required>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-primary" type="submit">Connexion</button>
