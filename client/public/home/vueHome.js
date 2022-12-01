@@ -10,7 +10,7 @@ let montrerFormEnreg = () => {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    <form id="formEnreg" action="serveur/modele/membre/enregistrerMembres.php" method="POST" enctype="multipart/form-data" class="row g-3" onSubmit="return validerFormEnreg();">
+                    <form id="formEnreg" method="POST" enctype="multipart/form-data" class="row g-3">
                         <div class="col-md-6">
                             <label for="prenom" class="form-label">Prénom</label>
                             <input type="text" class="form-control is-valid" id="prenom" name="prenom" required>
@@ -142,7 +142,7 @@ let montrerVue = (action, donnees) => {
     switch(action){
         case "enregistrer"  :
             if(donnees.OK){
-                afficherMessage(donnees.msg);
+                window.location.href= donnees.location;
             }else{
                 afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 
             }
