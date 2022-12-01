@@ -60,12 +60,14 @@ const chargerCircuitsFETCH = async () => {
 }
 
 let requeteDeconnexion = () => {
+	console.log("dans requetedeco");
 	let formAdmin = new FormData();
 	formAdmin.append('action','deconnecter');
+	console.log("dans requetedecoappres append");
 	$.ajax({
 		type : 'POST',
-		url : 'routeAdmin.php',
-		data : formHome, //$('#formEnreg').serialize()
+		url : '../../routeAdmin.php',
+		data : formAdmin, //$('#formEnreg').serialize()
 		//async : false,
 		//cache : false,
 		contentType : false,

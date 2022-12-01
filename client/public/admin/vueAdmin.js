@@ -105,6 +105,7 @@ let montrerVue = (action, donnees) => {
                 afficherMessage(donnees.msg); 
             }
         case "deconnexion"  :
+            console.log("watatatow");
             if(donnees.OK){
                 window.location.href= donnees.location;   
             }else{

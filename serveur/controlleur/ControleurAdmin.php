@@ -46,7 +46,7 @@
             case "lister" :
                 return $this->CtrA_getAll();
             case "deconnecter" :
-                $this->CtrA_Deconnexion();
+                return $this->CtrA_Deconnexion();
             break;
         }
         // Retour de la réponse au client
@@ -54,6 +54,7 @@
     }
 
     function CtrA_Deconnexion(){
+        
         $result=array();
         $result['OK'] = true;
         $result['msg'] = "Deconnexion reussi";
