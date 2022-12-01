@@ -10,7 +10,7 @@ let montrerFormEnreg = () => {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    <form id="formEnreg" method="POST" enctype="multipart/form-data" class="row g-3">
+                    <form id="formEnreg" method="POST" enctype="multipart/form-data" class="row g-3" onSubmit="requeteEnregistrer();">
                         <div class="col-md-6">
                             <label for="prenom" class="form-label">Prénom</label>
                             <input type="text" class="form-control is-valid" id="prenom" name="prenom" required>
@@ -50,7 +50,7 @@ let montrerFormEnreg = () => {
                             <input type="file" class="form-control is-valid" id="photom" name="photom">
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary" type="button" onClick="requeteEnregistrer();">Enregistrer</button>
+                            <button class="btn btn-primary" type="submit">Enregistrer</button>
                         </div>
                     </form>
                     </div>
@@ -76,7 +76,7 @@ let montrerFormConnex = () => {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="row g-3" id="formConnexion" action="serveur/ressources/bd/connexion.php" method="POST">
+                        <form class="row g-3" id="formConnexion" method="POST" onSubmit="requeteConnexion();">
                             <div class="col-md-4">
                                 <label for="courriel" class="form-label">Courriel</label>
                                 <input type="email" class="form-control" id="courrielc" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" name="courrielc" value="" required>
@@ -86,7 +86,7 @@ let montrerFormConnex = () => {
                                 <input type="password" class="form-control" pattern="[A-Za-z0-9_\$#\.]{5,10}$" id="passc" name="passc" required>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary" type="button" onClick="requeteConnexion();">Connexion</button>
+                                <button class="btn btn-primary" type="submit">Connexion</button>
                             </div>
                         </form>
                     </div>
