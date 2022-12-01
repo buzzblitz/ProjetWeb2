@@ -1,51 +1,112 @@
 
-let montrerFormEnreg = () => {
+let montrerFormAjouterCircuit = () => {
     let form = `
-    <!-- Modal pour enregistrer film -->
-        <div class="modal fade" id="enregModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Enregistrer film</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                    <form id="formEnreg">
-                        <div class="col-md-6">
-                            <label for="titre" class="form-label">Titre</label>
-                            <input type="text" class="form-control is-valid" id="titre" name="titre" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="duree" class="form-label">Durée</label>
-                            <input type="numeric" class="form-control is-valid" id="duree" name="duree" required>
+    <div class="modal fade" id="modalAjouterCircuit" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Enregistrer un Circuit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEnregCircuit" class="row  needs-validation" enctype="multipart/form-data" method="POST">
+                        <div class="col-md-12">
+                            <label for="nomc" class="form-label">Nom du Circuit</label>
+                            <input type="text" class="form-control" id="nomc" name="nomc" value="" required>
                         </div>
                         <div class="col-md-12">
-                            <label for="res" class="form-label">Réalisateur</label>
-                            <input type="text" class="form-control is-valid" id="res" name="res" required>
+                            <label for="photoc" class="form-label">Image du Circuit</label>
+                            <input type="file" class="form-control" id="photoc" name="photoc" value="" required>
                         </div>
-                        <div class="col-md-6">
-                            <label for="pass" class="form-label">Mot de passe</label>
-                            <input type="password" class="form-control is-valid" pattern="[A-Za-z0-9_\$#\.]{5,10}$" id="pass" name="pass" required>
+                        <div class="col-md-12">
+                            <label for="descriptionc" class="form-label">Description du Circuit</label>
+                            <input type="text" class="form-control" id="descriptionc" name="descriptionc" value="" required required>
                         </div>
-                        <div class="col-md-6">
-                            <label for="pochette" class="form-label">Pochette</label>
-                            <input type="file"  class="form-control is-valid" id="pochette" name="pochette">
-                            <span id="msgPass"></span>
+                        <div class="col-md-12">
+                            <label for="etat" class="form-label">Etats du Circuit</label>
+                            <select id="etat" name="etat" class="form-select form-select-sm" required
+                                aria-label=".form-select-sm example">
+                                <option selected disabled value="Des">Desactiver</option>
+                                <option value="Tra">Travail</option>
+                                <option value="Dep">Deploiement</option>
+                            </select>
                         </div>
+                        <div class='col-md-12' id='etapes'>
+        <div class='col-md-12'>
+                            <label for='nome' class='form-label'>Etape</label>
+                            <input type='text' class='form-control' id='nome' name='nome' value='' required>
+                        </div>
+                        <div class='col-md-12'>
+                            <label for='imge' class='form-label'>Image de l'Etape</label>
+                            <input type='file' class='form-control' id='imge' name='imge' value='' required>
+                        </div>
+                        <div class='col-md-12'>
+                            <label for='desce' class='form-label'>Description de l'Etape</label>
+                            <input type='text' class='form-control' id='desce' name='desce' value='' required>
+                        </div>
+                        <div class='col-md-6'>
+                        <label for='dated' class='form-label'>Date du Debut</label>
+                            <input type='date' class='form-control is-valid' id='dated' name='dated' required>
+                        </div>
+                        <div class='col-md-12'>
+                        </div>
+                        <div class='col-md-6'>
+                            <label for='datef' class='form-label'>Date de la Fin</label>
+                            <input type='date' class='form-control is-valid' id='datef' name='datef' required>
+                        </div>
+                        <div class='col-md-12'>
+                            <label for='lieud' class='form-label'>Lieu de rencontre pour le Diner</label>
+                            <input type='text' class='form-control' id='lieud' name='lieud' value='' required>
+                        </div>
+
+            <div class='col-md-12' id='journees'>
+            <div class='col-md-12'>
+                            <label for='journee' class='form-label'>Journee</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <label for='datej' class='form-label'>Date</label>
+                                <input type='date' class='form-control is-valid' id='datej' name='datej' required>
+                            </div>
+                            <div class='col-md-12'>
+                                <label for='autre' class='form-label'>Autre information</label>
+                                <input type='text' class='form-control' id='autre' name='autre' value='' required>
+                            </div>
+
+                <div class='col-md-12' id='activiters'>
+                    <div class='col-md-12'>
+                    <label for='noma' class='form-label'>Nom de l'activiter</label>
+                                        <input type='text' class='form-control' id='noma' name='noma' value='' required>
+                                    </div>
+
+                                    <div class='col-md-6'>
+                                        "<label for='heuredebut' class='form-label'>Heure du debut de l'activiter</label>
+                                        "<input type='time' class='form-control is-valid' id='heuredebut' name='heuredebut' required>
+                                    </div>
+                                    <div class='col-md-12'>
+                                    </div>
+                                    <div class='col-md-6'>
+                                        <label for='heurefin' class='form-labe'>Heure de fin de l'activiter</label>
+                                        <input type='time' class='form-control is-valid' id='heurefin' name='heurefin' required>
+                                    </div>
+                                    <div class='col-md-12'>
+                                        <label for='desca' class='form-label'>Description des activiter</label>
+                                        <input type='text' class='form-control' id='descea' name='descea' value='' required>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
                         <div class="col-12">
-                            <button class="btn btn-primary" type="button" onClick="requeteEnregistrer();">Enregistrer</button>
+                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrer();">Enregistrer</button>
                         </div>
                     </form>
-                    </div>
-                    <div class="modal-footer">
-                    </div>
                 </div>
             </div>
         </div>
-        <!-- Fin du modal pour enregistrer film -->
+    </div>
     `;
     document.getElementById('contenu').innerHTML = form;
-    $('#enregModal').modal('show');
+    $('#modalAjouterCircuit').modal('show');
 }
 
 
@@ -105,7 +166,6 @@ let montrerVue = (action, donnees) => {
                 afficherMessage(donnees.msg); 
             }
         case "deconnexion"  :
-            console.log("watatatow");
             if(donnees.OK){
                 window.location.href= donnees.location;   
             }else{

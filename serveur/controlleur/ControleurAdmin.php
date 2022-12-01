@@ -24,6 +24,7 @@
          $circuit = new Circuit(0, $_POST['nomc'], $_POST['photoc'], $_POST['descriptionc'], $_POST['etat']);
          return DaoCircuit::getDaoCircuit()->MdlC_Enregistrer($circuit); 
     }
+    
 
     function CtrA_getAll(){
          return DaoCircuit::getDaoCircuit()->MdlC_getAll(); 

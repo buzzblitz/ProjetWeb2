@@ -15,12 +15,12 @@ let chargerCircuitsAJAX = () => {
 }
 
 let requeteEnregistrer = () => {
-	let formFilm = new FormData(document.getElementById('formEnreg'));
-	formFilm.append('action','enregistrer');
+	let formCircuit = new FormData(document.getElementById('formEnregCircuit'));
+	formCircuit.append('action','enregistrer');
 	$.ajax({
 		type : 'POST',
-		url : 'routes.php',
-		data : formFilm, //$('#formEnreg').serialize()
+		url : '../../routesAdmin.php',
+		data : formCircuit, //$('#formEnreg').serialize()
 		//async : false,
 		//cache : false,
 		contentType : false,

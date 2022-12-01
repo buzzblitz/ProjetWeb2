@@ -93,8 +93,8 @@ require_once("menu_admin.inc.php");
                             </nav>
                         </div>
                         <div class=" col-sm-3">
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                data-bs-target="#modalAjouterArticles"><i class="bi bi-plus-circle"></i>
+                            <button type="button" class="btn btn-success" onClick="montrerFormAjouterCircuit();">
+                                <i class="bi bi-plus-circle"></i>
                                 <span>Ajouter</span></button>
                             <button type="button" class="btn btn-danger" onClick="enleverMultiplesArticles();">
                                 <i class="bi bi-dash-circle"></i> <span>Enlever</span></button>
@@ -131,110 +131,7 @@ require_once("menu_admin.inc.php");
     </div>
     </div>
     <!-- Ajouter film Modal HTML -->
-    <div class="modal fade" id="modalAjouterArticles" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Enregistrer un article</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form class="row  needs-validation" enctype="multipart/form-data"
-                        action="../circuits/enregistrerCircuit.php" method="POST">
-                        <div class="col-md-12">
-                            <label for="nomc" class="form-label">Nom du Circuit</label>
-                            <input type="text" class="form-control" id="nomc" name="nomc" value="" required>
-                        </div>
-                        <div class="col-md-12">
-                            <label for="imgc" class="form-label">Image du Circuit</label>
-                            <input type="file" class="form-control" id="imgc" name="imgc" value="" required>
-                        </div>
-                        <div class="col-md-12">
-                            <label for="descc" class="form-label">Description du Circuit</label>
-                            <input type="text" class="form-control" id="descc" name="descc" value="" required required>
-                        </div>
-                        <div class="col-md-12">
-                            <label for="categ" class="form-label">Etats du Circuit</label>
-                            <select id="categ" name="categ" class="form-select form-select-sm" required
-                                aria-label=".form-select-sm example">
-                                <option selected disabled value="Des">Desactiver</option>
-                                <option value="Tra">Travail</option>
-                                <option value="Dep">Deploiement</option>
-                            </select>
-                        </div>
-                        <div class='col-md-12' id='etapes'>
-        <div class='col-md-12'>
-                            <label for='nome' class='form-label'>Etape</label>
-                            <input type='text' class='form-control' id='nome' name='nome' value='' required>
-                        </div>
-                        <div class='col-md-12'>
-                            <label for='imge' class='form-label'>Image de l'Etape</label>
-                            <input type='file' class='form-control' id='imge' name='imge' value='' required>
-                        </div>
-                        <div class='col-md-12'>
-                            <label for='desce' class='form-label'>Description de l'Etape</label>
-                            <input type='text' class='form-control' id='desce' name='desce' value='' required>
-                        </div>
-                        <div class='col-md-6'>
-                        <label for='dated' class='form-label'>Date du Debut</label>
-                            <input type='date' class='form-control is-valid' id='dated' name='dated' required>
-                        </div>
-                        <div class='col-md-12'>
-                        </div>
-                        <div class='col-md-6'>
-                            <label for='datef' class='form-label'>Date de la Fin</label>
-                            <input type='date' class='form-control is-valid' id='datef' name='datef' required>
-                        </div>
-                        <div class='col-md-12'>
-                            <label for='lieud' class='form-label'>Lieu de rencontre pour le Diner</label>
-                            <input type='text' class='form-control' id='lieud' name='lieud' value='' required>
-                        </div>
-
-            <div class='col-md-12' id='journees'>
-            <div class='col-md-12'>
-                            <label for='journee' class='form-label'>Journee</label>
-                            </div>
-                            <div class='col-md-6'>
-                                <label for='datej' class='form-label'>Date</label>
-                                <input type='date' class='form-control is-valid' id='datej' name='datej' required>
-                            </div>
-                            <div class='col-md-12'>
-                                <label for='autre' class='form-label'>Autre information</label>
-                                <input type='text' class='form-control' id='autre' name='autre' value='' required>
-                            </div>
-
-                <div class='col-md-12' id='activiters'>
-                    <div class='col-md-12'>
-                    <label for='noma' class='form-label'>Nom de l'activiter</label>
-                                        <input type='text' class='form-control' id='noma' name='noma' value='' required>
-                                    </div>
-
-                                    <div class='col-md-6'>
-                                        "<label for='heuredebut' class='form-label'>Heure du debut de l'activiter</label>
-                                        "<input type='time' class='form-control is-valid' id='heuredebut' name='heuredebut' required>
-                                    </div>
-                                    <div class='col-md-12'>
-                                    </div>
-                                    <div class='col-md-6'>
-                                        <label for='heurefin' class='form-labe'>Heure de fin de l'activiter</label>
-                                        <input type='time' class='form-control is-valid' id='heurefin' name='heurefin' required>
-                                    </div>
-                                    <div class='col-md-12'>
-                                        <label for='desca' class='form-label'>Description des activiter</label>
-                                        <input type='text' class='form-control' id='descea' name='descea' value='' required>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                        <div class="col-12">
-                            <button class="btn btn-primary" type="submit">Enregistrer</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <!-- Edit Modal HTML -->
     <div class="modal fade" id="modalEditerArticles" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
