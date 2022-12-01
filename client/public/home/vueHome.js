@@ -25,11 +25,11 @@ let montrerFormEnreg = () => {
                         </div>
                         <div class="col-md-6">
                             <label for="pass" class="form-label">Mot de passe</label>
-                            <input type="password" class="form-control is-valid" pattern="[A-Za-z0-9_\$#\.]{5,10}$" id="pass" name="pass" required>
+                            <input type="password" class="form-control is-valid" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,10}$" id="pass" name="pass" required>
                         </div>
                         <div class="col-md-6">
                             <label for="cpass" class="form-label">Confirmer mot de passe</label>
-                            <input type="password" class="form-control is-valid" pattern="[A-Za-z0-9_\$#\.]{5,10}$" id="cpass" name="cpass" required>
+                            <input type="password" class="form-control is-valid" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,10}$" id="cpass" name="cpass" required>
                             <span id="msgPass"></span>
                         </div>
                         <div class="col-md-6">
