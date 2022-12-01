@@ -34,6 +34,7 @@ class DaoConnexionM {
             $stmt->execute($donnees);
             $this->reponse['OK'] = true;
             $this->reponse['msg'] = "ConnexionM bien enregistre";
+            $this->reponse['location'] = "serveur/vue/membres.php";
         }catch (Exception $e){
             $this->reponse['OK'] = false;
             $this->reponse['msg'] = "Probléme pour enregistrer le connexionM";

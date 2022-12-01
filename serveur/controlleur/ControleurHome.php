@@ -71,7 +71,6 @@
                 return  $this->CtrH_Enregistrer();
             case "connexion" :
                 return  $this->CtrH_Connexion();
-            break;
             case "fiche" :
                 //fiche(); 
             break;

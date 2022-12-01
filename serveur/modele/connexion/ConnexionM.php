@@ -34,7 +34,7 @@ class ConnexionM {
     return $this->role;
   }
 
-  function setIdm():void {
+  function setIdm($idm):void {
     $this->idm = $idm;
   }
   function setCourriel($courriel):void {
