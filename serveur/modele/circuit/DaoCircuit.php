@@ -88,9 +88,9 @@ class DaoCircuit {
         global $reponse;
         $connexion =  Connexion::getConnexion();
         $requettePhoto="SELECT photoc FROM circuits WHERE idc=?";
-        $requete="DELETE FROM circuits WHERE idc=?";
+        $requette="DELETE FROM circuits WHERE idc=?";
         try{
-            $stmt = $connexion->prepare($requetePhoto);
+            $stmt = $connexion->prepare($requettePhoto);
             $stmt->bind_param("i", $idc);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -110,7 +110,7 @@ class DaoCircuit {
                     }
                 }
             }
-            $stmt = $connexion->prepare($requete);
+            $stmt = $connexion->prepare($requette);
             $stmt->bind_param("i", $idc);
             $stmt->execute();
             $reponse['OK'] = true;
