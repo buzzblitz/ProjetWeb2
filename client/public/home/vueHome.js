@@ -86,7 +86,7 @@ let montrerFormConnex = () => {
                                 <input type="password" class="form-control" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,10}$" id="passc" name="passc" required>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary" type="submit">Connexion</button>
+                                <button class="btn btn-primary" type="button" onclick="requeteConnexion();">Connexion</button>
                             </div>
                         </form>
                     </div>
@@ -142,19 +142,19 @@ let montrerVue = (action, donnees) => {
     switch(action){
         case "enregistrer"  :
             if(donnees.OK){
-                window.location.href= donnees.location;
+               // window.location.href= donnees.location;
             }else{
                 msg="Problème+pour+enregistré+le+membre.";
                 console.log(msg);
-                window.location.href="index.php"; 
+               // window.location.href="index.php"; 
             }
             break;
         case "connexion"  :
             if(donnees.OK){
                 if(donnees.role == "M") {
-                    window.location.href= donnees.location;
+                   window.location.href= donnees.location;
                 } else {
-                    window.location.href= donnees.location;
+                   window.location.href= donnees.location;
                 }
             }else{
                 console.log(donnees.msg); 

@@ -39,29 +39,29 @@
         }
         
          $membre = new Membre(0, $_POST['prenom'], $_POST['nom'], $_POST['courriel'], $_POST['sexe'], $_POST['daten'], $image);
-         $this->reponse = json_decode(DaoMembre::getDaoMembre()->MdlM_Enregistrer($membre));
-         if($this->reponse->OK){
-            $connexionM = new ConnexionM((int)$this->reponse->idm, $_POST['courriel'], $_POST['pass'], 'A', 'M');
+         $timo = json_decode(DaoMembre::getDaoMembre()->MdlM_Enregistrer($membre));
+         if($timo->OK){
+            $connexionM = new ConnexionM((int)$timo->idm, $_POST['courriel'], $_POST['pass'], 'A', 'M');
          }
          $tmp = json_decode(DaoConnexionM::getDaoConnexionM()->MdlCM_Enregistrer($connexionM));
-         $this->reponse['location'] = $tmp->location;
+         $timo['location'] = $tmp->location;
 
-         return json_encode($this->reponse);
+         return json_encode($timo);
     }
 
     function CtrH_Connexion(){
         $connexionM = new ConnexionM(0, $_POST['courrielc'], $_POST['passc'], 'A', 'M');
-         $this->reponse = json_decode(DaoConnexionM::getDaoConnexionM()->MdlCM_Connexion($connexionM));
-         if($this->reponse->OK) {
-            if($this->reponse->role == 'M') {
-                $tmp = json_decode(DaoMembre::getDaoMembre()->obtenirPhotoMembre($this->reponse->idm));
-                $this->reponse->OK = $tmp->OK;
-                return json_encode($this->reponse);
+         $fuckyou = json_decode(DaoConnexionM::getDaoConnexionM()->MdlCM_Connexion($connexionM));
+         if($fuckyou->OK) {
+            if($fuckyou->role == 'M') {
+                $tmp = json_decode(DaoMembre::getDaoMembre()->obtenirPhotoMembre($fuckyou->idm));
+                $fuckyou->OK = $tmp->OK;
+                return json_encode($fuckyou);
             } else {
-                return json_encode($this->reponse);
+                return json_encode($fuckyou);
             }
          }
-         return json_encode($this->reponse);
+         return json_encode($fuckyou);
     }
 
     function CtrH_getAll(){
