@@ -144,7 +144,8 @@ let montrerVue = (action, donnees) => {
             if(donnees.OK){
                 window.location.href= donnees.location;
             }else{
-                afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 
+                $msg="Problème+pour+enregistré+le+membre.";
+                window.location.href="index.php"; 
             }
             break;
         case "connexion"  :
