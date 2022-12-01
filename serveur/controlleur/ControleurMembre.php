@@ -2,6 +2,7 @@
        
     require_once("Film.php");
     require_once("DaoFilm.php");
+    session_start();
 
  class ControleurMembre { 
     static private $instanceCtr = null;

@@ -2,6 +2,7 @@
        
     require_once(__DIR__."/../modele/circuit/Circuit.php");
     require_once(__DIR__."/../modele/circuit/DaoCircuit.php");
+    session_start();
 
  class ControleurAdmin { 
     static private $instanceCtr = null;

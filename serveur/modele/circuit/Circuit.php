@@ -7,15 +7,17 @@ class Circuit {
   private $photoc;
   private $descriptionc;
   private $etat;
+  private $prix;
   private $listeEtapes = array();
 
 
-  function __construct(int $idc, string $nomc, int $photoc, string $descriptionc, string $etat) {
+  function __construct(int $idc, string $nomc, int $photoc, string $descriptionc, string $etat, int $prix) {
     $this->idc = $idc;
     $this->nomc = $nomc;
     $this->photoc = $photoc;
     $this->descriptionc = $descriptionc;
     $this->etat = $etat;
+    $this->prix = $prix;
 }
 
   // Methods
@@ -49,6 +51,13 @@ class Circuit {
   }
   function getEtat():string {
     return $this->etat;
+  }
+
+  function setPrix($prix):void {
+    $this->prix = $prix;
+  }
+  function getPrix():int {
+    return $this->prix;
   }
 
   function setListeEtapes($listeEtapes):void {
