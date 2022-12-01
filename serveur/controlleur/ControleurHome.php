@@ -25,8 +25,9 @@
 	function CtrH_Enregistrer(){
         $dossier="../ressources/images/images_membres/";
         $image="avatar.png";
+        $nom = $_POST['nom'];
         if($_FILES['photom']['tmp_name']!==""){
-            $nomImage=sha1($_POST['nom'].time());
+            $nomImage=sha1($nom.time());
             //Upload de la photo
             $tmp = $_FILES['photom']['tmp_name'];
             $fichier= $_FILES['photom']['name'];
@@ -37,12 +38,12 @@
             $image=$nomImage.$extension;
         }
         
-         $membre = new Membre(0, $_POST['prenom'], $_POST['nom'], $_POST['courriel'], $_POST['sexe'], $_POST['daten'], $image);
-         $poopi = json_decode(DaoMembre::getDaoMembre()->MdlM_Enregistrer($membre));
-         if($poopi->OK){
+        $membre = new Membre(0, $_POST['prenom'], $_POST['nom'], $_POST['courriel'], $_POST['sexe'], $_POST['daten'], $image);
+        $poopi = json_decode(DaoMembre::getDaoMembre()->MdlM_Enregistrer($membre));
+        if($poopi->OK){
             $connexionM = new ConnexionM((int)$poopi->idm, $_POST['courriel'], $_POST['pass'], 'A', 'M');
-         }
-         return DaoConnexionM::getDaoConnexionM()->MdlCM_Enregistrer($connexionM);
+        }
+        return DaoConnexionM::getDaoConnexionM()->MdlCM_Enregistrer($connexionM);
     }
 
     function CtrH_Connexion(){

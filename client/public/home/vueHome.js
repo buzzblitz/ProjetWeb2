@@ -144,7 +144,8 @@ let montrerVue = (action, donnees) => {
             if(donnees.OK){
                 window.location.href= donnees.location;
             }else{
-                $msg="Problème+pour+enregistré+le+membre.";
+                msg="Problème+pour+enregistré+le+membre.";
+                console.log(msg);
                 window.location.href="index.php"; 
             }
             break;
