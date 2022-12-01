@@ -1,7 +1,7 @@
-let chargerFilmsAJAX = () => {
+let chargerCircuitsAJAX = () => {
     $.ajax({
         type : "POST",
-        url  : "routes.php",
+        url  : "routeAdmin.php",
         data : {"action":"lister"},
         dataType : "json", //text pour voir si bien formé même chose pour xml
         success : (listeFilms) => {//alert(listeFilms);
@@ -50,11 +50,11 @@ const posterFormAvecFETCH = async ( url, formData ) => {
 	return reponse.json();
 }
 
-const chargerFilmsFETCH = async () => {
-	const url = "serveur/film/controleurFilm.php";
+const chargerCircuitsFETCH = async () => {
+	const url = "../controlleur/controleurAdmin.php";
 	const formData = new FormData();
 	formData.append('action','lister');
-	listeFilms = await posterFormAvecFETCH( url, formData);
-	alert(listeFilms.msg);
-	//montrerVue("lister", listeFilms);
+	listeCircuits = await posterFormAvecFETCH( url, formData);
+	alert(listeCircuits.msg);
+	montrerVue("lister", listeFilms);
 }

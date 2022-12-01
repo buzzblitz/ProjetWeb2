@@ -50,13 +50,13 @@ let montrerFormEnreg = () => {
 
 
 let remplirCard = (unFilm)=> {
-    let rep =    ' <div class="col">';
+    let rep ='<div class="col">';
     rep +='<div class="card">';
-                 rep +=' <img src="serveur/pochettes/'+unFilm.pochette+'" class="card-img-top tailleImg" alt="...">';
+                 rep +=' <img src="../ressources/images/images_circuits/'+ unCircuit.photoc+'" class="card-img-top tailleImg" alt="...">';
                  rep +=' <div class="card-body">';
-                 rep +=' <h5 class="card-title">'+unFilm.titre+'</h5>';
-                 rep +=' <p class="card-text">Réalisateur : '+unFilm.res+'</p>';
-                 rep +=' <p class="card-text">Durée : '+unFilm.duree+'</p>';
+                 rep +=' <h5 class="card-title">'+unCircuit.nomc+'</h5>';
+                 rep +=' <p class="card-text">Réalisateur : '+unCircuit.etat+'</p>';
+                 rep +=' <p class="card-text">Durée : '+unCircuit.descriptionc+'</p>';
                  rep +=' <a href="#" class="btn btn-primary">Bande annonce</a>';
                  rep +=' <a href="#" onClick="enleverFilm(this,unFilm.title);" class="btn btn-danger"><span style="font-size:18px; color:white;">-</span></a>';
                  rep +=' <!--<button style="float:right;margin-right: 12px;" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">';
@@ -69,10 +69,10 @@ let remplirCard = (unFilm)=> {
         return rep;
 }
 
-let listerFilms = (listeFilms) => {
+let listerCircuits = (listeCircuits) => {
     let contenu = `<div class="row row-cols-4">`;
-    for (let unFilm of listeFilms){
-            contenu+=remplirCard(unFilm);
+    for (let unCircuit of listeCircuits){
+            contenu+=remplirCard(unCircuit);
     } 
     contenu += `</div>`;
     document.getElementById('contenu').innerHTML = contenu;
@@ -100,9 +100,9 @@ let montrerVue = (action, donnees) => {
         break;
         case "lister"       :
             if(donnees.OK){
-                listerFilms(donnees.listeFilms);
+                listerCircuits(donnees.listeCircuits);
             }else{
-                afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 
+                afficherMessage(donnees.msg); 
             }
     }
 
