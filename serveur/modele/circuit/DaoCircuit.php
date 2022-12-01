@@ -26,10 +26,10 @@ class DaoCircuit {
         //global $reponse;
        
         $connexion =  Connexion::getConnexion();
-        $requette="INSERT INTO circuits VALUES(0,?,?,?,?)";
+        $requette="INSERT INTO circuits VALUES(0,?,?,?,?,?)";
         try{
             
-            $donnees = [ $circuit->getNom(), $circuit->getPhoto(), $circuit->getDescription(), $circuit->getEtat()];
+            $donnees = [ $circuit->getNom(), $circuit->getPhoto(), $circuit->getDescription(), $circuit->getEtat(),$circuit->getPrix()];
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
             $this->reponse['OK'] = true;
@@ -62,6 +62,26 @@ class DaoCircuit {
           unset($connexion);
           return json_encode($reponse);
         }
+    }
+
+    function MdlC_update(Circuit $circuit){
+        global $reponse;
+        $connexion =  Connexion::getConnexion();
+        $requette="UPDATE circuits SET nomc=?,photoc=?,descriptionc=?,etat=?,prix=? WHERE idc=?";
+        try{
+            $stmt = $connexion->prepare($requette);
+	        $stmt->bind_param("sssssi",$circuit->getNom(), $circuit->getPhoto(), $circuit->getDescription(), $circuit->getEtat(), $circuit->getPrix(), $circuit->getIdc());
+	        $stmt->execute();
+            $reponse['OK'] = true;
+            $reponse['msg'] = "Réussite de la modification du circuit";
+        }catch (Exception $e){
+            $reponse['OK'] = false;
+            $reponse['msg'] = "Problème pour modifier le circuit";
+        }finally {
+            unset($connexion);
+            return json_encode($reponse);
+        }
+	    
     }
 }
 ?>
