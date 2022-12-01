@@ -22,7 +22,7 @@
     <script src="client/public/home/vueHome.js"></script>
 
 </head>
-<body onLoad="chargerCircuits('I','serveur/modele/circuit/liste.php');">
+<body>
     
      <?php 
       // include_once('serveur/includes/menu_accueil.inc.php'); 
