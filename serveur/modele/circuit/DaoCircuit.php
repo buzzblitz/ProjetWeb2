@@ -83,5 +83,45 @@ class DaoCircuit {
         }
 	    
     }
+
+    function mdlC_remove($idc){
+        global $reponse;
+        $connexion =  Connexion::getConnexion();
+        $requettePhoto="SELECT photoc FROM circuits WHERE idc=?";
+        $requete="DELETE FROM circuits WHERE idc=?";
+        try{
+            $stmt = $connexion->prepare($requetePhoto);
+            $stmt->bind_param("i", $idc);
+            $stmt->execute();
+            $result = $stmt->get_result();
+        
+            $image=$result;
+            if($image!="avatar.png"){
+                $rmImg='../../ressources/images/images_circuits/'.$image;
+                $tabFichiers = glob('../../ressources/images/images_circuits/*');
+                //print_r($tabFichiers);
+                //parcourir les fichier
+                foreach($tabFichiers as $fichier){
+                    if(is_file($fichier) && $fichier==trim($rmImg)) {
+                        // enlever le fichier
+                        unlink($fichier);
+                        break;
+                        //
+                    }
+                }
+            }
+            $stmt = $connexion->prepare($requete);
+            $stmt->bind_param("i", $idc);
+            $stmt->execute();
+            $reponse['OK'] = true;
+            $reponse['msg'] = "Réussite de la supression du circuit";
+        }catch (Exception $e){
+            $reponse['OK'] = false;
+            $reponse['msg'] = "Problème pour supprimer le circuit";
+        }finally {
+            unset($connexion);
+            return json_encode($reponse);
+        }
+    }
 }
 ?>
