@@ -69,9 +69,9 @@ class DaoCircuit {
         $connexion =  Connexion::getConnexion();
         $requette="UPDATE circuits SET nomc=?,photoc=?,descriptionc=?,etat=?,prix=? WHERE idc=?";
         try{
+            $donnees = [$circuit->getNom(), $circuit->getPhoto(), $circuit->getDescription(), $circuit->getEtat(), $circuit->getPrix(), $circuit->getIdc()];
             $stmt = $connexion->prepare($requette);
-	        $stmt->bind_param("sssssi",$circuit->getNom(), $circuit->getPhoto(), $circuit->getDescription(), $circuit->getEtat(), $circuit->getPrix(), $circuit->getIdc());
-	        $stmt->execute();
+	        $stmt->execute($donnees);
             $reponse['OK'] = true;
             $reponse['msg'] = "Réussite de la modification du circuit";
         }catch (Exception $e){
@@ -90,11 +90,10 @@ class DaoCircuit {
         $requettePhoto="SELECT photoc FROM circuits WHERE idc=?";
         $requette="DELETE FROM circuits WHERE idc=?";
         try{
+            $donnees = [$idc];
             $stmt = $connexion->prepare($requettePhoto);
-            $stmt->bind_param("i", $idc);
-            $stmt->execute();
-            $result = $stmt->get_result();
-        
+            $stmt->execute($donnees);
+            $result = $stmt->fetch();
             $image=$result;
             if($image!="avatar.png"){
                 $rmImg='../../ressources/images/images_circuits/'.$image;
@@ -111,8 +110,7 @@ class DaoCircuit {
                 }
             }
             $stmt = $connexion->prepare($requette);
-            $stmt->bind_param("i", $idc);
-            $stmt->execute();
+            $stmt->execute($donnees);
             $reponse['OK'] = true;
             $reponse['msg'] = "Réussite de la supression du circuit";
         }catch (Exception $e){
