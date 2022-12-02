@@ -23,17 +23,18 @@ class DaoCircuit {
 	}
 	
 	function MdlC_Enregistrer(Circuit $circuit):string {
-        //global $reponse;
+        global $reponse;
        
         $connexion =  Connexion::getConnexion();
         $requette="INSERT INTO circuits VALUES(0,?,?,?,?,?)";
         try{
             
-            $donnees = [ $circuit->getNom(), $circuit->getPhoto(), $circuit->getDescription(), $circuit->getEtat(),$circuit->getPrix()];
+            $donnees = [ $circuit->getNom(), $circuit->getPhoto(), $circuit->getDescription(), $circuit->getEtat(), $circuit->getPrix()];
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
             $this->reponse['OK'] = true;
             $this->reponse['msg'] = "Circuit bien enregistre";
+            $this->reponse['location'] = "admin.php";
         }catch (Exception $e){
             $this->reponse['OK'] = false;
             $this->reponse['msg'] = "Probléme pour enregistrer le circuit";
