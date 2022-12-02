@@ -29,7 +29,7 @@ class DaoEtape {
         $requette="INSERT INTO etapes VALUES(0,?,?,?,?,?,?,?)";
         try{
 
-            $donnees = [ $etape->getIdc(), $etape->getNom(), $etape-getPhotoe(), $etape->getDescriptione(), $etape->getDebut(), $etape->get_fin(), $etape->getLieurencontre()];
+            $donnees = [ $etape->getIdc(), $etape->getNom(), $etape->getPhotoe(), $etape->getDescriptione(), $etape->getDebut(), $etape->get_fin(), $etape->getLieurencontre()];
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
             $this->reponse['OK'] = true;
@@ -48,7 +48,7 @@ class DaoEtape {
         $connexion = Connexion::getConnexion();
         $requette="SELECT * FROM etapes WHERE idc =" + $index;
         try{
-            $stmt = $connexion->prepare($requette);
+            $stmt = $connexion->prepare((string)$requette);
             $stmt->execute();
             $reponse['OK'] = true;
             $reponse['msg'] = "";
