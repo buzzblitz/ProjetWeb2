@@ -1,14 +1,11 @@
 let remplirCard = (unCircuit)=> {
     let rep =    ' <div class="col">';
     rep +='<div class="card">';
-                 rep +=' <img src="serveur/pochettes/'+unCircuit.photoc+'" class="card-img-top tailleImg" alt="...">';
+                 rep +=' <img src="../ressources/images/images_membres/'+unCircuit.photoc+'" class="card-img-top tailleImg" alt="...">';
                  rep +=' <div class="card-body">';
                  rep +=' <h5 class="card-title">'+unCircuit.nom+'</h5>';
                  rep +=' <p class="card-text">Durée : '+unCircuit.descriptionc+'</p>';
-                 rep +=' <a href="#" onClick="enleverCircuit(this,unCircuit.title);" class="btn btn-danger"><span style="font-size:18px; color:white;">-</span></a>';
-                 rep +=' <!--<button style="float:right;margin-right: 12px;" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">';
-                 rep +=' <span style="font-size:18px; color:white;">-</span>';
-                 rep +=' </button> -->';
+                 rep +=' <a href="#" onClick="acheterCircuit(this,unCircuit.title);" class="btn btn-primary"><span style="font-size:18px; color:white;">Ajouter au panier</span></a>';
                  rep +=' </div>';
                  rep +=' </div>';
                  rep +=' </div>';

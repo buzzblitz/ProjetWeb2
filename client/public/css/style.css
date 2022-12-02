@@ -90,9 +90,7 @@
     font-size: 14px;
     font-weight: bold;
 }
-.maCard {
-    margin-top: 25px;
-}
+
 
 ul {
     list-style-type: none;
@@ -115,4 +113,16 @@ ul {
     border: 6px solid #305A72;
 }
 
+.card{
+    margin-top: 25px;
+    background-color: black;
+    border: black;
+    background: #7f07ff;
+    margin: auto;
+    max-width: 1048px;
+    width: 100%;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 1rem;
+    border: transparent
+}
 
