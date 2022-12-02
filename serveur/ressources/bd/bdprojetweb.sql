@@ -93,6 +93,6 @@ INSERT INTO `journees` (`idj`, `ide`, `datej`, `descriptionj`) VALUES ('4', '4',
 INSERT INTO `activites` (`ida`, `idj`, `noma`, `tempsdebut`, `tempsfin`, `descriptiona`) VALUES ('4', '4', 'Restaurant Japon', '2022-12-25 19:30:00', '2022-12-25 20:30:00', 'Degustation locale');
 
 INSERT INTO `membres` (`idm`, `prenom`, `nom`, `courriel`, `sexe`, `daten`, `photom`) VALUES
-(2, 'Admin', 'Admin', 'Admin@1234.com', 'A', '0001-01-01', 'avatar.png');
+(2, 'Admin', 'Admin', 'admin@tlt.com', 'A', '0001-01-01', 'avatar.png');
 INSERT INTO `connexion` (`idm`, `courriel`, `pass`, `etat`, `role`) VALUES
-(2, 'Admin@1234.com', 'Admin@1234', 'A', 'A');
+(2, 'admin@tlt.com', 'Admin@1234', 'A', 'A');

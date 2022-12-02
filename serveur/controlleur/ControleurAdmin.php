@@ -48,7 +48,6 @@
                 return $this->CtrA_getAll();
             case "deconnecter" :
                 return $this->CtrA_Deconnexion();
-            break;
         }
         // Retour de la réponse au client
        
