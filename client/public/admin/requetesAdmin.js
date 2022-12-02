@@ -15,8 +15,10 @@ let chargerCircuitsAJAX = () => {
 }
 
 let requeteEnregistrer = () => {
+	console.log("tonperedinfesse");
 	let formCircuit = new FormData(document.getElementById('formEnregCircuit'));
 	formCircuit.append('action','enregistrer');
+	console.log("tamere");
 	$.ajax({
 		type : 'POST',
 		url : '../../routeAdmin.php',

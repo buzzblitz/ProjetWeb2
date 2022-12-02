@@ -1,5 +1,50 @@
-
 let montrerFormAjouterCircuit = () => {
+    let form = `
+    <div class="modal fade" id="modalAjouterCircuit" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Enregistrer un Circuit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEnregCircuit" class="row  needs-validation" enctype="multipart/form-data" method="POST">
+                        <div class="col-md-12">
+                            <label for="nomc" class="form-label">Nom du Circuit</label>
+                            <input type="text" class="form-control" id="nomc" name="nomc" value="" required>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="photoc" class="form-label">Image du Circuit</label>
+                            <input type="file" class="form-control" id="photoc" name="photoc" value="" required>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="descriptionc" class="form-label">Description du Circuit</label>
+                            <input type="text" class="form-control" id="descriptionc" name="descriptionc" value="" required required>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="etat" class="form-label">Etats du Circuit</label>
+                            <select id="etat" name="etat" class="form-select form-select-sm" required
+                                aria-label=".form-select-sm example">
+                                <option selected disabled value="Des">Desactiver</option>
+                                <option value="Tra">Travail</option>
+                                <option value="Dep">Deploiement</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrer();">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+    document.getElementById('contenu').innerHTML = form;
+    $('#modalAjouterCircuit').modal('show');
+}
+
+let montrerFormAjouterCircuit2 = () => {
     let form = `
     <div class="modal fade" id="modalAjouterCircuit" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -152,9 +197,13 @@ let montrerVue = (action, donnees) => {
     switch(action){
         case "enregistrer"  :
             if(donnees.OK){
-                window.location.href=admin.php;
-            }
-        break;
+                window.location.href= donnees.location;
+             }else{
+                 msg="Problème+pour+enregistré+le+membre.";
+                 console.log(msg);
+                 window.location.href="index.php"; 
+             }
+             break;
         case "modifier"     :
         case "enlever"      :
             if(donnees.OK){

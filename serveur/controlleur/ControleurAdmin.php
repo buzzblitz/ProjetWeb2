@@ -27,8 +27,12 @@
 	}
 
 	function CtrA_Enregistrer(){
+        $this->reponse['OK'] = false;
+        $this->reponse['msg'] = "Probléme durant la function obtenirPhotoMembre()";
+        $this->reponse['location'] = "serveur/vue/admin.php";
+        return json_encode($this->reponse);
         $dossierc="../ressources/images/images_circuits/";
-        $imageCircuit="avatar.png";
+        $photoc="avatar.png";
         $nomc = $_POST['nomc'];
         if($_FILES['photoc']['tmp_name']!==""){
             $nomphotoc=sha1($nomc.time());
@@ -41,9 +45,9 @@
             @unlink($tmpc); //effacer le fichier temporaire
             $photoc=$nomphotoc.$extensionc;
         }
-         $circuit = new Circuit(0, $_POST['nomc'], $photoc, $_POST['descriptionc'], $_POST['etat']);
+         $circuit = new Circuit(0, $_POST['nomc'], $photoc, $_POST['descriptionc'], $_POST['etat'],0);
          $addc = json_decode(DaoCircuit::getDaoCircuit()->MdlC_Enregistrer($circuit));
-         if($addc->OK){
+         /*if($addc->OK){
             $dossiere="../ressources/images/images_etapes/";
             $imageEtape="avatar.png";
             $nome = $_POST['nome'];
@@ -68,7 +72,7 @@
                     $adda = json_decode(DaoActivite::getDaoActivite()->MdlA_Enregistrer($activite));
                 }
             }
-        }
+        }*/
         return json_encode($addc);
     }
 
