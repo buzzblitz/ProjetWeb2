@@ -64,6 +64,105 @@ let montrerFormEnreg = () => {
     document.getElementById('contenu').innerHTML = form;
     $('#enregModal').modal('show');
 }
+let afficherCarou = () => {
+    let test = `
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="serveur/ressources/images/Porto.jpg" class="d-block w-100 h-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Portugal</h5>
+            <p>Texte de description du circuit</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="serveur/ressources/images/Sydney.jpg" class="d-block w-100 h-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Australie</h5>
+            <p>Texte de description du circuit</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="serveur/ressources/images/Tokyo.jpg" class="d-block w-100 h-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Japon</h5>
+            <p>Texte de description du circuit</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+      `;
+    document.getElementById('carouselExampleCaptions').innerHTML = test;
+
+}
+let afficherContact = () => {
+    let test = `
+  
+    <h1 style="text-align:center">Contactez nous</h1>
+    <div class="about-section">
+      <h1>Tout savoir sur nous</h1>
+      <p>Some text about who we are and what we do.</p>
+      <p>Resize the browser window to see that this page is responsive by the way.</p>
+    </div>
+    
+    <h2 style="text-align:center">Notre Équipe</h2>
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <div class="container">
+            <h2>Félix-Antoine</h2>
+            <p class="title">Scrum master</p>
+            <p>No Da</p>
+          </div>
+        </div>
+      </div>
+    
+      <div class="column">
+        <div class="card">
+          <div class="container">
+            <h2>Félix</h2>
+            <p class="title">Dev</p>
+            <p>No Da</p>
+          </div>
+        </div>
+      </div>
+    
+      <div class="column">
+        <div class="card">
+          <div class="container">
+            <h2>Maxime Couillard</h2>
+            <p class="title">Dev</p>
+            <p>No Da</p>
+          </div>
+        </div>
+      </div>
+    
+      <div class="column">
+        <div class="card">
+          <div class="container">
+            <h2>Haddouni Sid Ali</h2>
+            <p class="title">Dev</p>
+            <p>No Da</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    `;
+
+    document.getElementById('carouselExampleCaptions').innerHTML = test;
+
+}
 
 let montrerFormConnex = () => {
     let form = `
@@ -100,31 +199,31 @@ let montrerFormConnex = () => {
 }
 
 
-let remplirCard = (unFilm)=> {
-    let rep =    ' <div class="col">';
-    rep +='<div class="card">';
-                 rep +=' <img src="serveur/pochettes/'+unFilm.pochette+'" class="card-img-top tailleImg" alt="...">';
-                 rep +=' <div class="card-body">';
-                 rep +=' <h5 class="card-title">'+unFilm.titre+'</h5>';
-                 rep +=' <p class="card-text">Réalisateur : '+unFilm.res+'</p>';
-                 rep +=' <p class="card-text">Durée : '+unFilm.duree+'</p>';
-                 rep +=' <a href="#" class="btn btn-primary">Bande annonce</a>';
-                 rep +=' <a href="#" onClick="enleverFilm(this,unFilm.title);" class="btn btn-danger"><span style="font-size:18px; color:white;">-</span></a>';
-                 rep +=' <!--<button style="float:right;margin-right: 12px;" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">';
-                 rep +=' <span style="font-size:18px; color:white;">-</span>';
-                 rep +=' </button> -->';
-                 rep +=' </div>';
-                 rep +=' </div>';
-                 rep +=' </div>';
-             
-        return rep;
+let remplirCard = (unFilm) => {
+    let rep = ' <div class="col">';
+    rep += '<div class="card">';
+    rep += ' <img src="serveur/pochettes/' + unFilm.pochette + '" class="card-img-top tailleImg" alt="...">';
+    rep += ' <div class="card-body">';
+    rep += ' <h5 class="card-title">' + unFilm.titre + '</h5>';
+    rep += ' <p class="card-text">Réalisateur : ' + unFilm.res + '</p>';
+    rep += ' <p class="card-text">Durée : ' + unFilm.duree + '</p>';
+    rep += ' <a href="#" class="btn btn-primary">Bande annonce</a>';
+    rep += ' <a href="#" onClick="enleverFilm(this,unFilm.title);" class="btn btn-danger"><span style="font-size:18px; color:white;">-</span></a>';
+    rep += ' <!--<button style="float:right;margin-right: 12px;" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">';
+    rep += ' <span style="font-size:18px; color:white;">-</span>';
+    rep += ' </button> -->';
+    rep += ' </div>';
+    rep += ' </div>';
+    rep += ' </div>';
+
+    return rep;
 }
 
 let listerFilms = (listeFilms) => {
     let contenu = `<div class="row row-cols-4">`;
-    for (let unFilm of listeFilms){
-            contenu+=remplirCard(unFilm);
-    } 
+    for (let unFilm of listeFilms) {
+        contenu += remplirCard(unFilm);
+    }
     contenu += `</div>`;
     document.getElementById('contenu').innerHTML = contenu;
 }
@@ -139,42 +238,43 @@ let afficherMessage = (msg) => {
 
 let montrerVue = (action, donnees) => {
 
-    switch(action){
-        case "enregistrer"  :
-            if(donnees.OK){
-               window.location.href= donnees.location;
-            }else{
-                msg="Problème+pour+enregistré+le+membre.";
+    switch (action) {
+        case "enregistrer":
+            if (donnees.OK) {
+                window.location.href = donnees.location;
+            } else {
+                msg = "Problème+pour+enregistré+le+membre.";
                 console.log(msg);
-                window.location.href="index.php"; 
+                window.location.href = "index.php";
             }
             break;
-        case "connexion"  :
-            if(donnees.OK){
-                if(donnees.role == "M") {
-                   window.location.href= donnees.location;
+        case "connexion":
+            if (donnees.OK) {
+                if (donnees.role == "M") {
+                    window.location.href = donnees.location;
                 } else {
-                   window.location.href= donnees.location;
+                    window.location.href = donnees.location;
                 }
-            }else{
-                console.log(donnees.msg); 
+            } else {
+                console.log(donnees.msg);
             }
             break;
-        case "modifier"     :
-        case "enlever"      :
-            if(donnees.OK){
+        case "modifier":
+        case "enlever":
+            if (donnees.OK) {
                 afficherMessage(donnees.msg);
-            }else{
-                afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 
+            } else {
+                afficherMessage("Problème côté serveur. Essaiez plus tard!!!");
             }
-        break;
-        case "lister"       :
-            if(donnees.OK){
+            break;
+        case "lister":
+            if (donnees.OK) {
                 listerFilms(donnees.listeFilms);
-            }else{
-                afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 
+            } else {
+                afficherMessage("Problème côté serveur. Essaiez plus tard!!!");
             }
     }
+
 
 
 }
