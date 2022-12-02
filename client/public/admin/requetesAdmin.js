@@ -19,7 +19,7 @@ let requeteEnregistrer = () => {
 	formCircuit.append('action','enregistrer');
 	$.ajax({
 		type : 'POST',
-		url : '../../routesAdmin.php',
+		url : '../../routeAdmin.php',
 		data : formCircuit, //$('#formEnreg').serialize()
 		//async : false,
 		//cache : false,
