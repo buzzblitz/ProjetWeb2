@@ -146,7 +146,7 @@ let montrerVue = (action, donnees) => {
             }else{
                 msg="Problème+pour+enregistré+le+membre.";
                 console.log(msg);
-               window.location.href="index.php"; 
+                window.location.href="index.php"; 
             }
             break;
         case "connexion"  :
