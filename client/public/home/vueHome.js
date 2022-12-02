@@ -50,7 +50,7 @@ let montrerFormEnreg = () => {
                             <input type="file" class="form-control is-valid" id="photom" name="photom">
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary" type="button" onclick="requeteConnexion();">Enregistrer</button>
+                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrer();">Enregistrer</button>
                         </div>
                     </form>
                     </div>
