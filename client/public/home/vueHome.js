@@ -50,7 +50,7 @@ let montrerFormEnreg = () => {
                             <input type="file" class="form-control is-valid" id="photom" name="photom">
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary" type="button" onclick="requeteConnexion();">Enregistrer</button>
+                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrer();">Enregistrer</button>
                         </div>
                     </form>
                     </div>
@@ -142,11 +142,11 @@ let montrerVue = (action, donnees) => {
     switch(action){
         case "enregistrer"  :
             if(donnees.OK){
-               // window.location.href= donnees.location;
+               window.location.href= donnees.location;
             }else{
                 msg="Problème+pour+enregistré+le+membre.";
                 console.log(msg);
-               // window.location.href="index.php"; 
+                window.location.href="index.php"; 
             }
             break;
         case "connexion"  :
