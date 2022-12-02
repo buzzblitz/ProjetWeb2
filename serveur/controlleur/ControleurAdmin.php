@@ -12,8 +12,6 @@
 
  class ControleurAdmin { 
     static private $instanceCtr = null;
-    private $reponse;
-
     private function __construct(){
 
     }
@@ -27,10 +25,7 @@
 	}
 
 	function CtrA_Enregistrer(){
-        $this->reponse['OK'] = false;
-        $this->reponse['msg'] = "Probléme durant la function obtenirPhotoMembre()";
-        $this->reponse['location'] = "serveur/vue/admin.php";
-        return json_encode($this->reponse);
+        
         $dossierc="../ressources/images/images_circuits/";
         $photoc="avatar.png";
         $nomc = $_POST['nomc'];
@@ -46,7 +41,7 @@
             $photoc=$nomphotoc.$extensionc;
         }
          $circuit = new Circuit(0, $_POST['nomc'], $photoc, $_POST['descriptionc'], $_POST['etat'],0);
-         $addc = json_decode(DaoCircuit::getDaoCircuit()->MdlC_Enregistrer($circuit));
+         $reponse = json_decode(DaoCircuit::getDaoCircuit()->MdlC_Enregistrer($circuit));
          /*if($addc->OK){
             $dossiere="../ressources/images/images_etapes/";
             $imageEtape="avatar.png";
@@ -73,7 +68,7 @@
                 }
             }
         }*/
-        return json_encode($addc);
+        return json_encode($reponse);
     }
 
 
