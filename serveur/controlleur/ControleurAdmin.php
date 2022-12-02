@@ -2,12 +2,12 @@
        
     require_once(__DIR__."/../modele/circuit/Circuit.php");
     require_once(__DIR__."/../modele/circuit/DaoCircuit.php");
-    require_once(__DIR__."/../modele/circuit/Etape.php");
-    require_once(__DIR__."/../modele/circuit/DaoEtape.php");
-    require_once(__DIR__."/../modele/circuit/Activite.php");
-    require_once(__DIR__."/../modele/circuit/DaoActivite.php");
-    require_once(__DIR__."/../modele/circuit/Journee.php");
-    require_once(__DIR__."/../modele/circuit/DaoJournee.php");
+    require_once(__DIR__."/../modele/etape/Etape.php");
+    require_once(__DIR__."/../modele/etape/DaoEtape.php");
+    require_once(__DIR__."/../modele/activite/Activite.php");
+    require_once(__DIR__."/../modele/activite/DaoActivite.php");
+    require_once(__DIR__."/../modele/journee/Journee.php");
+    require_once(__DIR__."/../modele/journee/DaoJournee.php");
     session_start();
 
  class ControleurAdmin { 
