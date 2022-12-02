@@ -3,17 +3,17 @@
 class Activite {
     private $ida;
     private $idj;
-    private $nom;
-    private $tempsDebut;
-    private $tempsFin;
+    private $noma;
+    private $tempsdebut;
+    private $tempsfin;
     private $descriptiona;
 
-    function __construct(int $ida, int $idj, string $nom, int $tempsDebut, string $tempsFin, string $descriptiona) {
+    function __construct(int $ida, int $idj, string $noma, int $tempsdebut, string $tempsfin, string $descriptiona) {
         $this->ida = $ida;
         $this->idj = $idj;
-        $this->nom = $nom;
-        $this->tempsDebut = $tempsDebut;
-        $this->tempsFin = $tempsFin;
+        $this->noma = $noma;
+        $this->tempsdebut = $tempsdebut;
+        $this->tempsfin = $tempsfin;
         $this->descriptiona = $descriptiona;
     }
 
@@ -24,13 +24,13 @@ class Activite {
         return $this->idj;
     }
     function getNom():string {
-        return $this->nom;
+        return $this->noma;
     }
     function getTempsDebut():string {
-        return $this->tempsDebut;
+        return $this->tempsdebut;
     }
     function getTempsFin():string {
-        return $this->tempsFin;
+        return $this->tempsfin;
     }
     function getDescriptiona():string {
         return $this->descriptiona;
@@ -39,14 +39,14 @@ class Activite {
     function setIdj($idj):void {
         $this->idj = $idj;
     }
-    function setNom($nom):void {
-        $this->nom = $nom;
+    function setNom($noma):void {
+        $this->noma = $noma;
     }
-    function setTempsDebut($tempsDebut):void {
-        $this->tempsDebut = $tempsDebut;
+    function setTempsDebut($tempsdebut):void {
+        $this->tempsdebut = $tempsdebut;
     }
-    function setTempsFin($tempsFin):void {
-        $this->tempsFin = $tempsFin;
+    function setTempsFin($tempsfin):void {
+        $this->tempsfin = $tempsfin;
     }
     function setDescriptiona($descriptiona):void {
         $this->descriptiona = $descriptiona;

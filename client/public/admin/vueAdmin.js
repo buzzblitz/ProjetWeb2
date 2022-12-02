@@ -38,26 +38,26 @@ let montrerFormAjouterCircuit = () => {
                             <input type='text' class='form-control' id='nome' name='nome' value='' required>
                         </div>
                         <div class='col-md-12'>
-                            <label for='imge' class='form-label'>Image de l'Etape</label>
-                            <input type='file' class='form-control' id='imge' name='imge' value='' required>
+                            <label for='photoe' class='form-label'>Image de l'Etape</label>
+                            <input type='file' class='form-control' id='photoe' name='photoe' value='' required>
                         </div>
                         <div class='col-md-12'>
-                            <label for='desce' class='form-label'>Description de l'Etape</label>
-                            <input type='text' class='form-control' id='desce' name='desce' value='' required>
+                            <label for='descriptione' class='form-label'>Description de l'Etape</label>
+                            <input type='text' class='form-control' id='descriptione' name='descriptione' value='' required>
                         </div>
                         <div class='col-md-6'>
-                        <label for='dated' class='form-label'>Date du Debut</label>
-                            <input type='date' class='form-control is-valid' id='dated' name='dated' required>
+                        <label for='debut' class='form-label'>Date du Debut</label>
+                            <input type='date' class='form-control is-valid' id='debut' name='debut' required>
                         </div>
                         <div class='col-md-12'>
                         </div>
                         <div class='col-md-6'>
-                            <label for='datef' class='form-label'>Date de la Fin</label>
-                            <input type='date' class='form-control is-valid' id='datef' name='datef' required>
+                            <label for='fin' class='form-label'>Date de la Fin</label>
+                            <input type='date' class='form-control is-valid' id='fin' name='fin' required>
                         </div>
                         <div class='col-md-12'>
-                            <label for='lieud' class='form-label'>Lieu de rencontre pour le Diner</label>
-                            <input type='text' class='form-control' id='lieud' name='lieud' value='' required>
+                            <label for='lieurencontre' class='form-label'>Lieu de rencontre pour le Diner</label>
+                            <input type='text' class='form-control' id='lieurencontre' name='lieurencontre' value='' required>
                         </div>
 
             <div class='col-md-12' id='journees'>
@@ -69,29 +69,29 @@ let montrerFormAjouterCircuit = () => {
                                 <input type='date' class='form-control is-valid' id='datej' name='datej' required>
                             </div>
                             <div class='col-md-12'>
-                                <label for='autre' class='form-label'>Autre information</label>
-                                <input type='text' class='form-control' id='autre' name='autre' value='' required>
+                                <label for='descriptionj' class='form-label'>Autre information</label>
+                                <input type='text' class='form-control' id='descriptionj' name='descriptionj' value='' required>
                             </div>
 
-                <div class='col-md-12' id='activiters'>
+                <div class='col-md-12' id='activites'>
                     <div class='col-md-12'>
-                    <label for='noma' class='form-label'>Nom de l'activiter</label>
+                    <label for='noma' class='form-label'>Nom de l'activite</label>
                                         <input type='text' class='form-control' id='noma' name='noma' value='' required>
                                     </div>
 
                                     <div class='col-md-6'>
-                                        "<label for='heuredebut' class='form-label'>Heure du debut de l'activiter</label>
-                                        "<input type='time' class='form-control is-valid' id='heuredebut' name='heuredebut' required>
+                                        "<label for='tempsdebut' class='form-label'>Heure du debut de l'activiter</label>
+                                        "<input type='time' class='form-control is-valid' id='tempsdebut' name='tempsdebut' required>
                                     </div>
                                     <div class='col-md-12'>
                                     </div>
                                     <div class='col-md-6'>
-                                        <label for='heurefin' class='form-labe'>Heure de fin de l'activiter</label>
-                                        <input type='time' class='form-control is-valid' id='heurefin' name='heurefin' required>
+                                        <label for='tempsfin' class='form-labe'>Heure de fin de l'activiter</label>
+                                        <input type='time' class='form-control is-valid' id='tempsfin' name='tempsfin' required>
                                     </div>
                                     <div class='col-md-12'>
-                                        <label for='desca' class='form-label'>Description des activiter</label>
-                                        <input type='text' class='form-control' id='descea' name='descea' value='' required>
+                                        <label for='descriptiona' class='form-label'>Description des activiter</label>
+                                        <input type='text' class='form-control' id='descriptiona' name='descriptiona' value='' required>
                                     </div>
                                     </div>
                                     </div>
@@ -151,6 +151,10 @@ let montrerVue = (action, donnees) => {
 
     switch(action){
         case "enregistrer"  :
+            if(donnees.OK){
+                window.location.href=admin.php;
+            }
+        break;
         case "modifier"     :
         case "enlever"      :
             if(donnees.OK){
