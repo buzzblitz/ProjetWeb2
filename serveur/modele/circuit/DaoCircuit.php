@@ -23,7 +23,7 @@ class DaoCircuit {
 	}
 	
 	function MdlC_Enregistrer(Circuit $circuit):string {
-        global $reponse;
+        //global $reponse;
        
         $connexion =  Connexion::getConnexion();
         $requette="INSERT INTO circuits VALUES(0,?,?,?,?,?)";

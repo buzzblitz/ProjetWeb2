@@ -11,7 +11,7 @@ class Circuit {
   private $listeEtapes = array();
 
 
-  function __construct(int $idc, string $nomc, int $photoc, string $descriptionc, string $etat, int $prix) {
+  function __construct(int $idc, string $nomc, string $photoc, string $descriptionc, string $etat, int $prix) {
     $this->idc = $idc;
     $this->nomc = $nomc;
     $this->photoc = $photoc;

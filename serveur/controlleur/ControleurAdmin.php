@@ -32,16 +32,16 @@
         if($_FILES['photoc']['tmp_name']!==""){
             $nomphotoc=sha1($nomc.time());
             //Upload de la photo
-            $tmpc = $_FILES['photom']['tmp_name'];
-            $fichierc= $_FILES['photom']['name'];
+            $tmpc = $_FILES['photoc']['tmp_name'];
+            $fichierc= $_FILES['photoc']['name'];
             $extensionc=strrchr($fichierc,'.');
             @move_uploaded_file($tmpc,$dossierc.$nomphotoc.$extensionc);
             // Enlever le fichier temporaire chargé
             @unlink($tmpc); //effacer le fichier temporaire
             $photoc=$nomphotoc.$extensionc;
         }
-         $circuit = new Circuit(0, $_POST['nomc'], $photoc, $_POST['descriptionc'], $_POST['etat'],0);
-         $reponse = json_decode(DaoCircuit::getDaoCircuit()->MdlC_Enregistrer($circuit));
+        $circuit = new Circuit(0, $_POST['nomc'], $photoc, $_POST['descriptionc'], $_POST['etat'],0);
+        $reponse = json_decode(DaoCircuit::getDaoCircuit()->MdlC_Enregistrer($circuit));
          /*if($addc->OK){
             $dossiere="../ressources/images/images_etapes/";
             $imageEtape="avatar.png";

@@ -156,22 +156,16 @@ let montrerFormAjouterCircuit2 = () => {
 
 
 let remplirCard = (unCircuit)=> {
-    let rep ='<div class="col">';
+    let rep =    ' <div class="col">';
     rep +='<div class="card">';
-                 rep +=' <img src="../ressources/images/images_circuits/'+ unCircuit.photoc+'" class="card-img-top tailleImg" alt="...">';
+                 rep +=' <img src="../ressources/images/images_circuits/'+unCircuit.photoc+'" class="card-img-top tailleImg" alt="...">';
                  rep +=' <div class="card-body">';
                  rep +=' <h5 class="card-title">'+unCircuit.nomc+'</h5>';
-                 rep +=' <p class="card-text">Réalisateur : '+unCircuit.etat+'</p>';
-                 rep +=' <p class="card-text">Durée : '+unCircuit.descriptionc+'</p>';
-                 rep +=' <a href="#" class="btn btn-primary">Bande annonce</a>';
-                 rep +=' <a href="#" onClick="enleverFilm(this,unFilm.title);" class="btn btn-danger"><span style="font-size:18px; color:white;">-</span></a>';
-                 rep +=' <!--<button style="float:right;margin-right: 12px;" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">';
-                 rep +=' <span style="font-size:18px; color:white;">-</span>';
-                 rep +=' </button> -->';
+                 rep +=' <p class="card-text">Description : '+unCircuit.descriptionc+'</p>';
+                 rep +=' <a href="#" onClick="acheterCircuit(this,unCircuit.title);" class="btn btn-primary"><span style="font-size:18px; color:white;">Ajouter au panier</span></a>';
                  rep +=' </div>';
                  rep +=' </div>';
                  rep +=' </div>';
-             
         return rep;
 }
 
@@ -218,6 +212,7 @@ let montrerVue = (action, donnees) => {
             }else{
                 afficherMessage(donnees.msg); 
             }
+        break;
         case "deconnexion"  :
             if(donnees.OK){
                 window.location.href= donnees.location;   
