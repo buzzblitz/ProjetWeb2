@@ -21,7 +21,7 @@ CREATE TABLE connexion (
   FOREIGN KEY (idm) REFERENCES membres (idm) ON DELETE CASCADE
 );
 
-CREATE TABLE membresCircuits (
+CREATE TABLE membrescircuits (
   idm INTEGER NOT NULL,
   idc INTEGER NOT NULL
 );
@@ -60,13 +60,13 @@ CREATE TABLE journees (
 CREATE TABLE activites (
   ida INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
   idj INTEGER NOT NULL,
-  nom VARCHAR(255) NOT NULL,
-  tempsDebut datetime NOT NULL,
-  tempsFin datetime NOT NULL,
+  noma VARCHAR(255) NOT NULL,
+  tempsdebut datetime NOT NULL,
+  tempsfin datetime NOT NULL,
   descriptiona VARCHAR(255) NOT NULL,
   FOREIGN KEY (idj) REFERENCES journees (idj) ON DELETE CASCADE
 );
 
-ALTER TABLE membresCircuits ADD FOREIGN KEY (idm) REFERENCES membres (idm);
+ALTER TABLE membrescircuits ADD FOREIGN KEY (idm) REFERENCES membres (idm);
 
-ALTER TABLE membresCircuits ADD FOREIGN KEY (idc) REFERENCES circuits (idc);
+ALTER TABLE membrescircuits ADD FOREIGN KEY (idc) REFERENCES circuits (idc);
