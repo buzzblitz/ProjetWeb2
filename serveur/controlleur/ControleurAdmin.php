@@ -23,6 +23,35 @@
 		}
 		return self::$instanceCtr;
 	}
+    function CtrA_EnregistrerE(){
+        $dossiere="serveur/ressources/images/images_etapes/";
+        $photoe="avatar.png";
+        $nome = $_POST['nome'];
+        if($_FILES['photoe']['tmp_name']!==""){
+            $nomphotoe=sha1($nome.time());
+            //Upload de la photo
+            $tmpe = $_FILES['photoe']['tmp_name'];
+            $fichiere= $_FILES['photoe']['name'];
+            $extensione=strrchr($fichiere,'.');
+            @move_uploaded_file($tmpe,$dossiere.$nomphotoe.$extensione);
+            // Enlever le fichier temporaire chargé
+            @unlink($tmpe); //effacer le fichier temporaire
+            $photoe=$nomphotoe.$extensione;
+        }
+        $etape = new Etape(0,$_POST['idc'], $_POST['nome'], $photoe, $_POST['descriptione'], $_POST['debut'], $_POST['fin'], $_POST['lieurencontre']);
+        return DaoEtape::getDaoEtape()->MdlE_Enregistrer($etape);
+    }
+
+    function CtrA_EnregistrerJ(){
+        $journee = new Journee(0,$_POST['ide'], $_POST['datej'], $_POST['descriptionj']);
+        return DaoJournee::getDaoJournee()->MdlJ_Enregistrer($journee);  
+    }
+
+    function CtrA_EnregistrerA(){
+        $activite = new Activite(0,$_POST['idj'], $_POST['noma'], $_POST['tempsdebut'], $_POST['tempsfin'], $_POST['descriptiona']);
+        return DaoActivite::getDaoActivite()->MdlA_Enregistrer($activite);
+        
+    }
 
 	function CtrA_Enregistrer(){
         
@@ -90,9 +119,49 @@
         return DaoCircuit::getDaoCircuit()->MdlC_update($circuit);
          
     }
+
+    function CtrA_updateE(){
+        $dossiere="serveur/ressources/images/images_etapes/";
+        $photoc= $_POST['photoeold'];
+        $nomc = $_POST['nome'];
+        if($_FILES['photoe']['tmp_name']!==""){
+            $nomphotoe=sha1($nomc.time());
+            //Upload de la photo
+            $tmpe = $_FILES['photoe']['tmp_name'];
+            $fichiere= $_FILES['photoe']['name'];
+            $extensione=strrchr($fichiere,'.');
+            @move_uploaded_file($tmpe,$dossiere.$nomphotoe.$extensione);
+            // Enlever le fichier temporaire chargé
+            @unlink($tmpe); //effacer le fichier temporaire
+            $photoe=$nomphotoe.$extensione;
+        }
+        $etape = new Etape($_POST['ide'],$_POST['idc'], $_POST['nome'], $photoe, $_POST['descriptione'], $_POST['debut'], $_POST['fin'], $_POST['lieurencontre']);
+        return DaoEtape::getDaoEtape()->MdlE_update($etape);  
+    }
+
+    function CtrA_updateJ(){
+        $journee = new Journee($_POST['idj'], $_POST['ide'], $_POST['datej'], $_POST['descriptionj']);
+        return DaoJournee::getDaoJournee()->MdlJ_update($journee);
+         
+    }
+    function CtrA_updateA(){
+        $activite = new Activite($_POST['ida'], $_POST['idj'], $_POST['noma'], $_POST['tempsdebut'], $_POST['tempsfin'], $_POST['descriptiona']);
+        return DaoActivite::getDaoActivite()->MdlA_update($activite);
+         
+    }
     function CtrA_get($idc){
         return DaoCircuit::getDaoCircuit()->MdlC_get($idc); 
-   }
+    }
+
+    function CtrA_getE($ide){
+        return DaoEtape::getDaoEtape()->MdlE_get($ide); 
+    }
+    function CtrA_getJ($idj){
+        return DaoJournee::getDaoJournee()->MdlJ_get($idj); 
+    }
+    function CtrA_getA($ida){
+        return DaoActivite::getDaoActivite()->MdlA_get($ida); 
+    }
     function CtrA_getAll(){
          return DaoCircuit::getDaoCircuit()->MdlC_getAll(); 
     }
@@ -102,21 +171,44 @@
         switch($action){
             case "enregistrer" :
                 return  $this->CtrA_Enregistrer();
-            case "fiche" :
-                //fiche(); 
-            break;
             case "charger" :
                 $input=$_POST['input'];
                 return  $this->CtrA_get($input); 
             case "modifier" :
                 return  $this->CtrA_update(); 
-            case "enlever" :
-                //enlever(); 
-            break;
+            case "enleverC" :
+                return  $this->CtrA_removeC();
+            case "enleverE" :
+                return  $this->CtrA_removeE();
+            case "enleverJ" :
+                return  $this->CtrA_removeJ();
+            case "enleverA" :
+                return  $this->CtrA_removeA();
             case "lister" :
                 return $this->CtrA_getAll();
             case "deconnecter" :
                 return $this->CtrA_Deconnexion();
+            case "enregistrerE" :
+                return  $this->CtrA_EnregistrerE();
+            case "enregistrerJ" :
+                return  $this->CtrA_EnregistrerJ();
+            case "enregistrerA" :
+                return  $this->CtrA_EnregistrerA();
+            case "chargerE" :
+                $input=$_POST['input'];
+                return  $this->CtrA_getE($input);
+            case "chargerJ" :
+                $input=$_POST['input'];
+                return  $this->CtrA_getJ($input);
+            case "chargerA" :
+                $input=$_POST['input'];
+                return  $this->CtrA_getA($input);
+            case "modifierE" :
+                return  $this->CtrA_updateE();
+            case "modifierJ" :
+                return  $this->CtrA_updateJ();
+            case "modifierA" :
+                return  $this->CtrA_updateA();
         }
         // Retour de la réponse au client
        

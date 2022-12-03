@@ -43,6 +43,25 @@ class DaoEtape {
           return json_encode($this->reponse);
         }
     }
+    function MdlE_get($ide):string {
+        //global $reponse;
+        $connexion = Connexion::getConnexion();
+        $requette="SELECT * FROM etapes WHERE ide=?";
+        try{
+            $donnees = [$ide];
+            $stmt = $connexion->prepare($requette);
+            $stmt->execute($donnees);
+            $reponse['OK'] = true;
+            $reponse['msg'] = "";
+            $reponse['etape'] = $stmt->fetch();
+        }catch (Exception $e){ 
+            $reponse['OK'] = false;
+            $reponse['msg'] = "Problème pour obtenir les données des etapes";
+        }finally {
+          unset($connexion);
+          return json_encode($reponse);
+        }
+    }
 	
     function MdlE_getAll($index):string {
         global $reponse;
@@ -64,5 +83,28 @@ class DaoEtape {
           return json_encode($reponse);
         }
     }
+
+    function MdlE_update(Etape $etape){
+        global $reponse;
+        $connexion =  Connexion::getConnexion();
+        $requette="UPDATE etapes SET idc=?,nome=?,photoe=?,descriptione=?,debut=?,fin=?,lieurencontre=? WHERE ide=?";
+        try{
+            $donnees = [$etape->getIdc(),$etape->getNom(),$etape->getPhotoe(),$etape->getDescriptione(),$etape->getDebut(),$etape->getFin(),$etape->getLieurencontre(),$etape->getIde()];
+            $stmt = $connexion->prepare($requette);
+	        $stmt->execute($donnees);
+            $reponse['OK'] = true;
+            $reponse['msg'] = "Réussite de la modification du etape";
+            $reponse['location'] = "admin.php";
+        }catch (Exception $e){
+            $reponse['OK'] = false;
+            $reponse['msg'] = "Problème pour modifier le etape";
+        }finally {
+            unset($connexion);
+            return json_encode($reponse);
+        }
+	    
+    }
+
+
 }
 ?>
