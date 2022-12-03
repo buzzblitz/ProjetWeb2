@@ -83,5 +83,26 @@ class DaoActivite {
           return json_encode($reponse);
         }
     }
+
+    function MdlA_update(Activite $activite){
+        global $reponse;
+        $connexion =  Connexion::getConnexion();
+        $requette="UPDATE activitees SET idj=?,noma=?,tempsdebut=?,tempsfin=?,descriptiona=? WHERE ida=?";
+        try{
+            $donnees = [$activite->getNom(),$activite->getTempsDebut(),$activite->getTempsFin(),$activite->getDescriptiona(),$activite->getIda()];
+            $stmt = $connexion->prepare($requette);
+	        $stmt->execute($donnees);
+            $reponse['OK'] = true;
+            $reponse['msg'] = "Réussite de la modification du activite";
+            $reponse['location'] = "admin.php";
+        }catch (Exception $e){
+            $reponse['OK'] = false;
+            $reponse['msg'] = "Problème pour modifier le activite";
+        }finally {
+            unset($connexion);
+            return json_encode($reponse);
+        }
+	    
+    }
 }
 ?>
