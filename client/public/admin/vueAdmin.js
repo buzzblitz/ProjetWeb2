@@ -167,30 +167,6 @@ let montrerFormAjouterJournee = () => {
                                 <label for='descriptionj' class='form-label'>Autre information</label>
                                 <input type='text' class='form-control' id='descriptionj' name='descriptionj' value='' required>
                             </div>
-
-                <div class='col-md-12' id='activites'>
-                    <div class='col-md-12'>
-                    <label for='noma' class='form-label'>Nom de l'activite</label>
-                                        <input type='text' class='form-control' id='noma' name='noma' value='' required>
-                                    </div>
-
-                                    <div class='col-md-6'>
-                                        "<label for='tempsdebut' class='form-label'>Heure du debut de l'activiter</label>
-                                        "<input type='time' class='form-control is-valid' id='tempsdebut' name='tempsdebut' required>
-                                    </div>
-                                    <div class='col-md-12'>
-                                    </div>
-                                    <div class='col-md-6'>
-                                        <label for='tempsfin' class='form-labe'>Heure de fin de l'activiter</label>
-                                        <input type='time' class='form-control is-valid' id='tempsfin' name='tempsfin' required>
-                                    </div>
-                                    <div class='col-md-12'>
-                                        <label for='descriptiona' class='form-label'>Description des activiter</label>
-                                        <input type='text' class='form-control' id='descriptiona' name='descriptiona' value='' required>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </div>
                         <div class="col-12">
                             <button class="btn btn-primary" type="button" onclick="requeteEnregistrer();">Enregistrer</button>
                         </div>
