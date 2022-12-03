@@ -105,6 +105,44 @@ class DaoEtape {
 	    
     }
 
+    function mdlE_remove($ide){
+        global $reponse;
+        $connexion =  Connexion::getConnexion();
+        $requettePhoto="SELECT photoe FROM etapes WHERE ide=?";
+        $requette="DELETE FROM etapes WHERE ide=?";
+        try{
+            $donnees = [$ide];
+            $stmt = $connexion->prepare($requettePhoto);
+            $stmt->execute($donnees);
+            $result = $stmt->fetch();
+            $image=$result;
+            if($image!="avatar.png"){
+                $rmImg='../../ressources/images/images_etapes/'.$image;
+                $tabFichiers = glob('../../ressources/images/images_etapes/*');
+                //print_r($tabFichiers);
+                //parcourir les fichier
+                foreach($tabFichiers as $fichier){
+                    if(is_file($fichier) && $fichier==trim($rmImg)) {
+                        // enlever le fichier
+                        unlink($fichier);
+                        break;
+                        //
+                    }
+                }
+            }
+            $stmt = $connexion->prepare($requette);
+            $stmt->execute($donnees);
+            $reponse['OK'] = true;
+            $reponse['msg'] = "Réussite de la supression de l'etape";
+        }catch (Exception $e){
+            $reponse['OK'] = false;
+            $reponse['msg'] = "Problème pour supprimer l'etape";
+        }finally {
+            unset($connexion);
+            return json_encode($reponse);
+        }
+    }
+
 
 }
 ?>
