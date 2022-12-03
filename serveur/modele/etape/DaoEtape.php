@@ -34,6 +34,7 @@ class DaoEtape {
             $stmt->execute($donnees);
             $this->reponse['OK'] = true;
             $this->reponse['msg'] = "Etape bien enregistre";
+            $this->reponse['location'] = "admin.php";
         }catch (Exception $e){
             $this->reponse['OK'] = false;
             $this->reponse['msg'] = "Probléme pour enregistrer le etape";

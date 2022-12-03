@@ -141,7 +141,7 @@ let afficherMessage = (msg) => {
     }, 5000);
 }
 
-afficherModifier = (circuit) => {
+let afficherModifier = (circuit) => {
     let form = `
     <div class="modal fade" id="modalAjouterCircuitSolo" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -152,14 +152,22 @@ afficherModifier = (circuit) => {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="formEnregCircuit" class="row  needs-validation" enctype="multipart/form-data" method="POST">
+                    <form id="formEnregCircuitSolo" class="row  needs-validation" enctype="multipart/form-data" method="POST">
+                        <div class="col-md-12">
+                            <label for="idc" class="form-label">Id du Circuit</label>
+                            <input type="text" class="form-control" id="idc" name="idc" value="`+circuit.idc+`" readonly>
+                        </div>
                         <div class="col-md-12">
                             <label for="nomc" class="form-label">Nom du Circuit</label>
                             <input type="text" class="form-control" id="nomc" name="nomc" value="`+circuit.nomc+`" required>
                         </div>
                         <div class="col-md-12">
+                            <label for="photocold" class="form-label">Id du Circuit</label>
+                            <input type="text" class="form-control" id="photocold" name="photocold" value="`+circuit.photoc+`" readonly>
+                        </div>
+                        <div class="col-md-12">
                             <label for="photoc" class="form-label">Image du Circuit</label>
-                            <input type="file" class="form-control" id="photoc" name="photoc" value="`+circuit.photoc+`" required>
+                            <input type="file" class="form-control" id="photoc" name="photoc" required>
                         </div>
                         <div class="col-md-12">
                             <label for="descriptionc" class="form-label">Description du Circuit</label>
@@ -174,7 +182,7 @@ afficherModifier = (circuit) => {
                             </select>
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrerSolo();">Enregistrer</button>
+                            <button class="btn btn-primary" type="button" onclick="requeteModifier();">Enregistrer</button>
                         </div>
                     </form>
                 </div>
@@ -199,6 +207,14 @@ let montrerVue = (action, donnees) => {
              }
              break;
         case "modifier"     :
+            if(donnees.OK){
+                window.location.href= donnees.location;
+             }else{
+                 msg="Problème+pour+modifier+le+membre.";
+                 console.log(msg);
+                 window.location.href="index.php"; 
+             }
+             break;
         case "charger"      :
             if(donnees.OK){
                 afficherModifier(donnees.circuit);

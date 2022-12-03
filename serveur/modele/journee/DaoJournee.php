@@ -34,6 +34,7 @@ class DaoJournee {
             $stmt->execute($donnees);
             $this->reponse['OK'] = true;
             $this->reponse['msg'] = "Journee bien enregistre";
+            $this->reponse['location'] = "admin.php";
         }catch (Exception $e){
             $this->reponse['OK'] = false;
             $this->reponse['msg'] = "Problème pour enregistrer la journee";

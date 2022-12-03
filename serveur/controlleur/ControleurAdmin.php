@@ -73,7 +73,7 @@
 
     function CtrA_update(){
         $dossierc="serveur/ressources/images/images_circuits/";
-        $photoc="avatar.png";
+        $photoc= $_POST['photocold'];
         $nomc = $_POST['nomc'];
         if($_FILES['photoc']['tmp_name']!==""){
             $nomphotoc=sha1($nomc.time());
@@ -86,9 +86,9 @@
             @unlink($tmpc); //effacer le fichier temporaire
             $photoc=$nomphotoc.$extensionc;
         }
-        $circuit = new Circuit(0, $_POST['nomc'], $photoc, $_POST['descriptionc'], $_POST['etat'],0);
-        $addc = json_decode(DaoCircuit::getDaoCircuit()->MdlC_update($circuit));
-        return json_encode($addc);
+        $circuit = new Circuit($_POST['idc'], $_POST['nomc'], $photoc, $_POST['descriptionc'], $_POST['etat'],0);
+        return DaoCircuit::getDaoCircuit()->MdlC_update($circuit);
+         
     }
     function CtrA_get($idc){
         return DaoCircuit::getDaoCircuit()->MdlC_get($idc); 
@@ -109,8 +109,7 @@
                 $input=$_POST['input'];
                 return  $this->CtrA_get($input); 
             case "modifier" :
-                //modifier(); 
-            break;
+                return  $this->CtrA_update(); 
             case "enlever" :
                 //enlever(); 
             break;
