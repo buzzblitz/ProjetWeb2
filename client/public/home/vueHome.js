@@ -87,7 +87,7 @@ let afficherCarou = () => {
           </div>
         </div>
         <div class="carousel-item">
-          <img src="serveur/ressources/images/Tokyo.jpg" class="d-block w-100 h-100" alt="...">
+          <img src="serveur/ressources/images/images_circuits/`+ unCircuit.photoc + `" class="d-block w-100 h-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h5>Japon</h5>
             <p>Texte de description du circuit</p>
@@ -224,8 +224,31 @@ let listerFilms = (listeFilms) => {
     for (let unFilm of listeFilms) {
         contenu += remplirCard(unFilm);
     }
-    contenu += `</div>`;
-    document.getElementById('contenu').innerHTML = contenu;
+    contenu +=`</div>
+    <div class="carousel-inner">`;
+    for (let i = 0; i < listeCircuits.length; i++) {
+        if(i == 0) {
+            contenu += `<div class="carousel-item active">
+            <img src="serveur/ressources/images/images_circuits/` + listeCircuits[0].photoc + `" class="d-block w-100 h-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>` + listeCircuits[0].nomc + `</h5>
+              <p>` + listeCircuits[0].descriptionc + `</p>
+            </div>
+            </div>`;
+        } else {
+            contenu += afficherCarou(listeCircuits[i]);
+        }
+    }
+    contenu += `</div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>`;
+    document.getElementById('carouselExampleCaptions').innerHTML = contenu;
 }
 
 let afficherMessage = (msg) => {
