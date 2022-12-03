@@ -104,5 +104,24 @@ class DaoActivite {
         }
 	    
     }
+    
+    function mdlA_remove($ida){
+        global $reponse;
+        $connexion =  Connexion::getConnexion();
+        $requette="DELETE FROM activites WHERE ida=?";
+        try{
+            $donnees = [$ida];
+            $stmt = $connexion->prepare($requette);
+            $stmt->execute($donnees);
+            $reponse['OK'] = true;
+            $reponse['msg'] = "Réussite de la supression de l'etape";
+        }catch (Exception $e){
+            $reponse['OK'] = false;
+            $reponse['msg'] = "Problème pour supprimer l'etape";
+        }finally {
+            unset($connexion);
+            return json_encode($reponse);
+        }
+    }
 }
 ?>
