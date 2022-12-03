@@ -31,7 +31,7 @@ CREATE TABLE circuits (
   photoc VARCHAR(255)DEFAULT NULL,
   descriptionc VARCHAR(255) NOT NULL,
   etat VARCHAR(4) NOT NULL,
-  prix INTEGER DEFAULT NULL
+  prix INTEGER DEFAULT(0)
 );
 
 CREATE TABLE etapes (
