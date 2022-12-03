@@ -1,3 +1,19 @@
+let chargerCircuitsMembreAJAX = () => {
+    $.ajax({
+        type : "POST",
+        url  : "../../membres.php",
+        data : {"action":"lister"},
+        dataType : "json", //text pour voir si bien formé même chose pour xml
+        success : (listerCircuits) => {//alert(listeFilms);
+            // listeFilms = reponse;
+        	montrerVue("lister", listerCircuits);
+        },
+        fail : (err) => {
+            //Décider du message
+        }
+    })
+}
+
 let remplirCard = (unCircuit)=> {
     let rep =    ' <div class="col">';
     rep +='<div class="card">';
