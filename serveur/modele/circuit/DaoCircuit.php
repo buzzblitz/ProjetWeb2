@@ -75,6 +75,7 @@ class DaoCircuit {
 	        $stmt->execute($donnees);
             $reponse['OK'] = true;
             $reponse['msg'] = "Réussite de la modification du circuit";
+            $reponse['location'] = "admin.php";
         }catch (Exception $e){
             $reponse['OK'] = false;
             $reponse['msg'] = "Problème pour modifier le circuit";

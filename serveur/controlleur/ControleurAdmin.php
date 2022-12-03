@@ -71,7 +71,28 @@
         return json_encode($addc);
     }
 
-
+    function CtrA_update(){
+        $dossierc="serveur/ressources/images/images_circuits/";
+        $photoc="avatar.png";
+        $nomc = $_POST['nomc'];
+        if($_FILES['photoc']['tmp_name']!==""){
+            $nomphotoc=sha1($nomc.time());
+            //Upload de la photo
+            $tmpc = $_FILES['photoc']['tmp_name'];
+            $fichierc= $_FILES['photoc']['name'];
+            $extensionc=strrchr($fichierc,'.');
+            @move_uploaded_file($tmpc,$dossierc.$nomphotoc.$extensionc);
+            // Enlever le fichier temporaire chargé
+            @unlink($tmpc); //effacer le fichier temporaire
+            $photoc=$nomphotoc.$extensionc;
+        }
+        $circuit = new Circuit(0, $_POST['nomc'], $photoc, $_POST['descriptionc'], $_POST['etat'],0);
+        $addc = json_decode(DaoCircuit::getDaoCircuit()->MdlC_update($circuit));
+        return json_encode($addc);
+    }
+    function CtrA_get($idc){
+        return DaoCircuit::getDaoCircuit()->MdlC_getAll(); 
+   }
     function CtrA_getAll(){
          return DaoCircuit::getDaoCircuit()->MdlC_getAll(); 
     }
