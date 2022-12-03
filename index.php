@@ -22,7 +22,7 @@
     <script src="client/public/home/vueHome.js"></script>
 
 </head>
-<body onload="javascript:afficherCarou()">
+<body onload="javascript: chargerCircuitsAJAX();">
     
      <?php 
       // include_once('serveur/includes/menu_accueil.inc.php'); 
@@ -31,7 +31,7 @@
         <!-- <nav class="navbar navbar-expand-lg bg-nav-perso"> -->
     <nav class="navbar navbar-expand-lg bg-nav-perso">
         <div class="container-fluid">
-            <a class="navbar-brand" href="javascript: afficherCarou();"></a>
+            <a class="navbar-brand" href="javascript: chargerCircuitsAJAX();"></a>
             <img  src="serveur/ressources/images/logo_sanstexte.jpg" alt="Logo" width="60" height="50" class="d-inline-block align-text-top">
             <div id="logo_text" >The Luxury Traveler</div>
             </a>
@@ -43,7 +43,7 @@
                
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="javascript: afficherCarou();">Accueil</a>
+                        <a class="nav-link" href="javascript: chargerCircuitsAJAX();">Accueil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="javascript: montrerFormEnreg();">Enregistrer</a>

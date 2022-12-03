@@ -4,6 +4,7 @@
 
     require_once(__DIR__."/../modele/membre/DaoMembre.php");
     require_once(__DIR__."/../modele/connexion/DaoConnexionM.php");
+    require_once(__DIR__."/../modele/circuit/DaoCircuit.php");
     session_start();
 
  class ControleurHome { 
@@ -51,21 +52,21 @@
 
     function CtrH_Connexion(){
         $connexionM = new ConnexionM(0, $_POST['courrielc'], $_POST['passc'], 'A', 'M');
-         $fyphp = json_decode(DaoConnexionM::getDaoConnexionM()->MdlCM_Connexion($connexionM));
-         if($fyphp->OK) {
-            if($fyphp->role == 'M') {
-                $tmp = json_decode(DaoMembre::getDaoMembre()->obtenirPhotoMembre($fyphp->idm));
-                $fyphp->OK = $tmp->OK;
-                return json_encode($fyphp);
+         $fuckyou = json_decode(DaoConnexionM::getDaoConnexionM()->MdlCM_Connexion($connexionM));
+         if($fuckyou->OK) {
+            if($fuckyou->role == 'M') {
+                $tmp = json_decode(DaoMembre::getDaoMembre()->obtenirPhotoMembre($fuckyou->idm));
+                $fuckyou->OK = $tmp->OK;
+                return json_encode($fuckyou);
             } else {
-                return json_encode($fyphp);
+                return json_encode($fuckyou);
             }
          }
-         return json_encode($fyphp);
+         return json_encode($fuckyou);
     }
 
     function CtrH_getAll(){
-         return DaoFilm::getDaoFilm()->MdlF_getAll(); 
+         return DaoCircuit::getDaoCircuit()->MdlC_getAll(); 
     }
 
     function CtrH_Actions(){
