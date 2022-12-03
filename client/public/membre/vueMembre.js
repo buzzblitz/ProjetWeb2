@@ -1,3 +1,25 @@
+let remplirCard = (unCircuit)=> {
+    let rep =    ' <div class="col">';
+    rep +='<div class="card">';
+                 rep +=' <img src="../ressources/images/images_circuits/'+unCircuit.photoc+'" class="card-img-top tailleImg" alt="...">';
+                 rep +=' <div class="card-body">';
+                 rep +=' <h5 class="card-title">'+unCircuit.nomc+'</h5>';
+                 rep +=' <p class="card-text">Description : '+unCircuit.descriptionc+'</p>';
+                 rep +=' <a href="#" onClick="acheterCircuit(this,unCircuit.title);" class="btn btn-primary"><span style="font-size:18px; color:white;">Ajouter au panier</span></a>';
+                 rep +=' </div>';
+                 rep +=' </div>';
+                 rep +=' </div>';
+        return rep;
+}
+
+let listerCircuits = (listeCircuits) => {
+    let contenu = `<div class="row row-cols-4">`;
+    for (let unCircuit of listeCircuits){
+            contenu+=remplirCard(unCircuit);
+    } 
+    contenu += `</div>`;
+    document.getElementById('contenu').innerHTML = contenu;
+}
 let montrerVue = (action, donnees) => {
 
     switch(action){

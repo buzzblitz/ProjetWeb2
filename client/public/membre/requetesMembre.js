@@ -1,7 +1,7 @@
 let chargerCircuitsAJAX = () => {
     $.ajax({
         type : "POST",
-        url  : "../../routeAdmin.php",
+        url  : "../../routeMembre.php",
         data : {"action":"lister"},
         dataType : "json", //text pour voir si bien formé même chose pour xml
         success : (listeCircuits) => {//alert(listeFilms);
