@@ -108,7 +108,7 @@ let montrerFormAjouterCircuit = () => {
     $('#modalAjouterCircuit').modal('show');
 }
 
-let montrerFormAjouterEtape = () => {
+let montrerFormAjouteEtape = () => {
     let form = `
     <div class="modal fade" id="modalAjouterEtape" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
