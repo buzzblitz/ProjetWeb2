@@ -43,6 +43,26 @@ class DaoJournee {
           return json_encode($this->reponse);
         }
     }
+
+    function MdlJ_get($idj):string {
+        //global $reponse;
+        $connexion = Connexion::getConnexion();
+        $requette="SELECT * FROM journees WHERE idj=?";
+        try{
+            $donnees = [$idj];
+            $stmt = $connexion->prepare($requette);
+            $stmt->execute($donnees);
+            $reponse['OK'] = true;
+            $reponse['msg'] = "";
+            $reponse['journee'] = $stmt->fetch();
+        }catch (Exception $e){ 
+            $reponse['OK'] = false;
+            $reponse['msg'] = "Problème pour obtenir les données des etapes";
+        }finally {
+          unset($connexion);
+          return json_encode($reponse);
+        }
+    }
 	
     function MdlJ_getAll($ide):string {
         global $reponse;
