@@ -16,15 +16,16 @@
     <title>Membre</title>
     <link rel="stylesheet" href="../../client/public/css/style.css">
     <link rel="stylesheet" href="../../client/utilitaires/bootstrap-5.1.3-dist/css/bootstrap.min.css">
-    <script src="../../client/public/js/global.js"></script>
+    <script src="../../client/utilitaires/jquery-3.6.0.min.js"></script>
+    <script src="../../client/utilitaires/bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
     <script src="../../client/public/membre/requetesMembre.js"></script>
     <script src="../../client/public/membre/vueMembre.js"></script>
-    <script src="../../client/public/js/panier.js"></script>
     </head>
     <body onload="javascript:chargerCircuitsAJAX();">
     <?php
         require_once("menu_membre.inc.php");
     ?>
-    </body>
     <div id='contenu'></div>
+    </body>
+    
 </html>
