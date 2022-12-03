@@ -165,18 +165,6 @@
     function CtrA_getAll(){
          return DaoCircuit::getDaoCircuit()->MdlC_getAll(); 
     }
-    function CtrA_removeC($idc){
-        return DaoCircuit::getDaoCircuit()->MdlC_remove($idc); 
-   }
-   function CtrA_removeE($ide){
-    return DaoEtape::getDaoEtape()->MdlE_remove($ide); 
-    }
-    function CtrA_removeJ($idj){
-        return DaoJournee::getDaoJournee()->MdlJ_remove($idj); 
-    }
-    function CtrA_removeA($ida){
-        return DaoActivite::getDaoActivite()->MdlA_remove($ida); 
-    }
 
     function CtrA_Actions(){
         $action=$_POST['action'];
@@ -189,17 +177,13 @@
             case "modifier" :
                 return  $this->CtrA_update(); 
             case "enleverC" :
-                $input=$_POST['input'];
-                return  $this->CtrA_removeC($input);
+                return  $this->CtrA_removeC();
             case "enleverE" :
-                $input=$_POST['input'];
-                return  $this->CtrA_removeE($input);
+                return  $this->CtrA_removeE();
             case "enleverJ" :
-                $input=$_POST['input'];
-                return  $this->CtrA_removeJ($input);
+                return  $this->CtrA_removeJ();
             case "enleverA" :
-                $input=$_POST['input'];
-                return  $this->CtrA_removeA($input);
+                return  $this->CtrA_removeA();
             case "lister" :
                 return $this->CtrA_getAll();
             case "deconnecter" :

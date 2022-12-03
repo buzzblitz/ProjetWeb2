@@ -1,12 +1,12 @@
-let chargerCircuistAJAX = () => {
+let chargerFilmsAJAX = () => {
     $.ajax({
         type : "POST",
         url  : "routeHome.php",
         data : {"action":"lister"},
         dataType : "json", //text pour voir si bien formé même chose pour xml
-        success : (listeCircuits) => {//alert(listeFilms);
+        success : (listeFilms) => {//alert(listeFilms);
             // listeFilms = reponse;
-        	montrerVue("lister", listeCircuits);
+        	montrerVue("lister", listeFilms);
         },
         fail : (err) => {
             //Décider du message
