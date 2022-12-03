@@ -108,11 +108,23 @@ let montrerFormAjouterCircuit = () => {
     $('#modalAjouterCircuit').modal('show');
 }
 
-let montrerFormAjouterEtape = () => {
+let montrerFormAjouterEtape = (idc) => {
     let form = `
     <div class="modal fade" id="modalAjouterEtape" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class='col-md-12'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Enregistrer une Etape</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEnregEtape" class="row  needs-validation" enctype="multipart/form-data" method="POST">
+                        <div class='col-md-12'>
+                            <label for='idc' class='form-label'>Id Circuit associé</label>
+                            <input type='text' class='form-control' id='idc' name='idc' value='`+idc+`' readonly>
+                        </div>
+                        <div class='col-md-12'>
                             <label for='nome' class='form-label'>Etape</label>
                             <input type='text' class='form-control' id='nome' name='nome' value='' required>
                         </div>
@@ -139,7 +151,7 @@ let montrerFormAjouterEtape = () => {
                             <input type='text' class='form-control' id='lieurencontre' name='lieurencontre' value='' required>
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrer();">Enregistrer</button>
+                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrerE();">Enregistrer</button>
                         </div>
                     </form>
                 </div>
@@ -151,24 +163,32 @@ let montrerFormAjouterEtape = () => {
     $('#modalAjouterEtape').modal('show');
 }
 
-let montrerFormAjouterJournee = () => {
+let montrerFormAjouterJournee = (ide) => {
     let form = `
     <div class="modal fade" id="modalAjouterJournee" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-            <div class='col-md-12' id='journees'>
-            <div class='col-md-12'>
-                            <label for='journee' class='form-label'>Journee</label>
-                            </div>
-                            <div class='col-md-6'>
-                                <label for='datej' class='form-label'>Date</label>
-                                <input type='date' class='form-control is-valid' id='datej' name='datej' required>
-                            </div>
-                            <div class='col-md-12'>
-                                <label for='descriptionj' class='form-label'>Autre information</label>
-                                <input type='text' class='form-control' id='descriptionj' name='descriptionj' value='' required>
-                            </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Enregistrer une Journee</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEnregJournee" class="row  needs-validation" enctype="multipart/form-data" method="POST">
+                        <div class='col-md-12'>
+                            <label for='ide' class='form-label'>Id Etape associé</label>
+                            <input type='text' class='form-control' id='ide' name='ide' value='`+ide+`' readonly>
+                        </div>
+                        <div class='col-md-6'>
+                            <label for='datej' class='form-label'>Date</label>
+                               <input type='date' class='form-control is-valid' id='datej' name='datej' required>
+                        </div>
+                        <div class='col-md-12'>
+                            <label for='descriptionj' class='form-label'>Autre information</label>
+                            <input type='text' class='form-control' id='descriptionj' name='descriptionj' value='' required>
+                        </div>
                         <div class="col-12">
-                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrer();">Enregistrer</button>
+                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrerJ();">Enregistrer</button>
                         </div>
                     </form>
                 </div>
@@ -181,35 +201,40 @@ let montrerFormAjouterJournee = () => {
 }
 
 
-let montrerFormAjouterActivitee = () => {
+let montrerFormAjouterActivite = (idj) => {
     let form = `
-    <div class="modal fade" id="modalAjouterCircuit" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="modalAjouterActivite" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-                <div class='col-md-12' id='activites'>
-                    <div class='col-md-12'>
-                    <label for='noma' class='form-label'>Nom de l'activite</label>
-                                        <input type='text' class='form-control' id='noma' name='noma' value='' required>
-                                    </div>
-
-                                    <div class='col-md-6'>
-                                        "<label for='tempsdebut' class='form-label'>Heure du debut de l'activiter</label>
-                                        "<input type='time' class='form-control is-valid' id='tempsdebut' name='tempsdebut' required>
-                                    </div>
-                                    <div class='col-md-12'>
-                                    </div>
-                                    <div class='col-md-6'>
-                                        <label for='tempsfin' class='form-labe'>Heure de fin de l'activiter</label>
-                                        <input type='time' class='form-control is-valid' id='tempsfin' name='tempsfin' required>
-                                    </div>
-                                    <div class='col-md-12'>
-                                        <label for='descriptiona' class='form-label'>Description des activiter</label>
-                                        <input type='text' class='form-control' id='descriptiona' name='descriptiona' value='' required>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Enregistrer une Journee</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEnregActivite" class="row  needs-validation" enctype="multipart/form-data" method="POST">
+                        <div class='col-md-12'>
+                            <label for='idj' class='form-label'>Id Journee associée</label>
+                            <input type='text' class='form-control' id='idj' name='idj' value='`+idj+`' readonly>
+                        </div>
+                        <div class='col-md-12'>
+                            <label for='noma' class='form-label'>Nom de l'activite</label>
+                            <input type='text' class='form-control' id='noma' name='noma' value='' required>
+                        </div>
+                        <div class='col-md-6'>
+                            <label for='tempsdebut' class='form-label'>Heure du debut de l'activiter</label>
+                            <input type='time' class='form-control is-valid' id='tempsdebut' name='tempsdebut' required>
+                        </div>
+                        <div class='col-md-6'>
+                            <label for='tempsfin' class='form-labe'>Heure de fin de l'activiter</label>
+                            <input type='time' class='form-control is-valid' id='tempsfin' name='tempsfin' required>
+                        </div>
+                            <div class='col-md-12'>
+                                <label for='descriptiona' class='form-label'>Description des activiter</label>
+                            <input type='text' class='form-control' id='descriptiona' name='descriptiona' value='' required>
+                        </div>        
                         <div class="col-12">
-                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrer();">Enregistrer</button>
+                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrerA();">Enregistrer</button>
                         </div>
                     </form>
                 </div>
@@ -218,7 +243,7 @@ let montrerFormAjouterActivitee = () => {
     </div>
     `;
     document.getElementById('contenu').innerHTML = form;
-    $('#modalAjouterActivitee').modal('show');
+    $('#modalAjouterActivite').modal('show');
 }
 
 let remplirCard = (unCircuit)=> {
@@ -311,12 +336,12 @@ let montrerVue = (action, donnees) => {
         case "enregistrer"  :
             if(donnees.OK){
                 window.location.href= donnees.location;
-             }else{
-                 msg="Problème+pour+enregistré+le+membre.";
-                 console.log(msg);
-                 window.location.href="index.php"; 
-             }
-             break;
+            }else{
+                msg="Problème+avec+enregistrement";
+                console.log(msg);
+                window.location.href="index.php"; 
+            }
+            break;
         case "modifier"     :
             if(donnees.OK){
                 window.location.href= donnees.location;

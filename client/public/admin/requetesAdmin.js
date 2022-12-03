@@ -50,6 +50,69 @@ let requeteEnregistrer = () => {
 	});
 }
 
+let requeteEnregistrerE = () => {
+	let formEtape = new FormData(document.getElementById('formEnregEtape'));
+	formEtape.append('action','enregistrerE');
+	$.ajax({
+		type : 'POST',
+		url : '../../routeAdmin.php',
+		data : formEtape, //$('#formEnreg').serialize()
+		//async : false,
+		//cache : false,
+		contentType : false,
+		processData : false,
+        dataType : 'json', //text pour le voir en format de string
+		success : function (reponse){//alert(reponse);
+					montrerVue("enregistrer", reponse);
+		},
+		fail : function (err){
+		   
+		}
+	});
+}
+
+let requeteEnregistrerJ = () => {
+	let formJournee = new FormData(document.getElementById('formEnregJournee'));
+	formJournee.append('action','enregistrerJ');
+	$.ajax({
+		type : 'POST',
+		url : '../../routeAdmin.php',
+		data : formJournee, //$('#formEnreg').serialize()
+		//async : false,
+		//cache : false,
+		contentType : false,
+		processData : false,
+        dataType : 'json', //text pour le voir en format de string
+		success : function (reponse){//alert(reponse);
+					montrerVue("enregistrer", reponse);
+		},
+		fail : function (err){
+		   
+		}
+	});
+}
+
+let requeteEnregistrerA = () => {
+	let formActivite = new FormData(document.getElementById('formEnregActivite'));
+	formActivite.append('action','enregistrerA');
+	$.ajax({
+		type : 'POST',
+		url : '../../routeAdmin.php',
+		data : formActivite, //$('#formEnreg').serialize()
+		//async : false,
+		//cache : false,
+		contentType : false,
+		processData : false,
+        dataType : 'json', //text pour le voir en format de string
+		success : function (reponse){//alert(reponse);
+					montrerVue("enregistrer", reponse);
+		},
+		fail : function (err){
+		   
+		}
+	});
+}
+
 let requeteModifier = () => {
 	let formCircuit = new FormData(document.getElementById('formEnregCircuitSolo'));
 	formCircuit.append('action','modifier');
