@@ -95,3 +95,8 @@ INSERT INTO `membres` (`idm`, `prenom`, `nom`, `courriel`, `sexe`, `daten`, `pho
 (2, 'Admin', 'Admin', 'admin@tlt.com', 'A', '0001-01-01', 'avatar.png');
 INSERT INTO `connexion` (`idm`, `courriel`, `pass`, `etat`, `role`) VALUES
 (2, 'admin@tlt.com', 'Admin@1234', 'A', 'A');
+
+INSERT INTO `membres` (`idm`, `prenom`, `nom`, `courriel`, `sexe`, `daten`, `photom`) VALUES
+(3, 'Membre', 'Membre', 'membre@tlt.com', 'A', '0001-01-01', 'avatar.png');
+INSERT INTO `connexion` (`idm`, `courriel`, `pass`, `etat`, `role`) VALUES
+(3, 'Membre@tlt.com', 'Membre@123', 'A', 'M');
