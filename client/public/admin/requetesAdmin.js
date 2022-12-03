@@ -14,7 +14,7 @@ let chargerCircuitsAJAX = () => {
     })
 }
 
-let requeteModifierCircuit = (idc) => {
+let requeteAfficherCircuit = (idc) => {
 	$.ajax({
         type : "POST",
         url  : "../../routeAdmin.php",
@@ -30,10 +30,8 @@ let requeteModifierCircuit = (idc) => {
 }
 
 let requeteEnregistrer = () => {
-	console.log("tonperedinfesse");
 	let formCircuit = new FormData(document.getElementById('formEnregCircuit'));
 	formCircuit.append('action','enregistrer');
-	console.log("tamere");
 	$.ajax({
 		type : 'POST',
 		url : '../../routeAdmin.php',
@@ -45,6 +43,27 @@ let requeteEnregistrer = () => {
         dataType : 'json', //text pour le voir en format de string
 		success : function (reponse){//alert(reponse);
 					montrerVue("enregistrer", reponse);
+		},
+		fail : function (err){
+		   
+		}
+	});
+}
+
+let requeteModifier = () => {
+	let formCircuit = new FormData(document.getElementById('formEnregCircuitSolo'));
+	formCircuit.append('action','modifier');
+	$.ajax({
+		type : 'POST',
+		url : '../../routeAdmin.php',
+		data : formCircuit, //$('#formEnreg').serialize()
+		//async : false,
+		//cache : false,
+		contentType : false,
+		processData : false,
+        dataType : 'json', //text pour le voir en format de string
+		success : function (reponse){//alert(reponse);
+					montrerVue("modifier", reponse);
 		},
 		fail : function (err){
 		   

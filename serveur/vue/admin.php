@@ -95,8 +95,8 @@ require_once("menu_admin.inc.php");
                             <button type="button" class="btn btn-success" onClick="montrerFormAjouterCircuit();">
                                 <i class="bi bi-plus-circle"></i>
                                 <span>Ajouter</span></button>
-                            <button type="button" class="btn btn-danger" onClick="enleverMultiplesArticles();">
-                                <i class="bi bi-dash-circle"></i> <span>Enlever</span></button>
+                            <button type="button" class="btn btn-danger" onClick="requeteAfficherCircuit(6);">
+                                <i class="bi bi-dash-circle"></i> <span>Modifier</span></button>
                         </div>
                     </div>
                 </div>
