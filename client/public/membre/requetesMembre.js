@@ -17,7 +17,7 @@ let chargerCircuitsAJAX = () => {
 let requeteAfficherCircuit = (idc) => {
 	$.ajax({
         type : "POST",
-        url  : "../../routeAdmin.php",
+        url  : "../../routeMembre.php",
         data : {"action":"charger","input":idc},
         dataType : "json", //text pour voir si bien formé même chose pour xml
         success : function (reponse){
@@ -34,7 +34,7 @@ let requeteEnregistrer = () => {
 	formCircuit.append('action','enregistrer');
 	$.ajax({
 		type : 'POST',
-		url : '../../routeAdmin.php',
+		url : '../../routeMembre.php',
 		data : formCircuit, //$('#formEnreg').serialize()
 		//async : false,
 		//cache : false,
@@ -116,5 +116,20 @@ let requeteDeconnexion = () => {
 	});
 }
 
+	let detailCircuit = (idc) => {
+		$.ajax({
+			type : "POST",
+			url  : "../../routeMembre.php",
+			data : {"action":"detailler","input":idc},
+			dataType : "json", //text pour voir si bien formé même chose pour xml
+			success : function (reponse){
+				montrerVue("detailler", reponse);
+			},
+			fail : (err) => {
+				//Décider du message
+			}
+		})
+
+}
 
 
