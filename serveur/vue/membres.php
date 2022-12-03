@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="../../client/utilitaires/bootstrap-5.1.3-dist/css/bootstrap.min.css">
     <script src="../../client/public/js/global.js"></script>
 </head>
+<body onload="javascript:chargerCircuitsMembreAJAX()">
 <body>
     <!-- Barre de navigation -->
     <nav class="navbar navbar-expand-lg bg-nav-perso">
