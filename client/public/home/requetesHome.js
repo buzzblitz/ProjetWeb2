@@ -4,9 +4,9 @@ let chargerCircuistAJAX = () => {
         url  : "routeHome.php",
         data : {"action":"lister"},
         dataType : "json", //text pour voir si bien formé même chose pour xml
-        success : (listeFilms) => {//alert(listeFilms);
+        success : (listeCircuits) => {//alert(listeFilms);
             // listeFilms = reponse;
-        	montrerVue("lister", listeFilms);
+        	montrerVue("lister", listeCircuits);
         },
         fail : (err) => {
             //Décider du message

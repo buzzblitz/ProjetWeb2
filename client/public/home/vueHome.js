@@ -191,12 +191,9 @@ let remplirCard = (unFilm) => {
 }
 
 let listerCircuits = (listeCircuits) => {
-    if(listeCircuits == undefined) {
-        console.log("salut");
-    } else {
     let contenu = `<div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>`;
-    for (let i = 1; i < listeCircuits.length-1; i++) {
+    for (let i = 1; i < listeCircuits.length; i++) {
         contenu +=` <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="` + i +`" aria-label="Slide `+ (i+1) +`"></button>`;
     }
     contenu +=`</div>
@@ -224,7 +221,6 @@ let listerCircuits = (listeCircuits) => {
       <span class="visually-hidden">Next</span>
     </button>`;
     document.getElementById('carouselExampleCaptions').innerHTML = contenu;
-}
 }
 
 let afficherMessage = (msg) => {
@@ -268,8 +264,8 @@ let montrerVue = (action, donnees) => {
             break;
         case "lister":
             
-            if (donnees.listerCircuits !== undefined) {
-                listerCircuits(donnees.listerCircuits);
+            if (donnees.OK) {
+                listerCircuits(donnees.listeCircuits);
             } else {
                 console.log(donnees.msg);
             }
