@@ -63,10 +63,10 @@ class DaoActivite {
         }
     }
 	
-    function MdlA_getAll():string {
+    function MdlA_getAll($index):string {
         global $reponse;
         $connexion = Connexion::getConnexion();
-        $requette="SELECT * FROM activites";
+        $requette="SELECT * FROM activites WHERE idj =" + $index;
         try{
             $stmt = $connexion->prepare($requette);
             $stmt->execute();

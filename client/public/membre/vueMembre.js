@@ -85,6 +85,7 @@ let montrerVue = (action, donnees) => {
         break;
         case "deconnexion"  :
             if(donnees.OK){
+
                 window.location.href= donnees.location;   
             }else{
                 console.log(donnees.msg); 
