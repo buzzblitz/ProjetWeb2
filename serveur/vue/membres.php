@@ -19,6 +19,7 @@
     <script src="../../client/public/js/global.js"></script>
     <script src="../../client/public/membre/requetesMembre.js"></script>
     <script src="../../client/public/membre/vueMembre.js"></script>
+    <script src="../../client/public/js/panier.js"></script>
     </head>
     <body onload="javascript:chargerCircuitsAJAX();">
     <?php
