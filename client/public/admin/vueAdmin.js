@@ -1,4 +1,3 @@
-
 let montrerFormAjouterCircuit = () => {
     let form = `
     <div class="modal fade" id="modalAjouterCircuit" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -109,6 +108,142 @@ let montrerFormAjouterCircuit = () => {
     $('#modalAjouterCircuit').modal('show');
 }
 
+let montrerFormAjouteEtape = () => {
+    let form = `
+    <div class="modal fade" id="modalAjouterEtape" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class='col-md-12'>
+                            <label for='nome' class='form-label'>Etape</label>
+                            <input type='text' class='form-control' id='nome' name='nome' value='' required>
+                        </div>
+                        <div class='col-md-12'>
+                            <label for='photoe' class='form-label'>Image de l'Etape</label>
+                            <input type='file' class='form-control' id='photoe' name='photoe' value='' required>
+                        </div>
+                        <div class='col-md-12'>
+                            <label for='descriptione' class='form-label'>Description de l'Etape</label>
+                            <input type='text' class='form-control' id='descriptione' name='descriptione' value='' required>
+                        </div>
+                        <div class='col-md-6'>
+                        <label for='debut' class='form-label'>Date du Debut</label>
+                            <input type='date' class='form-control is-valid' id='debut' name='debut' required>
+                        </div>
+                        <div class='col-md-12'>
+                        </div>
+                        <div class='col-md-6'>
+                            <label for='fin' class='form-label'>Date de la Fin</label>
+                            <input type='date' class='form-control is-valid' id='fin' name='fin' required>
+                        </div>
+                        <div class='col-md-12'>
+                            <label for='lieurencontre' class='form-label'>Lieu de rencontre pour le Diner</label>
+                            <input type='text' class='form-control' id='lieurencontre' name='lieurencontre' value='' required>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrer();">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+    document.getElementById('contenu').innerHTML = form;
+    $('#modalAjouterEtape').modal('show');
+}
+
+let montrerFormAjouterJournee = () => {
+    let form = `
+    <div class="modal fade" id="modalAjouterJournee" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+            <div class='col-md-12' id='journees'>
+            <div class='col-md-12'>
+                            <label for='journee' class='form-label'>Journee</label>
+                            </div>
+                            <div class='col-md-6'>
+                                <label for='datej' class='form-label'>Date</label>
+                                <input type='date' class='form-control is-valid' id='datej' name='datej' required>
+                            </div>
+                            <div class='col-md-12'>
+                                <label for='descriptionj' class='form-label'>Autre information</label>
+                                <input type='text' class='form-control' id='descriptionj' name='descriptionj' value='' required>
+                            </div>
+
+                <div class='col-md-12' id='activites'>
+                    <div class='col-md-12'>
+                    <label for='noma' class='form-label'>Nom de l'activite</label>
+                                        <input type='text' class='form-control' id='noma' name='noma' value='' required>
+                                    </div>
+
+                                    <div class='col-md-6'>
+                                        "<label for='tempsdebut' class='form-label'>Heure du debut de l'activiter</label>
+                                        "<input type='time' class='form-control is-valid' id='tempsdebut' name='tempsdebut' required>
+                                    </div>
+                                    <div class='col-md-12'>
+                                    </div>
+                                    <div class='col-md-6'>
+                                        <label for='tempsfin' class='form-labe'>Heure de fin de l'activiter</label>
+                                        <input type='time' class='form-control is-valid' id='tempsfin' name='tempsfin' required>
+                                    </div>
+                                    <div class='col-md-12'>
+                                        <label for='descriptiona' class='form-label'>Description des activiter</label>
+                                        <input type='text' class='form-control' id='descriptiona' name='descriptiona' value='' required>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrer();">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+    document.getElementById('contenu').innerHTML = form;
+    $('#modalAjouterJournee').modal('show');
+}
+
+
+let montrerFormAjouterActivitee = () => {
+    let form = `
+    <div class="modal fade" id="modalAjouterCircuit" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+                <div class='col-md-12' id='activites'>
+                    <div class='col-md-12'>
+                    <label for='noma' class='form-label'>Nom de l'activite</label>
+                                        <input type='text' class='form-control' id='noma' name='noma' value='' required>
+                                    </div>
+
+                                    <div class='col-md-6'>
+                                        "<label for='tempsdebut' class='form-label'>Heure du debut de l'activiter</label>
+                                        "<input type='time' class='form-control is-valid' id='tempsdebut' name='tempsdebut' required>
+                                    </div>
+                                    <div class='col-md-12'>
+                                    </div>
+                                    <div class='col-md-6'>
+                                        <label for='tempsfin' class='form-labe'>Heure de fin de l'activiter</label>
+                                        <input type='time' class='form-control is-valid' id='tempsfin' name='tempsfin' required>
+                                    </div>
+                                    <div class='col-md-12'>
+                                        <label for='descriptiona' class='form-label'>Description des activiter</label>
+                                        <input type='text' class='form-control' id='descriptiona' name='descriptiona' value='' required>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrer();">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+    document.getElementById('contenu').innerHTML = form;
+    $('#modalAjouterActivitee').modal('show');
+}
 
 let remplirCard = (unCircuit)=> {
     let rep =    ' <div class="col">';
