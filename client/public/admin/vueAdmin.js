@@ -246,27 +246,165 @@ let montrerFormAjouterActivite = (idj) => {
     $('#modalAjouterActivite').modal('show');
 }
 
-let remplirCard = (unCircuit)=> {
-    let rep =    ' <div class="col">';
-    rep +='<div class="card">';
-                 rep +=' <img src="../ressources/images/images_circuits/'+unCircuit.photoc+'" class="card-img-top tailleImg" alt="...">';
-                 rep +=' <div class="card-body">';
-                 rep +=' <h5 class="card-title">'+unCircuit.nomc+'</h5>';
-                 rep +=' <p class="card-text">Description : '+unCircuit.descriptionc+'</p>';
-                 rep +=' <a href="#" onClick="acheterCircuit(this,unCircuit.title);" class="btn btn-primary"><span style="font-size:18px; color:white;">Ajouter au panier</span></a>';
-                 rep +=' </div>';
-                 rep +=' </div>';
-                 rep +=' </div>';
-        return rep;
+let afficherTableCircuits = () => {
+    let rep = `
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <h2>Circuits</h2>
+                        </div>
+                        <div class="col-sm-7">
+                            <nav class="navbar">
+                                <ul>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink"
+                                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Catégories
+                                        </a>
+                                        <ul id="selCategs" class="dropdown-menu dropdown-menu-dark"
+                                            aria-labelledby="navbarDarkDropdownMenuLink">
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink"
+                                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Trier par
+                                        </a>
+                                        <ul id="selCategs" class="dropdown-menu dropdown-menu-dark"
+                                            aria-labelledby="navbarDarkDropdownMenuLink">
+                                            <li>
+                                                <a class="dropdown-item"
+                                                    href="javascript:obtenirXML('titre');">Titre</a>
+                                                <a class="dropdown-item" href="javascript:obtenirXML('titre');">Prix</a>
+                                                <a class="dropdown-item"
+                                                    href="javascript:obtenirXML('titre');">Numéro</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li class="nav-item">
+                                        <form class="form-inline" role="form">
+                                            <div class="form-group">
+                                                <div class="inner-addon right-addon">
+                                                    <i class="loupe bi bi-search"></i>
+                                                    <input type="text" class="form-control" placeholder="Recherche" />
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class=" col-sm-3">
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                data-bs-target="#modalAjouterArticles"><i class="bi bi-plus-circle"></i>
+                                <span>Ajouter</span></button>
+                            <button type="button" class="btn btn-danger" onClick="enleverMultiplesArticles();">
+                                <i class="bi bi-dash-circle"></i> <span>Enlever</span></button>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="custom-checkbox">
+                                    <input type="checkbox" id="selectAll">
+                                    <label for="selectAll"></label>
+                                </span>
+                            </th>
+                            <th>ID</th>
+                            <th>Image</th>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Etat</th>
+                            <th>Prix</th>
+                        </tr>
+                    </thead>
+                    <tbody id="emp_body"></tbody>
+                    <tr>
+                        <th colspan="11">
+                             <div id="pager">
+                                <ul id="pagination" class="pagination-sm">
+                                </ul>
+                            </div>
+                        </th>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    `;
+    document.getElementById('contenu').innerHTML = rep;
 }
 
-let listerCircuits = (listeCircuits) => {
-    let contenu = `<div class="row row-cols-4">`;
-    for (let unCircuit of listeCircuits){
-            contenu+=remplirCard(unCircuit);
-    } 
-    contenu += `</div>`;
-    document.getElementById('contenu').innerHTML = contenu;
+var $pagination,
+totalRecords = 0,
+records = [],
+displayRecords = [],
+recPerPage = 4,
+page = 1,
+totalPages = 0;
+
+function genererPagination(listeCircuits){
+	$pagination = $('#pagination');
+	records = listeCircuits;
+	//alert(JSON.stringify(records));
+	// console.log(records);
+	totalRecords = records.length;
+	totalPages = Math.ceil(totalRecords / recPerPage);
+	apply_pagination();
+}
+
+function generate_table(displayRecords) {
+    let tr;
+    $('#emp_body').html('');
+	let rep="";
+    for (let unCircuit of displayRecords) { 
+		rep+=`
+			<tr>
+				<td>
+					<span class="custom-checkbox">
+						<input type="checkbox" id="opt" value="${unCircuit.idc}" name="options[]">
+						<label for="opt"></label>
+					</span>
+				</td>	
+				<td>${unCircuit.idc}</td>
+				<td><img class='img-fluid'  width='60' height='60' src='../ressources/images/images_circuits/${unCircuit.photoc}'></td>
+				<td>${unCircuit.nomc}</td>
+				<td>${unCircuit.descriptionc }</td>
+				<td>${unCircuit.etat}</td>
+				<td>${unCircuit.prix}$</td>
+
+				<td>
+				<a href="#" onClick='editerArticle(${unCircuit.idc})' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
+				<a href="#" onClick='supprimerArticle(${unCircuit.idc})' class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Enlever"></i></a>
+                <a href="#" onClick='listerEtape(${unCircuit.idc})' class="lister" data-toggle="modal"><i class="bi bi-arrow-right-square" data-toggle="tooltip" title="Lister"></i></a>
+				</td>
+			</tr>`;
+    }
+	$('#emp_body').html(rep);
+}
+
+function apply_pagination() {
+    $pagination.twbsPagination({
+          totalPages: totalPages,
+          visiblePages: 6,
+          onPageClick: function (event, page) {
+                displayRecordsIndex = Math.max(page - 1, 0) * recPerPage;
+                endRec = (displayRecordsIndex) + recPerPage;
+               
+                displayRecords = records.slice(displayRecordsIndex, endRec);
+                generate_table(displayRecords);
+          }
+    });
 }
 
 let afficherMessage = (msg) => {
@@ -367,7 +505,8 @@ let montrerVue = (action, donnees) => {
         break;
         case "lister"       :
             if(donnees.OK){
-                listerCircuits(donnees.listeCircuits);
+                afficherTableCircuits();
+                generate_table(donnees.listeCircuits);
             }else{
                 afficherMessage(donnees.msg); 
             }

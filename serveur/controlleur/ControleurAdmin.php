@@ -163,7 +163,7 @@
         return DaoActivite::getDaoActivite()->MdlA_get($ida); 
     }
     function CtrA_getAll(){
-         return DaoCircuit::getDaoCircuit()->MdlC_getAll(); 
+        return DaoCircuit::getDaoCircuit()->MdlC_getAll(); 
     }
     function CtrA_removeC($idc){
         return DaoCircuit::getDaoCircuit()->MdlC_remove($idc); 

@@ -4,9 +4,9 @@ let chargerCircuitsAJAX = () => {
         url  : "../../routeAdmin.php",
         data : {"action":"lister"},
         dataType : "json", //text pour voir si bien formé même chose pour xml
-        success : (listeCircuits) => {//alert(listeFilms);
+        success : function (reponse){//alert(listeFilms);
             // listeFilms = reponse;
-        	montrerVue("lister", listeCircuits);
+        	montrerVue("lister", reponse);
         },
         fail : (err) => {
             //Décider du message
