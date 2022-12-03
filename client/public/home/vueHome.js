@@ -67,7 +67,7 @@ let montrerFormEnreg = () => {
 let afficherCarou = (unCircuit) => {
     let test = `
         <div class="carousel-item">
-          <img src="serveur/ressources/images/`+ unCircuit.photoc + `" class="d-block w-100 h-100" alt="...">
+          <img src="serveur/ressources/images/images_circuits/`+ unCircuit.photoc + `" class="d-block w-100 h-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h5>`+ unCircuit.nomc + `</h5>
             <p>` + unCircuit.descriptionc + `</p>
@@ -201,7 +201,7 @@ let listerCircuits = (listeCircuits) => {
     for (let i = 0; i < listeCircuits.length; i++) {
         if(i == 0) {
             contenu += `<div class="carousel-item active">
-            <img src="serveur/ressources/images/` + listeCircuits[0].photoc + `" class="d-block w-100 h-100" alt="...">
+            <img src="serveur/ressources/images/images_circuits/` + listeCircuits[0].photoc + `" class="d-block w-100 h-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
               <h5>` + listeCircuits[0].nomc + `</h5>
               <p>` + listeCircuits[0].descriptionc + `</p>
