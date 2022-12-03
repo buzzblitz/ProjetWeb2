@@ -8,7 +8,7 @@ class Activite {
     private $tempsfin;
     private $descriptiona;
 
-    function __construct(int $ida, int $idj, string $noma, int $tempsdebut, string $tempsfin, string $descriptiona) {
+    function __construct(int $ida, int $idj, string $noma, string $tempsdebut, string $tempsfin, string $descriptiona) {
         $this->ida = $ida;
         $this->idj = $idj;
         $this->noma = $noma;

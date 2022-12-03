@@ -26,7 +26,7 @@
 
 	function CtrA_Enregistrer(){
         
-        $dossierc="../ressources/images/images_circuits/";
+        $dossierc="serveur/ressources/images/images_circuits/";
         $photoc="avatar.png";
         $nomc = $_POST['nomc'];
         if($_FILES['photoc']['tmp_name']!==""){
@@ -41,10 +41,10 @@
             $photoc=$nomphotoc.$extensionc;
         }
         $circuit = new Circuit(0, $_POST['nomc'], $photoc, $_POST['descriptionc'], $_POST['etat'],0);
-        $reponse = json_decode(DaoCircuit::getDaoCircuit()->MdlC_Enregistrer($circuit));
-         /*if($addc->OK){
-            $dossiere="../ressources/images/images_etapes/";
-            $imageEtape="avatar.png";
+        $addc = json_decode(DaoCircuit::getDaoCircuit()->MdlC_Enregistrer($circuit));
+        if($addc->OK){
+            $dossiere="serveur/ressources/images/images_etapes/";
+            $photoe="avatar.png";
             $nome = $_POST['nome'];
             if($_FILES['photoe']['tmp_name']!==""){
                 $nomphotoe=sha1($nome.time());
@@ -67,8 +67,8 @@
                     $adda = json_decode(DaoActivite::getDaoActivite()->MdlA_Enregistrer($activite));
                 }
             }
-        }*/
-        return json_encode($reponse);
+        }
+        return json_encode($addc);
     }
 
 
