@@ -43,6 +43,25 @@ class DaoEtape {
           return json_encode($this->reponse);
         }
     }
+    function MdlE_get($ide):string {
+        //global $reponse;
+        $connexion = Connexion::getConnexion();
+        $requette="SELECT * FROM etapes WHERE ide=?";
+        try{
+            $donnees = [$ide];
+            $stmt = $connexion->prepare($requette);
+            $stmt->execute($donnees);
+            $reponse['OK'] = true;
+            $reponse['msg'] = "";
+            $reponse['etape'] = $stmt->fetch();
+        }catch (Exception $e){ 
+            $reponse['OK'] = false;
+            $reponse['msg'] = "Problème pour obtenir les données des etapes";
+        }finally {
+          unset($connexion);
+          return json_encode($reponse);
+        }
+    }
 	
     function MdlE_getAll($index):string {
         global $reponse;
