@@ -1,4 +1,4 @@
-let chargerFilmsAJAX = () => {
+let chargerCircuistAJAX = () => {
     $.ajax({
         type : "POST",
         url  : "routeHome.php",
