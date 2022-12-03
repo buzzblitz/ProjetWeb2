@@ -17,35 +17,13 @@
     <link rel="stylesheet" href="../../client/public/css/style.css">
     <link rel="stylesheet" href="../../client/utilitaires/bootstrap-5.1.3-dist/css/bootstrap.min.css">
     <script src="../../client/public/js/global.js"></script>
-</head>
-<body onload="javascript:chargerCircuitsMembreAJAX()">
-<body>
-    <!-- Barre de navigation -->
-    <nav class="navbar navbar-expand-lg bg-nav-perso">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Test</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onClick="lister();">Profil</a>
-                    </li>
-                    
-                </ul>
-                <img src="../ressources/images/images_membres/<?php echo $photo; ?>" class="image-border" alt="photo" style="width:48px">
-            </div>
-        </div>
-    </nav>
-    <br><br>
-    <h3>JE SUIS DANS LA PAGE MEMBRE</h3>
-    <br><br>
-    <button type="button" class="btn btn-primary" onClick="deconnecter();">Déconnexion</button>
-    <form id="dc" action="../ressources/bd/deconnecter.php"></form>
-</body>
+    <script src="../../client/public/membre/requetesMembre.js"></script>
+    <script src="../../client/public/membre/vueMembre.js"></script>
+    </head>
+    <body onload="javascript:chargerCircuitsAJAX();">
+    <?php
+        require_once("menu_membre.inc.php");
+    ?>
+    </body>
+    <div id='contenu'></div>
 </html>
