@@ -16,10 +16,14 @@
     <title>Membre</title>
     <link rel="stylesheet" href="../../client/public/css/style.css">
     <link rel="stylesheet" href="../../client/utilitaires/bootstrap-5.1.3-dist/css/bootstrap.min.css">
+    <script src="../../client/utilitaires/jquery-3.6.0.min.js"></script>
+    <script src="../../client/utilitaires/bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
     <script src="../../client/public/js/global.js"></script>
+    <script src="../../client/public/membre/requetesMembre.js"></script>
+    <script src="../../client/public/membre/vueMembre.js"></script>
 </head>
 <body onload="javascript:chargerCircuitsMembreAJAX()">
-<body>
+
     <!-- Barre de navigation -->
     <nav class="navbar navbar-expand-lg bg-nav-perso">
         <div class="container-fluid">
@@ -42,24 +46,10 @@
             </div>
         </div>
     </nav>
-    <!-- Modal du panier -->
-  <div class="modal fade" id="idModPanier" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div id="contenuPanier"></div>
-      </div>
+    <!-- Fin de barre de navigation -->
+    <div class="container" id="contenu"></div>
+
+        <form id="formLister" action="../serveur/lister.php" method="POST"></form>
     </div>
-  </div>
-</div>
- <!-- Fin du modal du panier -->
-    <br><br>
-    <h3>JE SUIS DANS LA PAGE MEMBRE</h3>
-    <br><br>
-    <button type="button" class="btn btn-primary" onClick="deconnecter();">Déconnexion</button>
-    <form id="dc" action="../ressources/bd/deconnecter.php"></form>
 </body>
 </html>

@@ -1,3 +1,9 @@
+<?php
+    if(!isset($_SESSION['usager'])){
+        echo "Oups! Vous devez vous connecter avant";
+       // exit;
+    }
+?>
 <!-- Menu de navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-perso">
     <div class="container-fluid">

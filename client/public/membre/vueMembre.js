@@ -28,9 +28,9 @@ let remplirCard = (unCircuit)=> {
         return rep;
 }
 
-let listerCircuits = (listeCircuit) => {
+let listerCircuits = (listeCircuits) => {
     let contenu = `<div class="row row-cols-4">`;
-    for (let unCircuit of listeCircuit){
+    for (let unCircuit of listeCircuits){
             contenu+=remplirCard(unCircuit);
     } 
     contenu += `</div>`;
