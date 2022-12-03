@@ -91,7 +91,7 @@
         return json_encode($addc);
     }
     function CtrA_get($idc){
-        return DaoCircuit::getDaoCircuit()->MdlC_getAll(); 
+        return DaoCircuit::getDaoCircuit()->MdlC_get($idc); 
    }
     function CtrA_getAll(){
          return DaoCircuit::getDaoCircuit()->MdlC_getAll(); 
@@ -105,6 +105,9 @@
             case "fiche" :
                 //fiche(); 
             break;
+            case "charger" :
+                $input=$_POST['input'];
+                return  $this->CtrA_get($input); 
             case "modifier" :
                 //modifier(); 
             break;

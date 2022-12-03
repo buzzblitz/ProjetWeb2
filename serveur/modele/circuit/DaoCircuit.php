@@ -65,6 +65,27 @@ class DaoCircuit {
         }
     }
 
+    function MdlC_get($idc):string {
+        //global $reponse;
+        $connexion = Connexion::getConnexion();
+        $requette="SELECT * FROM circuits WHERE idc=?";
+        try{
+            $donnees = [$idc];
+            $stmt = $connexion->prepare($requette);
+            $stmt->execute($donnees);
+            $reponse['OK'] = true;
+            $reponse['msg'] = "";
+            $reponse['circuit'] = $stmt->fetch();
+        }catch (Exception $e){ 
+            $reponse['OK'] = false;
+            $reponse['msg'] = "Problème pour obtenir les données des circuits";
+            //$reponse['msg'] = $e->getMessage();
+        }finally {
+          unset($connexion);
+          return json_encode($reponse);
+        }
+    }
+
     function MdlC_update(Circuit $circuit){
         global $reponse;
         $connexion =  Connexion::getConnexion();

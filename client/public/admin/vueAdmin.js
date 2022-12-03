@@ -141,6 +141,51 @@ let afficherMessage = (msg) => {
     }, 5000);
 }
 
+afficherModifier = (circuit) => {
+    let form = `
+    <div class="modal fade" id="modalAjouterCircuitSolo" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Enregistrer un Circuit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEnregCircuit" class="row  needs-validation" enctype="multipart/form-data" method="POST">
+                        <div class="col-md-12">
+                            <label for="nomc" class="form-label">Nom du Circuit</label>
+                            <input type="text" class="form-control" id="nomc" name="nomc" value="`+circuit.nomc+`" required>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="photoc" class="form-label">Image du Circuit</label>
+                            <input type="file" class="form-control" id="photoc" name="photoc" value="`+circuit.photoc+`" required>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="descriptionc" class="form-label">Description du Circuit</label>
+                            <input type="text" class="form-control" id="descriptionc" name="descriptionc" value="`+circuit.descriptionc+`" required required>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="etat" class="form-label">Etats du Circuit</label>
+                            <select id="etat" name="etat" class="form-select form-select-sm" required
+                                aria-label=".form-select-sm example">
+                                <option selected value="Tra">Travail</option>
+                                <option value="Dep">Deploiement</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrerSolo();">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+    document.getElementById('contenu').innerHTML = form;
+    $('#modalAjouterCircuitSolo').modal('show');
+}
+
 let montrerVue = (action, donnees) => {
 
     switch(action){
@@ -154,6 +199,13 @@ let montrerVue = (action, donnees) => {
              }
              break;
         case "modifier"     :
+        case "charger"      :
+            if(donnees.OK){
+                afficherModifier(donnees.circuit);
+            }else{
+                afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 
+            }
+        break;
         case "enlever"      :
             if(donnees.OK){
                 afficherMessage(donnees.msg);

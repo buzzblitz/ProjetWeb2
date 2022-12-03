@@ -14,6 +14,21 @@ let chargerCircuitsAJAX = () => {
     })
 }
 
+let requeteModifierCircuit = (idc) => {
+	$.ajax({
+        type : "POST",
+        url  : "../../routeAdmin.php",
+        data : {"action":"charger","input":idc},
+        dataType : "json", //text pour voir si bien formé même chose pour xml
+        success : function (reponse){
+			montrerVue("charger", reponse);
+        },
+        fail : (err) => {
+            //Décider du message
+        }
+    })
+}
+
 let requeteEnregistrer = () => {
 	console.log("tonperedinfesse");
 	let formCircuit = new FormData(document.getElementById('formEnregCircuit'));
