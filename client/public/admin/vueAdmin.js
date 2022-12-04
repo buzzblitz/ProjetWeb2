@@ -345,6 +345,87 @@ let afficherTableC = () => {
     $('#latable').html(rep);
 }
 
+let afficherTableMembres = () => {
+    let rep = `
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <h2>Membres</h2>
+                        </div>
+                        <div class="col-sm-7">
+                            <nav class="navbar">
+                                <ul>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink"
+                                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Catégories
+                                        </a>
+                                        <ul id="selCategs" class="dropdown-menu dropdown-menu-dark"
+                                            aria-labelledby="navbarDarkDropdownMenuLink">
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink"
+                                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Trier par
+                                        </a>
+                                        <ul id="selCategs" class="dropdown-menu dropdown-menu-dark"
+                                            aria-labelledby="navbarDarkDropdownMenuLink">
+                                            <li>
+                                                <a class="dropdown-item"
+                                                    href="javascript:obtenirXML('titre');">Titre</a>
+                                                <a class="dropdown-item" href="javascript:obtenirXML('titre');">Prix</a>
+                                                <a class="dropdown-item"
+                                                    href="javascript:obtenirXML('titre');">Numéro</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li class="nav-item">
+                                        <form class="form-inline" role="form">
+                                            <div class="form-group">
+                                                <div class="inner-addon right-addon">
+                                                    <i class="loupe bi bi-search"></i>
+                                                    <input type="text" class="form-control" placeholder="Recherche" />
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <table id="latable" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="custom-checkbox">
+                                    <input type="checkbox" id="selectAll">
+                                    <label for="selectAll"></label>
+                                </span>
+                            </th>
+                            <th>ID</th>
+                            <th>Courriel</th>
+                            <th>Etat</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    `;
+    document.getElementById('contenu').innerHTML = rep;
+}
+
 let afficherTableE = () => {
     let rep = `
                     <thead>
@@ -426,6 +507,29 @@ function generate_tableE(idc, displayRecords) {
 	$(`#tb${idc}`).append(rep);
 }
 
+function generate_table_membre(displayRecords) {
+	let rep="";
+    for (let unConnexion of displayRecords) { 
+		rep+=`
+        <tbody id="tb${unConnexion.idm}">
+			<tr>
+				<td>
+					<span class="custom-checkbox">
+						<input type="checkbox" id="opt" value="${unConnexion.idm}" name="options[]">
+						<label for="opt"></label>
+					</span>
+				</td>	
+				<td>${unConnexion.idm}</td>
+				<td>${unConnexion.courriel}</td>
+				<td>${unConnexion.etat}</td>
+                <td>
+				<a href="#" onClick='requeteAfficherModif(${unConnexion.idm},"chargerM")' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
+				</td>
+			</tr></tbody>`;
+    }
+	$('#latable').append(rep);
+}
+
 let afficherMessage = (msg) => {
     document.getElementById('msg').innerHTML = msg;
     //setTimeout(() => { $('#msg').html(""); }, 5000);
@@ -488,8 +592,54 @@ let afficherModifierC = (circuit) => {
     $('#modalModifierCircuit').modal('show');
 }
 
-let montrerVue = (action, donnees) => {
+let afficherModifierM = (membre) => {
+    let form = `
+    <div class="modal fade" id="modalModifierCircuit" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modifier un Membre</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEnregMembreSolo" class="row  needs-validation" enctype="multipart/form-data" method="POST">
+                        <div class="col-md-12">
+                            <label for="idm" class="form-label">Id du Membre</label>
+                            <input type="text" class="form-control" id="idm" name="idm" value="` + membre.idm + `" readonly>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="courriel" class="form-label">Courriel du Membre</label>
+                            <input type="text" class="form-control" id="courriel" name="courriel" value="` + membre.courriel + `" readonly>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="etat" class="form-label">Etat du Compte Membre</label>
+                            <input type="text" class="form-control" id="etat" name="etat" value="` + membre.etat + `" readonly>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="etat" class="form-label">Changer l'etat du Compte Membre</label>
+                            <select id="etat" name="etat" class="form-select form-select-sm" required
+                                aria-label=".form-select-sm example">
+                                <option selected value="A">Actif</option>
+                                <option value="D">Desactiver</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="button" onclick="requeteModifier('formEnregMembreSolo','modifierM');">Modifier</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+    $("#contenu").append(form);
+    //document.getElementById('contenu').innerHTML = form;
+    $('#modalModifierCircuit').modal('show');
+}
 
+let montrerVue = (action, donnees) => {
+    console.log("salut");
     switch(action){
         case "enregistrer"  :
             if(donnees.OK){
@@ -509,6 +659,14 @@ let montrerVue = (action, donnees) => {
                  window.location.href="index.php"; 
              }
              break;
+        case "modifierM"     :
+            if(donnees.OK){
+                window.location.href= donnees.location;
+                }else{
+                console.log(donnees.msg);
+                //window.location.href="index.php"; 
+            }
+        break;
         case "chargerC"      :
             if(donnees.OK){
                 afficherModifierC(donnees.circuit);
@@ -521,6 +679,13 @@ let montrerVue = (action, donnees) => {
                 afficherModifierE(donnees.etape);
             }else{
                 afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 
+            }
+        break;
+        case "chargerM"      :
+            if(donnees.OK){
+                afficherModifierM(donnees.connexionM);
+            }else{
+                afficherMessage(donnees.msg); 
             }
         break;
         case "enlever"      :
@@ -561,6 +726,15 @@ let montrerVue = (action, donnees) => {
         case "deconnexion"  :
             if(donnees.OK){
                 window.location.href= donnees.location;   
+            }else{
+                console.log(donnees.msg); 
+            }
+            break;
+        case "listerMembre"  :
+            console.log("salut");
+            if(donnees.OK){
+                afficherTableMembres();
+                generate_table_membre(donnees.listeConnexionM);  
             }else{
                 console.log(donnees.msg); 
             }

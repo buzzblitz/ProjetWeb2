@@ -15,11 +15,11 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modalConnexion" href="#">Gérer les
-                        articles</a>
+                    <a class="nav-link" href="javascript:chargerCircuitsAJAX();">Gérer les
+                        Circuits</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modalConnexion" href="#">Gérer les
+                    <a id="me" class="nav-link" href="javascript:chargerMembresAJAX();">Gérer les
                         membres</a>
                 </li>
             </ul>
