@@ -86,9 +86,10 @@ let afficherContact = () => {
       <div class="column">
         <div class="card">
           <div class="container">
-            <h2>Félix-Antoine</h2>
-            <p class="title">Scrum master</p>
-            <p>No Da</p>
+            <h2>Félix-Antoine Lavallée</h2>
+            <p class="title">Scrum master et développeur </p>
+            <p>1986645</p>
+            <p>201986645@collegeahuntsic.qc.ca</p>
           </div>
         </div>
       </div>
@@ -96,9 +97,9 @@ let afficherContact = () => {
       <div class="column">
         <div class="card">
           <div class="container">
-            <h2>Félix</h2>
-            <p class="title">Dev</p>
-            <p>No Da</p>
+            <h2>Félix Gauthier-Pravato</h2>
+            <p class="title">développeur </p>
+            <p>201964428@collegeahuntsic.qc.ca</p>
           </div>
         </div>
       </div>
@@ -107,8 +108,8 @@ let afficherContact = () => {
         <div class="card">
           <div class="container">
             <h2>Maxime Couillard</h2>
-            <p class="title">Dev</p>
-            <p>No Da</p>
+            <p class="title">développeur </p>
+            <p>200940118@collegeahuntsic.qc.ca</p>
           </div>
         </div>
       </div>
@@ -117,8 +118,8 @@ let afficherContact = () => {
         <div class="card">
           <div class="container">
             <h2>Haddouni Sid Ali</h2>
-            <p class="title">Dev</p>
-            <p>No Da</p>
+            <p class="title">développeur </p>
+            <p>201947531@collegeahuntsic.qc.ca</p>
           </div>
         </div>
       </div>
