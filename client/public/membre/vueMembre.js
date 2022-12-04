@@ -6,7 +6,7 @@ let remplirCard = (unCircuit)=> {
                  rep +=' <h5 class="card-title">'+unCircuit.nomc+'</h5>';
                  rep +=' <p class="card-text">Description : '+unCircuit.descriptionc+'</p>';
                  rep +=' <p class="card-text">Prix Total : '+unCircuit.prix+'$</p>';
-                 rep +=' <a href="#" onClick="detailCircuit(unCircuit.idc);" class="btn btn-primary"><span style="font-size:18px; color:white;">Détailler le Circuit</span></a>';
+                 rep +=' <a href="#" onClick="detailCircuit(' + unCircuit.idc + ');" class="btn btn-primary"><span style="font-size:18px; color:white;">Détailler le Circuit</span></a>';
                  rep +=' <a href="#" onClick="acheterCircuit(this,unCircuit.title);" class="btn btn-primary"><span style="font-size:18px; color:white;">Ajouter au panier</span></a>';
                  rep +=' </div>';
                  rep +=' </div>';
@@ -21,7 +21,7 @@ let remplirDetail = (unCircuit)=> {
                  rep +=' <h5 class="card-title">'+unCircuit.nomc+'</h5>';
                  rep +=' <p class="card-text">Description : '+unCircuit.descriptionc+'</p>';
                  rep +=' <p class="card-text">Prix Total : '+unCircuit.prix+'$</p>';
-                 rep +=' <a href="#" onClick="detailCircuit(unCircuit.idc);" class="btn btn-primary"><span style="font-size:18px; color:white;">Détailler le Circuit</span></a>';
+                 rep +=' <a href="#" onClick="detailCircuit(' + unCircuit.idc + ');" class="btn btn-primary"><span style="font-size:18px; color:white;">Détailler le Circuit</span></a>';
                  rep +=' <a href="#" onClick="acheterCircuit(this,unCircuit.title);" class="btn btn-primary"><span style="font-size:18px; color:white;">Ajouter au panier</span></a>';
                  rep +=' </div>';
                  rep +=' </div>';
@@ -36,13 +36,40 @@ let listerCircuits = (listeCircuits) => {
     contenu += `</div>`;
     document.getElementById('contenu').innerHTML = contenu;
 }
-let detaillerCircuits = (unCircuit) => {
+let detaillerCircuits = (unCircuit, listeEtapes, listeJournees, listeActivities) => {
+    console.log("bitch");
     let contenu = ``;
+    contenu+= carteEtapes(listeEtapes[0]);
+    contenu+= carteEtapes(listeEtapes[0]);
+    contenu+= carteEtapes(listeEtapes[0]);
+    contenu+= carteEtapes(listeEtapes[0]);
+    contenu+= carteEtapes(listeEtapes[0]);
+    contenu+= carteEtapes(listeEtapes[0]);
+    contenu+= carteEtapes(listeEtapes[0]);
+    contenu+= carteEtapes(listeEtapes[0]);
     document.getElementById('contenu').innerHTML = contenu;
 }
 
-let montrerVue = (action, donnees) => {
+let carteEtapes = (unEtape) => {
+    let rep =    ' <div class="col">';
+    rep +='<div class="card">';
+                 rep +=' <img src="../ressources/images/images_circuits/'+unEtape.photoe+'" class="card-img-top tailleImg" alt="...">';
+                 rep +=' <div class="card-body">';
+                 rep +=' <h5 class="card-title">'+unEtape.nome+'</h5>';
+                 rep +=' <p class="card-text">Description : '+unEtape.descriptione+'</p>';
+                 rep +=' <p class="card-text">Prix Total : '+unEtape.prix+'$</p>';
+                 rep +=' <p class="card-text">Debut : '+unEtape.debut+'</p>';
+                 rep +=' <p class="card-text">Fin : '+unEtape.fin+'</p>';
+                 rep +=' <p class="card-text">Lieu de rencontre : '+unEtape.lieurencontre+'</p>';
+                 rep +=' <a href="#" onClick="detailCircuit(unCircuit.idc);" class="btn btn-primary"><span style="font-size:18px; color:white;">Détailler le Circuit</span></a>';
+                 rep +=' <a href="#" onClick="acheterCircuit(this,unCircuit.title);" class="btn btn-primary"><span style="font-size:18px; color:white;">Ajouter au panier</span></a>';
+                 rep +=' </div>';
+                 rep +=' </div>';
+                 rep +=' </div>';
+        return rep;
+}
 
+let montrerVue = (action, donnees) => {
     switch(action){
         case "enregistrer"  :
             if(donnees.OK){
@@ -93,7 +120,7 @@ let montrerVue = (action, donnees) => {
             break;
         case "detailler"  :
             if(donnees.OK){
-                window.location.href= donnees.location;   
+                detaillerCircuits(donnees.circuit, donnees.listeEtapes, donnees.listeJournees, donnees.listeActivites);     
             }else{
                 console.log(donnees.msg); 
             }
