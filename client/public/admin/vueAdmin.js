@@ -246,7 +246,7 @@ let montrerFormAjouterActivite = (idj) => {
     $('#modalAjouterActivite').modal('show');
 }
 
-let afficherTableCircuits = () => {
+let afficherSqueletteTable = (classe) =>{
     let rep = `
     <div class="container-xl">
         <div class="table-responsive">
@@ -254,7 +254,7 @@ let afficherTableCircuits = () => {
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-2">
-                            <h2>Circuits</h2>
+                            <h2>${classe}</h2>
                         </div>
                         <div class="col-sm-7">
                             <nav class="navbar">
@@ -302,15 +302,26 @@ let afficherTableCircuits = () => {
                             </nav>
                         </div>
                         <div class=" col-sm-3">
-                            <button type="button" class="btn btn-success" onClick="montrerFormAjouterCircuit();";>
+                            <button type="button" class="btn btn-success" onClick="montrerFormAjouter${classe}();";>
                                 <i class="bi bi-plus-circle"></i>
                                 <span>Ajouter</span></button>
-                            <button type="button" class="btn btn-danger" onClick="enleverMultiplesArticles();">
+                            <button type="button" class="btn btn-danger" onClick="enleverMultiples${classe}();">
                                 <i class="bi bi-dash-circle"></i> <span>Enlever</span></button>
                         </div>
                     </div>
                 </div>
                 <table id="latable" class="table table-striped table-hover">
+                </table>
+
+            </div>
+        </div>
+    </div>
+    `;
+    $('#contenu').html(rep);
+}
+
+let afficherTableC = () => {
+    let rep = `
                     <thead>
                         <tr>
                             <th>
@@ -329,42 +340,40 @@ let afficherTableCircuits = () => {
                             <th>Prix</th>
                         </tr>
                     </thead>
-                </table>
-
-            </div>
-        </div>
-    </div>
+                    <tbody id="maintable"></tbody>
     `;
-    document.getElementById('contenu').innerHTML = rep;
+    $('#latable').html(rep);
 }
 
-let afficherHeaderEtape = (idrow) => {
+let afficherTableE = () => {
     let rep = `
-    <tr>
-        <th>
-            <span class="custom-checkbox">
-                <input type="checkbox" id="selectAll">
-                <label for="selectAll"></label>
-            </span>
-        </th>
-        <th>ID</th>
-        <th>Image</th>
-        <th>Nom</th>
-        <th>Description</th>
-        <th>Debut</th>
-        <th>Fin</th>
-        <th>Lieu de rencontre</th>
-        <th></th>
-    </tr>
+                    <thead>
+                    <tr>
+                        <th>
+                            <span class="custom-checkbox">
+                                <input type="checkbox" id="selectAll">
+                                <label for="selectAll"></label>
+                            </span>
+                        </th>
+                        <th>ID</th>
+                        <th>Image</th>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Debut</th>
+                        <th>Fin</th>
+                        <th>Lieu de rencontre</th>
+                        <th></th>
+                    </tr>
+                        </thead>
+                    <tbody id="maintable></tbody>
     `;
-    $(`#tb${idrow}`).append(rep);
+    $('#contenu').html(rep);
 }
 
-function generate_table(displayRecords) {
+function generate_tableC(displayRecords) {
 	let rep="";
     for (let unCircuit of displayRecords) { 
 		rep+=`
-        <tbody id="tb${unCircuit.idc}">
 			<tr>
 				<td>
 					<span class="custom-checkbox">
@@ -381,12 +390,12 @@ function generate_table(displayRecords) {
 				<td></td>
                 <td>
 				<a href="#" onClick='requeteAfficherModif(${unCircuit.idc},"chargerC")' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
-				<a href="#" onClick='supprimerArticle(${unCircuit.idc})' class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Enlever"></i></a>
+				<a href="#" onClick='requeteDelete(${unCircuit.idc}, "enleverC")' class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Enlever"></i></a>
                 <a href="#" onClick='chargerEtapesAJAX(${unCircuit.idc})' class="lister" data-toggle="modal"><i class="bi bi-arrow-right-square" data-toggle="tooltip" title="Lister"></i></a>
 				</td>
-			</tr></tbody>`;
+			</tr>`;
     }
-	$('#latable').append(rep);
+	$('#maintable').html(rep);
 }
 
 function generate_tableE(idc, displayRecords) {
@@ -408,8 +417,8 @@ function generate_tableE(idc, displayRecords) {
 				<td>${unEtape.fin}$</td>
 				<td>${unEtape.lieurencontre}$</td>
                 <td>
-				<a href="#" onClick='editerArticle(${unEtape.idc})' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
-				<a href="#" onClick='supprimerArticle(${unEtape.ide})' class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Enlever"></i></a>
+				<a href="#" onClick='requeteAfficherModif(${unEtape.ide},"chargerE")' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
+				<a href="#" onClick='requeteDelete(${unEtape.ide},"enleverE")' class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Enlever"></i></a>
                 <a href="#" onClick='chargerJourneeAJAX(${unEtape.ide})' class="lister" data-toggle="modal"><i class="bi bi-arrow-right-square" data-toggle="tooltip" title="Lister"></i></a>
 				</td>
 			</tr>`;
@@ -521,10 +530,11 @@ let montrerVue = (action, donnees) => {
                 afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 
             }
         break;
-        case "lister"       :
+        case "listerC"       :
             if(donnees.OK){
-                afficherTableCircuits();
-                generate_table(donnees.listeCircuits);
+                afficherSqueletteTable("Circuit");
+                afficherTableC();
+                generate_tableC(donnees.listeCircuits);
             }else{
                 afficherMessage(donnees.msg); 
             }
@@ -537,6 +547,17 @@ let montrerVue = (action, donnees) => {
                 afficherMessage(donnees.msg); 
             }
         break;
+        case "enleverC"     :
+            if(donnees.OK){
+                console.log(donnees);
+                $("#contenu").html("");
+                chargerCircuitsAJAX();
+             }else{
+                console.log(donnees);
+                console.log(donnees.msg);
+                //window.location.href="../../index.php"; 
+             }
+             break;
         case "deconnexion"  :
             if(donnees.OK){
                 window.location.href= donnees.location;   

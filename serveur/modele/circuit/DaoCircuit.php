@@ -112,6 +112,7 @@ class DaoCircuit {
 
     function mdlC_remove($idc){
         global $reponse;
+        $reponse =array();
         $connexion =  Connexion::getConnexion();
         $requettePhoto="SELECT photoc FROM circuits WHERE idc=?";
         $requette="DELETE FROM circuits WHERE idc=?";
@@ -119,26 +120,18 @@ class DaoCircuit {
             $donnees = [$idc];
             $stmt = $connexion->prepare($requettePhoto);
             $stmt->execute($donnees);
-            $result = $stmt->fetch();
-            $image=$result;
-            if($image!="avatar.png"){
-                $rmImg='../../ressources/images/images_circuits/'.$image;
-                $tabFichiers = glob('../../ressources/images/images_circuits/*');
-                //print_r($tabFichiers);
-                //parcourir les fichier
-                foreach($tabFichiers as $fichier){
-                    if(is_file($fichier) && $fichier==trim($rmImg)) {
-                        // enlever le fichier
-                        unlink($fichier);
-                        break;
-                        //
-                    }
-                }
-            }
-            $stmt = $connexion->prepare($requette);
-            $stmt->execute($donnees);
+            $tmp = $stmt->fetch();
+            $reponse['result'] = $tmp;
+            $column = $tmp['photoc'];
+            $reponse['result2'] = $column;
+            $path = "serveur/ressources/images/images_circuits/" . $column;
+            //unlink((string)$path);
+            /*$stmt = $connexion->prepare($requette);
+            $stmt->execute($donnees);*/
+            $reponse['path'] = $path;
             $reponse['OK'] = true;
             $reponse['msg'] = "Réussite de la supression du circuit";
+            $reponse['location'] = "admin.php";
         }catch (Exception $e){
             $reponse['OK'] = false;
             $reponse['msg'] = "Problème pour supprimer le circuit";
