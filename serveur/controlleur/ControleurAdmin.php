@@ -152,8 +152,8 @@
     }
 
     function CtrA_updateM(){
-        $journee = new ConnexionM($_POST['idm'], "", "", $_POST['etat'], "");
-        return DaoConnexionM::getDaoConnexionM()->MdlJ_update($journee);
+        $connexionM = new ConnexionM($_POST['idm'], "", "", $_POST['etat'], "");
+        return DaoConnexionM::getDaoConnexionM()->MdlCM_update($connexionM);
          
     }
 

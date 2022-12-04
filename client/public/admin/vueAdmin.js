@@ -663,9 +663,8 @@ let montrerVue = (action, donnees) => {
             if(donnees.OK){
                 window.location.href= donnees.location;
                 }else{
-                msg="Problème+pour+modifier+le+membre.";
                 console.log(donnees.msg);
-                window.location.href="index.php"; 
+                //window.location.href="index.php"; 
             }
         break;
         case "chargerC"      :
