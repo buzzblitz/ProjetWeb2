@@ -66,10 +66,11 @@ class DaoActivite {
     function MdlA_getAll($index):string {
         global $reponse;
         $connexion = Connexion::getConnexion();
-        $requette="SELECT * FROM activites WHERE idj =" + $index;
+        $requette="SELECT * FROM activites WHERE idj = ?";
         try{
+            $donnees = [$index];
             $stmt = $connexion->prepare($requette);
-            $stmt->execute();
+            $stmt->execute($donnees);
             $reponse['OK'] = true;
             $reponse['msg'] = "";
             $reponse['listeActivites'] = array();

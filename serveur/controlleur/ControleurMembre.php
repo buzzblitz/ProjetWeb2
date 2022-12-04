@@ -50,11 +50,13 @@
                     if ($journees->OK) {
                         foreach ($journees->listeJournees as $journee) {
                             $activites = json_decode(DaoActivite::getDaoActivite()->MdlA_getAll($journee->idj));
+                            $list['OK'] = $activites->OK;
+                            $list['msg'] = "Recuperation reussi de details";
                             $list['circuit'] = $circuit->circuit;
                             $list['listeEtapes'] = $etapes->listeEtapes;
                             $list['listeJournees'] = $journees->listeJournees;
                             $list['listeActivites'] = $activites->listeActivites;
-                            return $list;
+                            return json_encode($list);
                     }
                 }
             }

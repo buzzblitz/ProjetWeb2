@@ -67,10 +67,11 @@ class DaoJournee {
     function MdlJ_getAll($ide):string {
         global $reponse;
         $connexion = Connexion::getConnexion();
-        $requette="SELECT * FROM journees WHERE ide =" . $ide;
+        $requette="SELECT * FROM journees WHERE ide = ?";
         try{
+            $donnees = [$ide];
             $stmt = $connexion->prepare($requette);
-            $stmt->execute();
+            $stmt->execute($donnees);
             $reponse['OK'] = true;
             $reponse['msg'] = "";
             $reponse['listeJournees'] = array();
