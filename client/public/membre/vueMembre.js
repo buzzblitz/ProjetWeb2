@@ -10,6 +10,9 @@ let nbart = JSON.parse(localStorage.getItem("panier")).length;
 let afficherNbart = "(" + nbart + ")";
 $('#nbart').html(afficherNbart);
 
+let rafraichireCart = () => {
+    $('#nbart').html(afficherNbart);
+}
 
 let remplirCard = (unCircuit)=> {
     let rep =    ' <div class="col">';
@@ -80,7 +83,7 @@ let carteCircuit = (unCircuit) => {
 
 let carteEtape = (unEtape) => {
     let rep =    ' <div class="col">';
-    rep +='<div class="card">';
+    rep +='<div class="card-e">';
                  rep +=' <img src="../ressources/images/images_circuits/'+unEtape.photoe+'" class="card-img-top tailleImg" alt="...">';
                  rep +=' <div class="card-body">';
                  rep +=' <h5 class="card-title">'+unEtape.nome+'</h5>';
@@ -97,7 +100,7 @@ let carteEtape = (unEtape) => {
 
 let carteJournee = (uneJournee) => {
     let rep =    ' <div class="col">';
-    rep +='<div class="card">';
+    rep +='<div class="card-j">';
                  rep +=' <div class="card-body">';
                  rep +=' <h5 class="card-title">'+ uneJournee.datej+'</h5>';
                  rep +=' <p class="card-text">Description : '+ uneJournee.descriptionj+'</p>';
@@ -109,7 +112,7 @@ let carteJournee = (uneJournee) => {
 
 let carteActivite = (uneActivite) => {
     let rep =    ' <div class="col">';
-    rep +='<div class="card">';
+    rep +='<div class="card-a">';
                  rep +=' <div class="card-body">';
                  rep +=' <h5 class="card-title">'+ uneActivite.noma+'</h5>';
                  rep +=' <p class="card-text">Temps Debut : '+ uneActivite.tempsdebut+'</p>';
@@ -184,17 +187,17 @@ let mettreAJourLaFacture = (nouveauTotal) => {
 let ajusterTotalAchat = (elemInput, prix, montantActuel) => {
     let ancienMontant;
     let qte = elemInput.value; 
-    montantTotalCetArticle = (qte * prix);
+    montantTotalCetCircuit = (qte * prix);
     if(elemInput.parentNode.nextSibling.nodeType == 3){//Node bidon ajouté au DOM
         ancienMontant = parseFloat(elemInput.parentNode.nextSibling.nextSibling.firstChild.nodeValue);
-        elemInput.parentNode.nextSibling.nextSibling.firstChild.nodeValue = montantTotalCetArticle+"$";
+        elemInput.parentNode.nextSibling.nextSibling.firstChild.nodeValue = montantTotalCetCircuit+"$";
     }else {
         ancienMontant = parseFloat(elemInput.parentNode.nextSibling.firstChild.nodeValue);
-        elemInput.parentNode.nextSibling.firstChild.nodeValue = montantTotalCetArticle+"$";
+        elemInput.parentNode.nextSibling.firstChild.nodeValue = montantTotalCetCircuit+"$";
     }
     //Mise-à-jour de la facture
     let ancienTotal = parseFloat(document.getElementById("totalAchat").innerText); 
-    let nouveauTotal = (ancienTotal - ancienMontant)+montantTotalCetArticle; 
+    let nouveauTotal = (ancienTotal - ancienMontant)+montantTotalCetCircuit; 
     mettreAJourLaFacture(nouveauTotal);
 } 
 
