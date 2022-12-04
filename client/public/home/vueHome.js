@@ -80,13 +80,7 @@ let afficherCarou = (unCircuit) => {
 let afficherContact = () => {
     let test = `
   
-    <h1 style="text-align:center">Contactez nous</h1>
-    <div class="about-section">
-      <h1>Tout savoir sur nous</h1>
-      <p>Some text about who we are and what we do.</p>
-      <p>Resize the browser window to see that this page is responsive by the way.</p>
-    </div>
-    
+    <h1 style="text-align:center">Contactez nous</h1>  
     <h2 style="text-align:center">Notre Équipe</h2>
     <div class="row">
       <div class="column">
