@@ -37,20 +37,35 @@ let listerCircuits = (listeCircuits) => {
     document.getElementById('contenu').innerHTML = contenu;
 }
 let detaillerCircuits = (unCircuit, listeEtapes, listeJournees, listeActivities) => {
-    console.log("bitch");
     let contenu = ``;
-    contenu+= carteEtapes(listeEtapes[0]);
-    contenu+= carteEtapes(listeEtapes[0]);
-    contenu+= carteEtapes(listeEtapes[0]);
-    contenu+= carteEtapes(listeEtapes[0]);
-    contenu+= carteEtapes(listeEtapes[0]);
-    contenu+= carteEtapes(listeEtapes[0]);
-    contenu+= carteEtapes(listeEtapes[0]);
-    contenu+= carteEtapes(listeEtapes[0]);
+    contenu+= carteCircuit(unCircuit);
+    for(let unEtape of listeEtapes){
+        contenu+= carteEtape(unEtape);
+        for(let uneJournee of listeJournees) {
+            contenu+= carteJournee(uneJournee);
+            for(let uneActivite of listeActivities) {
+                contenu+= carteActivite(uneActivite);
+            }
+        }
+    }
     document.getElementById('contenu').innerHTML = contenu;
 }
 
-let carteEtapes = (unEtape) => {
+let carteCircuit = (unCircuit) => {
+    let rep =    ' <div class="col">';
+    rep +='<div class="card">';
+                 rep +=' <img src="../ressources/images/images_circuits/'+unCircuit.photoc+'" class="card-img-top tailleImg" alt="...">';
+                 rep +=' <div class="card-body">';
+                 rep +=' <h5 class="card-title">'+unCircuit.nomc+'</h5>';
+                 rep +=' <p class="card-text">Description : '+unCircuit.descriptionc+'</p>';
+                 rep +=' <p class="card-text">Prix Total : '+unCircuit.prix+'$</p>';
+                 rep +=' </div>';
+                 rep +=' </div>';
+                 rep +=' </div>';
+        return rep;
+}
+
+let carteEtape = (unEtape) => {
     let rep =    ' <div class="col">';
     rep +='<div class="card">';
                  rep +=' <img src="../ressources/images/images_circuits/'+unEtape.photoe+'" class="card-img-top tailleImg" alt="...">';
@@ -61,8 +76,32 @@ let carteEtapes = (unEtape) => {
                  rep +=' <p class="card-text">Debut : '+unEtape.debut+'</p>';
                  rep +=' <p class="card-text">Fin : '+unEtape.fin+'</p>';
                  rep +=' <p class="card-text">Lieu de rencontre : '+unEtape.lieurencontre+'</p>';
-                 rep +=' <a href="#" onClick="detailCircuit(unCircuit.idc);" class="btn btn-primary"><span style="font-size:18px; color:white;">Détailler le Circuit</span></a>';
-                 rep +=' <a href="#" onClick="acheterCircuit(this,unCircuit.title);" class="btn btn-primary"><span style="font-size:18px; color:white;">Ajouter au panier</span></a>';
+                 rep +=' </div>';
+                 rep +=' </div>';
+                 rep +=' </div>';
+        return rep;
+}
+
+let carteJournee = (uneJournee) => {
+    let rep =    ' <div class="col">';
+    rep +='<div class="card">';
+                 rep +=' <div class="card-body">';
+                 rep +=' <h5 class="card-title">'+ uneJournee.datej+'</h5>';
+                 rep +=' <p class="card-text">Description : '+ uneJournee.descriptionj+'</p>';
+                 rep +=' </div>';
+                 rep +=' </div>';
+                 rep +=' </div>';
+        return rep;
+}
+
+let carteActivite = (uneActivite) => {
+    let rep =    ' <div class="col">';
+    rep +='<div class="card">';
+                 rep +=' <div class="card-body">';
+                 rep +=' <h5 class="card-title">'+ uneActivite.noma+'</h5>';
+                 rep +=' <p class="card-text">Temps Debut : '+ uneActivite.tempsdebut+'</p>';
+                 rep +=' <p class="card-text">Temps Fin : '+ uneActivite.tempsfin+'</p>';
+                 rep +=' <p class="card-text">Description : '+ uneActivite.descriptiona+'</p>';
                  rep +=' </div>';
                  rep +=' </div>';
                  rep +=' </div>';
