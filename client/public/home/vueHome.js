@@ -79,22 +79,16 @@ let afficherCarou = (unCircuit) => {
 }
 let afficherContact = () => {
     let test = `
-  
-    <h1 style="text-align:center">Contactez nous</h1>
-    <div class="about-section">
-      <h1>Tout savoir sur nous</h1>
-      <p>Some text about who we are and what we do.</p>
-      <p>Resize the browser window to see that this page is responsive by the way.</p>
-    </div>
-    
+    <h1 style="text-align:center">Contactez nous</h1>  
     <h2 style="text-align:center">Notre Équipe</h2>
     <div class="row">
       <div class="column">
         <div class="card">
           <div class="container">
-            <h2>Félix-Antoine</h2>
-            <p class="title">Scrum master</p>
-            <p>No Da</p>
+            <h2>Félix-Antoine Lavallée</h2>
+            <p class="title">Scrum master et développeur </p>
+            <p>1986645</p>
+            <p>201986645@collegeahuntsic.qc.ca</p>
           </div>
         </div>
       </div>
@@ -102,9 +96,10 @@ let afficherContact = () => {
       <div class="column">
         <div class="card">
           <div class="container">
-            <h2>Félix</h2>
-            <p class="title">Dev</p>
-            <p>No Da</p>
+            <h2>Félix Gauthier-Pravato</h2>
+            <p class="title">développeur </p>
+            <p>1964428</p>
+            <p>201964428@collegeahuntsic.qc.ca</p>
           </div>
         </div>
       </div>
@@ -113,8 +108,9 @@ let afficherContact = () => {
         <div class="card">
           <div class="container">
             <h2>Maxime Couillard</h2>
-            <p class="title">Dev</p>
-            <p>No Da</p>
+            <p class="title">développeur </p>
+            <p>0940118 </p>
+            <p>200940118@collegeahuntsic.qc.ca</p>
           </div>
         </div>
       </div>
@@ -123,11 +119,14 @@ let afficherContact = () => {
         <div class="card">
           <div class="container">
             <h2>Haddouni Sid Ali</h2>
-            <p class="title">Dev</p>
-            <p>No Da</p>
+            <p class="title">développeur </p>
+            <p>1947531 </p>
+            <p>201947531@collegeahuntsic.qc.ca</p>
           </div>
         </div>
       </div>
+      <footer style="text-align:center">&copy; Copyright 2022</footer>
+
     </div>
     `;
 

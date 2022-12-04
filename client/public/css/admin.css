@@ -107,7 +107,7 @@ table.table td a:hover {
 }
 
 table.table td a.edit {
-    color: #4907ff;
+    color: rgb(21, 28, 72);
 }
 
 table.table td a.delete {
@@ -291,7 +291,7 @@ li.dropdown a{
     color: white !important;
 }
 li.dropdown a:hover{
-    color: rgb(115, 0, 255) !important;
+    color: rgb(21, 28, 72) !important;
 }
 
 a:link {
