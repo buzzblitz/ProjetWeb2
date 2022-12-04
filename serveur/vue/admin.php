@@ -32,7 +32,7 @@ else {
     <script src="../../client/public/admin/vueAdmin.js"></script>
 </head>
 
-<body onload="javascript:chargerCircuitsAJAX();">
+<body id="page" onload="javascript:chargerCircuitsAJAX();">
     <?php
 require_once("menu_admin.inc.php");
 ?>
