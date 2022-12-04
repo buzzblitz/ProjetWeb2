@@ -484,11 +484,12 @@ let montrerVue = (action, donnees) => {
     switch(action){
         case "enregistrer"  :
             if(donnees.OK){
-                window.location.href= donnees.location;
+                console.log(donnees.msg);
+                //window.location.href= donnees.location;
             }else{
-                msg="Problème+avec+enregistrement";
-                console.log(msg);
-                window.location.href="index.php"; 
+                //msg="Problème+avec+enregistrement";
+                console.log(donnees.msg);
+                //window.location.href="index.php"; 
             }
             break;
         case "modifierC"     :
