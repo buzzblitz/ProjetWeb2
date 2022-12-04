@@ -208,5 +208,10 @@ html,body{
  .carousel-item h5,.carousel-item p {
     height:200px;
     text-align: center;
-    
+
 }
+#maintable{
+
+    background:white;
+}
+
