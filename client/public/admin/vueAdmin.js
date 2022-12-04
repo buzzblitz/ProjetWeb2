@@ -346,7 +346,7 @@ let afficherTableMembres = () => {
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-2">
-                            <h2>Circuits</h2>
+                            <h2>Membres</h2>
                         </div>
                         <div class="col-sm-7">
                             <nav class="navbar">
@@ -392,13 +392,6 @@ let afficherTableMembres = () => {
                                     </li>
                                 </ul>
                             </nav>
-                        </div>
-                        <div class=" col-sm-3">
-                            <button type="button" class="btn btn-success" onClick="montrerFormAjouterCircuit();";>
-                                <i class="bi bi-plus-circle"></i>
-                                <span>Ajouter</span></button>
-                            <button type="button" class="btn btn-danger" onClick="enleverMultiplesArticles();">
-                                <i class="bi bi-dash-circle"></i> <span>Enlever</span></button>
                         </div>
                     </div>
                 </div>
@@ -522,8 +515,6 @@ function generate_table_membre(displayRecords) {
 				<td>${unConnexion.etat}</td>
                 <td>
 				<a href="#" onClick='requeteAfficherModif(${unConnexion.idm},"chargerM")' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
-				<a href="#" onClick='supprimerArticle(${unConnexion.idm})' class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Enlever"></i></a>
-                <a href="#" onClick='chargerEtapesAJAX(${unConnexion.idm})' class="lister" data-toggle="modal"><i class="bi bi-arrow-right-square" data-toggle="tooltip" title="Lister"></i></a>
 				</td>
 			</tr></tbody>`;
     }
