@@ -80,7 +80,7 @@ let carteCircuit = (unCircuit) => {
 
 let carteEtape = (unEtape) => {
     let rep =    ' <div class="col">';
-    rep +='<div class="card">';
+    rep +='<div class="card-e">';
                  rep +=' <img src="../ressources/images/images_circuits/'+unEtape.photoe+'" class="card-img-top tailleImg" alt="...">';
                  rep +=' <div class="card-body">';
                  rep +=' <h5 class="card-title">'+unEtape.nome+'</h5>';
@@ -97,7 +97,7 @@ let carteEtape = (unEtape) => {
 
 let carteJournee = (uneJournee) => {
     let rep =    ' <div class="col">';
-    rep +='<div class="card">';
+    rep +='<div class="card-j">';
                  rep +=' <div class="card-body">';
                  rep +=' <h5 class="card-title">'+ uneJournee.datej+'</h5>';
                  rep +=' <p class="card-text">Description : '+ uneJournee.descriptionj+'</p>';
@@ -109,7 +109,7 @@ let carteJournee = (uneJournee) => {
 
 let carteActivite = (uneActivite) => {
     let rep =    ' <div class="col">';
-    rep +='<div class="card">';
+    rep +='<div class="card-a">';
                  rep +=' <div class="card-body">';
                  rep +=' <h5 class="card-title">'+ uneActivite.noma+'</h5>';
                  rep +=' <p class="card-text">Temps Debut : '+ uneActivite.tempsdebut+'</p>';
