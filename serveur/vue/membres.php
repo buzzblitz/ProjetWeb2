@@ -15,8 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Membre</title>
     <link rel="stylesheet" href="../../client/utilitaires/icons-1.8.1/bootstrap-icons.css">
-    <link rel="stylesheet" href="../../client/public/css/style.css">
     <link rel="stylesheet" href="../../client/utilitaires/bootstrap-5.1.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../client/public/css/style.css">
     <script src="../../client/utilitaires/jquery-3.6.0.min.js"></script>
     <script src="../../client/utilitaires/bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
     <script src="../../client/public/membre/requetesMembre.js"></script>
