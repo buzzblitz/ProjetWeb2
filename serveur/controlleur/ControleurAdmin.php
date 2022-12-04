@@ -1,5 +1,6 @@
 <?php
-       
+    require_once(__DIR__."/../modele/connexion/ConnexionM.php");
+    require_once(__DIR__."/../modele/connexion/DaoConnexionM.php");
     require_once(__DIR__."/../modele/circuit/Circuit.php");
     require_once(__DIR__."/../modele/circuit/DaoCircuit.php");
     require_once(__DIR__."/../modele/etape/Etape.php");
@@ -149,6 +150,13 @@
         return DaoActivite::getDaoActivite()->MdlA_update($activite);
          
     }
+
+    function CtrA_updateM(){
+        $journee = new ConnexionM($_POST['idm'], "", "", $_POST['etat'], "");
+        return DaoConnexionM::getDaoConnexionM()->MdlJ_update($journee);
+         
+    }
+
     function CtrA_get($idc){
         return DaoCircuit::getDaoCircuit()->MdlC_get($idc); 
     }
@@ -162,6 +170,11 @@
     function CtrA_getA($ida){
         return DaoActivite::getDaoActivite()->MdlA_get($ida); 
     }
+
+    function CtrA_getM($idm){
+        return DaoConnexionM::getDaoConnexionM()->MdlCM_get($idm); 
+    }
+
     function CtrA_getAll(){
         return DaoCircuit::getDaoCircuit()->MdlC_getAll(); 
     }
@@ -179,6 +192,10 @@
     }
     function CtrA_removeA($ida){
         return DaoActivite::getDaoActivite()->MdlA_remove($ida); 
+    }
+
+    function CtrA_getAllMembre(){
+        return DaoConnexionM::getDaoConnexionM()->MdlCM_getAllMembre(); 
     }
 
     function CtrA_Actions(){
@@ -222,15 +239,22 @@
             case "chargerA" :
                 $input=$_POST['input'];
                 return  $this->CtrA_getA($input);
+            case "chargerM" :
+                $input=$_POST['input'];
+                return  $this->CtrA_getM($input);
             case "modifierE" :
                 return  $this->CtrA_updateE();
             case "modifierJ" :
                 return  $this->CtrA_updateJ();
             case "modifierA" :
                 return  $this->CtrA_updateA();
+            case "modifierM" :
+                return  $this->CtrA_updateM();
             case "listerE" :
                 $input=$_POST['input'];
                 return $this->CtrA_getAllE($input);
+            case "listerMembre" :
+                return $this->CtrA_getAllMembre();
         }
         // Retour de la réponse au client
        

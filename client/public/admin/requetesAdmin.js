@@ -14,6 +14,22 @@ let chargerCircuitsAJAX = () => {
     })
 }
 
+let chargerMembresAJAX = () => {
+    $.ajax({
+        type : "POST",
+        url  : "../../routeAdmin.php",
+        data : {"action":"listerMembre"},
+        dataType : "json", //text pour voir si bien formé même chose pour xml
+        success : function (reponse){//alert(listeFilms);
+            // listeFilms = reponse;
+        	montrerVue("listerMembre", reponse);
+        },
+        fail : (err) => {
+            //Décider du message
+        }
+    })
+}
+
 let chargerEtapesAJAX = (idc) => {
     $.ajax({
         type : "POST",
