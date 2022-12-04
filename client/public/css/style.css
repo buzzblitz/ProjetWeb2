@@ -14,7 +14,7 @@
 
 .aligner-centre-titre {
     text-align: center;
-    color:blueviolet;
+    color:rgb(21, 28, 72);
     font-size: 30px;
 }
 
@@ -41,7 +41,7 @@
 }
 
 .bg-perso {
-    background-color: #7f07ff;
+    background-color: rgb(21, 28, 72);
 }
 
 .dropdown {
@@ -115,9 +115,9 @@ ul {
 
 .card{
     margin-top: 25px;
-    background-color: black;
     border: black;
-    background: #7f07ff;
+    color: rgb(222, 205, 198);
+    background: rgb(21, 28, 72);
     margin: auto;
     max-width: 1048px;
     width: 100%;
@@ -128,9 +128,10 @@ ul {
 
 .card-j{
     margin-top: 25px;
+    color: rgb(222, 205, 198);
     background-color: black;
     border: black;
-    background: green;
+    background: #696D8A;
     margin: auto;
     max-width: 1048px;
     width: 100%;
@@ -140,10 +141,11 @@ ul {
 }
 
 .card-a{
+    color: rgb(222, 205, 198);
     margin-top: 25px;
     background-color: black;
     border: black;
-    background: yellow;
+    background: #878AA1;
     margin: auto;
     max-width: 1048px;
     width: 100%;
@@ -154,10 +156,11 @@ ul {
 
 
 .card-e{
+    color: rgb(222, 205, 198);
     margin-top: 25px;
     background-color: black;
     border: black;
-    background: magenta;
+    background: #44496D;
     margin: auto;
     max-width: 1048px;
     width: 100%;
@@ -166,6 +169,7 @@ ul {
     border: transparent
 }
 .column {
+    color: rgb(222, 205, 198);
     float: left;
     width: 33.3%;
     margin-bottom: 16px;
