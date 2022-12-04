@@ -35,11 +35,41 @@
         return DaoCircuit::getDaoCircuit()->MdlC_getAll(); 
    }
 
+   function CtrM_get($idc){
+    return DaoCircuit::getDaoCircuit()->MdlC_get($idc); 
+  }
+
+  function CtrM_detailler($idc){
+       global $list;
+    $circuit = json_decode(DaoCircuit::getDaoCircuit()->MdlC_get($idc));
+    if($circuit->OK){
+        $etapes = json_decode(DaoEtape::getDaoEtape()->MdlE_getAll($idc));
+            if ($etapes->OK) {
+                foreach ($etapes->listeEtapes as $etape) {
+                    $journees = json_decode(DaoJournee::getDaoJournee()->MdlJ_getAll($etape->ide));
+                    if ($journees->OK) {
+                        foreach ($journees->listeJournees as $journee) {
+                            $activites = json_decode(DaoActivite::getDaoActivite()->MdlA_getAll($journee->idj));
+                            $list['circuit'] = $circuit->circuit;
+                            $list['listeEtapes'] = $etapes->listeEtapes;
+                            $list['listeJournees'] = $journees->listeJournees;
+                            $list['listeActivites'] = $activites->listeActivites;
+                            return $list;
+                    }
+                }
+            }
+        }
+    }
+  }
+
     function CtrM_Actions(){
         $action=$_POST['action'];
         switch($action){
             case "enregistrer" :
                 return  $this->CtrM_Enregistrer();
+            case "charger" :
+                $input=$_POST['input'];
+                return  $this->CtrM_get($input); 
             case "fiche" :
                 //fiche(); 
             break;
@@ -51,6 +81,9 @@
             break;
             case "lister" :
                 return $this->CtrM_getAll(); 
+            case "detailler" :
+                $input=$_POST['input'];
+                return  $this->CtrM_detailler($input); 
         }
         // Retour de la réponse au client
        

@@ -31,7 +31,7 @@ CREATE TABLE circuits (
   photoc VARCHAR(255)DEFAULT NULL,
   descriptionc VARCHAR(255) NOT NULL,
   etat VARCHAR(4) NOT NULL,
-  prix INTEGER DEFAULT NULL
+  prix INTEGER DEFAULT(0)
 );
 
 CREATE TABLE etapes (
@@ -71,10 +71,10 @@ ALTER TABLE membrescircuits ADD FOREIGN KEY (idm) REFERENCES membres (idm);
 ALTER TABLE membrescircuits ADD FOREIGN KEY (idc) REFERENCES circuits (idc);
 
 
-INSERT INTO `circuits` (`idc`, `nomc`, `photoc`, `descriptionc`, `etat`) VALUES ('1', 'circuit1', 'Sydney.jpg', 'description du circuit1', 'A');
-INSERT INTO `etapes` (`ide`, `idc`, `nome`, `photoe`, `descriptione`, `debut`, `fin`, `lieurencontre`) VALUES ('1', '1', 'etape1 de c1', NULL, 'description de letape 1 du circuit 1', '2022-11-08 14:27:37', '2022-11-16 14:27:37', 'un lieu de rencontre ');
-INSERT INTO `journees` (`idj`, `ide`, `datej`, `descriptionj`) VALUES ('1', '1', '2022-11-16 14:30:01', 'une journee bien ensoleillee');
-INSERT INTO `activites` (`ida`, `idj`, `noma`, `tempsdebut`, `tempsfin`, `descriptiona`) VALUES ('1', '1', 'jouer au golf', '2022-11-16 14:30:41', '2022-11-16 14:30:42', 'une belle partie de 8trous');
+INSERT INTO `circuits` (`idc`, `nomc`, `photoc`, `descriptionc`, `etat`) VALUES ('1', 'Corée', 'Pyongyang.jpg', 'Voyage en Corée', 'A');
+INSERT INTO `etapes` (`ide`, `idc`, `nome`, `photoe`, `descriptione`, `debut`, `fin`, `lieurencontre`) VALUES ('1', '1', 'Pyongyang', NULL, 'Première étape du voyage en Corée', '2022-12-25 18:00:00', '2022-12-25 20:00:00', 'Premiere journee Pyongyang');
+INSERT INTO `journees` (`idj`, `ide`, `datej`, `descriptionj`) VALUES ('1', '1', '2022-11-16 14:30:01', 'une journee belle journée pour la prison');
+INSERT INTO `activites` (`ida`, `idj`, `noma`, `tempsdebut`, `tempsfin`, `descriptiona`) VALUES ('1', '1', 'Se faire arreter', '2022-11-16 14:30:41', '2022-11-16 14:30:42', 'un beau séjour au trou');
 
 INSERT INTO `circuits` (`idc`, `nomc`, `photoc`, `descriptionc`, `etat`) VALUES ('2', 'Portugal', 'Porto.jpg', 'Voyage au Portugal', 'A');
 INSERT INTO `etapes` (`ide`, `idc`, `nome`, `photoe`, `descriptione`, `debut`, `fin`, `lieurencontre`) VALUES ('2', '2', 'Porto', NULL, 'Première étape du voyage au Portugal', '2022-12-25 18:00:00', '2022-12-25 20:00:00', 'Premiere journee Porto');
