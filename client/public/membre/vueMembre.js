@@ -10,6 +10,9 @@ let nbart = JSON.parse(localStorage.getItem("panier")).length;
 let afficherNbart = "(" + nbart + ")";
 $('#nbart').html(afficherNbart);
 
+let rafraichireCart = () => {
+    $('#nbart').html(afficherNbart);
+}
 
 let remplirCard = (unCircuit)=> {
     let rep =    ' <div class="col">';
@@ -184,17 +187,17 @@ let mettreAJourLaFacture = (nouveauTotal) => {
 let ajusterTotalAchat = (elemInput, prix, montantActuel) => {
     let ancienMontant;
     let qte = elemInput.value; 
-    montantTotalCetArticle = (qte * prix);
+    montantTotalCetCircuit = (qte * prix);
     if(elemInput.parentNode.nextSibling.nodeType == 3){//Node bidon ajouté au DOM
         ancienMontant = parseFloat(elemInput.parentNode.nextSibling.nextSibling.firstChild.nodeValue);
-        elemInput.parentNode.nextSibling.nextSibling.firstChild.nodeValue = montantTotalCetArticle+"$";
+        elemInput.parentNode.nextSibling.nextSibling.firstChild.nodeValue = montantTotalCetCircuit+"$";
     }else {
         ancienMontant = parseFloat(elemInput.parentNode.nextSibling.firstChild.nodeValue);
-        elemInput.parentNode.nextSibling.firstChild.nodeValue = montantTotalCetArticle+"$";
+        elemInput.parentNode.nextSibling.firstChild.nodeValue = montantTotalCetCircuit+"$";
     }
     //Mise-à-jour de la facture
     let ancienTotal = parseFloat(document.getElementById("totalAchat").innerText); 
-    let nouveauTotal = (ancienTotal - ancienMontant)+montantTotalCetArticle; 
+    let nouveauTotal = (ancienTotal - ancienMontant)+montantTotalCetCircuit; 
     mettreAJourLaFacture(nouveauTotal);
 } 
 
