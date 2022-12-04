@@ -345,6 +345,27 @@ let afficherTableCircuits = () => {
     document.getElementById('contenu').innerHTML = rep;
 }
 
+let afficherHeaderEtape = (idrow) => {
+    let rep = `
+    <tr>
+        <th>
+            <span class="custom-checkbox">
+                <input type="checkbox" id="selectAll">
+                <label for="selectAll"></label>
+            </span>
+        </th>
+        <th>ID</th>
+        <th>Image</th>
+        <th>Nom</th>
+        <th>Description</th>
+        <th>Debut</th>
+        <th>Fin</th>
+        <th>Lieu de rencontre</th>
+    </tr>
+    `;
+    $(`#circuit${idrow}`).html(rep);
+}
+
 var $pagination,
 totalRecords = 0,
 records = [],
@@ -369,6 +390,7 @@ function generate_table(displayRecords) {
 	let rep="";
     for (let unCircuit of displayRecords) { 
 		rep+=`
+        <div id="circuit${unCircuit.idc}">
 			<tr>
 				<td>
 					<span class="custom-checkbox">
@@ -382,13 +404,12 @@ function generate_table(displayRecords) {
 				<td>${unCircuit.descriptionc }</td>
 				<td>${unCircuit.etat}</td>
 				<td>${unCircuit.prix}$</td>
-
 				<td>
 				<a href="#" onClick='editerArticle(${unCircuit.idc})' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
 				<a href="#" onClick='supprimerArticle(${unCircuit.idc})' class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Enlever"></i></a>
-                <a href="#" onClick='listerEtape(${unCircuit.idc})' class="lister" data-toggle="modal"><i class="bi bi-arrow-right-square" data-toggle="tooltip" title="Lister"></i></a>
+                <a href="#" onClick='chargerEtapesAJAX(${unCircuit.idc})' class="lister" data-toggle="modal"><i class="bi bi-arrow-right-square" data-toggle="tooltip" title="Lister"></i></a>
 				</td>
-			</tr>`;
+			</tr></div>`;
     }
 	$('#emp_body').html(rep);
 }
@@ -507,6 +528,14 @@ let montrerVue = (action, donnees) => {
             if(donnees.OK){
                 afficherTableCircuits();
                 generate_table(donnees.listeCircuits);
+            }else{
+                afficherMessage(donnees.msg); 
+            }
+        break;
+        case "listerE"       :
+            if(donnees.OK){
+                afficherHeaderEtape(donnees.idc);
+                //generate_tableE(donnees.listeEtapes);
             }else{
                 afficherMessage(donnees.msg); 
             }

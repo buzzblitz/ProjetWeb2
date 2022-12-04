@@ -14,6 +14,22 @@ let chargerCircuitsAJAX = () => {
     })
 }
 
+let chargerEtapesAJAX = (idc) => {
+    $.ajax({
+        type : "POST",
+        url  : "../../routeAdmin.php",
+        data : {"action":"listerE","input":idc},
+        dataType : "json", //text pour voir si bien formé même chose pour xml
+        success : function (reponse){//alert(listeFilms);
+            // listeFilms = reponse;
+        	montrerVue("listerE", reponse);
+        },
+        fail : (err) => {
+            //Décider du message
+        }
+    })
+}
+
 let requeteAfficherCircuit = (idc) => {
 	$.ajax({
         type : "POST",

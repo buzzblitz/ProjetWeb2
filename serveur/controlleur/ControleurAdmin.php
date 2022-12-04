@@ -165,6 +165,9 @@
     function CtrA_getAll(){
         return DaoCircuit::getDaoCircuit()->MdlC_getAll(); 
     }
+    function CtrA_getAllE($idc){
+        return DaoEtape::getDaoEtape()->MdlE_getAll($idc); 
+    }
     function CtrA_removeC($idc){
         return DaoCircuit::getDaoCircuit()->MdlC_remove($idc); 
    }
@@ -225,6 +228,9 @@
                 return  $this->CtrA_updateJ();
             case "modifierA" :
                 return  $this->CtrA_updateA();
+            case "listerE" :
+                $input=$_POST['input'];
+                return $this->CtrA_getAllE($input);
         }
         // Retour de la réponse au client
        

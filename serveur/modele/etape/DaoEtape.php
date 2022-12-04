@@ -66,14 +66,16 @@ class DaoEtape {
     function MdlE_getAll($index):string {
         global $reponse;
         $connexion = Connexion::getConnexion();
-        $requette="SELECT * FROM etapes WHERE idc =" + $index;
+        $requette="SELECT * FROM etapes WHERE idc =?";
         try{
-            $stmt = $connexion->prepare((string)$requette);
-            $stmt->execute();
+            $donnees = [$index];
+            $stmt = $connexion->prepare($requette);
+            $stmt->execute($donnees);
             $reponse['OK'] = true;
             $reponse['msg'] = "";
             $reponse['listeEtapes'] = array();
             $reponse['listeEtapes'] = $stmt->fetchAll();
+            $reponse['idc'] = $index;
         }catch (Exception $e){ 
             $reponse['OK'] = false;
             $reponse['msg'] = "Problème pour obtenir les données des etapes";
