@@ -200,7 +200,7 @@
             case "enleverA" :
                 $input=$_POST['input'];
                 return  $this->CtrA_removeA($input);
-            case "lister" :
+            case "listerC" :
                 return $this->CtrA_getAll();
             case "deconnecter" :
                 return $this->CtrA_Deconnexion();

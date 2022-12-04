@@ -2,11 +2,12 @@ let chargerCircuitsAJAX = () => {
     $.ajax({
         type : "POST",
         url  : "../../routeAdmin.php",
-        data : {"action":"lister"},
+        data : {"action":"listerC"},
         dataType : "json", //text pour voir si bien formé même chose pour xml
         success : function (reponse){//alert(listeFilms);
             // listeFilms = reponse;
-        	montrerVue("lister", reponse);
+			console.log("mom");
+        	montrerVue("listerC", reponse);
         },
         fail : (err) => {
             //Décider du message
@@ -198,6 +199,21 @@ let requeteDeconnexion = () => {
 		   
 		}
 	});
+}
+
+let requeteDelete = (id,ctraction) => {
+	$.ajax({
+        type : "POST",
+        url  : "../../routeAdmin.php",
+        data : {"action":ctraction,"input":id},
+        dataType : "json",
+        success : function (reponse){
+        	montrerVue(ctraction, reponse);
+        },
+        fail : (err) => {
+            //Décider du message
+        }
+    })
 }
 
 
