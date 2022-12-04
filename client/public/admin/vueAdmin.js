@@ -451,6 +451,50 @@ let afficherTableE = () => {
     $('#contenu').html(rep);
 }
 
+let afficherTableJ = () => {
+    let rep = `
+                    <thead>
+                    <tr>
+                        <th>
+                            <span class="custom-checkbox">
+                                <input type="checkbox" id="selectAll">
+                                <label for="selectAll"></label>
+                            </span>
+                        </th>
+                        <th>ID</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th></th>
+                    </tr>
+                        </thead>
+                    <tbody id="maintable></tbody>
+    `;
+    $('#contenu').html(rep);
+}
+
+let afficherTableA = () => {
+    let rep = `
+                    <thead>
+                    <tr>
+                        <th>
+                            <span class="custom-checkbox">
+                                <input type="checkbox" id="selectAll">
+                                <label for="selectAll"></label>
+                            </span>
+                        </th>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Heure Debut</th>
+                        <th>Heure Fin</th>
+                        <th></th>
+                    </tr>
+                        </thead>
+                    <tbody id="maintable></tbody>
+    `;
+    $('#contenu').html(rep);
+}
+
 function generate_tableC(displayRecords) {
 	let rep="";
     for (let unCircuit of displayRecords) { 
@@ -472,7 +516,7 @@ function generate_tableC(displayRecords) {
                 <td>
 				<a href="#" onClick='requeteAfficherModif(${unCircuit.idc},"chargerC")' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
 				<a href="#" onClick='requeteDelete(${unCircuit.idc}, "enleverC")' class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Enlever"></i></a>
-                <a href="#" onClick='chargerEtapesAJAX(${unCircuit.idc})' class="lister" data-toggle="modal"><i class="bi bi-arrow-right-square" data-toggle="tooltip" title="Lister"></i></a>
+                <a href="#" onClick='chargerAJAX(${unCircuit.idc},"listerE")' class="lister" data-toggle="modal"><i class="bi bi-arrow-right-square" data-toggle="tooltip" title="Lister"></i></a>
 				</td>
 			</tr>`;
     }
@@ -500,11 +544,60 @@ function generate_tableE(idc, displayRecords) {
                 <td>
 				<a href="#" onClick='requeteAfficherModif(${unEtape.ide},"chargerE")' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
 				<a href="#" onClick='requeteDelete(${unEtape.ide},"enleverE")' class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Enlever"></i></a>
-                <a href="#" onClick='chargerJourneeAJAX(${unEtape.ide})' class="lister" data-toggle="modal"><i class="bi bi-arrow-right-square" data-toggle="tooltip" title="Lister"></i></a>
+                <a href="#" onClick='chargerAJAX(${unEtape.ide},"listerJ")' class="lister" data-toggle="modal"><i class="bi bi-arrow-right-square" data-toggle="tooltip" title="Lister"></i></a>
 				</td>
 			</tr>`;
     }
 	$(`#tb${idc}`).append(rep);
+}
+
+function generate_tableJ(displayRecords) {
+	let rep="";
+    for (let uneJournee of displayRecords) { 
+		rep+=`
+			<tr>
+				<td>
+					<span class="custom-checkbox">
+						<input type="checkbox" id="opt" value="${uneJournee.idj}" name="options[]">
+						<label for="opt"></label>
+					</span>
+				</td>	
+				<td>${uneJournee.idj}</td>
+				<td>${uneJournee.descriptionj}</td>
+				<td>${uneJournee.datej}</td>
+                <td>
+				<a href="#" onClick='requeteAfficherModif(${uneJournee.ide},"chargerJ")' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
+				<a href="#" onClick='requeteDelete(${uneJournee.ide}, "enleverJ")' class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Enlever"></i></a>
+                <a href="#" onClick='chargerAJAX(${uneJournee.ide},"listerA")' class="lister" data-toggle="modal"><i class="bi bi-arrow-right-square" data-toggle="tooltip" title="Lister"></i></a>
+				</td>
+			</tr>`;
+    }
+	$('#maintable').html(rep);
+}
+
+function generate_tableA(displayRecords) {
+	let rep="";
+    for (let unActivite of displayRecords) { 
+		rep+=`
+			<tr>
+				<td>
+					<span class="custom-checkbox">
+						<input type="checkbox" id="opt" value="${unActivite.ida}" name="options[]">
+						<label for="opt"></label>
+					</span>
+				</td>	
+				<td>${unActivite.ida}</td>
+				<td>${unActivite.nomc}</td>
+				<td>${unActivite.descriptionc }</td>
+				<td>${unActivite.tempsdebut}</td>
+				<td>${unActivite.tempsfin}$</td>
+                <td>
+				<a href="#" onClick='requeteAfficherModif(${unActivite.ida},"chargerA")' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
+				<a href="#" onClick='requeteDelete(${unActivite.ida}, "enleverA")' class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Enlever"></i></a>
+				</td>
+			</tr>`;
+    }
+	$('#maintable').html(rep);
 }
 
 function generate_table_membre(displayRecords) {
@@ -652,7 +745,38 @@ let montrerVue = (action, donnees) => {
             break;
         case "modifierC"     :
             if(donnees.OK){
-                window.location.href= donnees.location;
+                $("#contenu").html("");
+                chargerCircuitsAJAX();
+             }else{
+                 msg="Problème+pour+modifier+le+membre.";
+                 console.log(msg);
+                 window.location.href="index.php"; 
+             }
+             break;
+        case "modifierE"     :
+            if(donnees.OK){
+                $("#contenu").html("");
+                chargerAJAX(donnees.index,"listerE");
+             }else{
+                 msg="Problème+pour+modifier+le+membre.";
+                 console.log(msg);
+                 window.location.href="index.php"; 
+             }
+             break;
+        case "modifierJ"     :
+            if(donnees.OK){
+                $("#contenu").html("");
+                chargerAJAX(donnees.index,"listerJ");
+             }else{
+                 msg="Problème+pour+modifier+le+membre.";
+                 console.log(msg);
+                 window.location.href="index.php"; 
+             }
+             break;
+        case "modifierA"     :
+            if(donnees.OK){
+                $("#contenu").html("");
+                chargerAJAX(donnees.index,"listerA");
              }else{
                  msg="Problème+pour+modifier+le+membre.";
                  console.log(msg);
@@ -706,15 +830,33 @@ let montrerVue = (action, donnees) => {
         break;
         case "listerE"       :
             if(donnees.OK){
-                afficherHeaderEtape(donnees.idc);
-                generate_tableE(donnees.idc, donnees.listeEtapes);
+                afficherSqueletteTable("Etape");
+                afficherTableE();
+                generate_tableE(donnees.listeEtapes);
+            }else{
+                afficherMessage(donnees.msg); 
+            }
+        break;
+        case "listerJ"       :
+            if(donnees.OK){
+                afficherSqueletteTable("Journee");
+                afficherTableJ();
+                generate_tableJ(donnees.listeJournees);
+            }else{
+                afficherMessage(donnees.msg); 
+            }
+        break;
+        case "listerA"       :
+            if(donnees.OK){
+                afficherSqueletteTable("Activite");
+                afficherTableA();
+                generate_tableA(donnees.listeActivites);
             }else{
                 afficherMessage(donnees.msg); 
             }
         break;
         case "enleverC"     :
             if(donnees.OK){
-                console.log(donnees);
                 $("#contenu").html("");
                 chargerCircuitsAJAX();
              }else{

@@ -99,6 +99,7 @@ class DaoJournee {
             $reponse['OK'] = true;
             $reponse['msg'] = "Réussite de la modification du journee";
             $reponse['location'] = "admin.php";
+            $reponse['index'] = $journee->getIde();
         }catch (Exception $e){
             $reponse['OK'] = false;
             $reponse['msg'] = "Problème pour modifier le journee";

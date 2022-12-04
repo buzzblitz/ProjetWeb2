@@ -96,6 +96,7 @@ class DaoActivite {
             $reponse['OK'] = true;
             $reponse['msg'] = "Réussite de la modification du activite";
             $reponse['location'] = "admin.php";
+            $reponse['index'] = $activite->getIdj();
         }catch (Exception $e){
             $reponse['OK'] = false;
             $reponse['msg'] = "Problème pour modifier le activite";

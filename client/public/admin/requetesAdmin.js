@@ -31,15 +31,15 @@ let chargerMembresAJAX = () => {
     })
 }
 
-let chargerEtapesAJAX = (idc) => {
+let chargerAJAX = (id, ctraction) => {
     $.ajax({
         type : "POST",
         url  : "../../routeAdmin.php",
-        data : {"action":"listerE","input":idc},
+        data : {"action":ctraction,"input":id},
         dataType : "json", //text pour voir si bien formé même chose pour xml
         success : function (reponse){//alert(listeFilms);
             // listeFilms = reponse;
-        	montrerVue("listerE", reponse);
+        	montrerVue(ctraction, reponse);
         },
         fail : (err) => {
             //Décider du message

@@ -181,6 +181,12 @@
     function CtrA_getAllE($idc){
         return DaoEtape::getDaoEtape()->MdlE_getAll($idc); 
     }
+    function CtrA_getAllJ($ide){
+        return DaoJournee::getDaoJournee()->MdlJ_getAll($ide); 
+    }
+    function CtrA_getAllA($idj){
+        return DaoActivite::getDaoActivite()->MdlA_getAll($idj); 
+    }
     function CtrA_removeC($idc){
         return DaoCircuit::getDaoCircuit()->MdlC_remove($idc); 
    }
@@ -253,6 +259,12 @@
             case "listerE" :
                 $input=$_POST['input'];
                 return $this->CtrA_getAllE($input);
+            case "listerJ" :
+                $input=$_POST['input'];
+                return $this->CtrA_getAllJ($input);
+            case "listerA" :
+                $input=$_POST['input'];
+                return $this->CtrA_getAllA($input);
             case "listerMembre" :
                 return $this->CtrA_getAllMembre();
         }

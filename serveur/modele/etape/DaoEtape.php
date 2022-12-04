@@ -97,6 +97,7 @@ class DaoEtape {
             $reponse['OK'] = true;
             $reponse['msg'] = "Réussite de la modification du etape";
             $reponse['location'] = "admin.php";
+            $reponse['index'] = $etape->getIdc();
         }catch (Exception $e){
             $reponse['OK'] = false;
             $reponse['msg'] = "Problème pour modifier le etape";
