@@ -1,3 +1,16 @@
+const TAXES = 0.1556;
+let panier = null;
+let listesCircuits;
+
+if (localStorage.getItem("panier") == undefined) {
+    localStorage.setItem("panier", '[]'); //panier vide
+}
+
+let nbart = JSON.parse(localStorage.getItem("panier")).length;
+let afficherNbart = "(" + nbart + ")";
+$('#nbart').html(afficherNbart);
+
+
 let remplirCard = (unCircuit)=> {
     let rep =    ' <div class="col">';
     rep +='<div class="card">';
@@ -7,7 +20,7 @@ let remplirCard = (unCircuit)=> {
                  rep +=' <p class="card-text">Description : '+unCircuit.descriptionc+'</p>';
                  rep +=' <p class="card-text">Prix Total : '+unCircuit.prix+'$</p>';
                  rep +=' <a href="#" onClick="detailCircuit(' + unCircuit.idc + ');" class="btn btn-primary"><span style="font-size:18px; color:white;">Détailler le Circuit</span></a>';
-                 rep +=' <a href="#" onClick="acheterCircuit(this,unCircuit.title);" class="btn btn-primary"><span style="font-size:18px; color:white;">Ajouter au panier</span></a>';
+                 rep +=' <a href="#" onClick="ajouterPanier('+ unCircuit.idc + ');" class="btn btn-primary"><span style="font-size:18px; color:white;">Ajouter au panier</span></a>';
                  rep +=' </div>';
                  rep +=' </div>';
                  rep +=' </div>';
@@ -22,7 +35,7 @@ let remplirDetail = (unCircuit)=> {
                  rep +=' <p class="card-text">Description : '+unCircuit.descriptionc+'</p>';
                  rep +=' <p class="card-text">Prix Total : '+unCircuit.prix+'$</p>';
                  rep +=' <a href="#" onClick="detailCircuit(' + unCircuit.idc + ');" class="btn btn-primary"><span style="font-size:18px; color:white;">Détailler le Circuit</span></a>';
-                 rep +=' <a href="#" onClick="acheterCircuit(this,unCircuit.title);" class="btn btn-primary"><span style="font-size:18px; color:white;">Ajouter au panier</span></a>';
+                 rep +=' <a href="#" onClick="ajouterPanier('+ unCircuit.idc + ');" class="btn btn-primary"><span style="font-size:18px; color:white;">Ajouter au panier</span></a>';
                  rep +=' </div>';
                  rep +=' </div>';
                  rep +=' </div>';
@@ -108,6 +121,167 @@ let carteActivite = (uneActivite) => {
         return rep;
 }
 
+if (localStorage.getItem("panier") == undefined) {
+    localStorage.setItem("panier", '[]'); //panier vide
+}
+
+
+let ajouterPanier = (idCircuit) => {
+    panier = JSON.parse(localStorage.getItem("panier"));
+    let trouve = panier.find(idc => {
+        return idCircuit == idc;
+    })
+    if(trouve == undefined){
+        panier.push(idCircuit);
+        localStorage.setItem("panier", JSON.stringify(panier));
+        ++nbart;
+        afficherNbart = "(" + nbart + ")";
+        $('#nbart').html(afficherNbart); //document.getElementById('nbart').innerHTML = afficherNbart;
+    }else {
+        alert("Article existe déjà dans le panier");
+    }
+}
+
+let enleverArticle = (btnClose, idArticleEnlever) => {
+    let montantArticle;
+    if(btnClose.parentNode.previousSibling.nodeType == 3){//Noeud bidon type #text:espace
+        montantArticle = parseFloat(btnClose.parentNode.previousSibling.previousSibling.firstChild.nodeValue);
+    }else {
+        montantArticle = parseFloat(btnClose.parentNode.previousSibling.firstChild.nodeValue);
+    }
+    let ancienTotal = parseFloat(document.getElementById("totalAchat").innerText); 
+    let nouveauTotal = ancienTotal - montantArticle; //Pour mettre à jour la facture
+    
+    //Enlver l'article du visuel du panier
+    let articleEnleverVisuelPanier = btnClose.parentNode.parentNode;
+    articleEnleverVisuelPanier.parentNode.remove(articleEnleverVisuelPanier);
+
+    //Mise à jour du localStorage
+    panier = JSON.parse(localStorage.getItem("panier"));
+    let nouveauPanier = panier.filter(idArticlePanier => {
+        return idArticlePanier != idArticleEnlever; 
+    })
+    if (nouveauPanier.length == panier.length) {
+        alert("L'article " + idArticleEnlever + " n'existe pas");
+    } else {
+        localStorage.setItem("panier", JSON.stringify(nouveauPanier));
+        --nbart;
+        afficherNbart = "(" + nbart + ")";
+        $('#nbart').html(afficherNbart);
+        mettreAJourLaFacture(nouveauTotal);
+    }
+    //document.querySelector("#divRetirer").style.display = 'none';
+}
+
+let mettreAJourLaFacture = (nouveauTotal) => {
+    document.getElementById("totalAchat").innerText = nouveauTotal.toFixed(2) + "$";
+    let montantTaxes = nouveauTotal * TAXES;
+    let totalPayer = nouveauTotal + montantTaxes;
+    document.getElementById("idTaxes").innerText = montantTaxes.toFixed(2) + "$"; 
+    document.getElementById("totalPayer").innerText = totalPayer.toFixed(2) + "$"; 
+}
+
+let ajusterTotalAchat = (elemInput, prix, montantActuel) => {
+    let ancienMontant;
+    let qte = elemInput.value; 
+    montantTotalCetArticle = (qte * prix);
+    if(elemInput.parentNode.nextSibling.nodeType == 3){//Node bidon ajouté au DOM
+        ancienMontant = parseFloat(elemInput.parentNode.nextSibling.nextSibling.firstChild.nodeValue);
+        elemInput.parentNode.nextSibling.nextSibling.firstChild.nodeValue = montantTotalCetArticle+"$";
+    }else {
+        ancienMontant = parseFloat(elemInput.parentNode.nextSibling.firstChild.nodeValue);
+        elemInput.parentNode.nextSibling.firstChild.nodeValue = montantTotalCetArticle+"$";
+    }
+    //Mise-à-jour de la facture
+    let ancienTotal = parseFloat(document.getElementById("totalAchat").innerText); 
+    let nouveauTotal = (ancienTotal - ancienMontant)+montantTotalCetArticle; 
+    mettreAJourLaFacture(nouveauTotal);
+} 
+
+let payer = () => {
+    document.getElementById("payer").innerHTML = "Merci pour votre paiement.";
+}
+
+let afficherPanier = () => {
+    let panier = JSON.parse(localStorage.getItem("panier"));
+    let nbArt = panier.length;
+    let vuePanier = `
+        <div class="card">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="title">
+                        <div class="row">
+                            <div class="col">
+                                <h4><b>Panier d'achats</b></h4>
+                            </div>
+                            <div class="col align-self-center text-right text-muted">${nbArt} articles</div>
+                        </div>
+                    </div> 
+        `;
+    let listeCircuitsAchetes = [];
+    panier.forEach(idCircuit => {
+        listeCircuitsAchetes.push(listesCircuits.find(unCircuit => unCircuit.idc == idCircuit));
+    });
+    let totalAchat = 0;
+    let montantTotalCetCircuit;
+    for (let unCircuit of listeCircuitsAchetes) {
+        montantTotalCetCircuit = parseFloat(unCircuit.prix);
+        vuePanier += ` 
+            <div class="row border-top border-bottom">
+                <div class="row align-items-center">
+                    <div class="col-2"><img class="img-fluid" src="../ressources/images/images_circuits/${unCircuit.photoc}"></div>
+                    <div class="col">
+                        <div class="row text-muted">${unCircuit.nomc}</div>
+                    </div>
+                    <div class="col"> <input type="number" id="qte" name="qte" min="1" max="100" value=1 onChange="ajusterTotalAchat(this,${unCircuit.prix}, ${montantTotalCetCircuit});"></div>
+                    <div class="col">${montantTotalCetCircuit}$</div>
+                    <div class="col"><div class="close closeBtn" onClick="enleverArticle(this,${unCircuit.idc});">&#10005;</div></div>
+                </div>
+            </div>
+        
+        `;
+        totalAchat += montantTotalCetCircuit;
+    }
+    
+    let montantTaxes = totalAchat * TAXES;
+    let totalPayer = totalAchat + montantTaxes;
+
+    vuePanier += `
+            </div>
+                    <div class="col-md-4 bg-info text-dark">
+                        <div>
+                            <h5><b>Facture</b></h5>
+                        </div>
+                        <hr>
+                        <br/>
+                        <div class="row">
+                            <div class="col" style="padding-left:10;">${nbArt} ARTICLES</div>
+                            <div id="totalAchat" class="col text-right">${totalAchat.toFixed(2)}$</div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col" style="padding-left:10;">MONTANT TAXES</div>
+                            <div id="idTaxes" class="col text-right">${montantTaxes.toFixed(2)}$</div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col" style="padding-left:10;">MONTANT À PAYER</div>
+                            <div id="totalPayer" class="col text-right">${totalPayer.toFixed(2)}$</div>
+                        </div> 
+                        </br>
+                        <button class="btn btn-dark" onclick="payer();">PAYER</button>
+                        <span id="payer"></span>
+                        <br/> 
+                    </div>
+                </div>
+            </div>
+        `;
+    $('#contenuPanier').html(vuePanier);
+    document.getElementById("payer").innerHTML = "";
+    let modalPanier = new bootstrap.Modal(document.getElementById('idModPanier'), {});
+    modalPanier.show();
+}
+
 let montrerVue = (action, donnees) => {
     switch(action){
         case "enregistrer"  :
@@ -144,6 +318,7 @@ let montrerVue = (action, donnees) => {
         break;
         case "lister"       :
             if(donnees.OK){
+                listesCircuits = donnees.listeCircuits;
                 listerCircuits(donnees.listeCircuits);
             }else{
                 afficherMessage(donnees.msg); 
