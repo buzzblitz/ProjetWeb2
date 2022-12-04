@@ -1,7 +1,7 @@
 <?php
     if(!isset($_SESSION['usager'])){
-        echo "Oups! Vous devez vous connecter avant";
-       // exit;
+        //echo "Oups! Vous devez vous connecter avant";
+       // TODO
     }
 ?>
 <!-- Menu de navigation -->
