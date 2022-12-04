@@ -32,9 +32,12 @@ class DaoCircuit {
             $donnees = [ $circuit->getNom(), $circuit->getPhoto(), $circuit->getDescription(), $circuit->getEtat(), $circuit->getPrix()];
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
+            $idc = $connexion->lastInsertId();
+            $this->reponse['idc'] = $idc;
             $this->reponse['OK'] = true;
             $this->reponse['msg'] = "Circuit bien enregistre";
             $this->reponse['location'] = "admin.php";
+            
         }catch (Exception $e){
             $this->reponse['OK'] = false;
             $this->reponse['msg'] = "Probléme pour enregistrer le circuit";

@@ -30,6 +30,8 @@ class DaoEtape {
             $donnees = [ $etape->getIdc(), $etape->getNom(), $etape->getPhotoe(), $etape->getDescriptione(), $etape->getDebut(), $etape->getFin(), $etape->getLieurencontre()];
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
+            $ide = $connexion->lastInsertId();
+            $this->reponse['ide'] = $ide;
             $this->reponse['OK'] = true;
             $this->reponse['msg'] = "Etape bien enregistre";
             $this->reponse['location'] = "admin.php";
