@@ -182,10 +182,12 @@ ul {
 #page{
     background-image: url(../images/background.jpg);
     width: 100%;
-    height: auto;
+    height: 100%;
+    background-size: cover;
 }
-
-image {
+.carousel{
     width: 100%;
-    height: auto;
+    height: 100%;
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
