@@ -24,8 +24,7 @@ class Connexion{
 		try {
 			$dns = "mysql:host=$SERVEUR;dbname=$BD";
 			$options = array(
-				PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-				PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
+				PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
 			);
 			self::$connexion = new PDO( $dns, $USAGER, $PASS, $options );
 			} catch ( Exception $e ) {

@@ -122,10 +122,9 @@ class DaoCircuit {
             $stmt->execute($donnees);
             $tmp = $stmt->fetch();
             $reponse['result'] = $tmp;
-            $column = $tmp['photoc'];
-            $reponse['result2'] = $column;
+            $column = $tmp[0];
             $path = "serveur/ressources/images/images_circuits/" . $column;
-            //unlink((string)$path);
+            unlink($path);
             /*$stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);*/
             $reponse['path'] = $path;
