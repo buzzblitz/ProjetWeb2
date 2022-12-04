@@ -125,9 +125,8 @@ class DaoCircuit {
             $column = $tmp[0];
             $path = "serveur/ressources/images/images_circuits/" . $column;
             unlink($path);
-            /*$stmt = $connexion->prepare($requette);
-            $stmt->execute($donnees);*/
-            $reponse['path'] = $path;
+            $stmt = $connexion->prepare($requette);
+            $stmt->execute($donnees);
             $reponse['OK'] = true;
             $reponse['msg'] = "Réussite de la supression du circuit";
             $reponse['location'] = "admin.php";
