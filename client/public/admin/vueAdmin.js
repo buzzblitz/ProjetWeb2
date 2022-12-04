@@ -302,15 +302,15 @@ let afficherTableCircuits = () => {
                             </nav>
                         </div>
                         <div class=" col-sm-3">
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                data-bs-target="#modalAjouterArticles"><i class="bi bi-plus-circle"></i>
+                            <button type="button" class="btn btn-success" onClick="montrerFormAjouterCircuit();";>
+                                <i class="bi bi-plus-circle"></i>
                                 <span>Ajouter</span></button>
                             <button type="button" class="btn btn-danger" onClick="enleverMultiplesArticles();">
                                 <i class="bi bi-dash-circle"></i> <span>Enlever</span></button>
                         </div>
                     </div>
                 </div>
-                <table class="table table-striped table-hover">
+                <table id="latable" class="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th>
@@ -323,19 +323,12 @@ let afficherTableCircuits = () => {
                             <th>Image</th>
                             <th>Nom</th>
                             <th>Description</th>
+                            <th></th>
+                            <th></th>
                             <th>Etat</th>
                             <th>Prix</th>
                         </tr>
                     </thead>
-                    <tbody id="emp_body"></tbody>
-                    <tr>
-                        <th colspan="11">
-                             <div id="pager">
-                                <ul id="pagination" class="pagination-sm">
-                                </ul>
-                            </div>
-                        </th>
-                    </tr>
                 </table>
 
             </div>
@@ -361,36 +354,17 @@ let afficherHeaderEtape = (idrow) => {
         <th>Debut</th>
         <th>Fin</th>
         <th>Lieu de rencontre</th>
+        <th></th>
     </tr>
     `;
-    $(`#circuit${idrow}`).html(rep);
-}
-
-var $pagination,
-totalRecords = 0,
-records = [],
-displayRecords = [],
-recPerPage = 4,
-page = 1,
-totalPages = 0;
-
-function genererPagination(listeCircuits){
-	$pagination = $('#pagination');
-	records = listeCircuits;
-	//alert(JSON.stringify(records));
-	// console.log(records);
-	totalRecords = records.length;
-	totalPages = Math.ceil(totalRecords / recPerPage);
-	apply_pagination();
+    $(`#tb${idrow}`).append(rep);
 }
 
 function generate_table(displayRecords) {
-    let tr;
-    $('#emp_body').html('');
 	let rep="";
     for (let unCircuit of displayRecords) { 
 		rep+=`
-        <div id="circuit${unCircuit.idc}">
+        <tbody id="tb${unCircuit.idc}">
 			<tr>
 				<td>
 					<span class="custom-checkbox">
@@ -404,28 +378,43 @@ function generate_table(displayRecords) {
 				<td>${unCircuit.descriptionc }</td>
 				<td>${unCircuit.etat}</td>
 				<td>${unCircuit.prix}$</td>
-				<td>
-				<a href="#" onClick='editerArticle(${unCircuit.idc})' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
+				<td></td>
+                <td>
+				<a href="#" onClick='requeteAfficherModif(${unCircuit.idc},"chargerC")' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
 				<a href="#" onClick='supprimerArticle(${unCircuit.idc})' class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Enlever"></i></a>
                 <a href="#" onClick='chargerEtapesAJAX(${unCircuit.idc})' class="lister" data-toggle="modal"><i class="bi bi-arrow-right-square" data-toggle="tooltip" title="Lister"></i></a>
 				</td>
-			</tr></div>`;
+			</tr></tbody>`;
     }
-	$('#emp_body').html(rep);
+	$('#latable').append(rep);
 }
 
-function apply_pagination() {
-    $pagination.twbsPagination({
-          totalPages: totalPages,
-          visiblePages: 6,
-          onPageClick: function (event, page) {
-                displayRecordsIndex = Math.max(page - 1, 0) * recPerPage;
-                endRec = (displayRecordsIndex) + recPerPage;
-               
-                displayRecords = records.slice(displayRecordsIndex, endRec);
-                generate_table(displayRecords);
-          }
-    });
+function generate_tableE(idc, displayRecords) {
+	let rep="";
+    for (let unEtape of displayRecords) { 
+		rep+=`
+			<tr>
+				<td>
+					<span class="custom-checkbox">
+						<input type="checkbox" id="opt" value="${unEtape.ide}" name="options[]">
+						<label for="opt"></label>
+					</span>
+				</td>	
+				<td>${unEtape.ide}</td>
+				<td><img class='img-fluid'  width='60' height='60' src='../ressources/images/images_etapes/${unEtape.photoe}'></td>
+				<td>${unEtape.nome}</td>
+				<td>${unEtape.descriptione}</td>
+				<td>${unEtape.debut}</td>
+				<td>${unEtape.fin}$</td>
+				<td>${unEtape.lieurencontre}$</td>
+                <td>
+				<a href="#" onClick='editerArticle(${unEtape.idc})' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
+				<a href="#" onClick='supprimerArticle(${unEtape.ide})' class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Enlever"></i></a>
+                <a href="#" onClick='chargerJourneeAJAX(${unEtape.ide})' class="lister" data-toggle="modal"><i class="bi bi-arrow-right-square" data-toggle="tooltip" title="Lister"></i></a>
+				</td>
+			</tr>`;
+    }
+	$(`#tb${idc}`).append(rep);
 }
 
 let afficherMessage = (msg) => {
@@ -436,14 +425,14 @@ let afficherMessage = (msg) => {
     }, 5000);
 }
 
-let afficherModifier = (circuit) => {
+let afficherModifierC = (circuit) => {
     let form = `
-    <div class="modal fade" id="modalAjouterCircuitSolo" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="modalModifierCircuit" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Enregistrer un Circuit</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Modifier un Circuit</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -457,7 +446,7 @@ let afficherModifier = (circuit) => {
                             <input type="text" class="form-control" id="nomc" name="nomc" value="`+circuit.nomc+`" required>
                         </div>
                         <div class="col-md-12">
-                            <label for="photocold" class="form-label">Id du Circuit</label>
+                            <label for="photocold" class="form-label">Photo Original</label>
                             <input type="text" class="form-control" id="photocold" name="photocold" value="`+circuit.photoc+`" readonly>
                         </div>
                         <div class="col-md-12">
@@ -466,18 +455,18 @@ let afficherModifier = (circuit) => {
                         </div>
                         <div class="col-md-12">
                             <label for="descriptionc" class="form-label">Description du Circuit</label>
-                            <input type="text" class="form-control" id="descriptionc" name="descriptionc" value="`+circuit.descriptionc+`" required required>
+                            <input type="text" class="form-control" id="descriptionc" name="descriptionc" value="`+circuit.descriptionc+`" required>
                         </div>
                         <div class="col-md-12">
                             <label for="etat" class="form-label">Etats du Circuit</label>
                             <select id="etat" name="etat" class="form-select form-select-sm" required
                                 aria-label=".form-select-sm example">
-                                <option selected value="Tra">Travail</option>
-                                <option value="Dep">Deploiement</option>
+                                <option selected value="T">Travail</option>
+                                <option value="A">Deploiement(Actif)</option>
                             </select>
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary" type="button" onclick="requeteModifier();">Enregistrer</button>
+                            <button class="btn btn-primary" type="button" onclick="requeteModifier('formEnregCircuitSolo','modifierC');">Modifier</button>
                         </div>
                     </form>
                 </div>
@@ -485,8 +474,9 @@ let afficherModifier = (circuit) => {
         </div>
     </div>
     `;
-    document.getElementById('contenu').innerHTML = form;
-    $('#modalAjouterCircuitSolo').modal('show');
+    $("#contenu").append(form);
+    //document.getElementById('contenu').innerHTML = form;
+    $('#modalModifierCircuit').modal('show');
 }
 
 let montrerVue = (action, donnees) => {
@@ -501,7 +491,7 @@ let montrerVue = (action, donnees) => {
                 window.location.href="index.php"; 
             }
             break;
-        case "modifier"     :
+        case "modifierC"     :
             if(donnees.OK){
                 window.location.href= donnees.location;
              }else{
@@ -510,9 +500,16 @@ let montrerVue = (action, donnees) => {
                  window.location.href="index.php"; 
              }
              break;
-        case "charger"      :
+        case "chargerC"      :
             if(donnees.OK){
-                afficherModifier(donnees.circuit);
+                afficherModifierC(donnees.circuit);
+            }else{
+                afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 
+            }
+        break;
+        case "chargerE"      :
+            if(donnees.OK){
+                afficherModifierE(donnees.etape);
             }else{
                 afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 
             }
@@ -535,7 +532,7 @@ let montrerVue = (action, donnees) => {
         case "listerE"       :
             if(donnees.OK){
                 afficherHeaderEtape(donnees.idc);
-                //generate_tableE(donnees.listeEtapes);
+                generate_tableE(donnees.idc, donnees.listeEtapes);
             }else{
                 afficherMessage(donnees.msg); 
             }

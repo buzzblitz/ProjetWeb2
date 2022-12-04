@@ -30,14 +30,18 @@ let chargerEtapesAJAX = (idc) => {
     })
 }
 
-let requeteAfficherCircuit = (idc) => {
+let requeteAfficherModif = (index,ctraction) => {
+	console.log(index);
+	console.log(ctraction);
 	$.ajax({
         type : "POST",
         url  : "../../routeAdmin.php",
-        data : {"action":"charger","input":idc},
+        data : {"action":ctraction,"input":index},
         dataType : "json", //text pour voir si bien formé même chose pour xml
         success : function (reponse){
-			montrerVue("charger", reponse);
+			console.log("j'ai sorti");
+			console.log(reponse);
+			montrerVue(ctraction, reponse);
         },
         fail : (err) => {
             //Décider du message
@@ -58,7 +62,8 @@ let requeteEnregistrer = () => {
 		processData : false,
         dataType : 'json', //text pour le voir en format de string
 		success : function (reponse){//alert(reponse);
-					montrerVue("enregistrer", reponse);
+			console.log(reponse.location);
+			montrerVue("enregistrer", reponse);
 		},
 		fail : function (err){
 		   
@@ -129,20 +134,20 @@ let requeteEnregistrerA = () => {
 	});
 }
 
-let requeteModifier = () => {
-	let formCircuit = new FormData(document.getElementById('formEnregCircuitSolo'));
-	formCircuit.append('action','modifier');
+let requeteModifier = (form,ctraction) => {
+	let leform = new FormData(document.getElementById(form));
+	leform.append('action',ctraction);
 	$.ajax({
 		type : 'POST',
 		url : '../../routeAdmin.php',
-		data : formCircuit, //$('#formEnreg').serialize()
+		data : leform, //$('#formEnreg').serialize()
 		//async : false,
 		//cache : false,
 		contentType : false,
 		processData : false,
         dataType : 'json', //text pour le voir en format de string
 		success : function (reponse){//alert(reponse);
-					montrerVue("modifier", reponse);
+					montrerVue(ctraction, reponse);
 		},
 		fail : function (err){
 		   

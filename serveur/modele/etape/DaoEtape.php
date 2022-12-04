@@ -24,11 +24,9 @@ class DaoEtape {
 	
 	function MdlE_Enregistrer(Etape $etape):string {
         //global $reponse;
-       
         $connexion =  Connexion::getConnexion();
         $requette="INSERT INTO etapes VALUES(0,?,?,?,?,?,?,?)";
         try{
-
             $donnees = [ $etape->getIdc(), $etape->getNom(), $etape->getPhotoe(), $etape->getDescriptione(), $etape->getDebut(), $etape->getFin(), $etape->getLieurencontre()];
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);

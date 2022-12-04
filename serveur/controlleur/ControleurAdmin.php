@@ -100,7 +100,7 @@
         return json_encode($addc);
     }
 
-    function CtrA_update(){
+    function CtrA_updateC(){
         $dossierc="serveur/ressources/images/images_circuits/";
         $photoc= $_POST['photocold'];
         $nomc = $_POST['nomc'];
@@ -185,12 +185,9 @@
         $action=$_POST['action'];
         switch($action){
             case "enregistrer" :
-                return  $this->CtrA_Enregistrer();
-            case "charger" :
-                $input=$_POST['input'];
-                return  $this->CtrA_get($input); 
-            case "modifier" :
-                return  $this->CtrA_update(); 
+                return  $this->CtrA_Enregistrer(); 
+            case "modifierC" :
+                return  $this->CtrA_updateC(); 
             case "enleverC" :
                 $input=$_POST['input'];
                 return  $this->CtrA_removeC($input);
@@ -213,6 +210,9 @@
                 return  $this->CtrA_EnregistrerJ();
             case "enregistrerA" :
                 return  $this->CtrA_EnregistrerA();
+            case "chargerC" :
+                $input=$_POST['input'];
+                return  $this->CtrA_get($input);
             case "chargerE" :
                 $input=$_POST['input'];
                 return  $this->CtrA_getE($input);
