@@ -114,6 +114,7 @@ ul {
 }
 
 .card{
+    top: 25px;
     margin-top: 25px;
     border: black;
     color: rgb(222, 205, 198);
@@ -127,6 +128,7 @@ ul {
 }
 
 .card-j{
+    top: 25px;
     margin-top: 25px;
     color: rgb(222, 205, 198);
     background-color: black;
@@ -141,6 +143,7 @@ ul {
 }
 
 .card-a{
+    top: 25px;
     color: rgb(222, 205, 198);
     margin-top: 25px;
     background-color: black;
@@ -156,6 +159,7 @@ ul {
 
 
 .card-e{
+    top: 25px;
     color: rgb(222, 205, 198);
     margin-top: 25px;
     background-color: black;
@@ -175,3 +179,6 @@ ul {
     margin-bottom: 16px;
     padding: 0 8px;
   }
+#page{
+    background-color: rgb(222, 205, 198);
+}
