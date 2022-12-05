@@ -232,5 +232,30 @@ let requeteDelete = (id,ctraction) => {
     })
 }
 
+let requetteDeleteMultiple = (ctraction) => {
+	let listeCheckBoxes = document.getElementsByName("options[]");
+	//Vérifier s'il y a au moins une option de cochée;
+	let liste=[];
+	for(let uneOption of listeCheckBoxes){
+		if (uneOption.checked){
+			liste.push(uneOption.value); 
+		}
+	}
+	console.log(liste);
+	console.log("in");
+	$.ajax({
+		type : "POST",
+        url  : "../../routeAdmin.php",
+        data : {"action":ctraction,"input":liste},
+        dataType : "json",
+        success : function (reponse){
+        	montrerVue(ctraction, reponse);
+        },
+        fail : (err) => {
+            //Décider du message
+        }
+    })
+}
+
 
 

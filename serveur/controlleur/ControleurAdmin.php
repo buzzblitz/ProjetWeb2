@@ -189,7 +189,16 @@
     }
     function CtrA_removeC($idc){
         return DaoCircuit::getDaoCircuit()->MdlC_remove($idc); 
-   }
+    }
+    function CtrA_removeAllC($liste){
+        foreach ($liste as $id){
+            DaoCircuit::getDaoCircuit()->MdlC_remove($id);
+        }
+        $reponse = array();
+        $reponse['OK'] = true;
+        $reponse['msg'] = "Réussite de la modification du circuit";
+        return json_encode($reponse); 
+    }
    function CtrA_removeE($ide){
     return DaoEtape::getDaoEtape()->MdlE_remove($ide); 
     }
@@ -267,6 +276,9 @@
                 return $this->CtrA_getAllA($input);
             case "listerMembre" :
                 return $this->CtrA_getAllMembre();
+            case "deleteMultipleCircuit" :
+                $liste=$_POST['input'];
+                return $this->CtrA_removeAllC($liste);
         }
         // Retour de la réponse au client
        

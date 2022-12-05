@@ -305,7 +305,7 @@ let afficherSqueletteTable = (classe,id) =>{
                             <button type="button" class="btn btn-success" onClick="montrerFormAjouter${classe}(${id});";>
                                 <i class="bi bi-plus-circle"></i>
                                 <span>Ajouter</span></button>
-                            <button type="button" class="btn btn-danger" onClick="enleverMultiples${classe}();">
+                            <button type="button" class="btn btn-danger" onClick="requetteDeleteMultiple('deleteMultiple${classe}');">
                                 <i class="bi bi-dash-circle"></i> <span>Enlever</span></button>
                         </div>
                     </div>
@@ -883,6 +883,15 @@ let montrerVue = (action, donnees) => {
                 console.log(donnees.msg); 
             }
             break;
+        case "deleteMultipleCircuit"  :
+            console.log("salut");
+            if(donnees.OK){
+                window.location.reload();
+                console.log(donnees.msg);
+            }else{
+                console.log(donnees.msg); 
+            }
+            break; 
 
     }
 
