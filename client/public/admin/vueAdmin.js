@@ -428,7 +428,7 @@ let afficherTableMembres = () => {
 
 let afficherTableE = () => {
     let rep = `
-                    <thead>
+                <thead>
                     <tr>
                         <th>
                             <span class="custom-checkbox">
@@ -445,10 +445,9 @@ let afficherTableE = () => {
                         <th>Lieu de rencontre</th>
                         <th></th>
                     </tr>
-                        </thead>
-                    <tbody id="maintable></tbody>
-    `;
-    $('#contenu').html(rep);
+                </thead>
+                <tbody id="maintable></tbody>`;
+    $('#latable').html(rep);
 }
 
 let afficherTableJ = () => {
@@ -469,7 +468,7 @@ let afficherTableJ = () => {
                         </thead>
                     <tbody id="maintable></tbody>
     `;
-    $('#contenu').html(rep);
+    $('#latable').html(rep);
 }
 
 let afficherTableA = () => {
@@ -492,7 +491,7 @@ let afficherTableA = () => {
                         </thead>
                     <tbody id="maintable></tbody>
     `;
-    $('#contenu').html(rep);
+    $('#latable').html(rep);
 }
 
 function generate_tableC(displayRecords) {
@@ -523,9 +522,9 @@ function generate_tableC(displayRecords) {
 	$('#maintable').html(rep);
 }
 
-function generate_tableE(idc, displayRecords) {
+function generate_tableE(liste) {
 	let rep="";
-    for (let unEtape of displayRecords) { 
+    for (let unEtape of liste) { 
 		rep+=`
 			<tr>
 				<td>
@@ -548,7 +547,7 @@ function generate_tableE(idc, displayRecords) {
 				</td>
 			</tr>`;
     }
-	$(`#tb${idc}`).append(rep);
+	$('#maintable').html(rep);
 }
 
 function generate_tableJ(displayRecords) {
@@ -566,9 +565,9 @@ function generate_tableJ(displayRecords) {
 				<td>${uneJournee.descriptionj}</td>
 				<td>${uneJournee.datej}</td>
                 <td>
-				<a href="#" onClick='requeteAfficherModif(${uneJournee.ide},"chargerJ")' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
-				<a href="#" onClick='requeteDelete(${uneJournee.ide}, "enleverJ")' class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Enlever"></i></a>
-                <a href="#" onClick='chargerAJAX(${uneJournee.ide},"listerA")' class="lister" data-toggle="modal"><i class="bi bi-arrow-right-square" data-toggle="tooltip" title="Lister"></i></a>
+				<a href="#" onClick='requeteAfficherModif(${uneJournee.idj},"chargerJ")' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
+				<a href="#" onClick='requeteDelete(${uneJournee.idj}, "enleverJ")' class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Enlever"></i></a>
+                <a href="#" onClick='chargerAJAX(${uneJournee.idj},"listerA")' class="lister" data-toggle="modal"><i class="bi bi-arrow-right-square" data-toggle="tooltip" title="Lister"></i></a>
 				</td>
 			</tr>`;
     }
@@ -587,8 +586,8 @@ function generate_tableA(displayRecords) {
 					</span>
 				</td>	
 				<td>${unActivite.ida}</td>
-				<td>${unActivite.nomc}</td>
-				<td>${unActivite.descriptionc }</td>
+				<td>${unActivite.noma}</td>
+				<td>${unActivite.descriptiona}</td>
 				<td>${unActivite.tempsdebut}</td>
 				<td>${unActivite.tempsfin}$</td>
                 <td>
@@ -858,7 +857,7 @@ let montrerVue = (action, donnees) => {
         case "enleverC"     :
             if(donnees.OK){
                 $("#contenu").html("");
-                chargerCircuitsAJAX();
+                chargerAJAX(0,"listerC");
              }else{
                 console.log(donnees);
                 console.log(donnees.msg);
