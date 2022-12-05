@@ -75,6 +75,7 @@ class DaoActivite {
             $reponse['msg'] = "";
             $reponse['listeActivites'] = array();
             $reponse['listeActivites'] = $stmt->fetchAll();
+            $reponse['index'] = $index;
         }catch (Exception $e){ 
             $reponse['OK'] = false;
             $reponse['msg'] = "Problème pour obtenir les données des activites";

@@ -1,4 +1,4 @@
-let montrerFormAjouterCircuit = () => {
+let montrerFormAjouterCircuit = (id) => {
     let form = `
     <div class="modal fade" id="modalAjouterCircuit" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -246,7 +246,7 @@ let montrerFormAjouterActivite = (idj) => {
     $('#modalAjouterActivite').modal('show');
 }
 
-let afficherSqueletteTable = (classe) =>{
+let afficherSqueletteTable = (classe,id) =>{
     let rep = `
     <div class="container-xl">
         <div class="table-responsive">
@@ -302,7 +302,7 @@ let afficherSqueletteTable = (classe) =>{
                             </nav>
                         </div>
                         <div class=" col-sm-3">
-                            <button type="button" class="btn btn-success" onClick="montrerFormAjouter${classe}();";>
+                            <button type="button" class="btn btn-success" onClick="montrerFormAjouter${classe}(${id});";>
                                 <i class="bi bi-plus-circle"></i>
                                 <span>Ajouter</span></button>
                             <button type="button" class="btn btn-danger" onClick="enleverMultiples${classe}();">
@@ -428,45 +428,46 @@ let afficherTableMembres = () => {
 
 let afficherTableE = () => {
     let rep = `
-                <thead>
-                    <tr>
-                        <th>
-                            <span class="custom-checkbox">
-                                <input type="checkbox" id="selectAll">
-                                <label for="selectAll"></label>
-                            </span>
-                        </th>
-                        <th>ID</th>
-                        <th>Image</th>
-                        <th>Nom</th>
-                        <th>Description</th>
-                        <th>Debut</th>
-                        <th>Fin</th>
-                        <th>Lieu de rencontre</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody id="maintable></tbody>`;
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="custom-checkbox">
+                                    <input type="checkbox" id="selectAll">
+                                    <label for="selectAll"></label>
+                                </span>
+                            </th>
+                            <th>ID</th>
+                            <th>Image</th>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Debut</th>
+                            <th>Fin</th>
+                            <th>Lieu de rencontre</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="maintable"></tbody>
+    `;
     $('#latable').html(rep);
 }
 
 let afficherTableJ = () => {
     let rep = `
                     <thead>
-                    <tr>
-                        <th>
-                            <span class="custom-checkbox">
-                                <input type="checkbox" id="selectAll">
-                                <label for="selectAll"></label>
-                            </span>
-                        </th>
-                        <th>ID</th>
-                        <th>Description</th>
-                        <th>Date</th>
-                        <th></th>
-                    </tr>
-                        </thead>
-                    <tbody id="maintable></tbody>
+                        <tr>
+                            <th>
+                                <span class="custom-checkbox">
+                                    <input type="checkbox" id="selectAll">
+                                    <label for="selectAll"></label>
+                                </span>
+                            </th>
+                            <th>ID</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="maintable"></tbody>
     `;
     $('#latable').html(rep);
 }
@@ -489,7 +490,7 @@ let afficherTableA = () => {
                         <th></th>
                     </tr>
                         </thead>
-                    <tbody id="maintable></tbody>
+                    <tbody id="maintable"></tbody>
     `;
     $('#latable').html(rep);
 }
@@ -510,7 +511,7 @@ function generate_tableC(displayRecords) {
 				<td>${unCircuit.nomc}</td>
 				<td>${unCircuit.descriptionc }</td>
 				<td>${unCircuit.etat}</td>
-				<td>${unCircuit.prix}$</td>
+				<td>${unCircuit.prix}</td>
 				<td></td>
                 <td>
 				<a href="#" onClick='requeteAfficherModif(${unCircuit.idc},"chargerC")' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
@@ -524,26 +525,26 @@ function generate_tableC(displayRecords) {
 
 function generate_tableE(liste) {
 	let rep="";
-    for (let unEtape of liste) { 
+    for (let unCircuit of liste) { 
 		rep+=`
 			<tr>
 				<td>
 					<span class="custom-checkbox">
-						<input type="checkbox" id="opt" value="${unEtape.ide}" name="options[]">
+						<input type="checkbox" id="opt" value="${unCircuit.ide}" name="options[]">
 						<label for="opt"></label>
 					</span>
 				</td>	
-				<td>${unEtape.ide}</td>
-				<td><img class='img-fluid'  width='60' height='60' src='../ressources/images/images_etapes/${unEtape.photoe}'></td>
-				<td>${unEtape.nome}</td>
-				<td>${unEtape.descriptione}</td>
-				<td>${unEtape.debut}</td>
-				<td>${unEtape.fin}$</td>
-				<td>${unEtape.lieurencontre}$</td>
+				<td>${unCircuit.ide}</td>
+				<td><img class='img-fluid'  width='60' height='60' src='../ressources/images/images_etapes/${unCircuit.photoe}'></td>
+				<td>${unCircuit.nome}</td>
+				<td>${unCircuit.descriptione }</td>
+				<td>${unCircuit.debut}</td>
+				<td>${unCircuit.fin}</td>
+				<td>${unCircuit.lieurencontre}</td>
                 <td>
-				<a href="#" onClick='requeteAfficherModif(${unEtape.ide},"chargerE")' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
-				<a href="#" onClick='requeteDelete(${unEtape.ide},"enleverE")' class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Enlever"></i></a>
-                <a href="#" onClick='chargerAJAX(${unEtape.ide},"listerJ")' class="lister" data-toggle="modal"><i class="bi bi-arrow-right-square" data-toggle="tooltip" title="Lister"></i></a>
+				<a href="#" onClick='requeteAfficherModif(${unCircuit.ide},"chargerE")' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
+				<a href="#" onClick='requeteDelete(${unCircuit.ide}, "enleverE")' class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Enlever"></i></a>
+                <a href="#" onClick='chargerAJAX(${unCircuit.ide},"listerJ")' class="lister" data-toggle="modal"><i class="bi bi-arrow-right-square" data-toggle="tooltip" title="Lister"></i></a>
 				</td>
 			</tr>`;
     }
@@ -638,7 +639,7 @@ let afficherModifierC = (circuit) => {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Modifier un Circuit</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" onclick="window.location.reload();" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="formEnregCircuitSolo" class="row  needs-validation" enctype="multipart/form-data" method="POST">
@@ -820,7 +821,7 @@ let montrerVue = (action, donnees) => {
         break;
         case "listerC"       :
             if(donnees.OK){
-                afficherSqueletteTable("Circuit");
+                afficherSqueletteTable("Circuit",0);
                 afficherTableC();
                 generate_tableC(donnees.listeCircuits);
             }else{
@@ -829,8 +830,10 @@ let montrerVue = (action, donnees) => {
         break;
         case "listerE"       :
             if(donnees.OK){
-                afficherSqueletteTable("Etape");
+                afficherSqueletteTable("Etape",donnees.index);
                 afficherTableE();
+                console.log(donnees.listeEtapes);
+                console.log(donnees.listeEtapes[0].ide);
                 generate_tableE(donnees.listeEtapes);
             }else{
                 afficherMessage(donnees.msg); 
@@ -838,7 +841,7 @@ let montrerVue = (action, donnees) => {
         break;
         case "listerJ"       :
             if(donnees.OK){
-                afficherSqueletteTable("Journee");
+                afficherSqueletteTable("Journee",donnees.index);
                 afficherTableJ();
                 generate_tableJ(donnees.listeJournees);
             }else{
@@ -847,7 +850,7 @@ let montrerVue = (action, donnees) => {
         break;
         case "listerA"       :
             if(donnees.OK){
-                afficherSqueletteTable("Activite");
+                afficherSqueletteTable("Activite",donnees.index);
                 afficherTableA();
                 generate_tableA(donnees.listeActivites);
             }else{

@@ -78,6 +78,7 @@ class DaoJournee {
             $reponse['msg'] = "";
             $reponse['listeJournees'] = array();
             $reponse['listeJournees'] = $stmt->fetchAll();
+            $reponse['index'] = $ide;
         }catch (Exception $e){ 
             $reponse['OK'] = false;
             $reponse['msg'] = "Problème pour obtenir les données des journees";

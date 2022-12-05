@@ -75,7 +75,7 @@ class DaoEtape {
             $reponse['msg'] = "";
             $reponse['listeEtapes'] = array();
             $reponse['listeEtapes'] = $stmt->fetchAll();
-            $reponse['idc'] = $index;
+            $reponse['index'] = $index;
         }catch (Exception $e){ 
             $reponse['OK'] = false;
             $reponse['msg'] = "Problème pour obtenir les données des etapes";
