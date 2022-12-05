@@ -123,7 +123,7 @@
 
     function CtrA_updateE(){
         $dossiere="serveur/ressources/images/images_etapes/";
-        $photoc= $_POST['photoeold'];
+        $photoe= $_POST['photoeold'];
         $nomc = $_POST['nome'];
         if($_FILES['photoe']['tmp_name']!==""){
             $nomphotoe=sha1($nomc.time());
