@@ -6,7 +6,7 @@ let chargerCircuitsAJAX = () => {
         url  : "../../routeMembre.php",
         data : {"action":"lister"},
         dataType : "json", //text pour voir si bien formé même chose pour xml
-        success : (listeCircuits) => {//alert(listeFilms);
+        success : (listeCircuits) => {
             // listeFilms = reponse;
         	montrerVue("lister", listeCircuits);
         },
@@ -15,7 +15,6 @@ let chargerCircuitsAJAX = () => {
         }
     })
 }
-
 let requeteAfficherCircuit = (idc) => {
 	$.ajax({
         type : "POST",
@@ -24,6 +23,21 @@ let requeteAfficherCircuit = (idc) => {
         dataType : "json", //text pour voir si bien formé même chose pour xml
         success : function (reponse){
 			montrerVue("charger", reponse);
+        },
+        fail : (err) => {
+            //Décider du message
+        }
+    })
+}
+
+let requeteAfficherProfil = (idm) => {
+	$.ajax({
+        type : "POST",
+        url  : "../../routeMembre.php",
+        data : {"action":"afficherPageProfil","input":idm},
+        dataType : "json", //text pour voir si bien formé même chose pour xml
+        success : function (reponse){
+			montrerVue("afficherPageProfil", reponse);
         },
         fail : (err) => {
             //Décider du message
@@ -98,12 +112,12 @@ const chargerCircuitsFETCH = async () => {
 }
 
 let requeteDeconnexion = () => {
-	let formAdmin = new FormData();
-	formAdmin.append('action','deconnecter');
+	let formMembre = new FormData();
+	formMembre.append('action','deconnecter');
 	$.ajax({
 		type : 'POST',
-		url : '../../routeAdmin.php',
-		data : formAdmin, //$('#formEnreg').serialize()
+		url : '../../routeMembre.php',
+		data : formMembre, //$('#formEnreg').serialize()
 		//async : false,
 		//cache : false,
 		contentType : false,

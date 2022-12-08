@@ -101,6 +101,12 @@
         return json_encode($addc);
     }
 
+    function CtrA_checherCircuit(){
+        
+        return DaoCircuit::getDaoCircuit()->MdlC_get_recherche($_POST['recherche']); 
+         
+    }
+
     function CtrA_updateC(){
         $dossierc="serveur/ressources/images/images_circuits/";
         $photoc= $_POST['photocold'];
@@ -247,6 +253,8 @@
                 return  $this->CtrA_Enregistrer(); 
             case "modifierC" :
                 return  $this->CtrA_updateC(); 
+            case "checherCircuit" :
+                return  $this->CtrA_checherCircuit();
             case "enleverC" :
                 $input=$_POST['input'];
                 return  $this->CtrA_removeC($input);

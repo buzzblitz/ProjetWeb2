@@ -25,12 +25,6 @@
 		}
 		return self::$instanceCtr;
 	}
-
-	function CtrM_Enregistrer(){
-         $film = new Film(0,$_POST['titre'], (int)$_POST['duree'], $_POST['res'],"Pochette");
-         return DaoFilm::getDaoFilm()->MdlF_Enregistrer($film); 
-    }
-
     function CtrM_getAll(){
         return DaoCircuit::getDaoCircuit()->MdlC_getAll(); 
    }
@@ -38,6 +32,7 @@
    function CtrM_get($idc){
     return DaoCircuit::getDaoCircuit()->MdlC_get($idc); 
   }
+
 
   function CtrM_detailler($idc){
        global $list;
@@ -67,19 +62,13 @@
     function CtrM_Actions(){
         $action=$_POST['action'];
         switch($action){
-            case "enregistrer" :
-                return  $this->CtrM_Enregistrer();
             case "charger" :
                 $input=$_POST['input'];
                 return  $this->CtrM_get($input); 
-            case "fiche" :
+            case "deconnecter" :
+                return $this->CtrM_Deconnexion();
+            case "chargerModif" :
                 //fiche(); 
-            break;
-            case "modifier" :
-                //modifier(); 
-            break;
-            case "enlever" :
-                //enlever(); 
             break;
             case "lister" :
                 return $this->CtrM_getAll(); 
@@ -89,6 +78,16 @@
         }
         // Retour de la réponse au client
        
+    }
+    function CtrM_Deconnexion(){
+        
+        $result=array();
+        $result['OK'] = true;
+        $result['msg'] = "Deconnexion reussi";
+        $result['location'] = "../../index.php";
+        session_unset();
+        session_destroy();
+        return json_encode($result);
     }
 }
 ?>

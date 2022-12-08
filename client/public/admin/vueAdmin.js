@@ -246,6 +246,35 @@ let montrerFormAjouterActivite = (idj) => {
     $('#modalAjouterActivite').modal('show');
 }
 
+let montrerFormRechercherCircuit = () => {
+    let form = `
+    <div class="modal fade" id="modalRechercherCircuit" tabindex="-1" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Rechercher un Circuit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formRechercherCircuit" class="row  needs-validation" enctype="multipart/form-data" target="cacheCache">
+                        <div class='col-md-12'>
+                            <label for='recherche' class='form-label'>Recherche par nom</label>
+                            <input type='text' class='form-control' id='recherche' name='recherche' value='' required>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="button" onclick="javascript:chercherCircuit();" target="cacheCache">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+    document.getElementById('contenu').innerHTML = form;
+    $('#modalRechercherCircuit').modal('show');
+
+}
+
 let afficherSqueletteTable = (classe,id) =>{
     let rep = `
     <div class="container-xl">
@@ -285,18 +314,6 @@ let afficherSqueletteTable = (classe,id) =>{
                                                     href="javascript:obtenirXML('titre');">Numéro</a>
                                             </li>
                                         </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li class="nav-item">
-                                        <form class="form-inline" role="form">
-                                            <div class="form-group">
-                                                <div class="inner-addon right-addon">
-                                                    <i class="loupe bi bi-search"></i>
-                                                    <input type="text" class="form-control" placeholder="Recherche" />
-                                                </div>
-                                            </div>
-                                        </form>
                                     </li>
                                 </ul>
                             </nav>
@@ -386,18 +403,6 @@ let afficherTableMembres = () => {
                                                     href="javascript:obtenirXML('titre');">Numéro</a>
                                             </li>
                                         </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li class="nav-item">
-                                        <form class="form-inline" role="form">
-                                            <div class="form-group">
-                                                <div class="inner-addon right-addon">
-                                                    <i class="loupe bi bi-search"></i>
-                                                    <input type="text" class="form-control" placeholder="Recherche" />
-                                                </div>
-                                            </div>
-                                        </form>
                                     </li>
                                 </ul>
                             </nav>
@@ -844,28 +849,37 @@ let montrerVue = (action, donnees) => {
             }else{
                 afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 
             }
-        break;
+            break;
         case "chargerE"      :
             if(donnees.OK){
                 afficherModifierE(donnees.etape);
             }else{
                 afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 
             }
-        break;
+            break;
         case "chargerM"      :
             if(donnees.OK){
                 afficherModifierM(donnees.connexionM);
             }else{
                 afficherMessage(donnees.msg); 
             }
-        break;
+            break;
         case "enlever"      :
             if(donnees.OK){
                 afficherMessage(donnees.msg);
             }else{
                 afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 
             }
-        break;
+            break;
+        case "checherCircuit":
+            if(donnees.OK){
+                afficherSqueletteTable("Circuit",0);
+                afficherTableC();
+                generate_tableC(donnees.listeCircuits);
+            }else{
+                 afficherMessage(donnees.msg); 
+            }
+            break;
         case "listerC"       :
             if(donnees.OK){
                 afficherSqueletteTable("Circuit",0);
@@ -874,7 +888,7 @@ let montrerVue = (action, donnees) => {
             }else{
                 afficherMessage(donnees.msg); 
             }
-        break;
+            break;
         case "listerE"       :
             if(donnees.OK){
                 afficherSqueletteTable("Etape",donnees.index);
@@ -885,7 +899,7 @@ let montrerVue = (action, donnees) => {
             }else{
                 afficherMessage(donnees.msg); 
             }
-        break;
+            break;
         case "listerJ"       :
             if(donnees.OK){
                 afficherSqueletteTable("Journee",donnees.index);
@@ -896,7 +910,7 @@ let montrerVue = (action, donnees) => {
             }else{
                 afficherMessage(donnees.msg); 
             }
-        break;
+            break;
         case "listerA"       :
             if(donnees.OK){
                 afficherSqueletteTable("Activite",donnees.index);
@@ -907,7 +921,7 @@ let montrerVue = (action, donnees) => {
             }else{
                 afficherMessage(donnees.msg); 
             }
-        break;
+            break;
         case "enleverC"     :
             if(donnees.OK){
                 $("#contenu").html("");
