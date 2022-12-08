@@ -29,7 +29,7 @@ class DaoJournee {
         $requette="INSERT INTO journees VALUES(0,?,?,?)";
         try{
             
-            $donnees = [ $journee->getIde(), $journee->getDescriptionj(), $journee->getDatej()];
+            $donnees = [ $journee->getIde(), $journee->getDatej(), $journee->getDescriptionj()];
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
             $idj = $connexion->lastInsertId();
@@ -115,14 +115,14 @@ class DaoJournee {
     function mdlJ_remove($idj){
         global $reponse;
         $connexion =  Connexion::getConnexion();
-        //$requetteId = "SELECT ide FROM journees WHERE idj=?";
+        $requetteId = "SELECT ide FROM journees WHERE idj=?";
         $requette="DELETE FROM journees WHERE idj=?";
         try{
             $donnees = [$idj];
-            //$stmt = $connexion->prepare($requetteId);
-            //$stmt->execute($donnees);
-            //$result = $stmt->fetch();
-            //$reponse['index'] = $result;
+            $stmt = $connexion->prepare($requetteId);
+            $stmt->execute($donnees);
+            $result = $stmt->fetch();
+            $reponse['index'] = $result;
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
             $reponse['OK'] = true;
