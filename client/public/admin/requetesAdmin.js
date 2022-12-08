@@ -46,8 +46,8 @@ let chargerAJAX = (id, ctraction) => {
         }
     })
 }
-
 let requeteAfficherModif = (index,ctraction) => {
+	console.log("in");
 	$.ajax({
         type : "POST",
         url  : "../../routeAdmin.php",
