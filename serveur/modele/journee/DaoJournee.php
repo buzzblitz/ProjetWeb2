@@ -115,9 +115,14 @@ class DaoJournee {
     function mdlJ_remove($idj){
         global $reponse;
         $connexion =  Connexion::getConnexion();
+        //$requetteId = "SELECT ide FROM journees WHERE idj=?";
         $requette="DELETE FROM journees WHERE idj=?";
         try{
             $donnees = [$idj];
+            //$stmt = $connexion->prepare($requetteId);
+            //$stmt->execute($donnees);
+            //$result = $stmt->fetch();
+            //$reponse['index'] = $result;
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
             $reponse['OK'] = true;

@@ -112,9 +112,14 @@ class DaoActivite {
     function mdlA_remove($ida){
         global $reponse;
         $connexion =  Connexion::getConnexion();
+        //$requetteId = "SELECT idj FROM activites WHERE ida=?";
         $requette="DELETE FROM activites WHERE ida=?";
         try{
             $donnees = [$ida];
+            //$stmt = $connexion->prepare($requetteId);
+            //$stmt->execute($donnees);
+            //$result = $stmt->fetch();
+            //$reponse['index'] = $result;
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
             $reponse['OK'] = true;

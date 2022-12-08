@@ -65,6 +65,9 @@ let requeteAfficherModif = (index,ctraction) => {
 let requeteEnregistrer = () => {
 	let formCircuit = new FormData(document.getElementById('formEnregCircuit'));
 	formCircuit.append('action','enregistrer');
+	$('.modal').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
 	$.ajax({
 		type : 'POST',
 		url : '../../routeAdmin.php',
@@ -111,6 +114,9 @@ let chercherCircuit = () => {
 let requeteEnregistrerE = () => {
 	let formEtape = new FormData(document.getElementById('formEnregEtape'));
 	formEtape.append('action','enregistrerE');
+	$('.modal').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
 	$.ajax({
 		type : 'POST',
 		url : '../../routeAdmin.php',
@@ -132,6 +138,9 @@ let requeteEnregistrerE = () => {
 let requeteEnregistrerJ = () => {
 	let formJournee = new FormData(document.getElementById('formEnregJournee'));
 	formJournee.append('action','enregistrerJ');
+	$('.modal').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
 	$.ajax({
 		type : 'POST',
 		url : '../../routeAdmin.php',
@@ -153,6 +162,9 @@ let requeteEnregistrerJ = () => {
 let requeteEnregistrerA = () => {
 	let formActivite = new FormData(document.getElementById('formEnregActivite'));
 	formActivite.append('action','enregistrerA');
+	$('.modal').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
 	$.ajax({
 		type : 'POST',
 		url : '../../routeAdmin.php',
@@ -174,6 +186,9 @@ let requeteEnregistrerA = () => {
 let requeteModifier = (form,ctraction) => {
 	let leform = new FormData(document.getElementById(form));
 	leform.append('action',ctraction);
+	$('.modal').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
 	$.ajax({
 		type : 'POST',
 		url : '../../routeAdmin.php',
@@ -245,6 +260,8 @@ let requetteDeleteMultiple = (ctraction) => {
         data : {"action":ctraction,"input":liste},
         dataType : "json",
         success : function (reponse){
+			console.log("out");
+			console.log(reponse);
         	montrerVue(ctraction, reponse);
         },
         fail : (err) => {

@@ -112,6 +112,7 @@ class DaoEtape {
     function mdlE_remove($ide){
         global $reponse;
         $connexion =  Connexion::getConnexion();
+        //$requetteId = "SELECT idc FROM etapes WHERE ide=?";
         $requettePhoto="SELECT photoe FROM etapes WHERE ide=?";
         $requette="DELETE FROM etapes WHERE ide=?";
         try{
@@ -134,6 +135,10 @@ class DaoEtape {
                     }
                 }
             }
+            //$stmt = $connexion->prepare($requetteId);
+            //$stmt->execute($donnees);
+            //$result = $stmt->fetch();
+            //$reponse['index'] = $result;
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
             $reponse['OK'] = true;

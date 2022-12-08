@@ -751,7 +751,7 @@ let montrerVue = (action, donnees) => {
     switch(action){
         case "enregistrer"  :
             if(donnees.OK){
-                window.location.href= donnees.location;
+                window.location.reload();
             }else{
                 msg="Problème+avec+enregistrement";
                 console.log(donnees.msg);
@@ -760,9 +760,8 @@ let montrerVue = (action, donnees) => {
             break;
         case "enregistrerE"  :
             if(donnees.OK){
-                window.location.reload();
-                //$("#contenu").html("");
-                //chargerAJAX(donnees.index,"listerE");
+                $("#contenu").html("");
+                chargerAJAX(donnees.index,"listerE");
             }else{
                 msg="Problème+avec+enregistrement";
                 console.log(donnees.msg);
@@ -771,9 +770,8 @@ let montrerVue = (action, donnees) => {
             break;
         case "enregistrerJ"  :
             if(donnees.OK){
-                window.location.reload();
-                //$("#contenu").html("");
-                //chargerAJAX(donnees.index,"listerJ");
+                $("#contenu").html("");
+                chargerAJAX(donnees.index,"listerJ");
             }else{
                 msg="Problème+avec+enregistrement";
                 console.log(donnees.msg);
@@ -782,9 +780,8 @@ let montrerVue = (action, donnees) => {
             break;
         case "enregistrerA"  :
             if(donnees.OK){
-                window.location.reload();
-                //$("#contenu").html("");
-                //chargerAJAX(donnees.index,"listerA");
+                $("#contenu").html("");
+                chargerAJAX(donnees.index,"listerA");
             }else{
                 msg="Problème+avec+enregistrement";
                 console.log(donnees.msg);
@@ -793,9 +790,7 @@ let montrerVue = (action, donnees) => {
             break;
         case "modifierC"     :
             if(donnees.OK){
-                window.location.href= donnees.location;
-                //$("#contenu").html("");
-                //chargerCircuitsAJAX();
+                window.location.reload();
              }else{
                  msg="Problème+pour+modifier+le+membre.";
                  console.log(msg);
@@ -804,9 +799,8 @@ let montrerVue = (action, donnees) => {
              break;
         case "modifierE"     :
             if(donnees.OK){
-                window.location.reload();
-                //$("#contenu").html("");
-                //chargerAJAX(donnees.index,"listerE");
+                $("#contenu").html("");
+                chargerAJAX(donnees.index,"listerE");
              }else{
                  msg="Problème+pour+modifier+le+membre.";
                  console.log(msg);
@@ -815,9 +809,8 @@ let montrerVue = (action, donnees) => {
              break;
         case "modifierJ"     :
             if(donnees.OK){
-                window.location.reload();
-                //$("#contenu").html("");
-                //chargerAJAX(donnees.index,"listerJ");
+                $("#contenu").html("");
+                chargerAJAX(donnees.index,"listerJ");
              }else{
                  msg="Problème+pour+modifier+le+membre.";
                  console.log(msg);
@@ -826,9 +819,8 @@ let montrerVue = (action, donnees) => {
              break;
         case "modifierA"     :
             if(donnees.OK){
-                window.location.reload();
-                //$("#contenu").html("");
-                //chargerAJAX(donnees.index,"listerA");
+                $("#contenu").html("");
+                chargerAJAX(donnees.index,"listerA");
              }else{
                  msg="Problème+pour+modifier+le+membre.";
                  console.log(msg);
@@ -932,6 +924,36 @@ let montrerVue = (action, donnees) => {
                 //window.location.href="../../index.php"; 
              }
              break;
+        case "enleverE"     :
+            if(donnees.OK){
+                $("#contenu").html("");
+                chargerAJAX(donnees.index.idc,"listerE");
+             }else{
+                console.log(donnees);
+                console.log(donnees.msg);
+                //window.location.href="../../index.php"; 
+             }
+             break;
+        case "enleverJ"     :
+            if(donnees.OK){
+                $("#contenu").html("");
+                chargerAJAX(donnees.index.ide,"listerJ");
+             }else{
+                console.log(donnees);
+                console.log(donnees.msg);
+                //window.location.href="../../index.php"; 
+             }
+             break;
+        case "enleverA"     :
+            if(donnees.OK){
+                $("#contenu").html("");
+                chargerAJAX(donnees.index.idj,"listerA");
+             }else{
+                console.log(donnees);
+                console.log(donnees.msg);
+                //window.location.href="../../index.php"; 
+             }
+             break;
         case "deconnexion"  :
             if(donnees.OK){
                 window.location.href= donnees.location;   
@@ -940,7 +962,6 @@ let montrerVue = (action, donnees) => {
             }
             break;
         case "listerMembre"  :
-            console.log("salut");
             if(donnees.OK){
                 afficherTableMembres();
                 generate_table_membre(donnees.listeConnexionM);  
@@ -949,14 +970,37 @@ let montrerVue = (action, donnees) => {
             }
             break;
         case "deleteMultipleCircuit"  :
-            console.log("salut");
             if(donnees.OK){
                 window.location.reload();
                 console.log(donnees.msg);
             }else{
                 console.log(donnees.msg); 
             }
-            break; 
+            break;
+        case "deleteMultipleEtape"  :
+            if(donnees.OK){
+                window.location.reload();
+                console.log(donnees.msg);
+            }else{
+                console.log(donnees.msg); 
+            }
+            break;
+        case "deleteMultipleJournee"  :
+            if(donnees.OK){
+                window.location.reload();
+                console.log(donnees.msg);
+            }else{
+                console.log(donnees.msg); 
+            }
+            break;
+        case "deleteMultipleActivite"  :
+            if(donnees.OK){
+                window.location.reload();
+                console.log(donnees.msg);
+            }else{
+                console.log(donnees.msg); 
+            }
+            break;
 
     }
 
