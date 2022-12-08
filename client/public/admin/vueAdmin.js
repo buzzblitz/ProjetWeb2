@@ -747,6 +747,143 @@ let afficherModifierM = (membre) => {
     $('#modalModifierCircuit').modal('show');
 }
 
+let afficherModifierE = (idc) => {
+    let form = `
+    <div class="modal fade" id="modalAjouterEtape" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Enregistrer une Etape</h5>
+                    <button type="button" onclick="chargerAJAX(${idc},'listerE');" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEnregEtape" class="row  needs-validation" enctype="multipart/form-data" method="POST">
+                        <div class='col-md-12'>
+                            <label for='idc' class='form-label'>Id Circuit associé</label>
+                            <input type='text' class='form-control' id='idc' name='idc' value='`+idc+`' readonly>
+                        </div>
+                        <div class='col-md-12'>
+                            <label for='nome' class='form-label'>Etape</label>
+                            <input type='text' class='form-control' id='nome' name='nome' value='' required>
+                        </div>
+                        <div class='col-md-12'>
+                            <label for='photoe' class='form-label'>Image de l'Etape</label>
+                            <input type='file' class='form-control' id='photoe' name='photoe' value='' required>
+                        </div>
+                        <div class='col-md-12'>
+                            <label for='descriptione' class='form-label'>Description de l'Etape</label>
+                            <input type='text' class='form-control' id='descriptione' name='descriptione' value='' required>
+                        </div>
+                        <div class='col-md-6'>
+                        <label for='debut' class='form-label'>Date du Debut</label>
+                            <input type='date' class='form-control is-valid' id='debut' name='debut' required>
+                        </div>
+                        <div class='col-md-12'>
+                        </div>
+                        <div class='col-md-6'>
+                            <label for='fin' class='form-label'>Date de la Fin</label>
+                            <input type='date' class='form-control is-valid' id='fin' name='fin' required>
+                        </div>
+                        <div class='col-md-12'>
+                            <label for='lieurencontre' class='form-label'>Lieu de rencontre pour le Diner</label>
+                            <input type='text' class='form-control' id='lieurencontre' name='lieurencontre' value='' required>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrerE();">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+    $("#contenu").append(form);
+    //document.getElementById('contenu').innerHTML = form;
+    $('#modalModifierCircuit').modal('show');
+}
+let afficherModifierJ = (ide) => {
+    let form = `
+    <div class="modal fade" id="modalAjouterJournee" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Enregistrer une Journee</h5>
+                    <button type="button" onclick="chargerAJAX(${ide},'listerJ');" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEnregJournee" class="row  needs-validation" enctype="multipart/form-data" method="POST">
+                        <div class='col-md-12'>
+                            <label for='ide' class='form-label'>Id Etape associé</label>
+                            <input type='text' class='form-control' id='ide' name='ide' value='`+ide+`' readonly>
+                        </div>
+                        <div class='col-md-6'>
+                            <label for='datej' class='form-label'>Date</label>
+                               <input type='date' class='form-control is-valid' id='datej' name='datej' required>
+                        </div>
+                        <div class='col-md-12'>
+                            <label for='descriptionj' class='form-label'>Autre information</label>
+                            <input type='text' class='form-control' id='descriptionj' name='descriptionj' value='' required>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrerJ();">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+    $("#contenu").append(form);
+    //document.getElementById('contenu').innerHTML = form;
+    $('#modalModifierCircuit').modal('show');
+}
+let afficherModifierA = (idj) => {
+    let form = `
+    <div class="modal fade" id="modalAjouterActivite" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Enregistrer une Journee</h5>
+                    <button type="button" onclick="chargerAJAX(${idj},'listerA');" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEnregActivite" class="row  needs-validation" enctype="multipart/form-data" method="POST">
+                        <div class='col-md-12'>
+                            <label for='idj' class='form-label'>Id Journee associée</label>
+                            <input type='text' class='form-control' id='idj' name='idj' value='`+idj+`' readonly>
+                        </div>
+                        <div class='col-md-12'>
+                            <label for='noma' class='form-label'>Nom de l'activite</label>
+                            <input type='text' class='form-control' id='noma' name='noma' value='' required>
+                        </div>
+                        <div class='col-md-6'>
+                            <label for='tempsdebut' class='form-label'>Heure du debut de l'activiter</label>
+                            <input type='time' class='form-control is-valid' id='tempsdebut' name='tempsdebut' required>
+                        </div>
+                        <div class='col-md-6'>
+                            <label for='tempsfin' class='form-labe'>Heure de fin de l'activiter</label>
+                            <input type='time' class='form-control is-valid' id='tempsfin' name='tempsfin' required>
+                        </div>
+                            <div class='col-md-12'>
+                                <label for='descriptiona' class='form-label'>Description des activiter</label>
+                            <input type='text' class='form-control' id='descriptiona' name='descriptiona' value='' required>
+                        </div>        
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrerA();">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+    $("#contenu").append(form);
+    //document.getElementById('contenu').innerHTML = form;
+    $('#modalModifierCircuit').modal('show');
+}
 let montrerVue = (action, donnees) => {
     switch(action){
         case "enregistrer"  :
