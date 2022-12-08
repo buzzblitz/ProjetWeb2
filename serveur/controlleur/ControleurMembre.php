@@ -32,7 +32,9 @@
    function CtrM_get($idc){
     return DaoCircuit::getDaoCircuit()->MdlC_get($idc); 
   }
-
+  function CtrM_Profile_get($idc){
+    return DaoMembre::getDaoMembre()()->MdlM_Profile_get($idc); 
+}
 
   function CtrM_detailler($idc){
        global $list;
@@ -67,9 +69,9 @@
                 return  $this->CtrM_get($input); 
             case "deconnecter" :
                 return $this->CtrM_Deconnexion();
-            case "chargerModif" :
-                //fiche(); 
-            break;
+            case "afficherPageProfil" :
+                $input=$_POST['input'];
+                return  $this->CtrM_Profile_get($input);
             case "lister" :
                 return $this->CtrM_getAll(); 
             case "detailler" :

@@ -30,20 +30,6 @@ let requeteAfficherCircuit = (idc) => {
     })
 }
 
-let requeteAfficherProfil = (idm) => {
-	$.ajax({
-        type : "POST",
-        url  : "../../routeMembre.php",
-        data : {"action":"afficherPageProfil","input":idm},
-        dataType : "json", //text pour voir si bien formé même chose pour xml
-        success : function (reponse){
-			montrerVue("afficherPageProfil", reponse);
-        },
-        fail : (err) => {
-            //Décider du message
-        }
-    })
-}
 
 let requeteEnregistrer = () => {
 	let formCircuit = new FormData(document.getElementById('formEnregCircuit'));
@@ -146,6 +132,21 @@ let requeteDeconnexion = () => {
 			}
 		})
 
+}
+
+let requeteAfficherProfil = (index) => {
+	$.ajax({
+        type : "POST",
+        url  : "../../routeMembre.php",
+        data : {"action":"afficherPageProfil","input":index},
+        dataType : "json", //text pour voir si bien formé même chose pour xml
+        success : function (reponse){
+			montrerVue("afficherPageProfil", reponse);
+        },
+        fail : (err) => {
+            //Décider du message
+        }
+    })
 }
 
 

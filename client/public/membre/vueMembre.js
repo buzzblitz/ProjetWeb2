@@ -14,7 +14,7 @@ let rafraichireCart = () => {
     $('#nbart').html(afficherNbart);
 }
 
-let afficherPageProfil = () => {
+let afficherPageProfil = (unMembre) => {
     let contenu = `
     <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
@@ -391,7 +391,7 @@ let montrerVue = (action, donnees) => {
             break;
         case "afficherPageProfil"  :
             if(donnees.OK){
-                afficherPageProfil();     
+                afficherPageProfil(donnees.membre);     
             }else{
                 console.log(donnees.msg); 
             }
