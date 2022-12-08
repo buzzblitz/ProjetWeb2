@@ -88,6 +88,31 @@ let requeteEnregistrer = () => {
 	});
 }
 
+let chercherCircuit = () => {
+	let formRechercherCircuit = new FormData(document.getElementById('formRechercherCircuit'));
+	formRechercherCircuit.append('action','checherCircuit');
+	$('.modal').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+	$.ajax({
+		type : 'POST',
+		url : '../../routeAdmin.php',
+		data : formRechercherCircuit, //$('#formEnreg').serialize()
+		//async : false,
+		//cache : false,
+		contentType : false,
+		processData : false,
+        dataType : 'json', //text pour le voir en format de string
+		success : function (reponse){//alert(reponse);
+			//console.log(salut);
+			montrerVue("checherCircuit", reponse);
+		},
+		fail : function (err){
+		   
+		}
+	});
+}
+
 let requeteEnregistrerE = () => {
 	let formEtape = new FormData(document.getElementById('formEnregEtape'));
 	formEtape.append('action','enregistrerE');

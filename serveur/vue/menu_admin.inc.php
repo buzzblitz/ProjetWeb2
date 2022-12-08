@@ -22,6 +22,9 @@
                     <a id="me" class="nav-link" href="javascript:chargerMembresAJAX();">Gérer les
                         membres</a>
                 </li>
+                <li class="nav-item">
+                    <a id="me" class="nav-link" href="javascript:montrerFormRechercherCircuit();">Recherche Circuit</a>
+                </li>
             </ul>
         </div>
     </div>
