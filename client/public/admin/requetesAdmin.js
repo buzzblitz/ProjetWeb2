@@ -48,16 +48,12 @@ let chargerAJAX = (id, ctraction) => {
 }
 
 let requeteAfficherModif = (index,ctraction) => {
-	console.log(index);
-	console.log(ctraction);
 	$.ajax({
         type : "POST",
         url  : "../../routeAdmin.php",
         data : {"action":ctraction,"input":index},
         dataType : "json", //text pour voir si bien formé même chose pour xml
         success : function (reponse){
-			console.log("j'ai sorti");
-			console.log(reponse);
 			montrerVue(ctraction, reponse);
         },
         fail : (err) => {
@@ -79,7 +75,6 @@ let requeteEnregistrer = () => {
 		processData : false,
         dataType : 'json', //text pour le voir en format de string
 		success : function (reponse){//alert(reponse);
-			console.log(reponse.location);
 			montrerVue("enregistrer", reponse);
 		},
 		fail : function (err){
@@ -101,7 +96,7 @@ let requeteEnregistrerE = () => {
 		processData : false,
         dataType : 'json', //text pour le voir en format de string
 		success : function (reponse){//alert(reponse);
-					montrerVue("enregistrer", reponse);
+					montrerVue("enregistrerE", reponse);
 		},
 		fail : function (err){
 		   
@@ -122,7 +117,7 @@ let requeteEnregistrerJ = () => {
 		processData : false,
         dataType : 'json', //text pour le voir en format de string
 		success : function (reponse){//alert(reponse);
-					montrerVue("enregistrer", reponse);
+					montrerVue("enregistrerJ", reponse);
 		},
 		fail : function (err){
 		   
@@ -143,7 +138,7 @@ let requeteEnregistrerA = () => {
 		processData : false,
         dataType : 'json', //text pour le voir en format de string
 		success : function (reponse){//alert(reponse);
-					montrerVue("enregistrer", reponse);
+					montrerVue("enregistrerA", reponse);
 		},
 		fail : function (err){
 		   
@@ -170,30 +165,6 @@ let requeteModifier = (form,ctraction) => {
 		   
 		}
 	});
-}
-// Consulter pour upload de fichiers
-// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-
-const posterFormAvecFETCH = async ( url, formData ) => {
-	const optionsFetch = {
-		method: "POST",
-		body: formData
-	}
-	const reponse = await fetch(url, optionsFetch);
-	if (!reponse.ok) {
-		const messageErreur = await reponse.text();
-		throw new Error(messageErreur);
-	}
-	return reponse.json();
-}
-
-const chargerCircuitsFETCH = async () => {
-	const url = "../controlleur/controleurAdmin.php";
-	const formData = new FormData();
-	formData.append('action','lister');
-	listeCircuits = await posterFormAvecFETCH( url, formData);
-	alert(listeCircuits.msg);
-	montrerVue("lister", listeFilms);
 }
 
 let requeteDeconnexion = () => {
@@ -250,6 +221,36 @@ let requetteDeleteMultiple = (ctraction) => {
         dataType : "json",
         success : function (reponse){
         	montrerVue(ctraction, reponse);
+        },
+        fail : (err) => {
+            //Décider du message
+        }
+    })
+}
+
+let requeteGetIdc = (ide) =>{
+	$.ajax({
+        type : "POST",
+        url  : "../../routeAdmin.php",
+        data : {"action":"chargerE","input":ide},
+        dataType : "json", //text pour voir si bien formé même chose pour xml
+        success : function (reponse){
+			return reponse.etape.idc;
+        },
+        fail : (err) => {
+            //Décider du message
+        }
+    })
+}
+
+let requeteGetIde = (idj) =>{
+	$.ajax({
+        type : "POST",
+        url  : "../../routeAdmin.php",
+        data : {"action":"chargerJ","input":idj},
+        dataType : "json", //text pour voir si bien formé même chose pour xml
+        success : function (reponse){
+			return reponse.journee.ide
         },
         fail : (err) => {
             //Décider du message

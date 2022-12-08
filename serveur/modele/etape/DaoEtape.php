@@ -32,6 +32,7 @@ class DaoEtape {
             $stmt->execute($donnees);
             $ide = $connexion->lastInsertId();
             $this->reponse['ide'] = $ide;
+            $this->reponse['index'] = $etape->getIdc();
             $this->reponse['OK'] = true;
             $this->reponse['msg'] = "Etape bien enregistre";
             $this->reponse['location'] = "admin.php";

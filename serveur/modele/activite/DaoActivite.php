@@ -33,6 +33,7 @@ class DaoActivite {
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
             $this->reponse['OK'] = true;
+            $this->reponse['index'] = $activite->getIdj();
             $this->reponse['msg'] = "Activite bien enregistre";
             $this->reponse['location'] = "admin.php";
         }catch (Exception $e){

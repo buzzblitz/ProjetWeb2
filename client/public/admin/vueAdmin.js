@@ -6,7 +6,7 @@ let montrerFormAjouterCircuit = (id) => {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Enregistrer un Circuit</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" onclick="chargerAJAX(0,'listerC');" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="formEnregCircuit" class="row  needs-validation" enctype="multipart/form-data" method="POST">
@@ -26,9 +26,9 @@ let montrerFormAjouterCircuit = (id) => {
                             <label for="etat" class="form-label">Etats du Circuit</label>
                             <select id="etat" name="etat" class="form-select form-select-sm" required
                                 aria-label=".form-select-sm example">
-                                <option selected disabled value="Des">Desactiver</option>
-                                <option value="Tra">Travail</option>
-                                <option value="Dep">Deploiement</option>
+                                <option selected disabled value="D">Desactiver</option>
+                                <option value="T">Travail</option>
+                                <option value="A">Deploiement</option>
                             </select>
                         </div>
                         <div class='col-md-12' id='etapes'>
@@ -96,7 +96,7 @@ let montrerFormAjouterCircuit = (id) => {
                                     </div>
                                     </div>
                         <div class="col-12">
-                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrer();">Enregistrer</button>
+                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrer();" data-bs-dismiss="modal">Enregistrer</button>
                         </div>
                     </form>
                 </div>
@@ -116,7 +116,7 @@ let montrerFormAjouterEtape = (idc) => {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Enregistrer une Etape</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" onclick="chargerAJAX(${idc},'listerE');" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="formEnregEtape" class="row  needs-validation" enctype="multipart/form-data" method="POST">
@@ -171,7 +171,7 @@ let montrerFormAjouterJournee = (ide) => {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Enregistrer une Journee</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" onclick="chargerAJAX(${ide},'listerJ');" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="formEnregJournee" class="row  needs-validation" enctype="multipart/form-data" method="POST">
@@ -209,7 +209,7 @@ let montrerFormAjouterActivite = (idj) => {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Enregistrer une Journee</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" onclick="chargerAJAX(${idj},'listerA');" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="formEnregActivite" class="row  needs-validation" enctype="multipart/form-data" method="POST">
@@ -254,7 +254,7 @@ let afficherSqueletteTable = (classe,id) =>{
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-2">
-                            <h2>${classe}</h2>
+                            <h2>Gestion des ${classe}s</h2>
                         </div>
                         <div class="col-sm-7">
                             <nav class="navbar">
@@ -302,11 +302,13 @@ let afficherSqueletteTable = (classe,id) =>{
                             </nav>
                         </div>
                         <div class=" col-sm-3">
+                            <button id = "btnRetour" type="button" class="btn btn-warning">
+                                <span>Retour</span></button>
                             <button type="button" class="btn btn-success" onClick="montrerFormAjouter${classe}(${id});";>
                                 <i class="bi bi-plus-circle"></i>
-                                <span>Ajouter</span></button>
+                                <span>Ajouter un ${classe}</span></button>
                             <button type="button" class="btn btn-danger" onClick="requetteDeleteMultiple('deleteMultiple${classe}');">
-                                <i class="bi bi-dash-circle"></i> <span>Enlever</span></button>
+                                <i class="bi bi-dash-circle"></i> <span>Supprimer plusieurs ${classe}</span></button>
                         </div>
                     </div>
                 </div>
@@ -334,10 +336,10 @@ let afficherTableC = () => {
                             <th>Image</th>
                             <th>Nom</th>
                             <th>Description</th>
-                            <th></th>
-                            <th></th>
                             <th>Etat</th>
                             <th>Prix</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody id="maintable"></tbody>
@@ -437,6 +439,7 @@ let afficherTableE = () => {
                                 </span>
                             </th>
                             <th>ID</th>
+                            <th>IDC</th>
                             <th>Image</th>
                             <th>Nom</th>
                             <th>Description</th>
@@ -462,6 +465,7 @@ let afficherTableJ = () => {
                                 </span>
                             </th>
                             <th>ID</th>
+                            <th>IDE</th>
                             <th>Description</th>
                             <th>Date</th>
                             <th></th>
@@ -483,6 +487,7 @@ let afficherTableA = () => {
                             </span>
                         </th>
                         <th>ID</th>
+                        <th>IDJ</th>
                         <th>Nom</th>
                         <th>Description</th>
                         <th>Heure Debut</th>
@@ -525,7 +530,8 @@ function generate_tableC(displayRecords) {
 
 function generate_tableE(liste) {
 	let rep="";
-    for (let unCircuit of liste) { 
+    $('#btnRetour').attr('onClick', 'chargerCircuitsAJAX()');
+    for (let unCircuit of liste) {
 		rep+=`
 			<tr>
 				<td>
@@ -535,6 +541,7 @@ function generate_tableE(liste) {
 					</span>
 				</td>	
 				<td>${unCircuit.ide}</td>
+                <td>${unCircuit.idc}</td>
 				<td><img class='img-fluid'  width='60' height='60' src='../ressources/images/images_etapes/${unCircuit.photoe}'></td>
 				<td>${unCircuit.nome}</td>
 				<td>${unCircuit.descriptione }</td>
@@ -551,9 +558,10 @@ function generate_tableE(liste) {
 	$('#maintable').html(rep);
 }
 
-function generate_tableJ(displayRecords) {
+function generate_tableJ(displayRecords,idc) {
 	let rep="";
-    for (let uneJournee of displayRecords) { 
+    for (let uneJournee of displayRecords) {
+        $('#btnRetour').attr('onClick', `chargerAJAX(${idc},"listerE")`); 
 		rep+=`
 			<tr>
 				<td>
@@ -563,6 +571,7 @@ function generate_tableJ(displayRecords) {
 					</span>
 				</td>	
 				<td>${uneJournee.idj}</td>
+                <td>${uneJournee.ide}</td>
 				<td>${uneJournee.descriptionj}</td>
 				<td>${uneJournee.datej}</td>
                 <td>
@@ -575,9 +584,10 @@ function generate_tableJ(displayRecords) {
 	$('#maintable').html(rep);
 }
 
-function generate_tableA(displayRecords) {
+function generate_tableA(displayRecords,ide) {
 	let rep="";
     for (let unActivite of displayRecords) { 
+        $('#btnRetour').attr('onClick', `chargerAJAX(${ide},"listerJ")`);
 		rep+=`
 			<tr>
 				<td>
@@ -587,6 +597,7 @@ function generate_tableA(displayRecords) {
 					</span>
 				</td>	
 				<td>${unActivite.ida}</td>
+                <td>${unActivite.idj}</td>
 				<td>${unActivite.noma}</td>
 				<td>${unActivite.descriptiona}</td>
 				<td>${unActivite.tempsdebut}</td>
@@ -732,7 +743,6 @@ let afficherModifierM = (membre) => {
 }
 
 let montrerVue = (action, donnees) => {
-    console.log("salut");
     switch(action){
         case "enregistrer"  :
             if(donnees.OK){
@@ -743,10 +753,44 @@ let montrerVue = (action, donnees) => {
                 window.location.href="index.php"; 
             }
             break;
+        case "enregistrerE"  :
+            if(donnees.OK){
+                window.location.reload();
+                //$("#contenu").html("");
+                //chargerAJAX(donnees.index,"listerE");
+            }else{
+                msg="Problème+avec+enregistrement";
+                console.log(donnees.msg);
+                window.location.href="index.php"; 
+            }
+            break;
+        case "enregistrerJ"  :
+            if(donnees.OK){
+                window.location.reload();
+                //$("#contenu").html("");
+                //chargerAJAX(donnees.index,"listerJ");
+            }else{
+                msg="Problème+avec+enregistrement";
+                console.log(donnees.msg);
+                window.location.href="index.php"; 
+            }
+            break;
+        case "enregistrerA"  :
+            if(donnees.OK){
+                window.location.reload();
+                //$("#contenu").html("");
+                //chargerAJAX(donnees.index,"listerA");
+            }else{
+                msg="Problème+avec+enregistrement";
+                console.log(donnees.msg);
+                window.location.href="index.php"; 
+            }
+            break;
         case "modifierC"     :
             if(donnees.OK){
-                $("#contenu").html("");
-                chargerCircuitsAJAX();
+                window.location.href= donnees.location;
+                //$("#contenu").html("");
+                //chargerCircuitsAJAX();
              }else{
                  msg="Problème+pour+modifier+le+membre.";
                  console.log(msg);
@@ -755,8 +799,9 @@ let montrerVue = (action, donnees) => {
              break;
         case "modifierE"     :
             if(donnees.OK){
-                $("#contenu").html("");
-                chargerAJAX(donnees.index,"listerE");
+                window.location.reload();
+                //$("#contenu").html("");
+                //chargerAJAX(donnees.index,"listerE");
              }else{
                  msg="Problème+pour+modifier+le+membre.";
                  console.log(msg);
@@ -765,8 +810,9 @@ let montrerVue = (action, donnees) => {
              break;
         case "modifierJ"     :
             if(donnees.OK){
-                $("#contenu").html("");
-                chargerAJAX(donnees.index,"listerJ");
+                window.location.reload();
+                //$("#contenu").html("");
+                //chargerAJAX(donnees.index,"listerJ");
              }else{
                  msg="Problème+pour+modifier+le+membre.";
                  console.log(msg);
@@ -775,8 +821,9 @@ let montrerVue = (action, donnees) => {
              break;
         case "modifierA"     :
             if(donnees.OK){
-                $("#contenu").html("");
-                chargerAJAX(donnees.index,"listerA");
+                window.location.reload();
+                //$("#contenu").html("");
+                //chargerAJAX(donnees.index,"listerA");
              }else{
                  msg="Problème+pour+modifier+le+membre.";
                  console.log(msg);
@@ -843,7 +890,9 @@ let montrerVue = (action, donnees) => {
             if(donnees.OK){
                 afficherSqueletteTable("Journee",donnees.index);
                 afficherTableJ();
-                generate_tableJ(donnees.listeJournees);
+                idc = requeteGetIdc(donnees.index);
+                console.log(idc);
+                generate_tableJ(donnees.listeJournees, idc);
             }else{
                 afficherMessage(donnees.msg); 
             }
@@ -852,6 +901,8 @@ let montrerVue = (action, donnees) => {
             if(donnees.OK){
                 afficherSqueletteTable("Activite",donnees.index);
                 afficherTableA();
+                ide = requeteGetIde(donnees.index);
+                console.log(ide);
                 generate_tableA(donnees.listeActivites);
             }else{
                 afficherMessage(donnees.msg); 

@@ -34,6 +34,7 @@ class DaoJournee {
             $stmt->execute($donnees);
             $idj = $connexion->lastInsertId();
             $this->reponse['idj'] = $idj;
+            $this->reponse['index'] = $journee->getIde();
             $this->reponse['OK'] = true;
             $this->reponse['msg'] = "Journee bien enregistre";
             $this->reponse['location'] = "admin.php";
