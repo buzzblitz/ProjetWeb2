@@ -65,7 +65,26 @@ class DaoMembre {
           return json_encode($this->reponse);
         }
     }
-	
+	function MdlM_Profile_get($idm):string {
+        //global $reponse;
+        $connexion = Connexion::getConnexion();
+        $requette="SELECT * FROM membres WHERE idm=?";
+        try{
+            $donnees = [$idm];
+            $stmt = $connexion->prepare($requette);
+            $stmt->execute($donnees);
+            $reponse['OK'] = true;
+            $reponse['msg'] = "";
+            $reponse['membre'] = $stmt->fetch();
+        }catch (Exception $e){ 
+            $reponse['OK'] = false;
+            $reponse['msg'] = "Problème pour obtenir les données des membres";
+            //$reponse['msg'] = $e->getMessage();
+        }finally {
+          unset($connexion);
+          return json_encode($reponse);
+        }
+    }
     function MdlM_getAll():string {
         global $reponse;
         $connexion = Connexion::getConnexion();

@@ -14,45 +14,68 @@ let rafraichireCart = () => {
     $('#nbart').html(afficherNbart);
 }
 
-let afficherPageProfil = () => {
+let afficherPageProfil = (membre,connexion) => {
     let contenu = `
-    <div class="container rounded bg-white mt-5 mb-5">
-    <div class="row">
-        <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src=""><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
-        </div>
-        <div class="col-md-5 border-right">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Profile Settings</h4>
+    <div class="modal fade" id="enregModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Enregistrer membre</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <form id="formEnreg" method="POST" enctype="multipart/form-data" class="row g-3">
+                <div class="col-md-6">
+                    <label for="prenom" class="form-label">Prénom</label>
+                    <input type="text" class="form-control is-valid" id="prenom" name="prenom" required>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
-                    <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div>
+                <div class="col-md-6">
+                    <label for="nom" class="form-label">Nom</label>
+                    <input type="text" class="form-control is-valid" id="nom" name="nom" required>
                 </div>
-                <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
-                    <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" class="form-control" placeholder="enter address line 1" value=""></div>
-                    <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                    <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value=""></div>
-                    <div class="col-md-12"><label class="labels">Education</label><input type="text" class="form-control" placeholder="education" value=""></div>
+                <div class="col-md-12">
+                    <label for="courriel" class="form-label">Courriel</label>
+                    <input type="email" class="form-control is-valid" id="courriel" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" name="courriel" required>
                 </div>
-                <div class="row mt-3">
-                    <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
-                    <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
+                <div class="col-md-6">
+                    <label for="pass" class="form-label">Mot de passe</label>
+                    <input type="password" class="form-control is-valid" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,10}$" id="pass" name="pass" required>
                 </div>
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+                <div class="col-md-6">
+                    <label for="cpass" class="form-label">Confirmer mot de passe</label>
+                    <input type="password" class="form-control is-valid" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,10}$" id="cpass" name="cpass" required>
+                    <span id="msgPass"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="sexe" class="form-label">Sexe</label>
+                    <select class="form-select" id="sexe" name="sexe" aria-describedby="validationServer04Feedback">
+                        <option selected disabled value="">Choisir</option>
+                        <option value="F">Féminin</option>
+                        <option value="M">Masculin</option>
+                        <option value="A">Autres</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="daten" class="form-label">Date de naissance</label>
+                    <input type="date" class="form-control is-valid" id="daten" name="daten">
+                </div>
+                <div class="col-md-12">
+                    <label for="photom" class="form-label">Photo</label>
+                    <input type="file" class="form-control is-valid" id="photom" name="photom">
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary" type="button" onclick="requeteEnregistrer();">Enregistrer</button>
+                </div>
+            </form>
+            </div>
+            <div class="modal-footer">
             </div>
         </div>
     </div>
 </div>
-</div>
-</div>
     `;
     document.getElementById('contenu').innerHTML = contenu;
+    $('#enregModal').modal('show');
     
 }
 
@@ -391,7 +414,7 @@ let montrerVue = (action, donnees) => {
             break;
         case "afficherPageProfil"  :
             if(donnees.OK){
-                afficherPageProfil();     
+                afficherPageProfil(donnees.membre, donnees.connexion);     
             }else{
                 console.log(donnees.msg); 
             }
