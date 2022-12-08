@@ -202,34 +202,7 @@
         }
         $reponse = array();
         $reponse['OK'] = true;
-        $reponse['msg'] = "Réussite de la supression des circuits";
-        return json_encode($reponse); 
-    }
-    function CtrA_removeAllE($liste){
-        foreach ($liste as $id){
-            DaoEtape::getDaoEtape()->MdlE_remove($id);
-        }
-        $reponse = array();
-        $reponse['OK'] = true;
-        $reponse['msg'] = "Réussite de la supression des étapes";
-        return json_encode($reponse); 
-    }
-    function CtrA_removeAllJ($liste){
-        foreach ($liste as $id){
-            DaoJournee::getDaoJournee()->MdlJ_remove($id);
-        }
-        $reponse = array();
-        $reponse['OK'] = true;
-        $reponse['msg'] = "Réussite de la supression des journées";
-        return json_encode($reponse); 
-    }
-    function CtrA_removeAllA($liste){
-        foreach ($liste as $id){
-            DaoActivite::getDaoActivite()->MdlA_remove($id);
-        }
-        $reponse = array();
-        $reponse['OK'] = true;
-        $reponse['msg'] = "Réussite de la supression des activités";
+        $reponse['msg'] = "Réussite de la modification du circuit";
         return json_encode($reponse); 
     }
    function CtrA_removeE($ide){
@@ -314,15 +287,6 @@
             case "deleteMultipleCircuit" :
                 $liste=$_POST['input'];
                 return $this->CtrA_removeAllC($liste);
-            case "deleteMultipleEtape" :
-                $liste=$_POST['input'];
-                return $this->CtrA_removeAllE($liste);
-            case "deleteMultipleJournee" :
-                $liste=$_POST['input'];
-                return $this->CtrA_removeAllJ($liste);
-            case "deleteMultipleActivite" :
-                $liste=$_POST['input'];
-                return $this->CtrA_removeAllA($liste);
         }
         // Retour de la réponse au client
        

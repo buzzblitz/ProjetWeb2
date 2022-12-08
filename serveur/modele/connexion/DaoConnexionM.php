@@ -44,6 +44,27 @@ class DaoConnexionM {
         }
     }
 
+    function MdlCM_Profile_get($idm):string {
+        //global $reponse;
+        $connexion = Connexion::getConnexion();
+        $requette="SELECT * FROM connexion WHERE idm=?";
+        try{
+            $donnees = [$idm];
+            $stmt = $connexion->prepare($requette);
+            $stmt->execute($donnees);
+            $reponse['OK'] = true;
+            $reponse['msg'] = "";
+            $reponse['connexion'] = $stmt->fetch();
+        }catch (Exception $e){ 
+            $reponse['OK'] = false;
+            $reponse['msg'] = "Problème pour obtenir les données des membres";
+            //$reponse['msg'] = $e->getMessage();
+        }finally {
+          unset($connexion);
+          return json_encode($reponse);
+        }
+    }
+
 
     function MdlCM_Connexion(ConnexionM $connexionM):string {
         //global $reponse;

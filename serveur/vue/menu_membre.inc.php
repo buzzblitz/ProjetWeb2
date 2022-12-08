@@ -12,7 +12,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a id="pr" class="nav-link" data-bs-toggle="modal" data-bs-target="#modalEnreg" href="javascript:afficherPageProfil();">Profil</a>
+                    <a id="pr" class="nav-link" href="javascript:requeteAfficherProfil(3);">Profil</a>
                 </li>
                 <li class="nav-item">
                

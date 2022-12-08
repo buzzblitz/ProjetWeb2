@@ -1,5 +1,9 @@
 <?php
+        require_once(__DIR__."/../modele/membre/Membre.php");   
+        require_once(__DIR__."/../modele/connexion/ConnexionM.php");   
         
+        require_once(__DIR__."/../modele/membre/DaoMembre.php");
+        require_once(__DIR__."/../modele/connexion/DaoConnexionM.php");
        require_once(__DIR__."/../modele/circuit/Circuit.php");
        require_once(__DIR__."/../modele/circuit/DaoCircuit.php");
        require_once(__DIR__."/../modele/etape/Etape.php");
@@ -33,7 +37,11 @@
     return DaoCircuit::getDaoCircuit()->MdlC_get($idc); 
   }
   function CtrM_Profile_get($idc){
-    return DaoMembre::getDaoMembre()()->MdlM_Profile_get($idc); 
+    $tmp =  json_decode(DaoConnexionM::getDaoConnexionM()->MdlCM_Profile_get($idc));
+    $tmp2 = json_decode(DaoMembre::getDaoMembre()->MdlM_Profile_get($idc));
+        $tmp2->connexion = $tmp->connexion;
+        return  json_encode($tmp2);
+
 }
 
   function CtrM_detailler($idc){
