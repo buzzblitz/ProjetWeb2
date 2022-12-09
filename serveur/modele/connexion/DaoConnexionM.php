@@ -87,6 +87,7 @@ class DaoConnexionM {
                     $this->reponse['courriel'] = $usager["courriel"];
                     $this->reponse['role'] = $usager["role"];
                     if($usager["role"] == "M"){
+                            $_SESSION['idm'] = $usager["idm"];
                             $this->reponse['OK'] = true;
                             $this->reponse['msg'] = "Connexion Avec succes";
                             $this->reponse['idm'] = $usager["idm"];

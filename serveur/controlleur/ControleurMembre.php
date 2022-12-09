@@ -85,7 +85,7 @@
         $photoc=$nomphotom.$extensionc;
     }
     $pass= $_POST['passOriginal'];
-    if($_POST['pass'] !==""){
+    if(!isset($_POST['pass'])){
             $pass = $_POST['pass'];
     }
     $membre = new Membre($_POST['idm'], $_POST['prenom'], $_POST['nom'], "", $_POST['sexe'], "", $photoc);
