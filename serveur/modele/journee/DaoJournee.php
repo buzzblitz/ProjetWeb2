@@ -93,7 +93,7 @@ class DaoJournee {
     function MdlJ_update(Journee $journee){
         global $reponse;
         $connexion =  Connexion::getConnexion();
-        $requette="UPDATE journeees SET ide=?,datej=?,descriptionj=? WHERE idj=?";
+        $requette="UPDATE journees SET ide=?,datej=?,descriptionj=? WHERE idj=?";
         try{
             $donnees = [$journee->getIde(),$journee->getDatej(),$journee->getDescriptionj(),$journee->getIdj()];
             $stmt = $connexion->prepare($requette);

@@ -606,7 +606,7 @@ function generate_tableA(displayRecords,ide) {
 				<td>${unActivite.noma}</td>
 				<td>${unActivite.descriptiona}</td>
 				<td>${unActivite.tempsdebut}</td>
-				<td>${unActivite.tempsfin}$</td>
+				<td>${unActivite.tempsfin}</td>
                 <td>
 				<a href="#" onClick='requeteAfficherModif(${unActivite.ida},"chargerA")' class="edit" data-bs-toggle="modal"><i class="bi bi-pencil" data-toggle="tooltip" title="Modifier"></i></a>
 				<a href="#" onClick='requeteDelete(${unActivite.ida}, "enleverA")' class="delete" data-toggle="modal"><i class="bi bi-trash3" data-toggle="tooltip" title="Enlever"></i></a>
@@ -755,7 +755,7 @@ let afficherModifierE = (etape) => {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Enregistrer une Etape</h5>
-                    <button type="button" onclick="window.location.reload();" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" onclick="chargerAJAX(${etape.idc},'listerE');" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="formEnregEtape" class="row  needs-validation" enctype="multipart/form-data" method="POST">
@@ -818,7 +818,7 @@ let afficherModifierJ = (journee) => {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Enregistrer une Journee</h5>
-                    <button type="button" onclick="window.location.reload();" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" onclick="chargerAJAX(${journee.ide},'listerJ');" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="formEnregJournee" class="row  needs-validation" enctype="multipart/form-data" method="POST">
@@ -828,7 +828,7 @@ let afficherModifierJ = (journee) => {
                         </div>
                         <div class='col-md-12'>
                             <label for='ide' class='form-label'>Id Etape associé</label>
-                            <input type='text' class='form-control' id='ide' name='ide' value='${journee.idj}' readonly>
+                            <input type='text' class='form-control' id='ide' name='ide' value='${journee.ide}' readonly>
                         </div>
                         <div class='col-md-6'>
                             <label for='datej' class='form-label'>Date</label>
@@ -859,17 +859,17 @@ let afficherModifierA = (activite) => {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Enregistrer une Journee</h5>
-                    <button type="button" onclick="window.location.reload();" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" onclick="chargerAJAX(${activite.idj},'listerA');" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="formEnregActivite" class="row  needs-validation" enctype="multipart/form-data" method="POST">
                         <div class='col-md-12'>
                             <label for='ida' class='form-label'>Id de l'Activité</label>
-                            <input type='text' class='form-control' id='ida' name='ida' value='${+activite.ida}' readonly>
+                            <input type='text' class='form-control' id='ida' name='ida' value='${activite.ida}' readonly>
                         </div>
                         <div class='col-md-12'>
                             <label for='idj' class='form-label'>Id Journee associée</label>
-                            <input type='text' class='form-control' id='idj' name='idj' value='${+activite.idj}' readonly>
+                            <input type='text' class='form-control' id='idj' name='idj' value='${activite.idj}' readonly>
                         </div>
                         <div class='col-md-12'>
                             <label for='noma' class='form-label'>Nom de l'activite</label>
@@ -957,7 +957,7 @@ let montrerVue = (action, donnees) => {
              }else{
                  msg="Problème+pour+modifier+le+membre.";
                  console.log(msg);
-                 window.location.href="index.php"; 
+                 window.location.href="../../index.php"; 
              }
              break;
         case "modifierJ"     :
@@ -965,9 +965,9 @@ let montrerVue = (action, donnees) => {
                 $("#contenu").html("");
                 chargerAJAX(donnees.index,"listerJ");
              }else{
-                 msg="Problème+pour+modifier+le+membre.";
+                 msg="Problème+pour+modifier+la+journee.";
                  console.log(msg);
-                 window.location.href="index.php"; 
+                 window.location.href="../../index.php"; 
              }
              break;
         case "modifierA"     :
@@ -977,7 +977,7 @@ let montrerVue = (action, donnees) => {
              }else{
                  msg="Problème+pour+modifier+le+membre.";
                  console.log(msg);
-                 window.location.href="index.php"; 
+                 window.location.href="../../index.php"; 
              }
              break;
         case "modifierM"     :
@@ -1052,8 +1052,6 @@ let montrerVue = (action, donnees) => {
             if(donnees.OK){
                 afficherSqueletteTable("Etape",donnees.index);
                 afficherTableE();
-                console.log(donnees.listeEtapes);
-                console.log(donnees.listeEtapes[0].ide);
                 generate_tableE(donnees.listeEtapes);
             }else{
                 afficherMessage(donnees.msg); 
