@@ -47,38 +47,6 @@ let chargerAJAX = (id, ctraction) => {
     })
 }
 
-let chargerAJAXBack = (id, ctraction, idback) => {
-    $.ajax({
-        type : "POST",
-        url  : "../../routeAdmin.php",
-        data : {"action":ctraction,"input":id, "back":idback},
-        dataType : "json", //text pour voir si bien formé même chose pour xml
-        success : function (reponse){//alert(listeFilms);
-            // listeFilms = reponse;
-        	montrerVue(ctraction, reponse);
-        },
-        fail : (err) => {
-            //Décider du message
-        }
-    })
-}
-
-let chargerAJAXDoubleback = (id, ctraction, idback, iddoubleback) => {
-    $.ajax({
-        type : "POST",
-        url  : "../../routeAdmin.php",
-        data : {"action":ctraction,"input":id, "back":idback, "doubleback":iddoubleback},
-        dataType : "json", //text pour voir si bien formé même chose pour xml
-        success : function (reponse){//alert(listeFilms);
-            // listeFilms = reponse;
-        	montrerVue(ctraction, reponse);
-        },
-        fail : (err) => {
-            //Décider du message
-        }
-    })
-}
-
 let requeteAfficherModif = (index,ctraction) => {
 	console.log("in");
 	$.ajax({
