@@ -158,7 +158,6 @@ let carteEtape = (unEtape) => {
                  rep +=' <div class="card-body">';
                  rep +=' <h5 class="card-title">'+unEtape.nome+'</h5>';
                  rep +=' <p class="card-text">Description : '+unEtape.descriptione+'</p>';
-                 rep +=' <p class="card-text">Prix Total : '+unEtape.prix+'$</p>';
                  rep +=' <p class="card-text">Debut : '+unEtape.debut+'</p>';
                  rep +=' <p class="card-text">Fin : '+unEtape.fin+'</p>';
                  rep +=' <p class="card-text">Lieu de rencontre : '+unEtape.lieurencontre+'</p>';
