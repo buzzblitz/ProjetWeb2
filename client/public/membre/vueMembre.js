@@ -424,7 +424,7 @@ let montrerVue = (action, donnees) => {
         break;
         case "lister"       :
             if(donnees.OK){
-                listeCircuits = donnees.listeCircuits;
+                listesCircuits = donnees.listeCircuits;
                 listerCircuits(donnees.listeCircuits);
             }else{
                 afficherMessage(donnees.msg); 
