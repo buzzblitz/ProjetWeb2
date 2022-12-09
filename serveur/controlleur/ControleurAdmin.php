@@ -70,7 +70,7 @@
             @unlink($tmpc); //effacer le fichier temporaire
             $photoc=$nomphotoc.$extensionc;
         }
-        $circuit = new Circuit(0, $_POST['nomc'], $photoc, $_POST['descriptionc'], $_POST['etat'],0);
+        $circuit = new Circuit(0, $_POST['nomc'], $photoc, $_POST['descriptionc'], $_POST['etat'], $_POST['prix']);
         $addc = json_decode(DaoCircuit::getDaoCircuit()->MdlC_Enregistrer($circuit));
         if($addc->OK){
             $dossiere="serveur/ressources/images/images_etapes/";
@@ -122,7 +122,7 @@
             @unlink($tmpc); //effacer le fichier temporaire
             $photoc=$nomphotoc.$extensionc;
         }
-        $circuit = new Circuit($_POST['idc'], $_POST['nomc'], $photoc, $_POST['descriptionc'], $_POST['etat'],0);
+        $circuit = new Circuit($_POST['idc'], $_POST['nomc'], $photoc, $_POST['descriptionc'], $_POST['etat'],$_POST['prix']);
         return DaoCircuit::getDaoCircuit()->MdlC_update($circuit);
          
     }

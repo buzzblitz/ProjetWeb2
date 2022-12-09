@@ -14,6 +14,10 @@ let montrerFormAjouterCircuit = (id) => {
                             <label for="nomc" class="form-label">Nom du Circuit</label>
                             <input type="text" class="form-control" id="nomc" name="nomc" value="" required>
                         </div>
+                        <div class='col-md-12'>
+                        <label for='prix' class='form-label'>Prix du Circuit</label>
+                        <input type="number" class="form-control" id="prix" name="prix" value="" required>
+                         </div>
                         <div class="col-md-12">
                             <label for="photoc" class="form-label">Image du Circuit</label>
                             <input type="file" class="form-control" id="photoc" name="photoc" value="" required>
@@ -666,6 +670,10 @@ let afficherModifierC = (circuit) => {
                         <div class="col-md-12">
                             <label for="nomc" class="form-label">Nom du Circuit</label>
                             <input type="text" class="form-control" id="nomc" name="nomc" value="`+circuit.nomc+`" required>
+                        </div>
+                        <div class='col-md-12'>
+                            <label for='prix' class='form-label'>Prix du Circuit</label>
+                            <input type="number" class="form-control" id="prix" name="prix" value="`+ circuit.prix +`" required>
                         </div>
                         <div class="col-md-12">
                             <label for="photocold" class="form-label">Photo Original</label>
