@@ -235,7 +235,7 @@ let montrerVue = (action, donnees) => {
     switch (action) {
         case "enregistrer":
             if (donnees.OK) {
-                window.location.href = donnees.location;
+                window.location.href = "index.php";
             } else {
                 msg = "Problème+pour+enregistré+le+membre.";
                 console.log(msg);
