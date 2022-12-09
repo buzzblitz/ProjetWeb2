@@ -90,12 +90,12 @@ INSERT INTO `journees` (`idj`, `ide`, `datej`, `descriptionj`) VALUES ('2', '2',
 INSERT INTO `activites` (`ida`, `idj`, `noma`, `tempsdebut`, `tempsfin`, `descriptiona`) VALUES ('2', '2', 'Restaurant Portugal', '19:30:00', '20:30:00', 'Degustation locale');
 
 INSERT INTO `circuits` (`idc`, `nomc`, `photoc`, `descriptionc`, `etat`, `prix`) VALUES ('3', 'Australie', 'Sydney.jpg', 'Voyage en Australie', 'A', '15000');
-INSERT INTO `etapes` (`ide`, `idc`, `nome`, `photoe`, `descriptione`, `debut`, `fin`, `lieurencontre`) VALUES ('3', '3', 'Sydney', NULL, 'Première étape du voyage en Australie', '2022-12-25 18:00:00', '2022-12-25 20:00:00', 'Premiere journee a Sydney');
+INSERT INTO `etapes` (`ide`, `idc`, `nome`, `photoe`, `descriptione`, `debut`, `fin`, `lieurencontre`) VALUES ('3', '3', 'Sydney', 'Sydney.jpg', 'Première étape du voyage en Australie', '2022-12-25 18:00:00', '2022-12-25 20:00:00', 'Premiere journee a Sydney');
 INSERT INTO `journees` (`idj`, `ide`, `datej`, `descriptionj`) VALUES ('3', '3', '2022-12-25 12:00:00', 'Noel');
 INSERT INTO `activites` (`ida`, `idj`, `noma`, `tempsdebut`, `tempsfin`, `descriptiona`) VALUES ('3', '3', 'Restaurant Australien', '19:30:00', '20:30:00', 'Degustation locale');
 
 INSERT INTO `circuits` (`idc`, `nomc`, `photoc`, `descriptionc`, `etat`, `prix`) VALUES ('4', 'Japon', 'Tokyo.jpg', 'Voyage au Japon', 'A', '13000');
-INSERT INTO `etapes` (`ide`, `idc`, `nome`, `photoe`, `descriptione`, `debut`, `fin`, `lieurencontre`) VALUES ('4', '4', 'Tokyo', NULL, 'Première étape du voyage au Japon', '2022-12-25 18:00:00', '2022-12-25 20:00:00', 'Premiere journee a tokyo');
+INSERT INTO `etapes` (`ide`, `idc`, `nome`, `photoe`, `descriptione`, `debut`, `fin`, `lieurencontre`) VALUES ('4', '4', 'Tokyo', 'Tokyo.jpg', 'Première étape du voyage au Japon', '2022-12-25 18:00:00', '2022-12-25 20:00:00', 'Premiere journee a tokyo');
 INSERT INTO `journees` (`idj`, `ide`, `datej`, `descriptionj`) VALUES ('4', '4', '2022-12-25 12:00:00', 'Noel');
 INSERT INTO `activites` (`ida`, `idj`, `noma`, `tempsdebut`, `tempsfin`, `descriptiona`) VALUES ('4', '4', 'Restaurant Japon', '19:30:00', '20:30:00', 'Degustation locale');
 
