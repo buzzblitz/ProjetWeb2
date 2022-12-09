@@ -41,6 +41,7 @@ let afficherPageProfil = (membre,connexion) => {
                 </div>
                 <div class="col-md-6">
                     <label for="pass" class="form-label">Nouveau Mot de passe</label>
+                    <input type='text' class='form-control' id='passOriginal' name='passOriginal' value='`+connexion.pass+`' readonly hidden>
                     <input type="password" class="form-control is-valid" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,10}$" id="pass" name="pass" required>
                 </div>
                 <div class="col-md-6">
@@ -253,7 +254,7 @@ let mettreAJourLaFacture = (nouveauTotal) => {
     document.getElementById("totalPayer").innerText = totalPayer.toFixed(2) + "$"; 
 }
 
-let ajusterTotalAchat = (elemInput, prix, montantActuel) => {
+let ajusterTotalAchat = (elemInput, prix) => {
     let ancienMontant;
     let qte = elemInput.value; 
     montantTotalCetCircuit = (qte * prix);
@@ -270,8 +271,12 @@ let ajusterTotalAchat = (elemInput, prix, montantActuel) => {
     mettreAJourLaFacture(nouveauTotal);
 } 
 
+  
+
 let payer = () => {
     document.getElementById("payer").innerHTML = "Merci pour votre paiement.";
+    localStorage.clear();
+    window.location.reload();
 }
 let afficherPhoto = (idm) => {
     let contenu = `<div class="row row-cols-4">`;

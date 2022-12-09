@@ -6,6 +6,7 @@
         exit;
     }
     $photo = $_SESSION['photom'];
+    $idm = $_SESSION['idm'];
 ?>
 <!DOCTYPE html>
 <html lang="fr">
