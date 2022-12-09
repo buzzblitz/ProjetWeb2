@@ -52,17 +52,17 @@
 
     function CtrH_Connexion(){
         $connexionM = new ConnexionM(0, $_POST['courrielc'], $_POST['passc'], 'A', 'M');
-         $tmp = json_decode(DaoConnexionM::getDaoConnexionM()->MdlCM_Connexion($connexionM));
-         if($tmp->OK) {
-            if($tmp->role == 'M') {
-                $tmp = json_decode(DaoMembre::getDaoMembre()->obtenirPhotoMembre($tmp->idm));
-                $tmp->OK = $tmp->OK;
-                return json_encode($tmp);
+         $tmp2 = json_decode(DaoConnexionM::getDaoConnexionM()->MdlCM_Connexion($connexionM));
+         if($tmp2->OK) {
+            if($tmp2->role == 'M') {
+                $tmp = json_decode(DaoMembre::getDaoMembre()->obtenirPhotoMembre($tmp2->idm));
+                $tmp2->OK = $tmp->OK;
+                return json_encode($tmp2);
             } else {
-                return json_encode($tmp);
+                return json_encode($tmp2);
             }
          }
-         return json_encode($tmp);
+         return json_encode($tmp2);
     }
 
     function CtrH_getAll(){
