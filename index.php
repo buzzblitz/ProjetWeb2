@@ -18,7 +18,6 @@
     <script src="client/utilitaires/jquery-3.6.0.min.js"></script>
     <script src="client/utilitaires/bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="client/public/css/style.css">
-    <script src="client/public/js/global.js"></script>
     <script src="client/public/home/requetesHome.js"></script>
     <script src="client/public/home/vueHome.js"></script>
 
