@@ -16,7 +16,7 @@ let montrerFormAjouterCircuit = (id) => {
                         </div>
                         <div class='col-md-12'>
                         <label for='prix' class='form-label'>Prix du Circuit</label>
-                        <input type="text" class="form-control" id="prix" name="prix" value="" required>
+                        <input type="number" class="form-control" id="prix" name="prix" value="" required>
                          </div>
                         <div class="col-md-12">
                             <label for="photoc" class="form-label">Image du Circuit</label>

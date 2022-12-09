@@ -70,7 +70,7 @@
             @unlink($tmpc); //effacer le fichier temporaire
             $photoc=$nomphotoc.$extensionc;
         }
-        $circuit = new Circuit(0, $_POST['nomc'], $photoc, $_POST['descriptionc'], $_POST['etat'],$_POST['prix']);
+        $circuit = new Circuit(0, $_POST['nomc'], $photoc, $_POST['descriptionc'], $_POST['etat'], $_POST['prix']);
         $addc = json_decode(DaoCircuit::getDaoCircuit()->MdlC_Enregistrer($circuit));
         if($addc->OK){
             $dossiere="serveur/ressources/images/images_etapes/";
