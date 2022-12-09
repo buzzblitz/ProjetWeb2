@@ -46,6 +46,23 @@ let chargerAJAX = (id, ctraction) => {
         }
     })
 }
+
+let chargerAJAXBack = (id, ctraction, idback) => {
+    $.ajax({
+        type : "POST",
+        url  : "../../routeAdmin.php",
+        data : {"action":ctraction,"input":id, "back":idback},
+        dataType : "json", //text pour voir si bien formé même chose pour xml
+        success : function (reponse){//alert(listeFilms);
+            // listeFilms = reponse;
+        	montrerVue(ctraction, reponse);
+        },
+        fail : (err) => {
+            //Décider du message
+        }
+    })
+}
+
 let requeteAfficherModif = (index,ctraction) => {
 	console.log("in");
 	$.ajax({
@@ -295,14 +312,14 @@ let requetteDeleteMultiple = (ctraction) => {
     })
 }
 
-let requeteGetIdc = (ide) =>{
+let requeteGetIdc = (ide,liste) =>{
 	$.ajax({
         type : "POST",
         url  : "../../routeAdmin.php",
-        data : {"action":"chargerE","input":ide},
+        data : {"action":"chargerE","input":ide,"list":liste},
         dataType : "json", //text pour voir si bien formé même chose pour xml
         success : function (reponse){
-			return reponse;
+			montrerVue("listeJ2",reponse);
         },
         fail : (err) => {
             //Décider du message
