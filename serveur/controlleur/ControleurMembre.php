@@ -84,8 +84,8 @@
         @unlink($tmpc); //effacer le fichier temporaire
         $photoc=$nomphotom.$extensionc;
     }
-    $pass= $_POST['passOriginal'];
-    if(!isset($_POST['pass'])){
+    $pass = $_POST['passOriginal'];
+    if($_POST['pass'] != "" && $_POST['cpass'] != "" && $_POST['pass'] == $_POST['cpass']){
             $pass = $_POST['pass'];
     }
     $membre = new Membre($_POST['idm'], $_POST['prenom'], $_POST['nom'], "", $_POST['sexe'], "", $photoc);
