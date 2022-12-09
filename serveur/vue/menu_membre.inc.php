@@ -12,11 +12,10 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a id="pr" class="nav-link" href="javascript:requeteAfficherProfil(3);">Profil</a>
+                    <a id="pr" class="nav-link" href="javascript:requeteAfficherProfil(<?php echo $idm; ?>);">Profil</a>
                 </li>
                 <li class="nav-item">
-               
-                
+                    <a id="pr" class="nav-link" href="javascript:window.location.reload();">Retourner Circuit</a>
                 </li>
             </ul>
         </div>
