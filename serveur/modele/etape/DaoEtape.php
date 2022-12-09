@@ -112,33 +112,22 @@ class DaoEtape {
     function mdlE_remove($ide){
         global $reponse;
         $connexion =  Connexion::getConnexion();
-        //$requetteId = "SELECT idc FROM etapes WHERE ide=?";
+        $requetteId = "SELECT idc FROM etapes WHERE ide=?";
         $requettePhoto="SELECT photoe FROM etapes WHERE ide=?";
         $requette="DELETE FROM etapes WHERE ide=?";
         try{
             $donnees = [$ide];
             $stmt = $connexion->prepare($requettePhoto);
             $stmt->execute($donnees);
+            $tmp = $stmt->fetch();
+            $reponse['result'] = $tmp;
+            $column = $tmp[0];
+            $path = "serveur/ressources/images/images_etapes/" . $column;
+            unlink($path);
+            $stmt = $connexion->prepare($requetteId);
+            $stmt->execute($donnees);
             $result = $stmt->fetch();
-            $image=$result;
-            if($image!="avatar.png"){
-                $rmImg='../../ressources/images/images_etapes/'.$image;
-                $tabFichiers = glob('../../ressources/images/images_etapes/*');
-                //print_r($tabFichiers);
-                //parcourir les fichier
-                foreach($tabFichiers as $fichier){
-                    if(is_file($fichier) && $fichier==trim($rmImg)) {
-                        // enlever le fichier
-                        unlink($fichier);
-                        break;
-                        //
-                    }
-                }
-            }
-            //$stmt = $connexion->prepare($requetteId);
-            //$stmt->execute($donnees);
-            //$result = $stmt->fetch();
-            //$reponse['index'] = $result;
+            $reponse['index'] = $result;
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
             $reponse['OK'] = true;
