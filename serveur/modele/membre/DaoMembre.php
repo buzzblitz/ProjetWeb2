@@ -105,5 +105,25 @@ class DaoMembre {
           return json_encode($reponse);
         }
     }
+
+    function MdlM_update(Membre $membre){
+        global $reponse;
+        $connexion =  Connexion::getConnexion();
+        $requette="UPDATE membres SET prenom=?,nom=?,sexe=?,photom=? WHERE idm=?";
+        try{
+            $donnees = [$membre->getPrenom(), $membre->getNom(), $membre->getSexe(), $membre->getPhotom(), $membre->getIdm()];
+            $stmt = $connexion->prepare($requette);
+            $stmt->execute($donnees);
+            $reponse['OK'] = true;
+            $reponse['msg'] = "Réussite de la modification du membre";
+        }catch (Exception $e){
+            $reponse['OK'] = false;
+            $reponse['msg'] = "Problème pour modifier le membre";
+        }finally {
+            unset($connexion);
+            return json_encode($reponse);
+        }
+            
+    }
 }
 ?>

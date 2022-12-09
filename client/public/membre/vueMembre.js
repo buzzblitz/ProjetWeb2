@@ -15,38 +15,40 @@ let rafraichireCart = () => {
 }
 
 let afficherPageProfil = (membre,connexion) => {
+
     let contenu = `
     <div class="modal fade" id="enregModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Enregistrer membre</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Modifier membre</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
             <form id="formEnreg" method="POST" enctype="multipart/form-data" class="row g-3">
                 <div class="col-md-6">
+                    <input type='text' class='form-control' id='idm' name='idm' value='`+membre.idm+`' readonly hidden>
                     <label for="prenom" class="form-label">Prénom</label>
-                    <input type="text" class="form-control is-valid" id="prenom" name="prenom" required>
+                    <input type="text" class="form-control is-valid" id="prenom" name="prenom" value="`+membre.prenom+`" required>
                 </div>
                 <div class="col-md-6">
                     <label for="nom" class="form-label">Nom</label>
-                    <input type="text" class="form-control is-valid" id="nom" name="nom" required>
+                    <input type="text" class="form-control is-valid" id="nom" name="nom" value="`+ membre.nom +`" required>
                 </div>
                 <div class="col-md-12">
                     <label for="courriel" class="form-label">Courriel</label>
-                    <input type="email" class="form-control is-valid" id="courriel" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" name="courriel" required>
+                    <input type="email" class="form-control is-valid" id="courriel" name="courriel"  value="`+ membre.courriel +`" readonly>
                 </div>
                 <div class="col-md-6">
-                    <label for="pass" class="form-label">Mot de passe</label>
+                    <label for="pass" class="form-label">Nouveau Mot de passe</label>
                     <input type="password" class="form-control is-valid" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,10}$" id="pass" name="pass" required>
                 </div>
                 <div class="col-md-6">
-                    <label for="cpass" class="form-label">Confirmer mot de passe</label>
+                    <label for="cpass" class="form-label">Confirmer du nouveau mot de passe</label>
                     <input type="password" class="form-control is-valid" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,10}$" id="cpass" name="cpass" required>
                     <span id="msgPass"></span>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 id_sexe">
                     <label for="sexe" class="form-label">Sexe</label>
                     <select class="form-select" id="sexe" name="sexe" aria-describedby="validationServer04Feedback">
                         <option selected disabled value="">Choisir</option>
@@ -55,16 +57,17 @@ let afficherPageProfil = (membre,connexion) => {
                         <option value="A">Autres</option>
                     </select>
                 </div>
-                <div class="col-md-6">
-                    <label for="daten" class="form-label">Date de naissance</label>
-                    <input type="date" class="form-control is-valid" id="daten" name="daten">
+                <div class="col-md-12">
+                <label for="photom" class="form-label">Photo actuel</label>
+                <input type='text' class='form-control' id='photomcold' name='photomcold' value='`+membre.photom+`' readonly hidden>
+                <img class='img-fluid'  width='60' height='60' id="phototmp" src='../ressources/images/images_membres/` + membre.photom + `'>
                 </div>
                 <div class="col-md-12">
                     <label for="photom" class="form-label">Photo</label>
                     <input type="file" class="form-control is-valid" id="photom" name="photom">
                 </div>
                 <div class="col-12">
-                    <button class="btn btn-primary" type="button" onclick="requeteEnregistrer();">Enregistrer</button>
+                    <button class="btn btn-primary" type="button" onclick="requeteModifier();">Enregistrer</button>
                 </div>
             </form>
             </div>
@@ -75,6 +78,7 @@ let afficherPageProfil = (membre,connexion) => {
 </div>
     `;
     document.getElementById('contenu').innerHTML = contenu;
+    $("div.id_sexe select").val(membre.sexe).change();
     $('#enregModal').modal('show');
     
 }
@@ -370,9 +374,7 @@ let montrerVue = (action, donnees) => {
             if(donnees.OK){
                 window.location.href= donnees.location;
              }else{
-                 msg="Problème+pour+modifier+le+membre.";
-                 console.log(msg);
-                 window.location.href="index.php"; 
+                console.log(donnees.msg);
              }
              break;
         case "charger"      :
