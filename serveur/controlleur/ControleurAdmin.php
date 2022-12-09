@@ -130,9 +130,9 @@
     function CtrA_updateE(){
         $dossiere="serveur/ressources/images/images_etapes/";
         $photoe= $_POST['photoeold'];
-        $nomc = $_POST['nome'];
+        $nome = $_POST['nome'];
         if($_FILES['photoe']['tmp_name']!==""){
-            $nomphotoe=sha1($nomc.time());
+            $nomphotoe=sha1($nome.time());
             //Upload de la photo
             $tmpe = $_FILES['photoe']['tmp_name'];
             $fichiere= $_FILES['photoe']['name'];
