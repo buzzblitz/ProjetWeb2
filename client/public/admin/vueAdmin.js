@@ -325,35 +325,6 @@ let afficherSqueletteTable = (classe,id) =>{
                         </div>
                         <div class="col-sm-7">
                             <nav class="navbar">
-                                <ul>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink"
-                                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Catégories
-                                        </a>
-                                        <ul id="selCategs" class="dropdown-menu dropdown-menu-dark"
-                                            aria-labelledby="navbarDarkDropdownMenuLink">
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink"
-                                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Trier par
-                                        </a>
-                                        <ul id="selCategs" class="dropdown-menu dropdown-menu-dark"
-                                            aria-labelledby="navbarDarkDropdownMenuLink">
-                                            <li>
-                                                <a class="dropdown-item"
-                                                    href="javascript:obtenirXML('titre');">Titre</a>
-                                                <a class="dropdown-item" href="javascript:obtenirXML('titre');">Prix</a>
-                                                <a class="dropdown-item"
-                                                    href="javascript:obtenirXML('titre');">Numéro</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
                             </nav>
                         </div>
                         <div class=" col-sm-3">
@@ -414,35 +385,6 @@ let afficherTableMembres = () => {
                         </div>
                         <div class="col-sm-7">
                             <nav class="navbar">
-                                <ul>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink"
-                                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Catégories
-                                        </a>
-                                        <ul id="selCategs" class="dropdown-menu dropdown-menu-dark"
-                                            aria-labelledby="navbarDarkDropdownMenuLink">
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink"
-                                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Trier par
-                                        </a>
-                                        <ul id="selCategs" class="dropdown-menu dropdown-menu-dark"
-                                            aria-labelledby="navbarDarkDropdownMenuLink">
-                                            <li>
-                                                <a class="dropdown-item"
-                                                    href="javascript:obtenirXML('titre');">Titre</a>
-                                                <a class="dropdown-item" href="javascript:obtenirXML('titre');">Prix</a>
-                                                <a class="dropdown-item"
-                                                    href="javascript:obtenirXML('titre');">Numéro</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
                             </nav>
                         </div>
                     </div>
