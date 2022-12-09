@@ -277,7 +277,7 @@ let requeteGetIdc = (ide) =>{
         data : {"action":"chargerE","input":ide},
         dataType : "json", //text pour voir si bien formé même chose pour xml
         success : function (reponse){
-			return reponse.etape.idc;
+			return reponse;
         },
         fail : (err) => {
             //Décider du message
@@ -292,7 +292,7 @@ let requeteGetIde = (idj) =>{
         data : {"action":"chargerJ","input":idj},
         dataType : "json", //text pour voir si bien formé même chose pour xml
         success : function (reponse){
-			return reponse.journee.ide
+			return reponse;
         },
         fail : (err) => {
             //Décider du message

@@ -901,6 +901,7 @@ let afficherModifierA = (activite) => {
     $('#modalModifierActivite').modal('show');
 }
 let montrerVue = (action, donnees) => {
+    var listeStaticJournees;
     switch(action){
         case "enregistrer"  :
             if(donnees.OK){
@@ -975,11 +976,11 @@ let montrerVue = (action, donnees) => {
             if(donnees.OK){
                 $("#contenu").html("");
                 chargerAJAX(donnees.index,"listerA");
-             }/*else{
+             }else{
                  msg="Problème+pour+modifier+le+membre.";
                  console.log(msg);
                  window.location.href="../../index.php"; 
-             }*/
+             }
              break;
         case "modifierM"     :
             if(donnees.OK){
@@ -1062,9 +1063,17 @@ let montrerVue = (action, donnees) => {
             if(donnees.OK){
                 afficherSqueletteTable("Journee",donnees.index);
                 afficherTableJ();
-                idc = requeteGetIdc(donnees.index);
-                console.log(idc);
+                idc = 0;
                 generate_tableJ(donnees.listeJournees, idc);
+                //requeteGetIdc(donnees.index);
+            }else{
+                afficherMessage(donnees.msg); 
+            }
+            break;
+        case "listerJ2"       :
+            if(donnees.OK){
+                console.log(listeStaticJournees);
+                generate_tableJ(listeStaticJournees, donnees.idc);
             }else{
                 afficherMessage(donnees.msg); 
             }
@@ -1073,9 +1082,11 @@ let montrerVue = (action, donnees) => {
             if(donnees.OK){
                 afficherSqueletteTable("Activite",donnees.index);
                 afficherTableA();
-                ide = requeteGetIde(donnees.index);
-                console.log(ide);
-                generate_tableA(donnees.listeActivites);
+                ide = 0;
+                //console.log(donnees.index);
+                //ide = requeteGetIde(donnees.index);
+                //console.log(ide);
+                generate_tableA(donnees.listeActivites, ide);
             }else{
                 afficherMessage(donnees.msg); 
             }
