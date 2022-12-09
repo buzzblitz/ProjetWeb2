@@ -107,6 +107,12 @@
          
     }
 
+    function CtrA_triCircuit(){
+        
+        return DaoCircuit::getDaoCircuit()->MdlC_get_tri($_POST['etat']); 
+         
+    }
+
     function CtrA_updateC(){
         $dossierc="serveur/ressources/images/images_circuits/";
         $photoc= $_POST['photocold'];
@@ -254,6 +260,8 @@
                 return  $this->CtrA_Enregistrer(); 
             case "modifierC" :
                 return  $this->CtrA_updateC(); 
+            case "triCircuit" :
+                return  $this->CtrA_triCircuit(); 
             case "checherCircuit" :
                 return  $this->CtrA_checherCircuit();
             case "enleverC" :

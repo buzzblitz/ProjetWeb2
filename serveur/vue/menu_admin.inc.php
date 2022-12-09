@@ -24,6 +24,9 @@
                 <li class="nav-item">
                     <a id="me" class="nav-link" href="javascript:montrerFormRechercherCircuit();">Recherche Circuit</a>
                 </li>
+                <li class="nav-item">
+                    <a id="me" class="nav-link" href="javascript:montrerFormTriCircuit();">Tri Circuit</a>
+                </li>
             </ul>
         </div>
     </div>

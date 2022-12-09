@@ -279,6 +279,40 @@ let montrerFormRechercherCircuit = () => {
 
 }
 
+let montrerFormTriCircuit = () => {
+    let form = `
+    <div class="modal fade" id="modalTriCircuit" tabindex="-1" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tri sur un Circuit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formTriCircuit" class="row  needs-validation" enctype="multipart/form-data" target="cacheCache">
+                        <div class='col-md-12'>
+                        <label for="etat" class="form-label">Tri sur l'etats du Circuit</label>
+                        <select id="etat" name="etat" class="form-select form-select-sm" required
+                            aria-label=".form-select-sm example">
+                            <option selected disabled value="D">Desactiver</option>
+                            <option value="T">Travail</option>
+                            <option value="A">Deploiement</option>
+                        </select>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="button" onclick="javascript:triCircuit();" target="cacheCache">Enregistrer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+    document.getElementById('contenu').innerHTML = form;
+    $('#modalTriCircuit').modal('show');
+
+}
+
 let afficherSqueletteTable = (classe,id) =>{
     let rep = `
     <div class="container-xl">
@@ -1047,6 +1081,15 @@ let montrerVue = (action, donnees) => {
                 generate_tableC(donnees.listeCircuits);
             }else{
                  afficherMessage(donnees.msg); 
+            }
+            break;
+        case "triCircuit":
+            if(donnees.OK){
+                afficherSqueletteTable("Circuit",0);
+                afficherTableC();
+                generate_tableC(donnees.listeCircuits);
+            }else{
+                afficherMessage(donnees.msg); 
             }
             break;
         case "listerC"       :
