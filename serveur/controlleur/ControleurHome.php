@@ -45,7 +45,7 @@
             $connexionM = new ConnexionM((int)$timo->idm, $_POST['courriel'], $_POST['pass'], 'A', 'M');
          }
          $tmp = json_decode(DaoConnexionM::getDaoConnexionM()->MdlCM_Enregistrer($connexionM));
-         $timo['location'] = $tmp->location;
+         $timo->location = $tmp->location;
 
          return json_encode($timo);
     }
