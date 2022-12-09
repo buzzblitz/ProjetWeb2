@@ -111,6 +111,31 @@ let chercherCircuit = () => {
 	});
 }
 
+let triCircuit = () => {
+	let formTriCircuit = new FormData(document.getElementById('formTriCircuit'));
+	formTriCircuit.append('action','triCircuit');
+	$('.modal').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+	$.ajax({
+		type : 'POST',
+		url : '../../routeAdmin.php',
+		data : formTriCircuit, //$('#formEnreg').serialize()
+		//async : false,
+		//cache : false,
+		contentType : false,
+		processData : false,
+        dataType : 'json', //text pour le voir en format de string
+		success : function (reponse){//alert(reponse);
+			//console.log(salut);
+			montrerVue("triCircuit", reponse);
+		},
+		fail : function (err){
+		   
+		}
+	});
+}
+
 let requeteEnregistrerE = () => {
 	let formEtape = new FormData(document.getElementById('formEnregEtape'));
 	formEtape.append('action','enregistrerE');
