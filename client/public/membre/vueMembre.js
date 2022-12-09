@@ -254,7 +254,7 @@ let mettreAJourLaFacture = (nouveauTotal) => {
     document.getElementById("totalPayer").innerText = totalPayer.toFixed(2) + "$"; 
 }
 
-let ajusterTotalAchat = (elemInput, prix, montantActuel) => {
+let ajusterTotalAchat = (elemInput, prix) => {
     let ancienMontant;
     let qte = elemInput.value; 
     montantTotalCetCircuit = (qte * prix);
@@ -271,8 +271,12 @@ let ajusterTotalAchat = (elemInput, prix, montantActuel) => {
     mettreAJourLaFacture(nouveauTotal);
 } 
 
+  
+
 let payer = () => {
     document.getElementById("payer").innerHTML = "Merci pour votre paiement.";
+    localStorage.clear();
+    window.location.reload();
 }
 let afficherPhoto = (idm) => {
     let contenu = `<div class="row row-cols-4">`;
