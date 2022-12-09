@@ -84,10 +84,14 @@
         @unlink($tmpc); //effacer le fichier temporaire
         $photoc=$nomphotom.$extensionc;
     }
+    $pass= $_POST['passOriginal'];
+    if($_POST['pass'] !==""){
+            $pass = $_POST['pass'];
+    }
     $membre = new Membre($_POST['idm'], $_POST['prenom'], $_POST['nom'], "", $_POST['sexe'], "", $photoc);
     $timo = json_decode(DaoMembre::getDaoMembre()->MdlM_update($membre));
     if($timo->OK){
-       $connexionM = new ConnexionM($_POST['idm'], "", $_POST['pass'], 'A', 'M');
+       $connexionM = new ConnexionM($_POST['idm'], "", $pass, 'A', 'M');
        return DaoConnexionM::getDaoConnexionM()->MdlCM_update_profile($connexionM);
     }
      
