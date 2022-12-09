@@ -223,11 +223,11 @@ let montrerFormAjouterActivite = (idj) => {
                         </div>
                         <div class='col-md-6'>
                             <label for='tempsdebut' class='form-label'>Heure du debut de l'activiter</label>
-                            <input type='time' class='form-control is-valid' id='tempsdebut' name='tempsdebut' required>
+                            <input type='text' class='form-control is-valid' id='tempsdebut' name='tempsdebut' required>
                         </div>
                         <div class='col-md-6'>
                             <label for='tempsfin' class='form-labe'>Heure de fin de l'activiter</label>
-                            <input type='time' class='form-control is-valid' id='tempsfin' name='tempsfin' required>
+                            <input type='text' class='form-control is-valid' id='tempsfin' name='tempsfin' required>
                         </div>
                             <div class='col-md-12'>
                                 <label for='descriptiona' class='form-label'>Description des activiter</label>
@@ -761,36 +761,40 @@ let afficherModifierE = (etape) => {
                     <form id="formEnregEtape" class="row  needs-validation" enctype="multipart/form-data" method="POST">
                         <div class='col-md-12'>
                             <label for='idc' class='form-label'>Id Circuit associé</label>
-                            <input type='text' class='form-control' id='idc' name='idc' value='`+etape.idc+`' readonly>
+                            <input type='text' class='form-control' id='idc' name='idc' value='${etape.idc}' readonly>
+                        </div>
+                        <div class='col-md-12'>
+                            <label for='ide' class='form-label'>Id Etape</label>
+                            <input type='text' class='form-control' id='ide' name='ide' value='${etape.ide}' readonly>
                         </div>
                         <div class='col-md-12'>
                             <label for='nome' class='form-label'>Etape</label>
-                            <input type='text' class='form-control' id='nome' name='nome' value="`+etape.nome+`" required>
+                            <input type='text' class='form-control' id='nome' name='nome' value='${etape.nome}' required>
                         </div>
                         <div class='col-md-12'>
                             <label for='photoe' class='form-label'>Image de l'Etape</label>
-                            <input type='file' class='form-control' id='photoe' name='photoe' value="`+etape.photoe+`" required>
+                            <input type='file' class='form-control' id='photoe' name='photoe' value='${etape.photoe}' required>
                         </div>
                         <div class='col-md-12'>
                             <label for='descriptione' class='form-label'>Description de l'Etape</label>
-                            <input type='text' class='form-control' id='descriptione' name='descriptione' value="`+etape.ide+`" required>
+                            <input type='text' class='form-control' id='descriptione' name='descriptione' value='${etape.descriptione}' required>
                         </div>
                         <div class='col-md-6'>
                         <label for='debut' class='form-label'>Date du Debut</label>
-                            <input type='date' class='form-control is-valid' id='debut' name='debut' value="`+etape.debut+`" required>
+                            <input type='date' class='form-control is-valid' id='debut' name='debut' value='${etape.debut.substring(0,10)}' required>
                         </div>
                         <div class='col-md-12'>
                         </div>
                         <div class='col-md-6'>
                             <label for='fin' class='form-label'>Date de la Fin</label>
-                            <input type='date' class='form-control is-valid' id='fin' name='fin' value="`+etape.fin+`" required>
+                            <input type='date' class='form-control is-valid' id='fin' name='fin' value='${etape.fin.substring(0,10)}' required>
                         </div>
                         <div class='col-md-12'>
                             <label for='lieurencontre' class='form-label'>Lieu de rencontre pour le Diner</label>
-                            <input type='text' class='form-control' id='lieurencontre' name='lieurencontre' value="`+etape.lieurencontre+`" required>
+                            <input type='text' class='form-control' id='lieurencontre' name='lieurencontre' value='${etape.lieurencontre}' required>
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrerE();">Enregistrer</button>
+                            <button class="btn btn-primary" type="button" onclick="requeteModifier('formEnregEtape','modifierE');">Modifier</button>
                         </div>
                     </form>
                 </div>
@@ -827,7 +831,7 @@ let afficherModifierJ = (journee) => {
                             <input type='text' class='form-control' id='descriptionj' name='descriptionj' value="`+journee.descriptionj+`" required>
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrerJ();">Enregistrer</button>
+                            <button class="btn btn-primary" type="button" onclick="requeteModifier('formEnregJournee','modifierJ');">Modifier</button>
                         </div>
                     </form>
                 </div>
@@ -861,23 +865,23 @@ let afficherModifierA = (activite) => {
                         </div>
                         <div class='col-md-6'>
                             <label for='tempsdebut' class='form-label'>Heure du debut de l'activiter</label>
-                            <input type='time' class='form-control is-valid' id='tempsdebut' name='tempsdebut' value="`+activite.tempsdebut+`" required>
+                            <input type='text' class='form-control is-valid' id='tempsdebut' name='tempsdebut' value="`+activite.tempsdebut+`" required>
                         </div>
                         <div class='col-md-6'>
                             <label for='tempsfin' class='form-labe'>Heure de fin de l'activiter</label>
-                            <input type='time' class='form-control is-valid' id='tempsfin' name='tempsfin' value="`+activite.tempsfin+`" required>
+                            <input type='text' class='form-control is-valid' id='tempsfin' name='tempsfin' value="`+activite.tempsfin+`" required>
                         </div>
                             <div class='col-md-12'>
                                 <label for='descriptiona' class='form-label'>Description des activiter</label>
                             <input type='text' class='form-control' id='descriptiona' name='descriptiona' value="`+activite.descriptiona+`" required>
                         </div>        
                         <div class="col-12">
-                            <button class="btn btn-primary" type="button" onclick="requeteEnregistrerA();">Enregistrer</button>
+                            <button class="btn btn-primary" type="button" onclick="requeteModifier('formEnregActivite','modifierA');">Modifier</button>
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
+        </div>                                                              
     </div>
     `;
     $("#contenu").append(form);
@@ -899,7 +903,7 @@ let montrerVue = (action, donnees) => {
             if(donnees.OK){
                 $("#contenu").html("");
                 chargerAJAX(donnees.index,"listerE");
-            }else{
+            }else{  
                 msg="Problème+avec+enregistrement";
                 console.log(donnees.msg);
                 window.location.href="index.php"; 
@@ -935,7 +939,7 @@ let montrerVue = (action, donnees) => {
              }
              break;
         case "modifierE"     :
-            if(donnees.OK){
+            if(donnees.OK){                                                                                 
                 $("#contenu").html("");
                 chargerAJAX(donnees.index,"listerE");
              }else{
@@ -981,6 +985,9 @@ let montrerVue = (action, donnees) => {
             break;
         case "chargerE"      :
             if(donnees.OK){
+                console.log(donnees);
+                console.log(donnees.etape.debut.substring(0,10));
+                console.log(donnees.etape.fin.substring(0,10));
                 afficherModifierE(donnees.etape);
             }else{
                 afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 

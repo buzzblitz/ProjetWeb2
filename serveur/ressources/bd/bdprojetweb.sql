@@ -60,8 +60,8 @@ CREATE TABLE activites (
   ida INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
   idj INTEGER NOT NULL,
   noma VARCHAR(255) NOT NULL,
-  tempsdebut datetime NOT NULL,
-  tempsfin datetime NOT NULL,
+  tempsdebut VARCHAR(10) NOT NULL,
+  tempsfin VARCHAR(10) NOT NULL,
   descriptiona VARCHAR(255) NOT NULL,
   FOREIGN KEY (idj) REFERENCES journees (idj) ON DELETE CASCADE
 );
