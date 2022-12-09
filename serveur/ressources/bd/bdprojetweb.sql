@@ -108,3 +108,23 @@ INSERT INTO `membres` (`idm`, `prenom`, `nom`, `courriel`, `sexe`, `daten`, `pho
 (3, 'Membre', 'Membre', 'membre@tlt.com', 'A', '0001-01-01', 'avatar.png');
 INSERT INTO `connexion` (`idm`, `courriel`, `pass`, `etat`, `role`) VALUES
 (3, 'Membre@tlt.com', 'Membre@123', 'A', 'M');
+
+INSERT INTO `circuits` (`idc`, `nomc`, `photoc`, `descriptionc`, `etat`, `prix`) VALUES
+(5, 'Quebec', '94b817964582e2446e232307b00d8fb8f2529f6f.jpg', 'La province de Quebec', 'T', 2000);
+
+INSERT INTO `etapes` (`ide`, `idc`, `nome`, `photoe`, `descriptione`, `debut`, `fin`, `lieurencontre`) VALUES
+(9, 5, 'Visite de Mtl', 'd16cca8c57764cc5a8cf87ef57bb56abbfcaee61.jpg', 'Visiter le Montreal', '2022-12-07 00:00:00', '2022-12-14 00:00:00', 'Banquise'),
+(10, 5, 'La ronde', '6bd0acdd1d52b955c6fbf973e3314dd98dae62e9.jpg', 'Aller a la ronde', '2022-12-16 00:00:00', '2022-12-31 00:00:00', 'Mcdo'),
+(11, 5, 'Visite Cegep', '7877b78fe89c8094228bb7dbfa33dd9eb445d726.jpg', 'Tournée des cégeps', '2022-12-05 00:00:00', '2022-12-24 00:00:00', 'Cafetaria');
+
+INSERT INTO `journees` (`idj`, `ide`, `datej`, `descriptionj`) VALUES
+(7, 9, '2022-12-21 00:00:00', 'Vieux Montreal'),
+(8, 11, '2022-11-28 00:00:00', 'Cegep Ahuntsic'),
+(9, 11, '2022-12-05 00:00:00', 'Cegep HenriBourassa'),
+(10, 11, '2022-12-06 00:00:00', 'Cegep Vanier');
+
+INSERT INTO `activites` (`ida`, `idj`, `noma`, `tempsdebut`, `tempsfin`, `descriptiona`) VALUES
+(7, 7, 'Vieux port de montreal', '12:50', '13:80', 'visiter le view port'),
+(8, 8, 'Cours de Web2', '12:50', '13:80', 'Cours de php'),
+(9, 8, 'Python', '12:50', '13:80', 'Jeux a faire en Pygame'),
+(10, 8, 'Cours de collab', '12:50', '13:80', 'Un peu de tout');

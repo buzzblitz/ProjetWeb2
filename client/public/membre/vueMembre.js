@@ -68,7 +68,7 @@ let afficherPageProfil = (membre,connexion) => {
                     <input type="file" class="form-control is-valid" id="photom" name="photom">
                 </div>
                 <div class="col-12">
-                    <button class="btn btn-primary" type="button" onclick="requeteModifier();">Enregistrer</button>
+                    <button class="btn btn-primary" type="submit" onclick="requeteModifier();">Enregistrer</button>
                 </div>
             </form>
             </div>
