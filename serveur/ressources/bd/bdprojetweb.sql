@@ -84,8 +84,8 @@ INSERT INTO `activites` (`ida`, `idj`, `noma`, `tempsdebut`, `tempsfin`, `descri
 
 
 INSERT INTO `circuits` (`idc`, `nomc`, `photoc`, `descriptionc`, `etat`, `prix`) VALUES ('2', 'Portugal', 'Porto.jpg', 'Voyage au Portugal', 'A', '12000');
-INSERT INTO `etapes` (`ide`, `idc`, `nome`, `photoe`, `descriptione`, `debut`, `fin`, `lieurencontre`) VALUES ('7', '2', 'Lisbonne', NULL, 'Seconde étape du voyage au Portugal', '2022-12-31 18:00:00', '2022-01-05 20:00:00', 'Premiere journee à Lisbonne');
-INSERT INTO `etapes` (`ide`, `idc`, `nome`, `photoe`, `descriptione`, `debut`, `fin`, `lieurencontre`) VALUES ('2', '2', 'Porto', NULL, 'Première étape du voyage au Portugal', '2022-12-25 18:00:00', '2022-12-30 20:00:00', 'Premiere journee à Porto');
+INSERT INTO `etapes` (`ide`, `idc`, `nome`, `photoe`, `descriptione`, `debut`, `fin`, `lieurencontre`) VALUES ('8', '2', 'Lisbonne', 'Porto.jpg', 'Seconde étape du voyage au Portugal', '2022-12-31 18:00:00', '2022-01-05 20:00:00', 'Premiere journee à Lisbonne');
+INSERT INTO `etapes` (`ide`, `idc`, `nome`, `photoe`, `descriptione`, `debut`, `fin`, `lieurencontre`) VALUES ('2', '2', 'Porto', 'Porto.jpg', 'Première étape du voyage au Portugal', '2022-12-25 18:00:00', '2022-12-30 20:00:00', 'Premiere journee à Porto');
 INSERT INTO `journees` (`idj`, `ide`, `datej`, `descriptionj`) VALUES ('2', '2', '2022-12-25 12:00:00', 'Noel');
 INSERT INTO `activites` (`ida`, `idj`, `noma`, `tempsdebut`, `tempsfin`, `descriptiona`) VALUES ('2', '2', 'Restaurant Portugal', '19:30:00', '20:30:00', 'Degustation locale');
 
