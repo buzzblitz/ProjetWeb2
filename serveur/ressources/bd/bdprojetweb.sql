@@ -73,10 +73,15 @@ ALTER TABLE membrescircuits ADD FOREIGN KEY (idc) REFERENCES circuits (idc);
 
 INSERT INTO `circuits` (`idc`, `nomc`, `photoc`, `descriptionc`, `etat`, `prix`) VALUES ('1', 'Corée', 'Pyongyang.jpg', 'Voyage en Corée', 'A', '10000');
 INSERT INTO `etapes` (`ide`, `idc`, `nome`, `photoe`, `descriptione`, `debut`, `fin`, `lieurencontre`) VALUES ('1', '1', 'Pyongyang', Pyongyang.jpg, 'Première étape du voyage en Corée', '2022-12-25 18:00:00', '2022-12-25 20:00:00', 'Premiere journee Pyongyang');
-INSERT INTO `etapes` (`ide`, `idc`, `nome`, `photoe`, `descriptione`, `debut`, `fin`, `lieurencontre`) VALUES ('5', '1', 'Chongjin', Chongjin.jpg, 'Deuxieme étape du voyage en Corée', '2022-12-30 18:00:00', '2023-01-05 20:00:00', 'Premiere journee Chongjin');
-INSERT INTO `etapes` (`ide`, `idc`, `nome`, `photoe`, `descriptione`, `debut`, `fin`, `lieurencontre`) VALUES ('7', '1', 'Hamhung', Hamhung.jpg, 'Troisieme étape du voyage en Corée', '2023-01-06 18:00:00', '2023-01-11 20:00:00', 'Premiere journee Hamhung');
-INSERT INTO `journees` (`idj`, `ide`, `datej`, `descriptionj`) VALUES ('1', '1', '2022-11-16 14:30:01', 'une journee belle journée pour la prison');
-INSERT INTO `activites` (`ida`, `idj`, `noma`, `tempsdebut`, `tempsfin`, `descriptiona`) VALUES ('1', '1', 'Se faire arreter', '14:30:41', '14:30:42', 'un beau séjour au trou');
+INSERT INTO `etapes` (`ide`, `idc`, `nome`, `photoe`, `descriptione`, `debut`, `fin`, `lieurencontre`) VALUES ('5', '1', 'Chongjin', Chongjin.jpg, 'Deuxieme étape du voyage en Corée', '2022-12-26 18:00:00', '2022-12-26 20:00:00', 'Premiere journee Chongjin');
+INSERT INTO `etapes` (`ide`, `idc`, `nome`, `photoe`, `descriptione`, `debut`, `fin`, `lieurencontre`) VALUES ('7', '1', 'Hamhung', Hamhung.jpg, 'Troisieme étape du voyage en Corée', '2022-12-27 18:00:00', '2023-12-27 20:00:00', 'Premiere journee Hamhung');
+INSERT INTO `journees` (`idj`, `ide`, `datej`, `descriptionj`) VALUES ('1', '1', '2022-12-25 18:00:00', 'une journee belle journée pour une visite');
+INSERT INTO `journees` (`idj`, `ide`, `datej`, `descriptionj`) VALUES ('5', '5', '2022-12-26 18:00:00', 'une journee belle journée pour la cave des licorne');
+INSERT INTO `journees` (`idj`, `ide`, `datej`, `descriptionj`) VALUES ('6', '7', '2022-12-27 18:00:00', 'une journee belle journée pour la prison');
+INSERT INTO `activites` (`ida`, `idj`, `noma`, `tempsdebut`, `tempsfin`, `descriptiona`) VALUES ('1', '1', 'Visite du président', '14:30:41', '14:30:42', 'Visite la residence Kim');
+INSERT INTO `activites` (`ida`, `idj`, `noma`, `tempsdebut`, `tempsfin`, `descriptiona`) VALUES ('5', '5', 'Visite de la cave ancestral', '14:30:41', '14:30:42', 'Visite de la cave au licorne');
+INSERT INTO `activites` (`ida`, `idj`, `noma`, `tempsdebut`, `tempsfin`, `descriptiona`) VALUES ('6', '6', 'Se faire arreter', '14:30:41', '14:30:42', 'un beau séjour au trou');
+
 
 INSERT INTO `circuits` (`idc`, `nomc`, `photoc`, `descriptionc`, `etat`, `prix`) VALUES ('2', 'Portugal', 'Porto.jpg', 'Voyage au Portugal', 'A', '12000');
 INSERT INTO etapes (ide, idc, nome, photoe, descriptione, debut, fin, lieurencontre) VALUES ('7', '2', 'Lisbonne', NULL, 'Seconde étape du voyage au Portugal', '2022-12-31 18:00:00', '2022-01-05 20:00:00', 'Premiere journee à Lisbonne');
