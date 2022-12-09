@@ -601,10 +601,10 @@ function generate_tableE(liste) {
 	$('#maintable').html(rep);
 }
 
-function generate_tableJ(displayRecords,idc) {
+function generate_tableJ(displayRecords) {
 	let rep="";
-    for (let uneJournee of displayRecords) {
-        $('#btnRetour').attr('onClick', `chargerAJAX(${idc},"listerE")`); 
+    $('#btnRetour').attr('onClick', 'chargerCircuitsAJAX()');
+    for (let uneJournee of displayRecords) { 
 		rep+=`
 			<tr>
 				<td>
@@ -627,10 +627,10 @@ function generate_tableJ(displayRecords,idc) {
 	$('#maintable').html(rep);
 }
 
-function generate_tableA(displayRecords,ide) {
+function generate_tableA(displayRecords) {
 	let rep="";
+    $('#btnRetour').attr('onClick', 'chargerCircuitsAJAX()');
     for (let unActivite of displayRecords) { 
-        $('#btnRetour').attr('onClick', `chargerAJAX(${ide},"listerJ")`);
 		rep+=`
 			<tr>
 				<td>
@@ -943,7 +943,6 @@ let afficherModifierA = (activite) => {
     $('#modalModifierActivite').modal('show');
 }
 let montrerVue = (action, donnees) => {
-    var listeStaticJournees;
     switch(action){
         case "enregistrer"  :
             if(donnees.OK){
@@ -1114,17 +1113,7 @@ let montrerVue = (action, donnees) => {
             if(donnees.OK){
                 afficherSqueletteTable("Journee",donnees.index);
                 afficherTableJ();
-                idc = 0;
-                generate_tableJ(donnees.listeJournees, idc);
-                //requeteGetIdc(donnees.index);
-            }else{
-                afficherMessage(donnees.msg); 
-            }
-            break;
-        case "listerJ2"       :
-            if(donnees.OK){
-                console.log(listeStaticJournees);
-                generate_tableJ(listeStaticJournees, donnees.idc);
+                generate_tableJ(donnees.listeJournees);
             }else{
                 afficherMessage(donnees.msg); 
             }
@@ -1133,11 +1122,7 @@ let montrerVue = (action, donnees) => {
             if(donnees.OK){
                 afficherSqueletteTable("Activite",donnees.index);
                 afficherTableA();
-                ide = 0;
-                //console.log(donnees.index);
-                //ide = requeteGetIde(donnees.index);
-                //console.log(ide);
-                generate_tableA(donnees.listeActivites, ide);
+                generate_tableA(donnees.listeActivites);
             }else{
                 afficherMessage(donnees.msg); 
             }

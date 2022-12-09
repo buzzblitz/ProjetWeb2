@@ -64,19 +64,19 @@ class DaoActivite {
         }
     }
 	
-    function MdlA_getAll($index):string {
+    function MdlA_getAll($idj):string {
         global $reponse;
         $connexion = Connexion::getConnexion();
         $requette="SELECT * FROM activites WHERE idj = ?";
         try{
-            $donnees = [$index];
+            $donnees = [$idj];
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
             $reponse['OK'] = true;
             $reponse['msg'] = "";
             $reponse['listeActivites'] = array();
             $reponse['listeActivites'] = $stmt->fetchAll();
-            $reponse['index'] = $index;
+            $reponse['index'] = $idj;
         }catch (Exception $e){ 
             $reponse['OK'] = false;
             $reponse['msg'] = "Problème pour obtenir les données des activites";
