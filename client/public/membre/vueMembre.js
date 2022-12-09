@@ -275,7 +275,7 @@ let ajusterTotalAchat = (elemInput, prix) => {
 
 let payer = () => {
     document.getElementById("payer").innerHTML = "Merci pour votre paiement.";
-    localStorage.clear();
+    localStorage.removeItem("panier");
     window.location.reload();
 }
 let afficherPhoto = (idm) => {
