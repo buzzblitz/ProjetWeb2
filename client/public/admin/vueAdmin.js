@@ -749,7 +749,7 @@ let afficherModifierM = (membre) => {
 
 let afficherModifierE = (etape) => {
     let form = `
-    <div class="modal fade" id="modalAjouterEtape" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="modalModifierEtape" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -770,6 +770,10 @@ let afficherModifierE = (etape) => {
                         <div class='col-md-12'>
                             <label for='nome' class='form-label'>Etape</label>
                             <input type='text' class='form-control' id='nome' name='nome' value='${etape.nome}' required>
+                        </div>
+                        <div class='col-md-12'>
+                            <label for='photoeold' class='form-label'>Photo Original</label>
+                            <input type='text' class='form-control' id='photoeold' name='photoeold' value='${etape.photoe}' readonly>
                         </div>
                         <div class='col-md-12'>
                             <label for='photoe' class='form-label'>Image de l'Etape</label>
@@ -804,11 +808,11 @@ let afficherModifierE = (etape) => {
     `;
     $("#contenu").append(form);
     //document.getElementById('contenu').innerHTML = form;
-    $('#modalModifierCircuit').modal('show');
+    $('#modalModifierEtape').modal('show');
 }
 let afficherModifierJ = (journee) => {
     let form = `
-    <div class="modal fade" id="modalAjouterJournee" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="modalModifierJournee" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -819,16 +823,20 @@ let afficherModifierJ = (journee) => {
                 <div class="modal-body">
                     <form id="formEnregJournee" class="row  needs-validation" enctype="multipart/form-data" method="POST">
                         <div class='col-md-12'>
+                            <label for='idj' class='form-label'>Id de la journée</label>
+                            <input type='text' class='form-control' id='idj' name='idj' value='${journee.idj}' readonly>
+                        </div>
+                        <div class='col-md-12'>
                             <label for='ide' class='form-label'>Id Etape associé</label>
-                            <input type='text' class='form-control' id='ide' name='ide' value='`+journee.idj+`' readonly>
+                            <input type='text' class='form-control' id='ide' name='ide' value='${journee.idj}' readonly>
                         </div>
                         <div class='col-md-6'>
                             <label for='datej' class='form-label'>Date</label>
-                               <input type='date' class='form-control is-valid' id='datej' name='datej' value="`+journee.datej+`" required>
+                               <input type='date' class='form-control is-valid' id='datej' name='datej' value='${journee.datej.substring(0,10)}' required>
                         </div>
                         <div class='col-md-12'>
                             <label for='descriptionj' class='form-label'>Autre information</label>
-                            <input type='text' class='form-control' id='descriptionj' name='descriptionj' value="`+journee.descriptionj+`" required>
+                            <input type='text' class='form-control' id='descriptionj' name='descriptionj' value='${journee.descriptionj}' required>
                         </div>
                         <div class="col-12">
                             <button class="btn btn-primary" type="button" onclick="requeteModifier('formEnregJournee','modifierJ');">Modifier</button>
@@ -841,11 +849,11 @@ let afficherModifierJ = (journee) => {
     `;
     $("#contenu").append(form);
     //document.getElementById('contenu').innerHTML = form;
-    $('#modalModifierCircuit').modal('show');
+    $('#modalModifierJournee').modal('show');
 }
 let afficherModifierA = (activite) => {
     let form = `
-    <div class="modal fade" id="modalAjouterActivite" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="modalModifierActivite" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -856,24 +864,28 @@ let afficherModifierA = (activite) => {
                 <div class="modal-body">
                     <form id="formEnregActivite" class="row  needs-validation" enctype="multipart/form-data" method="POST">
                         <div class='col-md-12'>
+                            <label for='ida' class='form-label'>Id de l'Activité</label>
+                            <input type='text' class='form-control' id='ida' name='ida' value='${+activite.ida}' readonly>
+                        </div>
+                        <div class='col-md-12'>
                             <label for='idj' class='form-label'>Id Journee associée</label>
-                            <input type='text' class='form-control' id='idj' name='idj' value="`+activite.idj+`" readonly>
+                            <input type='text' class='form-control' id='idj' name='idj' value='${+activite.idj}' readonly>
                         </div>
                         <div class='col-md-12'>
                             <label for='noma' class='form-label'>Nom de l'activite</label>
-                            <input type='text' class='form-control' id='noma' name='noma' value="`+activite.noma+`" required>
+                            <input type='text' class='form-control' id='noma' name='noma' value='${activite.noma}' required>
                         </div>
                         <div class='col-md-6'>
                             <label for='tempsdebut' class='form-label'>Heure du debut de l'activiter</label>
-                            <input type='text' class='form-control is-valid' id='tempsdebut' name='tempsdebut' value="`+activite.tempsdebut+`" required>
+                            <input type='text' class='form-control is-valid' id='tempsdebut' name='tempsdebut' value='${activite.tempsdebut}' required>
                         </div>
                         <div class='col-md-6'>
                             <label for='tempsfin' class='form-labe'>Heure de fin de l'activiter</label>
-                            <input type='text' class='form-control is-valid' id='tempsfin' name='tempsfin' value="`+activite.tempsfin+`" required>
+                            <input type='text' class='form-control is-valid' id='tempsfin' name='tempsfin' value='${activite.tempsfin}' required>
                         </div>
                             <div class='col-md-12'>
                                 <label for='descriptiona' class='form-label'>Description des activiter</label>
-                            <input type='text' class='form-control' id='descriptiona' name='descriptiona' value="`+activite.descriptiona+`" required>
+                            <input type='text' class='form-control' id='descriptiona' name='descriptiona' value='${activite.descriptiona}' required>
                         </div>        
                         <div class="col-12">
                             <button class="btn btn-primary" type="button" onclick="requeteModifier('formEnregActivite','modifierA');">Modifier</button>
@@ -886,7 +898,7 @@ let afficherModifierA = (activite) => {
     `;
     $("#contenu").append(form);
     //document.getElementById('contenu').innerHTML = form;
-    $('#modalModifierCircuit').modal('show');
+    $('#modalModifierActivite').modal('show');
 }
 let montrerVue = (action, donnees) => {
     switch(action){
@@ -985,10 +997,21 @@ let montrerVue = (action, donnees) => {
             break;
         case "chargerE"      :
             if(donnees.OK){
-                console.log(donnees);
-                console.log(donnees.etape.debut.substring(0,10));
-                console.log(donnees.etape.fin.substring(0,10));
                 afficherModifierE(donnees.etape);
+            }else{
+                afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 
+            }
+            break;
+        case "chargerJ"      :
+            if(donnees.OK){
+                afficherModifierJ(donnees.journee);
+            }else{
+                afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 
+            }
+            break;
+        case "chargerA"      :
+            if(donnees.OK){
+                afficherModifierA(donnees.activite);
             }else{
                 afficherMessage("Problème côté serveur. Essaiez plus tard!!!"); 
             }
