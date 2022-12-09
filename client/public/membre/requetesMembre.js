@@ -53,30 +53,6 @@ let requeteModifier = () => {
 	});
 }
 
-// Consulter pour upload de fichiers
-// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-
-const posterFormAvecFETCH = async ( url, formData ) => {
-	const optionsFetch = {
-		method: "POST",
-		body: formData
-	}
-	const reponse = await fetch(url, optionsFetch);
-	if (!reponse.ok) {
-		const messageErreur = await reponse.text();
-		throw new Error(messageErreur);
-	}
-	return reponse.json();
-}
-
-const chargerCircuitsFETCH = async () => {
-	const url = "../controlleur/controleurAdmin.php";
-	const formData = new FormData();
-	formData.append('action','lister');
-	listeCircuits = await posterFormAvecFETCH( url, formData);
-	alert(listeCircuits.msg);
-	montrerVue("lister", listeFilms);
-}
 
 let requeteDeconnexion = () => {
 	let formMembre = new FormData();
@@ -103,15 +79,47 @@ let requeteDeconnexion = () => {
 		$.ajax({
 			type : "POST",
 			url  : "../../routeMembre.php",
-			data : {"action":"detailler","input":idc},
+			data : {"action":"detaillerC","input":idc},
 			dataType : "json", //text pour voir si bien formé même chose pour xml
 			success : function (reponse){
-				montrerVue("detailler", reponse);
+				montrerVue("detaillerC", reponse);
 			},
 			fail : (err) => {
 				//Décider du message
 			}
 		})
+
+}
+
+let detailEtape = (ide) => {
+	$.ajax({
+		type : "POST",
+		url  : "../../routeMembre.php",
+		data : {"action":"detaillerE","input":ide},
+		dataType : "json", //text pour voir si bien formé même chose pour xml
+		success : function (reponse){
+			montrerVue("detaillerE", reponse);
+		},
+		fail : (err) => {
+			//Décider du message
+		}
+	})
+
+}
+
+let detailJournee = (idj) => {
+	$.ajax({
+		type : "POST",
+		url  : "../../routeMembre.php",
+		data : {"action":"detaillerJ","input":idj},
+		dataType : "json", //text pour voir si bien formé même chose pour xml
+		success : function (reponse){
+			montrerVue("detaillerJ", reponse);
+		},
+		fail : (err) => {
+			//Décider du message
+		}
+	})
 
 }
 

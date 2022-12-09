@@ -967,7 +967,7 @@ let montrerVue = (action, donnees) => {
              break;
         case "modifierM"     :
             if(donnees.OK){
-                window.location.href= donnees.location;
+                chargerMembresAJAX();
                 }else{
                 console.log(donnees.msg);
                 //window.location.href="index.php"; 

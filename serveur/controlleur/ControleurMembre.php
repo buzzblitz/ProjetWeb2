@@ -45,7 +45,7 @@
 }
 
   function CtrM_detailler($idc){
-       global $list;
+    global $list;
     $circuit = json_decode(DaoCircuit::getDaoCircuit()->MdlC_get($idc));
     if($circuit->OK){
         $etapes = json_decode(DaoEtape::getDaoEtape()->MdlE_getAll($idc));
@@ -61,12 +61,24 @@
                             $list['listeEtapes'] = $etapes->listeEtapes;
                             $list['listeJournees'] = $journees->listeJournees;
                             $list['listeActivites'] = $activites->listeActivites;
-                            return json_encode($list);
                     }
                 }
             }
         }
     }
+    return json_encode($list);
+  }
+
+  function CtrM_detaillerC($idc){
+    return DaoEtape::getDaoEtape()->MdlE_getAll($idc);
+  }
+
+  function CtrM_detaillerE($ide){
+    return DaoJournee::getDaoJournee()->MdlJ_getAll($ide);
+  }
+
+  function CtrM_detaillerJ($idj){
+    return DaoActivite::getDaoActivite()->MdlA_getAll($idj);
   }
 
   function CtrM_updateM(){
@@ -112,7 +124,17 @@
                 return $this->CtrM_getAll(); 
             case "detailler" :
                 $input=$_POST['input'];
-                return  $this->CtrM_detailler($input); 
+                return  $this->CtrM_detailler($input);
+            case "detaillerC" :
+                $input=$_POST['input'];
+                return  $this->CtrM_detaillerC($input);
+            case "detaillerE" :
+                $input=$_POST['input'];
+                return  $this->CtrM_detaillerE($input);
+            case "detaillerJ" :
+                $input=$_POST['input'];
+                return  $this->CtrM_detaillerJ($input);
+             
             case "modifier" :
                 return  $this->CtrM_updateM(); 
         }

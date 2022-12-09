@@ -10,7 +10,7 @@ class Etape {
     private $debut;
     private $fin;
     private $lieurencontre;
-    private $listeJournes = array();
+    private $listeJournees = array();
 
     function __construct(int $ide, int $idc, string $nome, string $photoe, string $descriptione, string $debut, string $fin, string $lieurencontre) {
       $this->ide = $ide;
@@ -85,19 +85,19 @@ class Etape {
     }
   
     function setListeJournes($listeJournes):void {
-      $this->listeJournes = $listeJournes;
+      $this->listeJournees = $listeJournes;
     }
 
-    function getListeJournes():array {
-      return $this->listeJournes;
+    function getListeJournees():array {
+      return $this->listeJournees;
     }
   
-    function ajouterJournes($Journes) {
-      array_push($this->listeJournes,$Journes);
+    function ajouterJournee($Journee) {
+      array_push($this->listeJournees,$Journee);
     }
     
-    function supprimerJournes($Journes) {
-      unset($this->listeJournes[$Journes]);
+    function supprimerJournes($Journee) {
+      unset($this->listeJournees[$Journee]);
     }
     
   }
