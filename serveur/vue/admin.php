@@ -4,6 +4,10 @@ if (!isset($_SESSION['courriel'])) {
     header('Location: ../../index.php?msg=Problème+avec+votre+connexion');
     exit;
 }
+if ($_SESSION['role'] != "A") {
+    header('Location: ../../index.php?msg=Problème+avec+votre+connexion');
+    exit;
+}
 if (isset($_GET['msg'])) {
     $msg = $_GET['msg'];
 }
