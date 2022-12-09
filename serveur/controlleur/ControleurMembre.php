@@ -69,6 +69,30 @@
     }
   }
 
+  function CtrM_updateM(){
+    $dossierm="serveur/ressources/images/images_membres/";
+    $photoc= $_POST['photomcold'];
+    $nom = $_POST['nom'];
+    if($_FILES['photom']['tmp_name']!==""){
+        $nomphotom=sha1($nom.time());
+        //Upload de la photo
+        $tmpc = $_FILES['photom']['tmp_name'];
+        $fichierm= $_FILES['photom']['name'];
+        $extensionc=strrchr($fichierm,'.');
+        @move_uploaded_file($tmpc,$dossierm.$nomphotom.$extensionc);
+        // Enlever le fichier temporaire chargé
+        @unlink($tmpc); //effacer le fichier temporaire
+        $photoc=$nomphotom.$extensionc;
+    }
+    $membre = new Membre($_POST['idm'], $_POST['prenom'], $_POST['nom'], "", $_POST['sexe'], "", $photoc);
+    $timo = json_decode(DaoMembre::getDaoMembre()->MdlM_update($membre));
+    if($timo->OK){
+       $connexionM = new ConnexionM($_POST['idm'], "", $_POST['pass'], 'A', 'M');
+       return DaoConnexionM::getDaoConnexionM()->MdlCM_update_profile($connexionM);
+    }
+     
+}
+
     function CtrM_Actions(){
         $action=$_POST['action'];
         switch($action){
@@ -85,6 +109,8 @@
             case "detailler" :
                 $input=$_POST['input'];
                 return  $this->CtrM_detailler($input); 
+            case "modifier" :
+                return  $this->CtrM_updateM(); 
         }
         // Retour de la réponse au client
        

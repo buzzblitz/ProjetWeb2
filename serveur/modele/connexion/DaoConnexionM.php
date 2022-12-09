@@ -196,5 +196,26 @@ class DaoConnexionM {
         }
 	    
     }
+
+    function MdlCM_update_profile(ConnexionM $connexionM){
+        global $reponse;
+        $connexion =  Connexion::getConnexion();
+        $requette="UPDATE connexion SET pass=? WHERE idm=?";
+        try{
+            $donnees = [$connexionM->getPass(), $connexionM->getIdM()];
+            $stmt = $connexion->prepare($requette);
+	        $stmt->execute($donnees);
+            $reponse['OK'] = true;
+            $reponse['msg'] = "Réussite de la modification du circuit";
+            $reponse['location'] = "membres.php";
+        }catch (Exception $e){
+            $reponse['OK'] = false;
+            $reponse['msg'] = "Problème pour modifier le circuit";
+        }finally {
+            unset($connexion);
+            return json_encode($reponse);
+        }
+	    
+    }
 }
 ?> 

@@ -31,34 +31,14 @@ let requeteAfficherCircuit = (idc) => {
 }
 
 
-let requeteEnregistrer = () => {
-	let formCircuit = new FormData(document.getElementById('formEnregCircuit'));
-	formCircuit.append('action','enregistrer');
+let requeteModifier = () => {
+	let formModifier = new FormData(document.getElementById('formEnreg'));
+	formModifier.append('action','modifier');
+	console.log("salut");
 	$.ajax({
 		type : 'POST',
 		url : '../../routeMembre.php',
-		data : formCircuit, //$('#formEnreg').serialize()
-		//async : false,
-		//cache : false,
-		contentType : false,
-		processData : false,
-        dataType : 'json', //text pour le voir en format de string
-		success : function (reponse){//alert(reponse);
-					montrerVue("enregistrer", reponse);
-		},
-		fail : function (err){
-		   
-		}
-	});
-}
-
-let requeteModifier = () => {
-	let formCircuit = new FormData(document.getElementById('formEnregCircuitSolo'));
-	formCircuit.append('action','modifier');
-	$.ajax({
-		type : 'POST',
-		url : '../../routeAdmin.php',
-		data : formCircuit, //$('#formEnreg').serialize()
+		data : formModifier, //$('#formEnreg').serialize()
 		//async : false,
 		//cache : false,
 		contentType : false,
@@ -72,6 +52,7 @@ let requeteModifier = () => {
 		}
 	});
 }
+
 // Consulter pour upload de fichiers
 // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
 
@@ -148,5 +129,6 @@ let requeteAfficherProfil = (index) => {
         }
     })
 }
+
 
 
