@@ -122,6 +122,7 @@ let listerCircuits = (listeCircuits) => {
     contenu += `</div>`;
     document.getElementById('contenu').innerHTML = contenu;
 }
+
 let detaillerCircuits = (unCircuit, listeEtapes, listeJournees, listeActivities) => {
     let contenu = ``;
     contenu+= carteCircuit(unCircuit);
@@ -134,6 +135,30 @@ let detaillerCircuits = (unCircuit, listeEtapes, listeJournees, listeActivities)
             }
         }
     }
+    document.getElementById('contenu').innerHTML = contenu;
+}
+
+let detaillerC = (listeEtapes) => {
+    let contenu = ``;
+    for(let unEtape of listeEtapes){
+        contenu+= carteEtape(unEtape);
+    }
+    document.getElementById('contenu').innerHTML = contenu;
+}
+
+let detaillerE = (listeJournees) => {
+    let contenu = ``;
+        for(let uneJournee of listeJournees) {
+            contenu+= carteJournee(uneJournee);
+        }
+    document.getElementById('contenu').innerHTML = contenu;
+}
+
+let detaillerJ = (listeActivities) => {
+    let contenu = ``;
+            for(let uneActivite of listeActivities) {
+                contenu+= carteActivite(uneActivite);
+            }
     document.getElementById('contenu').innerHTML = contenu;
 }
 
@@ -161,6 +186,7 @@ let carteEtape = (unEtape) => {
                  rep +=' <p class="card-text">Debut : '+unEtape.debut+'</p>';
                  rep +=' <p class="card-text">Fin : '+unEtape.fin+'</p>';
                  rep +=' <p class="card-text">Lieu de rencontre : '+unEtape.lieurencontre+'</p>';
+                 rep +=' <a href="#" onClick="detailEtape(' + unEtape.ide + ');" class="btn btn-primary"><span style="font-size:18px; color:white;">Détailler Étape</span></a>';
                  rep +=' </div>';
                  rep +=' </div>';
                  rep +=' </div>';
@@ -173,20 +199,21 @@ let carteJournee = (uneJournee) => {
                  rep +=' <div class="card-body">';
                  rep +=' <h5 class="card-title">'+ uneJournee.datej+'</h5>';
                  rep +=' <p class="card-text">Description : '+ uneJournee.descriptionj+'</p>';
+                 rep +=' <a href="#" onClick="detailJournee(' + uneJournee.idj + ');" class="btn btn-primary"><span style="font-size:18px; color:white;">Détailler la Journee</span></a>';
                  rep +=' </div>';
                  rep +=' </div>';
                  rep +=' </div>';
         return rep;
 }
 
-let carteActivite = (uneActivite) => {
+let carteActivite = (unActivite) => {
     let rep =    ' <div class="col">';
     rep +='<div class="card-a">';
                  rep +=' <div class="card-body">';
-                 rep +=' <h5 class="card-title">'+ uneActivite.noma+'</h5>';
-                 rep +=' <p class="card-text">Temps Debut : '+ uneActivite.tempsdebut+'</p>';
-                 rep +=' <p class="card-text">Temps Fin : '+ uneActivite.tempsfin+'</p>';
-                 rep +=' <p class="card-text">Description : '+ uneActivite.descriptiona+'</p>';
+                 rep +=' <h5 class="card-title">'+ unActivite.noma+'</h5>';
+                 rep +=' <p class="card-text">Temps Debut : '+ unActivite.tempsdebut+'</p>';
+                 rep +=' <p class="card-text">Temps Fin : '+ unActivite.tempsfin+'</p>';
+                 rep +=' <p class="card-text">Description : '+ unActivite.descriptiona+'</p>';
                  rep +=' </div>';
                  rep +=' </div>';
                  rep +=' </div>';
@@ -418,6 +445,27 @@ let montrerVue = (action, donnees) => {
                 console.log(donnees.msg); 
             }
             break;
+        case "detaillerC"  :
+                if(donnees.OK){
+                    detaillerC(donnees.listeEtapes);     
+                }else{
+                    console.log(donnees.msg); 
+                }
+                break;
+        case "detaillerE"  :
+                    if(donnees.OK){
+                        detaillerE(donnees.listeJournees);     
+                    }else{
+                        console.log(donnees.msg); 
+                    }
+                    break;
+        case "detaillerJ"  :
+                if(donnees.OK){
+                    detaillerJ(donnees.listeActivites);     
+                }else{
+                    console.log(donnees.msg); 
+                }
+                break;
         case "afficherPageProfil"  :
             if(donnees.OK){
                 afficherPageProfil(donnees.membre, donnees.connexion);     
