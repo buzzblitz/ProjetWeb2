@@ -29,7 +29,7 @@ class DaoActivite {
         $requette="INSERT INTO activites VALUES(0,?,?,?,?,?)";
         try{
             
-            $donnees = [ $activite->getIdj(), $activite->getNom(), $activite->getTempsDebut(), $activite->getTempsFin(), $activite->getDescriptiona()];
+            $donnees = [ $activite->getIdj(), $activite->getNoma(), $activite->getTempsDebut(), $activite->getTempsFin(), $activite->getDescriptiona()];
             $stmt = $connexion->prepare($requette);
             $stmt->execute($donnees);
             $this->reponse['OK'] = true;
@@ -54,7 +54,7 @@ class DaoActivite {
             $stmt->execute($donnees);
             $reponse['OK'] = true;
             $reponse['msg'] = "";
-            $reponse['etape'] = $stmt->fetch();
+            $reponse['activite'] = $stmt->fetch();
         }catch (Exception $e){ 
             $reponse['OK'] = false;
             $reponse['msg'] = "Problème pour obtenir les données des activites";
@@ -90,18 +90,17 @@ class DaoActivite {
     function MdlA_update(Activite $activite){
         global $reponse;
         $connexion =  Connexion::getConnexion();
-        $requette="UPDATE activitees SET idj=?,noma=?,tempsdebut=?,tempsfin=?,descriptiona=? WHERE ida=?";
+        $requette="UPDATE activites SET idj=?,noma=?,tempsdebut=?,tempsfin=?,descriptiona=? WHERE ida=?";
         try{
-            $donnees = [$activite->getNom(),$activite->getTempsDebut(),$activite->getTempsFin(),$activite->getDescriptiona(),$activite->getIda()];
+            $donnees = [$activite->getIdj(), $activite->getNoma(),$activite->getTempsDebut(),$activite->getTempsFin(),$activite->getDescriptiona(),$activite->getIda()];
             $stmt = $connexion->prepare($requette);
 	        $stmt->execute($donnees);
             $reponse['OK'] = true;
-            $reponse['msg'] = "Réussite de la modification du activite";
-            $reponse['location'] = "admin.php";
+            $reponse['msg'] = "Réussite de la modification de l'activité";
             $reponse['index'] = $activite->getIdj();
         }catch (Exception $e){
             $reponse['OK'] = false;
-            $reponse['msg'] = "Problème pour modifier le activite";
+            $reponse['msg'] = "Problème pour modifier l'activité";
         }finally {
             unset($connexion);
             return json_encode($reponse);

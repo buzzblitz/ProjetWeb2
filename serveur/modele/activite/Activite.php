@@ -23,7 +23,7 @@ class Activite {
     function getIdj():int {
         return $this->idj;
     }
-    function getNom():string {
+    function getNoma():string {
         return $this->noma;
     }
     function getTempsDebut():string {

@@ -754,7 +754,7 @@ let afficherModifierE = (etape) => {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Enregistrer une Etape</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Modifier une Étape</h5>
                     <button type="button" onclick="chargerAJAX(${etape.idc},'listerE');" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -817,7 +817,7 @@ let afficherModifierJ = (journee) => {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Enregistrer une Journee</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Modifier une Journée</h5>
                     <button type="button" onclick="chargerAJAX(${journee.ide},'listerJ');" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -858,7 +858,7 @@ let afficherModifierA = (activite) => {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Enregistrer une Journee</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Modifier un Activite</h5>
                     <button type="button" onclick="chargerAJAX(${activite.idj},'listerA');" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -971,14 +971,15 @@ let montrerVue = (action, donnees) => {
              }
              break;
         case "modifierA"     :
+            console.log(donnees);
             if(donnees.OK){
                 $("#contenu").html("");
                 chargerAJAX(donnees.index,"listerA");
-             }else{
+             }/*else{
                  msg="Problème+pour+modifier+le+membre.";
                  console.log(msg);
                  window.location.href="../../index.php"; 
-             }
+             }*/
              break;
         case "modifierM"     :
             if(donnees.OK){
