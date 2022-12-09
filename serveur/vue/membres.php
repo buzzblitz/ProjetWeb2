@@ -5,6 +5,11 @@
         header('Location: ../../index.php?msg=Vous+devez+vous+connecter');
         exit;
     }
+
+    if ($_SESSION['role'] != "M") {
+      header('Location: ../../index.php');
+      exit;
+  }
     $photo = $_SESSION['photom'];
     $idm = $_SESSION['idm'];
 ?>

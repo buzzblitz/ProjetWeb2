@@ -88,11 +88,13 @@ class DaoConnexionM {
                     $this->reponse['role'] = $usager["role"];
                     if($usager["role"] == "M"){
                             $_SESSION['idm'] = $usager["idm"];
+                            $_SESSION['role'] = $usager["role"];
                             $this->reponse['OK'] = true;
                             $this->reponse['msg'] = "Connexion Avec succes";
                             $this->reponse['idm'] = $usager["idm"];
                             $this->reponse['location'] = "serveur/vue/membres.php";
                     }else if($usager["role"] == "A"){
+                        $_SESSION['role'] = $usager["role"];
                         $this->reponse['OK'] = true;
                         $this->reponse['msg'] = "Connexion Avec succes";
                         $this->reponse['location'] = "serveur/vue/admin.php";
