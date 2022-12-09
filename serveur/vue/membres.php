@@ -27,7 +27,7 @@
     <script src="../../client/public/membre/requetesMembre.js"></script>
     <script src="../../client/public/membre/vueMembre.js"></script>
     </head>
-    <body id="pageM"onload="javascript:chargerCircuitsAJAX(), rafraichireCart();">
+    <body id="pageM"onload="javascript:chargerCircuitsAJAX2(), rafraichireCart();">
     <?php
         require_once("menu_membre.inc.php");
     ?>

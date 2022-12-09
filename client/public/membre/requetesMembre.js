@@ -1,6 +1,6 @@
 
 
-let chargerCircuitsAJAX = () => {
+let chargerCircuitsAJAX2 = () => {
     $.ajax({
         type : "POST",
         url  : "../../routeMembre.php",

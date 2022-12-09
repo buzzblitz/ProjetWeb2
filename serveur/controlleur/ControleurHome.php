@@ -66,7 +66,7 @@
     }
 
     function CtrH_getAll(){
-         return DaoCircuit::getDaoCircuit()->MdlC_getAll(); 
+         return DaoCircuit::getDaoCircuit()->MdlC_getAll_M(); 
     }
 
     function CtrH_Actions(){

@@ -22,7 +22,7 @@
     <script src="client/public/home/vueHome.js"></script>
 
 </head>
-<body id="page" onload="javascript: chargerCircuitsAJAX();">
+<body id="page" onload="javascript: chargerCircuitsAJAX3();">
     
      <?php 
       // include_once('serveur/includes/menu_accueil.inc.php'); 
@@ -43,7 +43,7 @@
                
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="javascript: chargerCircuitsAJAX();">Accueil</a>
+                        <a class="nav-link" href="javascript: chargerCircuitsAJAX3();">Accueil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="javascript: montrerFormEnreg();">Enregistrer</a>

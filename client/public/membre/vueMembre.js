@@ -424,6 +424,7 @@ let montrerVue = (action, donnees) => {
         break;
         case "lister"       :
             if(donnees.OK){
+                console.log(donnees);
                 listesCircuits = donnees.listeCircuits;
                 listerCircuits(donnees.listeCircuits);
             }else{

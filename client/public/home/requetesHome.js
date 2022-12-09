@@ -1,4 +1,4 @@
-let chargerCircuitsAJAX = () => {
+let chargerCircuitsAJAX3 = () => {
     $.ajax({
         type : "POST",
         url  : "routeHome.php",

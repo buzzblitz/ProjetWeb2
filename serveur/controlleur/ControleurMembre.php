@@ -29,8 +29,8 @@
 		}
 		return self::$instanceCtr;
 	}
-    function CtrM_getAll(){
-        return DaoCircuit::getDaoCircuit()->MdlC_getAll(); 
+    function CtrM_getAll_M(){
+        return DaoCircuit::getDaoCircuit()->MdlC_getAll_M(); 
    }
 
    function CtrM_get($idc){
@@ -121,7 +121,7 @@
                 $input=$_POST['input'];
                 return  $this->CtrM_Profile_get($input);
             case "lister" :
-                return $this->CtrM_getAll(); 
+                return $this->CtrM_getAll_M(); 
             case "detailler" :
                 $input=$_POST['input'];
                 return  $this->CtrM_detailler($input);
