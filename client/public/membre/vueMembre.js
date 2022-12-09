@@ -41,6 +41,7 @@ let afficherPageProfil = (membre,connexion) => {
                 </div>
                 <div class="col-md-6">
                     <label for="pass" class="form-label">Nouveau Mot de passe</label>
+                    <input type='text' class='form-control' id='passOriginal' name='passOriginal' value='`+membre.pass+`' readonly hidden>
                     <input type="password" class="form-control is-valid" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,10}$" id="pass" name="pass" required>
                 </div>
                 <div class="col-md-6">
