@@ -80,13 +80,13 @@ let montrerFormAjouterCircuit = (id) => {
 
                                     <div class='col-md-6'>
                                         "<label for='tempsdebut' class='form-label'>Heure du debut de l'activiter</label>
-                                        "<input type='time' class='form-control is-valid' id='tempsdebut' name='tempsdebut' required>
+                                        "<input type='text' class='form-control is-valid' id='tempsdebut' name='tempsdebut' required>
                                     </div>
                                     <div class='col-md-12'>
                                     </div>
                                     <div class='col-md-6'>
                                         <label for='tempsfin' class='form-labe'>Heure de fin de l'activiter</label>
-                                        <input type='time' class='form-control is-valid' id='tempsfin' name='tempsfin' required>
+                                        <input type='text' class='form-control is-valid' id='tempsfin' name='tempsfin' required>
                                     </div>
                                     <div class='col-md-12'>
                                         <label for='descriptiona' class='form-label'>Description des activiter</label>
