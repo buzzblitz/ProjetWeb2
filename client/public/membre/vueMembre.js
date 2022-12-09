@@ -154,7 +154,7 @@ let carteCircuit = (unCircuit) => {
 let carteEtape = (unEtape) => {
     let rep =    ' <div class="col">';
     rep +='<div class="card-e">';
-                 rep +=' <img src="../ressources/images/images_circuits/'+unEtape.photoe+'" class="card-img-top tailleImg" alt="...">';
+                 rep +=' <img src="../ressources/images/images_etapes/'+unEtape.photoe+'" class="card-img-top tailleImg" alt="...">';
                  rep +=' <div class="card-body">';
                  rep +=' <h5 class="card-title">'+unEtape.nome+'</h5>';
                  rep +=' <p class="card-text">Description : '+unEtape.descriptione+'</p>';
