@@ -257,7 +257,7 @@ let montrerFormRechercherCircuit = () => {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Rechercher un Circuit</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" onclick="chargerAJAX(0,'listerC');" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="formRechercherCircuit" class="row  needs-validation" enctype="multipart/form-data" target="cacheCache">
@@ -286,7 +286,7 @@ let montrerFormTriCircuit = () => {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tri sur un Circuit</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" onclick="chargerAJAX(0,'listerC');" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="formTriCircuit" class="row  needs-validation" enctype="multipart/form-data" target="cacheCache">
